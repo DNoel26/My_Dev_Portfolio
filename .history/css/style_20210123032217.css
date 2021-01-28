@@ -1,0 +1,15 @@
+header {
+    height: 700px;
+    background-color: red;
+}
+
+div {
+    height: 200px;
+    background: url("../img/profile_pic.jpg") no-repeat fixed;
+    background-size: contain;
+}
+
+svg {
+    height: 100%;
+    opacity: 0;
+}

@@ -1,0 +1,27 @@
+header {
+    height: 120px;
+    background-color: red;
+}
+
+.hero > div:{
+    height: 700px;
+}
+
+.prof-pic.svg-clip {
+    height: 100%;
+    -webkit-clip-path: url(#svg-clip);
+    clip-path: url(#svg-clip);
+}
+
+svg {
+    height: 100%;
+    width: auto;
+    /*mask-image: url("../img/profile_pic.jpg");
+    mask-size: contain;*/
+}
+
+svg image {
+    height: auto;
+    width: 100%;
+    background-color: blue !important;
+}

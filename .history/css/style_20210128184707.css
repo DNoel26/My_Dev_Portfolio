@@ -1,0 +1,38 @@
+header {
+    background-color: lightseagreen;
+
+}
+
+header nav:first-child {
+    height: 200px;
+}
+
+header nav:last-child {
+    height: 100px;
+}
+
+footer {
+    background-color: red;
+    height: 300px;
+}
+
+.logo {
+    padding-top: 50px;
+}
+
+.hero > div:first-child {
+    height: 700px;
+    background-color: lightseagreen;
+}
+
+.prof-pic.svg-clip {
+    height: 100%;
+    -webkit-clip-path: url(#svg-clip);
+    clip-path: url(#svg-clip);
+}
+
+svg,
+svg image {
+    height: 100%;
+    width: auto;
+}

@@ -1,0 +1,52 @@
+header {
+    /*height: 150px;
+    background-color: blue;*/
+}
+
+header nav:first-child {
+    height: 300px;
+}
+
+header nav:last-child {
+    height: 100px;
+}
+
+footer {
+    background-color: red;
+    height: 300px;
+}
+
+.logo {
+    padding-top: 50px;
+    overflow: hidden;
+}
+
+.logo-link, .logo-img {
+    display: block;
+}
+
+.img-fluid {
+    background-color: blue;
+    di
+}
+
+.hero {
+    height: 700px;
+    background-color: lightseagreen;
+}
+
+.hero div {
+    height: 100%;
+}
+
+/*.prof-pic.svg-clip {
+    height: 100%;
+    -webkit-clip-path: url(#svg-clip);
+    clip-path: url(#svg-clip);
+}*/
+
+svg image {
+    height: 100%;
+    width: auto;
+    display: block;
+}

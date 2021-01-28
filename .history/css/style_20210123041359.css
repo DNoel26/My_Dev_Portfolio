@@ -1,0 +1,22 @@
+header {
+    height: 700px;
+    background-color: red;
+}
+
+div {
+    height: 200px; 
+    background-color: blue;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    -webkit-clip-path: url(#prof-pic);
+    clip-path: url(#prof-pic);
+}
+
+/*svg {
+    height: 100%;
+    mask-image: url("../img/profile_pic.jpg");
+    mask-size: contain;
+}*/
