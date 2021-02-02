@@ -328,9 +328,9 @@ a.nav-link,
     animation: none;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
     background-color: var(--theme-colour-3);
-}
+}*/
 
 a.dropdown-item {
     color: var(--theme-colour-1);
