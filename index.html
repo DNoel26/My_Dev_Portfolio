@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | Darnell Noel | Professional Portfolio | Full Stack Web Development</title>
+    <!-- AniCollection.css library -->
+    <link rel="stylesheet" href="http://anijs.github.io/lib/anicollection/anicollection.css">
+    <!-- Include the styles definition -->
+    <link rel="stylesheet" href="assets/styles/custom-animations.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header>
         <div class="container">
+            <video autoplay muted src="/media/laptop.mp4"></video>
+            <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
+
             <nav class="navbar navbar-expand-md top-header-nav">
                 <!--Logo-->
                 <div class="logo mx-auto">
                     <a href="/" class="navbar-brand logo-link">
-                        <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img">
+                        <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid d-block mx-auto logo-img" data-anijs="if: mouseout, do: zoomIn animated, to: .logo">
                     </a>  
                 </div>
 
@@ -35,26 +43,37 @@
 
             <nav class="navbar navbar-expand-md bot-header-nav">
                 <!--Nav Links-->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link active anim-link">Home</a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item mx-1 anim-link-1 active">
+                        <a href="/#home" class="nav-link">Home</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link anim-link">About</a>
+                    <li class="nav-item mx-1 anim-link-1">
+                        <a href="#about" class="nav-link">About</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#technologies" class="nav-link anim-link">Tools & Technologies</a>
+                    <li class="nav-item mx-1 anim-link-1">
+                        <a href="#tools+technologies" class="nav-link ">Tools & Technologies</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#projects" class="nav-link anim-link">Projects</a>
+                    <li class="nav-item mx-1 dropdown anim-link-1">
+                        <button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown">Projects</button>
+
+                        <div class="dropdown-menu">
+                            <a href="#all-projects" class="dropdown-item">View All</a>
+                            <a href="#link-2" class="dropdown-item">Link 2</a>
+                            <a href="#link-3" class="dropdown-item">Link 3</a>
+                        </div>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link anim-link">Contact</a>
+                    <li class="nav-item mx-1 anim-link-1">
+                        <a href="#contact" class="nav-link">Contact</a>
                     </li>
+
+                    <li class="nav-item px-3">
+                        <button class="nav-link btn btn-info btn-custom-1">View Resume</button> 
+                    </li>
+                    <!--<iframe src="/assets/Darnell Noel Resume Feb 2020.pdf" height="500px" width="100%"></iframe>-->
                 </ul>
             </nav>
         </div>
@@ -69,20 +88,34 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="welcome-section pt-5" id="home">
             <div class="container pt-custom-1">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
-                        <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
-                        <h1 class="text-center py-2">Welcome to my <strong class="text-custom-1">Developer Portfolio</strong></h1>  
-                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
-                        <lottie-player class="mx-auto px-2" src="https://assets8.lottiefiles.com/packages/lf20_0G8tRV.json" mode="bounce" background="transparent" style="width: 30px; height: 30px;" speed="1" loop autoplay></lottie-player>
+                    <div class="col-xl-6 col-auto mx-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal repeat">
+                        <div>
+                            <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+                            <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
+                            <h2 class="text-center">Welcome to my</h2>
+                            <h1 class="text-center">
+                                <strong class="ml13 text-custom-1">Developer Portfolio</strong>
+                            </h1>
+                            <h3 class="small text-center">- Built Using -</h3>
+                            <div class="d-flex-custom-2 pt-2 icon-row-sm">
+                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-bootstrap" src="/img/800px-Bootstrap_logo.svg.png" alt="Bootstrap Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-bootstrap, after: $removeAnim">
+                            </div>
+                        </div>
+
+                        <div>
+                            <lottie-player class="mx-auto pt-4" src="https://assets8.lottiefiles.com/packages/lf20_0G8tRV.json" mode="bounce" background="transparent" style="width: 30px; height: 30px;" speed="1" loop autoplay></lottie-player>  
+                        </div>
                     </div>
 
-                    <div class="clearfix col-md-6 card shadow">
+                    <div class="clearfix col-xl-6 mx-auto card shadow container-box" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal repeat">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
-                        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
+                        <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
                                 <pattern id="img-pattern" x="-0.15" y="-0.05" width="1.15" height="1.15">
                                     <image href="/img/profile_pic_1f6f8b_blue_bg.png"/>
@@ -98,29 +131,29 @@
                             </defs>-->
                         </svg>
 
-                        <div class="row">
-                            <nav class="card-body icon-disp col-md-auto grow-link">
-                                <a class="icon-disp-link" target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/">
+                        <div class="row card-body">
+                            <nav class="icon-disp col-md-6 col-auto pb-3 pb-sm-0">
+                                <a class="icon-disp-link grow-link-1" target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/">
                                     <img class="card-link img-fluid icon-disp-img" src="/img/LI-Logo.png" alt="Clickable LinkedIn logo link">
                                 </a>
     
-                                <a class="icon-disp-link" target="_blank" href="https://github.com/DNoel26">
+                                <a class="icon-disp-link grow-link-1" target="_blank" href="https://github.com/DNoel26">
                                     <img class="card-link img-fluid icon-disp-img" src="/img/GitHub_Logo.png" alt="Clickable GitHub logo link">
                                 </a>
     
-                                <a class="icon-disp-link" target="_blank" href="https://www.facebook.com/darnell.noeldev/">
+                                <a class="icon-disp-link grow-link-1" target="_blank" href="https://www.facebook.com/darnell.noeldev/">
                                     <img class="card-link img-fluid icon-disp-img" src="/img/f_logo_RGB-Blue_512.png" alt="Clickable Facebook logo link">
                                 </a>
 
-                                <a class="icon-disp-link" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio">
+                                <a class="icon-disp-link grow-link-1" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio">
                                     <img class="card-link img-fluid icon-disp-img-whatsapp" src="/img/WhatsApp_Logo_1.png" alt="Clickable WhatsApp logo link">
                                 </a>
                             </nav>
     
-                            <nav class="card-body col-md-auto">
-                                <a class="text-reset text-decoration-none text-right divider-ry anim-link-2" href="/assets/Darnell Noel Resume Feb 2020.pdf" download="Darnell_Noel_Resume_Feb_2020"><strong class="text-custom-1">Download</strong> Resume</a>
+                            <nav class="col-lg-6 col-auto align-self-center d-flex-custom-1 justify-content-between">
+                                <a class="text-reset text-decoration-none anim-link-2" href="/assets/Darnell_Noel_FSD_Resume_Feb_2020.pdf" download="Darnell_Noel_Resume_Feb_2020"><strong class="text-custom-1">Download</strong> Resume</a>
 
-                                <a class="text-reset text-decoration-none text-right anim-link-2" href="#contact"><strong class="text-custom-1">Contact</strong> Me</a>
+                                <a class="text-reset text-decoration-none anim-link-2" href="#contact"><strong class="text-custom-1">Contact</strong> Me</a>
                             </nav>
                         </div> 
                     </div>  
@@ -128,17 +161,156 @@
             </div> 
         </section>
 
-        <section>
-            
+        <section class="about-section pt-5" id="about">
+            <div class="container">
+                <h2 class="ml9 text-white text-center">
+                    <span class="text-wrapper">
+                      <span class="letters">A Little About Me...</span>
+                    </span>
+                </h2>
+            </div>
+
+            <div class="custom-shape-divider-bottom-1612186400">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <section class="tools-tech-section pt-5" id="tools+technologies">
+            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
+                <h2 class="text-center mb-3">Tools & Technologies</h2>
+                <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms <strong class="text-custom-1">learned</strong> and <strong class="text-custom-1">used</strong> -</h3>
+
+                <div class="row justify-content-around">
+                    <div class="icon-disp col-md-3 col-auto pt-4 pt-sm-0 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">HTML5</small>
+                        <div class="skill-rating skill-rating-advanced">
+                            <!--<img src="/svg/star-fill.svg" alt="Filled star Icon">
+                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                            <img src="/svg/star.svg" alt="Empty star icon">-->
+                        </div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-0 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">CSS3</small>
+                        <div class="skill-rating skill-rating-advanced"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-0 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">JavaScript</small>
+                        <div class="skill-rating skill-rating-advanced"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-0 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Bootstrap</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
+                        <small class="d-block mt-2">Handlebars</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">React</small>
+                        <div class="skill-rating skill-rating-novice"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">MySQL</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Firebase</small>
+                        <div class="skill-rating skill-rating-novice"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">MongoDB</small>
+                        <div class="skill-rating skill-rating-beginner"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Node.js</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Express.js</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                        <small class="d-block mt-2">Netlify</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Heroku</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section pt-5" id="all-projects">
+            <div class="container">
+                PROJECTS
+            </div>
+        </section>
+
+        <section class="contact-section pt5">
+            <div class="container">
+                <div>Contact Form</div>
+                <div>Quote and Pic</div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <div class="container-fluid">
-
-        </div>
+        <nav class="container-fluid">
+            <div class="container text-center text-white">
+                FOOTER
+            </div>
+        </nav>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="anijs-min.js"></script>
+    <!-- AniJS core library -->
+    <script src="https://anijs.github.io/lib/anijs/anijs-min.js"></script> 
+      <!-- Include to use $addClass, $toggleClass or $removeClass -->
+    <script src="https://anijs.github.io/lib/anijs/helpers/dom/anijs-helper-dom-min.js"></script>
+    <!-- ScrollReveal Helper -->
+    <script src="helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
+    <!-- AniJS Core File -->
+    <script src="bower_components/anijs/dist/anijs-min.js"></script>
+    <!-- ScrollReveal Helper -->
+    <script src="bower_components/anijs/dist/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
+    <script src="https://anijs.github.io/lib/anijs/anijs.js"></script>
+    <script src="https://anijs.github.io/lib/anijs/helpers/scrollreveal/anijs-helper-scrollreveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>  
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
