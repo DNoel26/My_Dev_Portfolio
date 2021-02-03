@@ -1,7 +1,11 @@
 console.log("App.js Loaded Successfully");
 
+import "../assets/TagCloud-master/dist/TagCloud.min.js";
+
 const App = {
     init() {
+
+        /*** Dependencies ***/
 
         // Wrap every letter in a span
         const textWrapperML13 = document.querySelector('.ml13');
@@ -43,13 +47,94 @@ const App = {
                 easing: "easeOutExpo",
                 delay: 2000,
             });
+
+        /*** Tag Cloud ***/
         
-        const skill_rating = document.querySelectorAll(".skill-rating");
-        const skill_rating_beginner = document.querySelectorAll(".skill-rating-beginner");
-        const skill_rating_novice = document.querySelectorAll(".skill-rating-novice");
-        const skill_rating_intermediate = document.querySelectorAll(".skill-rating-intermediate");
-        const skill_rating_advanced = document.querySelectorAll(".skill-rating-advanced");
-        const skill_rating_expert = document.querySelectorAll(".skill-rating-expert");
+        // Define tags in js array
+        let myTags = [
+            'Object-Oriented-Programming', 'Separation-of-Concerns', 'RESTful-APIs',
+            'Data-Structures', 'Mechanical-Engineering', 'Front-End-Web-Development',
+            'Back-End-Web-Development', 'Full-Stack-Web-Development', 'Database-Management-Systems',
+            'Web-Design', 'Apps', 'Responsive-Design', 
+            'Promises', 'JSON', 'Customer-Service',
+        ];
+
+        // Render a default tag cloud
+        //let tagCloud = TagCloud('.tag-cloud-content', myTags);
+
+        // Config tag cloud by overriding default parameters below
+        let tagCloud = TagCloud('.tag-cloud-content', myTags, {
+
+            // radius in px
+            radius: 200,
+        
+            // animation speed
+            // slow, normal, fast
+            maxSpeed: 'fast',
+            initSpeed: 'normal',
+        
+            // 0 = top
+            // 90 = left
+            // 135 = right-bottom
+            direction: 135,
+            
+            // interact with cursor move on mouse out
+            keep: true,
+        });
+
+        // Add more tags to existing tag cloud
+        myTags = myTags.concat([]);
+        tagCloud.update(myTags);
+
+        const tagcloud = document.querySelector(".tagcloud");
+        const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+        
+        tagcloud_items.forEach(item => {
+            
+            let clicked_once = false;
+
+            item.addEventListener("click", (e)=>{
+
+                console.log(item); // transform: translate3d(-35px, -146.6px, 0px) scale (1)
+                console.log(item.style.transform);   
+                console.log(clicked_once);
+
+                if(clicked_once === true) {
+
+                    item.style.fontSize = "0"; 
+
+                    setTimeout(() => {
+                
+                        item.style.color = "initial"; 
+                        item.style.fontSize = "initial";
+                        item.style.fontWeight = "initial";
+                        clicked_once = false; 
+                    }, 3000);
+                } else {
+
+                    item.style.color = "var(--theme-colour-1)"; 
+                    item.style.fontSize = "1.2rem";
+                    item.style.fontWeight = "900";
+                    clicked_once = true; 
+                };     
+            }); 
+        });
+
+        if(!tagcloud) {
+            
+            tagcloud.remove();
+        }
+
+        /*** Main Document ***/
+        
+        const skill_ratings = document.querySelectorAll(".skill-rating");
+        const skill_ratings_beginner = document.querySelectorAll(".skill-rating-beginner");
+        const skill_ratings_novice = document.querySelectorAll(".skill-rating-novice");
+        const skill_ratings_intermediate = document.querySelectorAll(".skill-rating-intermediate");
+        const skill_ratings_advanced = document.querySelectorAll(".skill-rating-advanced");
+        const skill_ratings_expert = document.querySelectorAll(".skill-rating-expert");
+
+        const submit_btn = document.querySelector("#submit-btn");
 
         //Header Video 
         const header = document.querySelector("header");
@@ -146,38 +231,45 @@ const App = {
                 };
             };
 
-            skill_rating_beginner.forEach(rating_div => {
+            skill_ratings_beginner.forEach(rating_div => {
 
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("beginner");
             });
 
-            skill_rating_novice.forEach(rating_div => {
+            skill_ratings_novice.forEach(rating_div => {
                 
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("novice");
             });
             
-            skill_rating_intermediate.forEach(rating_div => {
+            skill_ratings_intermediate.forEach(rating_div => {
 
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("intermediate");
             });
             
-            skill_rating_advanced.forEach(rating_div => {
+            skill_ratings_advanced.forEach(rating_div => {
 
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("advanced");
             });
 
-            skill_rating_expert.forEach(rating_div => {
+            skill_ratings_expert.forEach(rating_div => {
 
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("expert");
             });
-        });
-    },
-};
+
+            document.addEventListener("submit", (e)=>{
+               
+                if(window.location)
+            });
+
+            function myFunction() {return location.reload();}
+        }); // end of DOMContentLoaded event listener
+    }, // end of init()
+}; // end of App
 
 App.init();
 

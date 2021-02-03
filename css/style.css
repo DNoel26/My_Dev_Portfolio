@@ -36,6 +36,12 @@
     height: 100px;
 }
 
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: 900;
+}
+
 .divider-ry {
     border-right: 2px var(--theme-colour-1) solid;
 }
@@ -58,6 +64,16 @@
     background-color: var(--theme-colour-3) !important;
     border-color: var(--theme-colour-1) !important;
     color: var(--theme-colour-1) !important; 
+}
+
+.btn-custom-2 {
+    background-color: var(--theme-colour-1) !important;
+    border-color: var(--theme-colour-3) !important;
+    color: var(--theme-colour-3) !important; 
+}
+
+.btn-custom-1,
+.btn-custom-2 {
     font-weight: 500;
     transform: scale(1);
     transform-origin: initial;
@@ -65,7 +81,9 @@
 }
 
 .btn-custom-1:hover,
-.btn-custom-1:focus {
+.btn-custom-1:focus,
+.btn-custom-2:hover,
+.btn-custom-2:focus {
     transform: scale(1.08);
 }
 
@@ -234,6 +252,10 @@ img.handlebars-logo {
 
 /* API / CDN / Other Imported Classes */
 
+[data-anijs*="if: click"] {
+    cursor: pointer;
+}
+
     /*** Divider for Header ***/
 
 .custom-shape-divider-bottom-1612032701 {
@@ -295,21 +317,65 @@ lottie-player {
     position: relative;
     font-weight: 200;
     font-size: 4rem;
-  }
+}
   
 .ml9 .text-wrapper {
-position: relative;
-display: inline-block;
-padding-top: 0.2rem;
-padding-right: 0.05rem;
-padding-bottom: 0.1rem;
-overflow: hidden;
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2rem;
+    padding-right: 0.05rem;
+    padding-bottom: 0.1rem;
+    overflow: hidden;
 }
 
 .ml9 .letter {
-transform-origin: 50% 100%;
-display: inline-block;
-line-height: 1rem;
+    transform-origin: 50% 100%;
+    display: inline-block;
+    line-height: 1rem;
+}
+
+    /*** Tag cloud animation ***/
+
+.tag-cloud-content {
+    overflow: hidden;
+}
+
+.tagcloud {
+    font-size: 0.8rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 250px !important;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+    
+.tagcloud--item {
+    padding: 2px 4px;
+    color: black;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+}
+    
+.tagcloud--item:hover {
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid var(--theme-colour-1);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    opacity: 1 !important;
+    z-index: 100 !important;
+}
+    
+.light .tagcloud--item {
+    color: #fff;
+}
+    
+.light .tagcloud--item:hover {
+    background-color: rgba(255,255,255,.1);
+    border: 1px solid #fff;
 }
 
 /* Bootstrap Classes */

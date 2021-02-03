@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | Darnell Noel | Professional Portfolio | Full Stack Web Development</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- AniCollection.css library -->
     <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
     <!-- Include the styles definition for Bootstrap -->
@@ -97,13 +98,19 @@
 
     <main>
         <section class="welcome-section pt-5" id="home">
+            <div>
+                <h3 class="small text-center mb-5">- Hi there, I design & build <strong class="text-custom-1">modern, responsive websites</strong> and <strong class="text-custom-1">web applications</strong> -</h3>
+            </div>
+
+            <div class="tag-cloud-content text-center d-block mx-auto"></div>
+
             <div class="container pt-custom-1">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-auto mx-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal repeat">
+                    <div class="col-xl-6 col-auto mx-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal">
                         <div>
                             <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
                             <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
-                            <h2 class="text-center">Welcome to my</h2>
+                            <h2 class="text-center">Welcome officially to my</h2>
                             <h1 class="text-center">
                                 <strong class="ml13 text-custom-1">Developer Portfolio</strong>
                             </h1>
@@ -121,7 +128,7 @@
                         </div>
                     </div>
 
-                    <div class="clearfix col-xl-6 mx-auto card shadow container-box" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal repeat">
+                    <div id="profile" class="clearfix col-xl-6 mx-auto card shadow container-box" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
                         <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
@@ -192,7 +199,7 @@
         </section>
 
         <section class="tools-tech-section pt-5" id="tools+technologies">
-            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
+            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal">
                 <h2 class="text-center mb-3">Tools & Technologies</h2>
                 <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms <strong class="text-custom-1">learned</strong> and <strong class="text-custom-1">used</strong> -</h3>
 
@@ -281,6 +288,22 @@
                         <div class="skill-rating skill-rating-intermediate"></div>
                     </div>
                 </div>
+
+                <h3 class="text-center small mt-5">- Also <strong class="text-custom-1">skilled</strong> in -</h3>
+
+                <div class="row justify-content-around">
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                        <small class="d-block mt-2">AutoCAD</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">SolidWorks</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -290,9 +313,72 @@
             </div>
         </section>
 
-        <section class="contact-section pt5">
+        <section class="contact-section mt-5" id="contact">
             <div class="container">
-                <div>Contact Form</div>
+                <div>
+                    <form action="https://formspree.io/f/xyybvjzj" method="POST" target="_blank">
+                        <div class="mb-5">
+                            <h2>Send an email</h2>
+
+                            <small>
+                                - Prefer to reach out to me another way? 
+
+                                <a class="text-reset text-decoration-none anim-link-2" href="#profile">
+                                    <strong class="text-custom-1">Click</strong> here for social media
+                                </a>
+
+                                <a class="text-reset text-decoration-none anim-link-2" href="tel:+1-868-480-8781">
+                                    or <strong class="text-custom-1">Call</strong> me directly
+                                </a> -
+                            </small>
+                        </div>
+
+                        <div class="form-floating mb-3">    
+                            <input required class="form-control" type="text" id="first-name" name="first_name" placeholder="John">                    
+                            <label class="required form-label" for="first-name"><i class="fas fa-user-alt"></i> First Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3">                        
+                            <input required class="form-control" type="text" id="last-name" name="last_name" placeholder="Doe">
+                            <label class="required form-label" for="last-name"><i class="fas fa-user-alt"></i> Last Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3">                        
+                            <input required class="form-control" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help">
+                            <label class="required form-label" for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <div id="email-help" class="form-text mx-3">I won't share your details with anyone else</div>
+                        </div>
+
+                        <div class="form-floating mb-3">                                                    
+                            <input class="form-control" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help">
+                            <label class="form-label" for="phone"><i class="fas fa-phone-alt"></i> Phone Number</label>
+                            <div id="phone-help" class="form-text mx-3">Optional field: Include country code if outside Trinidad & Tobago or USA</div> 
+                        </div>
+
+                        <div class="form-floating mb-3">                        
+                            <input class="form-control" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help"> 
+                            <label class="form-label" for="company"><i class="far fa-registered"></i> Company</label>
+                            <div id="company-help" class="form-text mx-3">Optional field: Leave blank if contacting as an individual</div> 
+                        </div>
+
+                        <div class="form-floating mb-3">                        
+                            <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help">
+                            <label class="form-label" for="website"><i class="fas fa-laptop"></i> Website</label> 
+                            <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available</div> 
+                        </div>
+
+                        <div class="form-floating mb-3">                        
+                            <textarea required class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message"></textarea>
+                            <label class="required form-label" for="message-body"><i class="fas fa-grin-beam"></i> How can I be of assistance?</label>
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-custom-2 mb-3" type="submit" id="submit_btn">Send</button>
+
+                            <div class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3"></div>
+                        </div>
+                    </form>
+                </div>
                 <div>Quote and Pic</div>
             </div>
         </section>
@@ -323,10 +409,13 @@
     <!--<script src="bower_components/anijs/dist/anijs-min.js"></script>-->
     <!-- ScrollReveal Helper -->
     <!--<script src="bower_components/anijs/dist/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>-->
-    <script src="https://anijs.github.io/lib/anijs/anijs.js"></script>
+    <!--<script src="https://anijs.github.io/lib/anijs/anijs.js"></script>-->
     <script src="https://anijs.github.io/lib/anijs/helpers/scrollreveal/anijs-helper-scrollreveal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>  
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="/js/app.js"></script>
+    <!--Tag Cloud-->
+    <!--<script src="https://www.cssscript.com/./dist/TagCloud.min.js"></script>
+    <script type="text/javascript" src="./dist/TagCloud.min.js"></script>-->
+    <script type="module" src="/js/app.js"></script>
 </body>
 </html>
