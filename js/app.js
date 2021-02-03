@@ -260,13 +260,6 @@ const App = {
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("expert");
             });
-
-            document.addEventListener("submit", (e)=>{
-               
-                if(window.location)
-            });
-
-            function myFunction() {return location.reload();}
         }); // end of DOMContentLoaded event listener
     }, // end of init()
 }; // end of App
