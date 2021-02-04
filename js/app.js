@@ -123,7 +123,7 @@ const App = {
         if(!tagcloud) {
             
             tagcloud.remove();
-        }
+        };
 
         /*** Main Document ***/
         
@@ -143,6 +143,67 @@ const App = {
         document.addEventListener("DOMContentLoaded", ()=>{
 
             console.log("DOMContentLoaded Successfully");
+
+            /*** Formspree validation ***/
+            
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict'
+
+                const valid_feedback_fname = document.querySelector(".valid-feedback.valid-feedback-fname");
+                const valid_feedback_lname = document.querySelector(".valid-feedback.valid-feedback-lname");
+                const valid_feedback_email = document.querySelector(".valid-feedback.valid-feedback-email");
+                const valid_feedback_message = document.querySelector(".valid-feedback.valid-feedback-message");
+                const invalid_feedback_fname = document.querySelector(".invalid-feedback.invalid-feedback-fname");
+                const invalid_feedback_lname = document.querySelector(".invalid-feedback.invalid-feedback-lname");
+                const invalid_feedback_email = document.querySelector(".invalid-feedback.invalid-feedback-email");
+                const invalid_feedback_message = document.querySelector(".invalid-feedback.invalid-feedback-message");
+            
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                let forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    return new Promise((resolve,reject)=>{
+
+                        form.classList.add('was-validated')
+
+                        resolve();
+                    })
+                    .then(()=>{
+
+                        console.log(window.getComputedStyle(invalid_feedback_fname).display);
+                        console.log(window.getComputedStyle(valid_feedback_fname).display);
+                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
+
+                            valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_lname).display != "none") {
+
+                            valid_feedback_lname.innerHTML = "So you do have a last name...";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_email).display != "none") {
+
+                            valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
+                            valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
+                        };
+                    })
+                    .catch(err=>reject(`Failed to validate Bootstrap form: ${err}`));
+                    }, false);
+                });
+            })();
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
             setTimeout(() => {
