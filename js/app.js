@@ -56,7 +56,7 @@ const App = {
             'Data-Structures', 'Mechanical-Engineering', 'Front-End-Web-Development',
             'Back-End-Web-Development', 'Full-Stack-Web-Development', 'Database-Management-Systems',
             'Web-Design', 'Apps', 'Responsive-Design', 
-            'Promises', 'JSON', 'Customer-Service',
+            'Promises/Async', 'JSON', 'Customer-Service',
         ];
 
         // Render a default tag cloud
@@ -125,6 +125,20 @@ const App = {
             tagcloud.remove();
         };
 
+        /*** Bootstrap Scrollspy ***/
+
+        /*let scrollSpy = new bootstrap.ScrollSpy(document.body, {
+
+            target: '#page-nav',
+        });
+
+        let dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'))
+        dataSpyList.forEach(function (dataSpyEl) {
+
+            bootstrap.ScrollSpy.getInstance(dataSpyEl)
+            .refresh()
+        });*/
+
         /*** Main Document ***/
         
         const skill_ratings = document.querySelectorAll(".skill-rating");
@@ -139,82 +153,116 @@ const App = {
         //Header Video 
         const header = document.querySelector("header");
         const header_vid = document.querySelector("header video");
+        const nav_container = document.querySelector(".nav-container");
+
+        /*** FUNCTIONS ***/
+
+        
+        function myFunction() {
+            const scroll_indicator = document.querySelector("#my-bar");
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scroll_indicator.style.width = scrolled + "%";
+        }
 
         document.addEventListener("DOMContentLoaded", ()=>{
 
             console.log("DOMContentLoaded Successfully");
-
-            /*** Formspree validation ***/
-            
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
-
-                const valid_feedback_fname = document.querySelector(".valid-feedback.valid-feedback-fname");
-                const valid_feedback_lname = document.querySelector(".valid-feedback.valid-feedback-lname");
-                const valid_feedback_email = document.querySelector(".valid-feedback.valid-feedback-email");
-                const valid_feedback_message = document.querySelector(".valid-feedback.valid-feedback-message");
-                const invalid_feedback_fname = document.querySelector(".invalid-feedback.invalid-feedback-fname");
-                const invalid_feedback_lname = document.querySelector(".invalid-feedback.invalid-feedback-lname");
-                const invalid_feedback_email = document.querySelector(".invalid-feedback.invalid-feedback-email");
-                const invalid_feedback_message = document.querySelector(".invalid-feedback.invalid-feedback-message");
-            
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                let forms = document.querySelectorAll('.needs-validation')
-
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    
-                    return new Promise((resolve,reject)=>{
-
-                        form.classList.add('was-validated')
-
-                        resolve();
-                    })
-                    .then(()=>{
-
-                        console.log(window.getComputedStyle(invalid_feedback_fname).display);
-                        console.log(window.getComputedStyle(valid_feedback_fname).display);
-                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
-
-                            valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";
-                        };
-
-                        if(window.getComputedStyle(invalid_feedback_lname).display != "none") {
-
-                            valid_feedback_lname.innerHTML = "So you do have a last name...";
-                        };
-
-                        if(window.getComputedStyle(invalid_feedback_email).display != "none") {
-
-                            valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
-                        };
-
-                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
-                            valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
-                        };
-                    })
-                    .catch(err=>reject(`Failed to validate Bootstrap form: ${err}`));
-                    }, false);
-                });
-            })();
+            let scroll_moved = false;
+            let header_vid_ended = false;
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
-            setTimeout(() => {
+            header_vid.addEventListener("ended", ()=>{
+
                 header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
                 header.style.transition = "background 3s ease-in-out";
-                //header.style.animation = "bg-fade-in 2s ease-in-out 0s 1"
                 header_vid.remove();
-                //header_img.style.transition = "opacity 1.5s";
-                //header_img.style.opacity = "1 !important";
-                //alert("TIME UP");
-            },13000);
+
+                //alert("video ended");
+                header_vid_ended = true;
+            })
+
+            // Changes active class to parent node on scroll - works with BS scrollspy
+
+            const top_nav = document.querySelector(".top-header-nav");
+            const bot_nav = document.querySelector(".bot-header-nav");  
+            const body_placeholder = document.querySelector("body .placeholder-div");
+            const header_empty_div = document.querySelector("header .empty-div"); 
+            
+            // Generated by the shape divider app (remember to change class name if changing divider using app)
+            const header_divider = document.querySelector(".custom-shape-divider-bottom-1612032701");         
+
+            document.addEventListener("scroll", ()=>{
+
+                // When the user scrolls the page, execute myFunction
+                window.onscroll = function() {myFunction()};
+
+                //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with dropdown when CSS is set to the link itself)
+                const active_list = document.querySelectorAll(".nav-item");
+                const active_link = document.querySelector("a.active");
+
+                active_list.forEach(li => {
+                        
+                    if(li.children[0].classList.contains("active")) {
+
+                        //console.log(active_link);
+                        //console.log(active_link.parentElement.classList);
+                        li.classList.add("active-list");
+                    } else {
+
+                        li.classList.remove("active-list"); 
+                    }
+                });
+
+                // Resize header when scrolling
+                if(window.pageYOffset > 2) {
+
+                    console.log(window.pageYOffset);
+
+                    nav_container.classList.add("row","justify-content-between");
+                    top_nav.classList.add("col-3","w-25");
+                    bot_nav.classList.add("col-9");
+                    header_empty_div.classList.add("d-none");
+                    header_divider.classList.add("d-none");
+                    body_placeholder.classList.replace("invisible","visible");
+
+                    top_nav.style.height = "100%";
+                    bot_nav.style.height = "100%";
+                    nav_container.style.height = "80px";
+                    body_placeholder.style.height = "640px";
+                    body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end")
+
+                    header_vid.classList.add("d-none");
+                    header_vid.pause();
+                    
+                    scroll_moved = true;
+                    header.style.background = "linear-gradient(rgba(31,111,139,0.67), rgba(31,111,139,0.67)), url('') no-repeat fixed 100% 100%";
+                } else {
+
+                    nav_container.classList.remove("row","justify-content-between");
+                    top_nav.classList.remove("col-3","w-25");
+                    bot_nav.classList.remove("col-9");
+                    header_empty_div.classList.remove("d-none");
+                    header_divider.classList.remove("d-none");
+                    body_placeholder.classList.replace("visible","invisible");
+
+                    top_nav.style.height = "unset";
+                    bot_nav.style.height = "initial";
+                    nav_container.style.height = "400px";
+                    body_placeholder.style.height = "0px";
+                    body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start")
+
+                    header_vid.classList.remove("d-none");
+                    header_vid.play();
+
+                    if(scroll_moved && header_vid_ended) {
+
+                        header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
+                        header.style.transition = "background 3s ease-in-out";
+                    }
+                };
+            });
 
             //Generates skill rating divs and icons based on class name
 
@@ -321,6 +369,67 @@ const App = {
                 const skill = new Rating;
                 rating_div.innerHTML = skill.getRating("expert");
             });
+
+            /*** Formspree validation ***/
+            
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict'
+
+                const valid_feedback_fname = document.querySelector(".valid-feedback.valid-feedback-fname");
+                const valid_feedback_lname = document.querySelector(".valid-feedback.valid-feedback-lname");
+                const valid_feedback_email = document.querySelector(".valid-feedback.valid-feedback-email");
+                const valid_feedback_message = document.querySelector(".valid-feedback.valid-feedback-message");
+                const invalid_feedback_fname = document.querySelector(".invalid-feedback.invalid-feedback-fname");
+                const invalid_feedback_lname = document.querySelector(".invalid-feedback.invalid-feedback-lname");
+                const invalid_feedback_email = document.querySelector(".invalid-feedback.invalid-feedback-email");
+                const invalid_feedback_message = document.querySelector(".invalid-feedback.invalid-feedback-message");
+            
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                let forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    return new Promise((resolve,reject)=>{
+
+                        form.classList.add('was-validated')
+
+                        resolve();
+                    })
+                    .then(()=>{
+
+                        console.log(window.getComputedStyle(invalid_feedback_fname).display);
+                        console.log(window.getComputedStyle(valid_feedback_fname).display);
+                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
+
+                            valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_lname).display != "none") {
+
+                            valid_feedback_lname.innerHTML = "So you do have a last name...";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_email).display != "none") {
+
+                            valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
+                        };
+
+                        if(window.getComputedStyle(invalid_feedback_message).display != "none") {
+                            valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
+                        };
+                    })
+                    .catch(err=>reject(`Failed to validate Bootstrap form: ${err}`));
+                    }, false);
+                });
+            })();
         }); // end of DOMContentLoaded event listener
     }, // end of init()
 }; // end of App

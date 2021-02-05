@@ -4,88 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | Darnell Noel | Professional Portfolio | Full Stack Web Development</title>
-    <!-- AniCollection.css library -->
-    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
     <!-- Include the styles definition for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!-- AniCollection.css library -->
+    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
     <!--<link rel="stylesheet" href="/assets/styles/custom-animations.css">-->
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-    <header>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10" tabindex="0">
+    <header class="sticky-top">
         <div class="container">
             <video autoplay muted src="/media/laptop.mp4"></video>
             <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
 
-            <nav class="navbar navbar-expand-md top-header-nav">
-                <!--Logo-->
-                <div class="logo mx-auto">
-                    <a href="/" class="navbar-brand logo-link">
-                        <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid d-block mx-auto logo-img" data-anijs="if: mouseout, do: zoomIn animated, to: .logo">
-                    </a>  
-                </div>
-
-                <!--<ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="" class="nav-link">A</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">B</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link">C</a>
-                    </li>
-                </ul>-->
-            </nav> 
-
-            <nav class="navbar navbar-expand-md bot-header-nav">
-                <!--Nav Links-->
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item mx-1 anim-link-1 active">
-                        <a href="/#home" class="nav-link">Home</a>
-                    </li>
-
-                    <li class="nav-item mx-1 anim-link-1">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-
-                    <li class="nav-item mx-1 anim-link-1">
-                        <a href="#tools+technologies" class="nav-link ">Tools & Technologies</a>
-                    </li>
-
-                    <li class="nav-item mx-1 dropdown anim-link-1">
-                        <button type="button" class="nav-link btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Projects</button>
-
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li>                            
-                                <a href="#all-projects" class="dropdown-item">View All</a>
-                            </li>
-
-                            <li>
-                                <a href="#link-2" class="dropdown-item">Link 2</a>
-                            </li>
-
-                            <li>
-                                <a href="#link-3" class="dropdown-item">Link 3</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item mx-1 anim-link-1">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-
-                    <li class="nav-item px-3">
-                        <button class="nav-link btn btn-info btn-custom-1">View Resume</button> 
-                    </li>
-                    <!--<iframe src="/assets/Darnell Noel Resume Feb 2020.pdf" height="500px" width="100%"></iframe>-->
-                </ul>
-            </nav>
+            <div class="nav-container m-auto">
+                <nav class="navbar navbar-expand-md top-header-nav">
+                    <!--Logo-->
+                    <div class="logo m-auto d-flex justify-content-center">
+                        <a href="/" class="navbar-brand logo-link">
+                            <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto" data-anijs="if: mouseout, do: zoomIn animated, to: .logo">
+                        </a>  
+                    </div>
+    
+                    <!--<ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">A</a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a href="" class="nav-link">B</a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a href="" class="nav-link">C</a>
+                        </li>
+                    </ul>-->
+                </nav> 
+    
+                <nav class="navbar navbar-expand-md bot-header-nav" id="page-nav">
+                    <!--Nav Links-->
+                    <ul class="navbar-nav nav mx-auto" role="tablist">
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#home" class="nav-link">Home</a>
+                        </li>
+    
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#about" class="nav-link">About</a>
+                        </li>
+    
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#tools-tech" class="nav-link ">Tools & Technologies</a>
+                        </li>
+    
+                        <li class="nav-item mx-1 dropdown anim-link-1">
+                            <button type="button" class="nav-link btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Projects</button>
+    
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li>                            
+                                    <a href="#all-projects" class="dropdown-item nav-link">Overview</a>
+                                </li>
+    
+                                <li>
+                                    <a href="#link-2" class="dropdown-item nav-link">Link 2</a>
+                                </li>
+    
+                                <li>
+                                    <a href="#link-3" class="dropdown-item nav-link">Link 3</a>
+                                </li>
+                            </ul>
+                        </li>
+    
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#contact" class="nav-link">Contact</a>
+                        </li>
+    
+                        <li class="nav-item px-3">
+                            <button class="nav-link btn btn-info btn-custom-1">View Resume</button> 
+                        </li>
+                        <!--<iframe src="/assets/Darnell Noel Resume Feb 2020.pdf" height="500px" width="100%"></iframe>-->
+                    </ul>
+                </nav>
+            </div>
         </div>
 
+        <!--Adds padding to svg divider below (prevents cutting off of nav content)-->
         <div class="empty-div"></div>
 
         <div class="custom-shape-divider-bottom-1612032701">
@@ -93,10 +96,17 @@
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
             </svg>
         </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="my-bar"></div>
+        </div>
     </header>
 
     <main>
-        <section class="welcome-section pt-5" id="home">
+        <!--Fixes sticky header resize bug-->
+        <div class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start"></div>
+
+        <section class="welcome-section mt-5" id="home">
             <div>
                 <h3 class="small text-center mb-5">- Hi there, I design & build <strong class="text-custom-1">modern, responsive websites</strong> and <strong class="text-custom-1">web applications</strong> -</h3>
             </div>
@@ -127,7 +137,7 @@
                         </div>
                     </div>
 
-                    <div id="profile" class="clearfix col-xl-6 mx-auto card shadow container-box" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
+                    <div id="profile" class="clearfix col-xl-6 mx-auto card shadow container-box text-nowrap w-auto" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
                         <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
@@ -165,7 +175,7 @@
                             </nav>
     
                             <nav class="col-lg-6 col-auto align-self-center d-flex-custom-1 justify-content-between">
-                                <a class="text-reset text-decoration-none anim-link-2" href="/assets/Darnell_Noel_FSD_Resume_Feb_2020.pdf" download="Darnell_Noel_Resume_Feb_2020"><strong class="text-custom-1">Download</strong> Resume</a>
+                                <a class="text-reset text-decoration-none anim-link-2 me-2" href="/assets/Darnell_Noel_FSD_Resume_Feb_2021.pdf" download="Darnell_Noel_Resume_Feb_2021"><strong class="text-custom-1">Download</strong> Resume</a>
 
                                 <a class="text-reset text-decoration-none anim-link-2" href="#contact"><strong class="text-custom-1">Contact</strong> Me</a>
                             </nav>
@@ -197,13 +207,13 @@
             </div>
         </section>
 
-        <section class="tools-tech-section pt-5" id="tools+technologies">
+        <section class="tools-tech-section pt-5" id="tools-tech">
             <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal">
                 <h2 class="text-center mb-3">Tools & Technologies</h2>
                 <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms <strong class="text-custom-1">learned</strong> and <strong class="text-custom-1">used</strong> -</h3>
 
                 <div class="row justify-content-around">
-                    <div class="icon-disp col-md-3 col-auto pt-4 pt-sm-0 text-center">
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-0 text-center">
                         <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                         <small class="d-block mt-2">HTML5</small>
                         <div class="skill-rating skill-rating-expert">
@@ -325,7 +335,9 @@
                                 <div>
                                     <blockquote>
                                         <p>Ready to promote your business online with a fast and well designed website?<br> 
-                                            Need an E-Shop or have an idea for an app and want to bring it to life?<br> Don't hesitate to reach out to me.”</p>
+                                            Need an E-Commerce application or have an idea for an app and want to bring it to life?<br>
+                                            Need to implement a database to help your business run smoothly?<br>
+                                            Don't hesitate to reach out to me, I'm always willing to help!”</p>
                                     </blockquote>  
                                     <cite>
                                         <span>Darnell Noel</span><br>
@@ -339,7 +351,7 @@
                         <hr style="margin: 60px auto; opacity: .5;">
                     </div>
 
-                    <div class="col-12 w-auto mx-auto">
+                    <div class="col-12 w-auto mx-auto form-container">
                         <form action="https://formspree.io/f/xyybvjzj" method="POST" class="needs-validation" novalidate data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
                             <div class="mb-5">
                                 <h2>Get in Touch</h2>
@@ -412,12 +424,13 @@
                             <div class="form-floating mb-3">                        
                                 <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help">
                                 <label class="form-label" for="website"><i class="fas fa-laptop"></i> Website</label> 
-                                <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available</div> 
+                                <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available (Copy and paste for best results)</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <textarea required class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message"></textarea>
+                                <textarea minlength="30" required pattern="[\w,./_=?-]+" class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help"></textarea>
                                 <label class="required form-label" for="message-body"><i class="fas fa-grin-beam"></i> How can I be of assistance?</label>
+                                <div id="message-help" class="form-text mx-3">Your message must contain at least 30 characters</div>
     
                                 <div class="valid-feedback valid-feedback-message mx-3">
                                     Thanks!
@@ -429,7 +442,7 @@
                             </div>
     
                             <div class="mb-3">
-                                <button class="btn btn-custom-2 mb-3" type="submit" id="submit_btn">Send</button>
+                                <button class="btn btn-custom-2 mb-3" type="submit" id="submit_btn">Send Message</button>
     
                                 <div class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal"></div>
                             </div>

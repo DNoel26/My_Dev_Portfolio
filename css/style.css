@@ -58,6 +58,18 @@
     height: 100px;
 }
 
+.placeholder-div {
+    position: relative;
+    height: 0px;
+    width: 100%;
+    transition: height 0.5s;
+    z-index: -1100;
+}
+
+.form-container {
+    border-radius: 2px;
+}
+
 .required::after {
     content: " *";
     color: red;
@@ -100,6 +112,8 @@
     transform: scale(1);
     transform-origin: initial;
     transition: all 0.3s ease-in-out;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
 }
 
 .btn-custom-1:hover,
@@ -114,15 +128,19 @@
  }
 
 .logo {
-    height: 100%;
-}
-
-.logo-link, .logo-img {
     max-height: 100%;
 }
 
+.logo-link {
+    margin-right: 0;
+}
+
+.logo-link, .logo-img {
+    max-height: 100% !important;
+}
+
 .logo-img {
-    width: 80%;
+    max-width: 80%;
     object-fit: contain !important;
 }
 
@@ -272,7 +290,33 @@ img.handlebars-logo {
     padding: 0.2rem;
 }
 
+.h-0 {
+    height: 0 !important;
+    overflow: hidden !important;
+    transition: height 0.5s;
+}
+
 /* API / CDN / Other Imported Classes */
+
+    /*** Scroll progress indicator ***/
+  
+/* The progress container (grey background) */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background: var(--theme-colour-2);
+    transition: none;
+}
+  
+/* The progress bar (scroll indicator) */
+.progress-bar {
+    height: 5px;
+    background: var(--theme-colour-1);
+    width: 0%;
+    transition: none;
+}
+
+    /*** Styling for Anijs data attributes ***/
 
 [data-anijs*="if: click"] {
     cursor: pointer;
@@ -490,36 +534,39 @@ a.nav-link,
     color: var(--theme-colour-3);
 }
 
-.nav-item.active::before {
-    animation: active-link-border-right 10s ease-in-out 0s infinite;
+.active-list::before {
+    animation: active-link-border-right 10s ease-in-out 0s infinite !important;
 }
 
-.nav-item.active::after {
-    animation: active-link-border-left 10s ease-in-out 0s infinite;
+.active-list::after {
+    animation: active-link-border-left 10s ease-in-out 0s infinite !important;
 }
 
-.nav-item.active:hover::after,
-.nav-item.active:focus::after,
-.nav-item.active:hover::before,
-.nav-item.active:focus::before {
-    z-index: -10;
-    animation: none;
+.active-list:hover::after,
+.active-list:focus::after,
+.active-list:hover::before,
+.active-list:focus::before {
+    z-index: -10 !important;
+    animation: none !important;
 }
 
 /*.dropdown-menu {
     background-color: var(--theme-colour-3);
 }*/
 
-a.dropdown-item {
-    color: var(--theme-colour-1);
-    font-weight: 500;
-    transition: padding 0.3s linear;
+.dropdown-menu {
+    margin-top: 5px;
+}
+
+.dropdown-item {
+    color: var(--theme-colour-3) !important;
+    font-weight: 500 !important;
+    transition: padding 0.3s linear !important;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    background-color: var(--theme-colour-2);
-    padding-left: 1.8rem;
+    padding-left: 1.5rem !important;
 }
 
 .img-fluid {
@@ -542,30 +589,43 @@ a.dropdown-item {
     border-color: var(--theme-colour-1) !important;
 }
 
-
 /* HTML */
+
+body {
+    position: relative !important;
+}
 
     /*** Header ***/
 
 header {
     /*height: 150px;
     background-color: var(--theme-colour-1);*/
-    background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url("") no-repeat fixed; /*/img/laptop.jpg*/
+    background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url("") no-repeat fixed 100% 100%; /*/img/laptop.jpg*/
     background-size: cover;
-    background-position: 100% 100%;
     position: relative;
-    overflow: hidden;
+}
+
+.nav-container {
+    height: 400px;
+    transition: height 0.5s;
+}
+
+.nav-container-sticky {
+    height: 60px !important;
+    overflow-anchor: none;
+    transition: height 0.5s;
 }
 
 .top-header-nav {
-    height: 250px;
-    width: 100%;
+    height: 62.5%;
     overflow: hidden;
+    transition: height 0.5s;
 }
 
 .bot-header-nav {
-    height: 150px;
+    height: 37.5%;
     font-weight: 500;
+    transition: height 0.5s;
 }
 
 header video {
@@ -614,6 +674,19 @@ section {
 }*/
 
     /*** Top Section (Home) ***/
+
+.placeholder-div-reveal {
+    background-size: cover !important;
+    transition: all 0.5s ease-in-out;
+}
+
+.placeholder-div-reveal-start {
+    background: url("/img/tech.jpg") no-repeat fixed 50% 0%;
+}
+
+.placeholder-div-reveal-end {
+    background: url("/img/tech.jpg") no-repeat fixed 50% 12%;
+}
 
 .welcome-section {
     position: relative;
