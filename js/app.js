@@ -1,6 +1,6 @@
 console.log("App.js Loaded Successfully");
 
-import "../assets/TagCloud-master/dist/TagCloud.min.js";
+import "../js/TagCloud.min.js";
 
 const App = {
     init() {
@@ -53,10 +53,10 @@ const App = {
         // Define tags in js array
         let myTags = [
             'Object-Oriented-Programming', 'Separation-of-Concerns', 'RESTful-APIs',
-            'Data-Structures', 'Mechanical-Engineering', 'Front-End-Web-Development',
+            'Data-Structures', 'Continuous-Integration', 'Front-End-Web-Development',
             'Back-End-Web-Development', 'Full-Stack-Web-Development', 'Database-Management-Systems',
-            'Web-Design', 'Apps', 'Responsive-Design', 
-            'Promises/Async', 'JSON', 'Customer-Service',
+            'Web-Design', 'App-Development', 'Responsive-Web-Design', 
+            'Promises/Async', 'Page-Speed-Optimization', 'Customer-Service',
         ];
 
         // Render a default tag cloud
@@ -148,7 +148,7 @@ const App = {
         const skill_ratings_advanced = document.querySelectorAll(".skill-rating-advanced");
         const skill_ratings_expert = document.querySelectorAll(".skill-rating-expert");
 
-        const submit_btn = document.querySelector("#submit-btn");
+        //const submit_btn = document.querySelector("#submit-btn");
 
         //Header Video 
         const header = document.querySelector("header");
@@ -229,8 +229,8 @@ const App = {
 
                     top_nav.style.height = "100%";
                     bot_nav.style.height = "100%";
-                    nav_container.style.height = "80px";
-                    body_placeholder.style.height = "640px";
+                    nav_container.style.height = "70px";
+                    body_placeholder.style.height = "650px";
                     body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end")
 
                     header_vid.classList.add("d-none");
@@ -372,7 +372,7 @@ const App = {
 
             /*** Formspree validation ***/
             
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            // Example starter JavaScript for disabling form submissions if there are invalid fields (Bootstrap)
             (function () {
                 'use strict'
 
@@ -392,41 +392,93 @@ const App = {
                 Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
+                            
                         event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    
-                    return new Promise((resolve,reject)=>{
 
-                        form.classList.add('was-validated')
+                        // Formspree AJAX 
+                        // Get the form elements defined in your form HTML above
 
-                        resolve();
-                    })
-                    .then(()=>{
+                        const form = document.getElementById("my-form");
+                        const button = document.getElementById("my-form-button");
+                        const status = document.getElementById("my-form-status");
 
-                        console.log(window.getComputedStyle(invalid_feedback_fname).display);
-                        console.log(window.getComputedStyle(valid_feedback_fname).display);
-                        if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
+                        // Success and Error functions for after the form is submitted
+                        
+                        function success() {
 
-                            valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";
+                            form.reset();
+                            button.setAttribute("disabled", "disabled");
+                            status.innerHTML = "Thanks for your message! I'll review and respond as soon as possible.";
                         };
 
-                        if(window.getComputedStyle(invalid_feedback_lname).display != "none") {
+                        function error() {
 
-                            valid_feedback_lname.innerHTML = "So you do have a last name...";
+                            status.innerHTML = "Oops, sorry! There was a problem with the form submission. Please try again or use an alternate method to contact me.";
                         };
 
-                        if(window.getComputedStyle(invalid_feedback_email).display != "none") {
+                        if (!form.checkValidity()) {
 
-                            valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
-                        };
+                            event.stopPropagation();
 
-                        if(window.getComputedStyle(invalid_feedback_message).display != "none") {
-                            valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
-                        };
-                    })
-                    .catch(err=>reject(`Failed to validate Bootstrap form: ${err}`));
+                            return new Promise((resolve,reject)=>{
+
+                                form.classList.add('was-validated');
+    
+                                resolve();
+                            })
+                            .then(()=>{
+    
+                                console.log(window.getComputedStyle(invalid_feedback_fname).display);
+                                console.log(window.getComputedStyle(valid_feedback_fname).display);
+                                if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
+    
+                                    valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";
+                                };
+    
+                                if(window.getComputedStyle(invalid_feedback_lname).display != "none") {
+    
+                                    valid_feedback_lname.innerHTML = "So you do have a last name...";
+                                };
+    
+                                if(window.getComputedStyle(invalid_feedback_email).display != "none") {
+    
+                                    valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
+                                };
+    
+                                if(window.getComputedStyle(invalid_feedback_message).display != "none") {
+                                    valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
+                                };
+                            })
+                            .catch(err=>reject(`Failed to validate Bootstrap form: ${err}`));
+                        } else {
+
+                            const data = new FormData(form);
+                            ajax(form.method, form.action, data, success, error);
+
+                            invalid_feedback_fname.style.display = "none";
+                            invalid_feedback_lname.style.display = "none";
+                            invalid_feedback_email.style.display = "none";
+                            invalid_feedback_message.style.display = "none";
+                            form.classList.remove('was-validated', "is-invalid", "is-valid");
+
+                            function ajax(method, url, data, success, error) {
+
+                                const xhr = new XMLHttpRequest();
+                                xhr.open(method, url);
+                                xhr.setRequestHeader("Accept", "application/json");
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                                    if (xhr.status === 200) {
+
+                                        success(xhr.response, xhr.responseType);
+                                    } else {
+
+                                        error(xhr.status, xhr.response, xhr.responseType);
+                                    }
+                                };
+                                xhr.send(data);
+                            };
+                        };  
                     }, false);
                 });
             })();
