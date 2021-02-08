@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="Darnell Noel's full stack web development portfolio. Contact him if interested in building modern and fast websites or web applications">
     <title>Homepage | Darnell Noel | Professional Portfolio | Front End Web Developer | Back End Web Developer | Full Stack Web Developer | Mechanical Engineer | Techie</title>
+    <script src="https://kit.fontawesome.com/3ad7481254.js" crossorigin="anonymous"></script>
     <link rel="preload" href="/media/laptop.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" as="style" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="preload" href="/css/style.css" as="style">
-    <link rel="preload" href="/js/TagCloud.min.js" as="script">
+    <link rel="preload" href="/js/TagCloud.min.js" as="script" crossorigin="anonymous">
     <!-- Include the styles definition for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
@@ -17,8 +18,8 @@
     <!--<link rel="stylesheet" href="/assets/styles/custom-animations.css">-->
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="10" tabindex="0">
-    <header class="sticky-top">
+<body>
+    <header class="sticky-top"> 
         <div class="container">
             <video autoplay muted src="/media/laptop.mp4"></video>
             <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
@@ -49,7 +50,7 @@
     
                 <nav class="navbar navbar-expand-md bot-header-nav" id="page-nav">
                     <!--Nav Links-->
-                    <ul class="navbar-nav nav mx-auto" role="tablist">
+                    <ul class="navbar-nav nav mx-auto">
                         <li class="nav-item mx-1 anim-link-1">
                             <a href="#home" class="nav-link">Home</a>
                         </li>
@@ -113,7 +114,7 @@
 
         <section class="welcome-section" id="home">
             <div>
-                <h3 class="small text-center mb-5">- Hi there, I design & build <strong class="text-custom-1">modern, responsive websites</strong> and <strong class="text-custom-1">web applications</strong> -</h3>
+                <h2 class="text-center mb-5">Hi there, I build <strong class="text-custom-1">modern</strong> & <strong class="text-custom-1">responsive websites</strong> and <strong class="text-custom-1">web applications</strong></h2>
             </div>
 
             <div class="tag-cloud-content text-center d-block mx-auto"></div>
@@ -203,7 +204,7 @@
                     <p class="fs-5 fw-lighter">Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
                         I believe that learning is a life-long process and thus started my venture into programming and web development. Having invested several <strong>thousands</strong> of hours
                         into learning this craft and building some challenging, intense projects...I must say...I do enjoy it!<br>
-                        So...what is it that I can do exactly? Well...I can build from simple websites focusing on the <strong>front-end (UI/UX)</strong>, to more complex web applications utilizing the <strong>back-end (databases, server-side functionalities)</strong> 
+                        So...what is it that I can do exactly? Well...I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>, to more complex web applications utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> 
                         if need be. It's definitely a lot of work, so why do I enjoy this?</p>
                     <p class="w-75 mx-auto fs-5 fw-lighter">The freedom of <strong>creativity</strong>, designing and making something amazing and useful for people like you <q class="fst-italic lead"> - my right brain </q></p>
                     <p class="w-50 mx-auto fs-5 fw-lighter">The constant learning and challenges, applying <strong>logic</strong> to solve difficult problems <q class="fst-italic lead"> - my left brain </q></p>
@@ -223,8 +224,8 @@
 
         <section class="tools-tech-section" id="tools-tech">
             <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal">
-                <h2 class="text-center mb-3">Tools & Technologies</h2>
-                <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms <strong class="text-custom-1">learned</strong> and <strong class="text-custom-1">used</strong> -</h3>
+                <h2 class="text-center mb-3 text-custom-1">Tools & Technologies</h2>
+                <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms learned and used -</h3>
 
                 <div class="row justify-content-around">
                     <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
@@ -288,15 +289,27 @@
                     </div>
 
                     <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">Mongoose</small>
+                        <div class="skill-rating skill-rating-beginner"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
                         <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                         <small class="d-block mt-2">Node.js</small>
-                        <div class="skill-rating skill-rating-advanced"></div>
+                        <div class="skill-rating skill-rating-intermediate"></div>
                     </div>
 
                     <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
                         <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                         <small class="d-block mt-2">Express.js</small>
                         <div class="skill-rating skill-rating-advanced"></div>
+                    </div>
+
+                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                        <small class="d-block mt-2">GitHub</small>
+                        <div class="skill-rating skill-rating-intermediate"></div>
                     </div>
 
                     <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
@@ -312,7 +325,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-center small mt-5">- Also <strong class="text-custom-1">skilled</strong> in -</h3>
+                <h3 class="text-center small mt-5">- Also skilled in -</h3>
 
                 <div class="row justify-content-around">
                     <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
@@ -333,18 +346,52 @@
         <section class="projects-section" id="all-projects">
             <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: flipInY animated, before: $scrollReveal">
                 <div>
-                    <h2 class="text-center mb-3">My Work</h2>
-                    <h3 class="text-center small mb-5">- <strong class="text-custom-1">Personal / Development</strong> projects</strong> -</h3>
+                    <h2 class="text-center mb-3 text-custom-1">My Work</h2>
+                    <h3 class="text-center small mb-5">- Personal / Development projects -</h3>
+
+                    <div class="row justify-content-between align-items-center text-left">
+                        <div class="col-6">
+                            <img class="img-fluid p-3" src="/img/Projects/math_game_min.jpg" alt="">
+                        </div>
+
+                        <div class="col-6">
+                            <h3>Alien Mathvasion</h3>
+                            
+                            <p>This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, with the 
+                                intention of making code DRY and easier to maintain. <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
+                            </p>
+                            
+                            <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 d-block" target="_blank"><strong class="text-custom-1">Play</strong> Now</a>
+                            <a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 d-block" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
+
+                            <h4 class="small text-left mt-3">Notes:</h4>
+                            <ul>
+                                <li>Gameplay works completely but there are some minor bugs to fix, mainly in the UI</li>
+                                <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date</li>
+                                <li>Not yet fully responsive on all devices</li>
+                            </ul>
+
+                            <h3 class="small mt-3">- Built Using -</h3>
+
+                            <div class="icon-row-sm">
+                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-center small mb-5">- <strong class="text-custom-1">Client / Production</strong> projects</strong> -</h3>
+
+                <div class="mt-5">
+                    <h3 class="text-center small">- Client / Production projects -</h3>
+                    <p class="text-center small mb-5 fst-italic">(Permission requested & granted)</p>
                 </div>
             </div>
         </section>
 
         <section class="contact-section" id="contact">
             <div class="container" data-anijs="if: scroll, on: window, do: lightSpeedIn animated, before: $scrollReveal">
-                <h2 class="text-center mb-5">Let's Chat</h2>
+                <h2 class="text-center mb-5 text-custom-1">Let's Chat</h2>
 
                 <div class="row">
                     <div class="col-12 m-auto w-auto">
@@ -376,7 +423,7 @@
                     <div class="col-12 w-auto mx-auto form-container" data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
                         <form action="https://formspree.io/f/xyybvjzj" method="POST" class="needs-validation" id="my-form" novalidate>
                             <div class="mb-5">
-                                <h2>Get in Touch</h2>
+                                <h3>Get in Touch</h3>
     
                                 <small>
                                     - Prefer to reach out to me another way? 
@@ -393,7 +440,7 @@
     
                             <div class="form-floating mb-3">    
                                 <input class="form-control" type="text" id="first-name" name="first_name" placeholder="John" required>   
-                                <label class="required form-label" for="first-name"><i class="fas fa-user-alt"></i> First Name</label>
+                                <label class="required form-label" for="first-name"><sup><i class="fas fa-user-alt"></i></sup> First Name</label>
     
                                 <div class="valid-feedback valid-feedback-fname mx-3">
                                     Thanks!
@@ -406,7 +453,7 @@
     
                             <div class="form-floating mb-3">                        
                                 <input required class="form-control" type="text" id="last-name" name="last_name" placeholder="Doe">
-                                <label class="required form-label" for="last-name"><i class="fas fa-user-alt"></i> Last Name</label>
+                                <label class="required form-label" for="last-name"><sup><i class="fas fa-user-alt"></i></sup> Last Name</label>
                                 
                                 <div class="valid-feedback valid-feedback-lname mx-3">
                                     Thanks!
@@ -419,7 +466,7 @@
     
                             <div class="form-floating mb-3">                        
                                 <input required class="form-control" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help">
-                                <label class="required form-label" for="email"><i class="fas fa-envelope"></i> Email</label>
+                                <label class="required form-label" for="email"><sup><i class="fas fa-envelope"></i></sup> Email</label>
                                 <div id="email-help" class="form-text mx-3">I won't share your details with anyone else...I promise</div>
     
                                 <div class="valid-feedback valid-feedback-email mx-3">
@@ -433,25 +480,25 @@
     
                             <div class="form-floating mb-3">                                                    
                                 <input class="form-control" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help">
-                                <label class="form-label" for="phone"><i class="fas fa-phone-alt"></i> Phone Number</label>
+                                <label class="form-label" for="phone"><sup><i class="fas fa-phone-alt"></i></sup> Phone Number</label>
                                 <div id="phone-help" class="form-text mx-3">Optional field: Include country code if outside Trinidad & Tobago or USA</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
                                 <input class="form-control" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help"> 
-                                <label class="form-label" for="company"><i class="far fa-registered"></i> Company</label>
+                                <label class="form-label" for="company"><sup><i class="far fa-registered"></i></sup> Company</label>
                                 <div id="company-help" class="form-text mx-3">Optional field: Leave blank if contacting as an individual</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
                                 <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help">
-                                <label class="form-label" for="website"><i class="fas fa-laptop"></i> Website</label> 
-                                <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available (Copy and paste for best results)</div> 
+                                <label class="form-label" for="website"><sup><i class="fas fa-globe"></i></sup> Website</label> 
+                                <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available (copy and paste for best results)</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
                                 <textarea minlength="30" required pattern="[\w,./_=?-]+" class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help"></textarea>
-                                <label class="required form-label" for="message-body"><i class="fas fa-grin-beam"></i> How can I be of assistance?</label>
+                                <label class="required form-label" for="message-body"><sup><i class="fas fa-grin-beam"></i></sup> How can I be of assistance?</label>
                                 <div id="message-help" class="form-text mx-3">Your message must contain at least 30 characters</div>
     
                                 <div class="valid-feedback valid-feedback-message mx-3">
