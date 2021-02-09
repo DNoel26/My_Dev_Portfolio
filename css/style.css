@@ -66,7 +66,7 @@
     position: relative;
     height: 0px;
     width: 100%;
-    transition: height 0.5s;
+    transition: height 0.4s ease-in-out;
     z-index: -1100;
 }
 
@@ -254,12 +254,16 @@
     text-decoration: none;
 }
 
-.grow-link-1 img {
-    transition: transform 0.2s linear;
+.grow-link-1 img,
+.grow-link-1 i {
+    transition: transform 0.2s ease-in-out !important;
 }
 
-.grow-link-1:hover img {
-    transform: scale(1.1);
+.grow-link-1:hover img,
+.grow-link-1:hover i,
+.grow-link-1:focus img,
+.grow-link-1:focus i {
+    transform: scale(1.1) !important;
 }
 
 .anim-link-2 strong {
@@ -273,10 +277,11 @@
     left: 0;
     width: 0px;
     border-bottom: 2px solid var(--theme-colour-1);
-    transition: width 0.2s linear;
+    transition: width 0.2s ease-in-out;
 }
 
-.anim-link-2:hover strong::before {
+.anim-link-2:hover strong::before,
+.anim-link-2:focus strong::before {
     width: 100%;
 }
 
@@ -302,7 +307,7 @@ img.handlebars-logo {
 .h-0 {
     height: 0 !important;
     overflow: hidden !important;
-    transition: height 0.5s;
+    transition: height 0.6s ease-in-out;
 }
 
 .status-complete {
@@ -389,8 +394,9 @@ img.handlebars-logo {
     /*** Font Awesome Icons ***/
 
 .fas, 
-.far {
-    color: var(--theme-colour-1) !important;
+.far,
+.fab {
+    color: var(--theme-colour-1);
 }
 
     /*** Divider for About Me Section ***/
@@ -458,9 +464,10 @@ lottie-player {
     font-size: 0.8rem;
     width: 100% !important;
     max-width: 100% !important;
-    height: 250px !important;
+    height: 400px !important;
     margin-top: 3rem;
     margin-bottom: 3rem;
+    transition: all 0.3s ease-in-out;
 }
     
 .tagcloud--item {
@@ -470,7 +477,7 @@ lottie-player {
     border: 1px solid transparent;
     cursor: pointer;
     user-select: none;
-    transition: all 0.3s;
+    transition: all 0.2s ease-in-out;
 }
     
 .tagcloud--item:hover {
@@ -616,7 +623,7 @@ a.nav-link,
 .dropdown-item {
     color: var(--theme-colour-3) !important;
     font-weight: 500 !important;
-    transition: padding 0.3s linear !important;
+    transition: padding 0.3s ease-in-out !important;
 }
 
 .dropdown-item:hover,
@@ -666,25 +673,25 @@ header {
 
 .nav-container {
     height: 400px;
-    transition: height 0.4s;
+    transition: height 0.4s ease-in-out;
 }
 
 .nav-container-sticky {
     height: 60px !important;
     overflow-anchor: none;
-    transition: height 0.4s;
+    transition: height 0.4s ease-in-out;
 }
 
 .top-header-nav {
     height: 62.5%;
     overflow: hidden;
-    transition: height 0.4s;
+    transition: height 0.4s ease-in-out;
 }
 
 .bot-header-nav {
     height: 37.5%;
     font-weight: 500;
-    transition: height 0.4s;
+    transition: height 0.4s ease-in-out;
 }
 
 header video {
@@ -710,10 +717,10 @@ header video {
     /*** Footer ***/
 
 footer {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/img/laptop-2.jpg") no-repeat fixed;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/code-bg-4.jpg") no-repeat fixed;
     background-size: cover;
-    background-position: center 0;
-    height: 400px;
+    background-position: center 60%;
+    height: 450px;
 }
 
     /*** General ***/
@@ -738,15 +745,15 @@ section {
 
 .placeholder-div-reveal {
     background-size: cover !important;
-    transition: all 0.4s !important;
+    transition: all 0.4s ease-in-out !important;
 }
 
 .placeholder-div-reveal-start {
-    background: url("/img/tech.jpg") no-repeat fixed 50% 0%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("/img/tech.jpg") no-repeat fixed 50% 0%;
 }
 
 .placeholder-div-reveal-end {
-    background: url("/img/tech.jpg") no-repeat fixed 50% 12%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("/img/tech.jpg") no-repeat fixed 50% 12%;
 }
 
 .welcome-section {
@@ -774,7 +781,7 @@ section {
 .about-section {
     position: relative;
     height: 800px;
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1)), url("../img/cool-background_black.png") no-repeat fixed;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url("../img/cool-background_black.png") no-repeat fixed;
     background-size: cover;
     background-position: center center;
 }
@@ -786,7 +793,7 @@ section {
 
 .summary-container {
     opacity: 1;
-    transition: opacity 0.4s;
+    transition: opacity 0.4s ease-in-out;
 }
 
     /*** Section (Tools & Technologies) ***/

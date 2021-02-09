@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header class="sticky-top"> 
+    <header class="sticky-top" id="header"> 
         <div class="container">
             <video autoplay muted src="/media/laptop.mp4"></video>
             <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
@@ -110,18 +110,19 @@
 
     <main>
         <!--Fixes sticky header resize bug-->
-        <div class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start"></div>
+        <div class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
+            <h2 class="fs-1 pt-5 align-self-end">Hi there!</h2>
+            <h2 class="pt-5 align-self-start">I build modern and responsive websites and web applications</h2>
+        </div>
 
         <section class="welcome-section" id="home">
             <div>
-                <h2 class="text-center mb-5">Hi there, I build <strong class="text-custom-1">modern</strong> & <strong class="text-custom-1">responsive websites</strong> and <strong class="text-custom-1">web applications</strong></h2>
+                <h2 class="text-center mb-5 intro">Hi there, I build modern and responsive <strong class="text-custom-1"> websites</strong> and <strong class="text-custom-1">web applications</strong></h2>
             </div>
 
-            <div class="tag-cloud-content text-center d-block mx-auto"></div>
-
-            <div class="container pt-custom-1">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-auto mx-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal">
+            <div class="container pt-custom-1 intro-2">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal">
                         <div>
                             <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
                             <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
@@ -143,7 +144,7 @@
                         </div>
                     </div>
 
-                    <div id="profile" class="clearfix col-xl-6 mx-auto card shadow container-box text-nowrap w-auto" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
+                    <div id="profile" class="col-lg-6 card shadow container-box text-nowrap w-auto" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
                         <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
@@ -193,8 +194,8 @@
 
         <section class="about-section" id="about">
             <div class="container clearfix w-50 px-5 text-justify">
-                <div class="float-start about-img">
-                    <img class="img-fluid" src="/img/me_nobg.png" alt="">
+                <div class="float-start about-img me-3">
+                    <img class="img-fluid rounded-3" src="/img/me_nobg.png" alt="">
                 </div>
 
                 <div >
@@ -205,7 +206,7 @@
                     </h2>
     
                     <div class="summary-container text-white">
-                        <p class="lead fst-italic fs-5">A somewhat unconventional professional with a background in mechanical engineering and now...full stack web development!</p>
+                        <p class="lead fst-italic fs-5">A somewhat unconventional professional with a background in mechanical engineering and now...full stack web development!!!</p>
                         <p class="fs-6 fw-lighter">Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
                             I believe that learning is a life-long process and thus started my venture into programming and web development. Having invested several <strong>thousands</strong> of hours
                             into learning this craft and building some challenging, intense projects...I must say...I do enjoy it! So...what is it that I can do exactly? Well, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>, to more complex web applications utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> 
@@ -230,119 +231,127 @@
         <section class="tools-tech-section" id="tools-tech">
             <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal">
                 <h2 class="text-center mb-3 text-custom-1">Tools & Technologies</h2>
-                <h3 class="text-center small mb-5">- Languages, Frameworks, Platforms learned and used -</h3>
+                <h3 class="text-center small mb-5">- Skills -</h3>
 
-                <div class="row justify-content-around">
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">HTML5</small>
-                        <div class="skill-rating skill-rating-expert">
-                            <!--<img src="/svg/star-fill.svg" alt="Filled star Icon">
-                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
-                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
-                            <img src="/svg/star-fill.svg" alt="Filled star Icon">
-                            <img src="/svg/star.svg" alt="Empty star icon">-->
+                <div>
+                    <div class="tag-cloud-content"></div>
+                </div>
+
+                <div>
+                    <h3 class="text-center small my-5">- Languages, Frameworks, Platforms learned and used -</h3>
+
+                    <div class="row justify-content-around">
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">HTML5</small>
+                            <div class="skill-rating skill-rating-expert">
+                                <!--<img src="/svg/star-fill.svg" alt="Filled star Icon">
+                                <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                                <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                                <img src="/svg/star-fill.svg" alt="Filled star Icon">
+                                <img src="/svg/star.svg" alt="Empty star icon">-->
+                            </div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">CSS3</small>
+                            <div class="skill-rating skill-rating-expert"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">JavaScript</small>
+                            <div class="skill-rating skill-rating-advanced"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Bootstrap</small>
+                            <div class="skill-rating skill-rating-advanced"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
+                            <small class="d-block mt-2">Handlebars</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">React</small>
+                            <div class="skill-rating skill-rating-novice"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">MySQL</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Firebase</small>
+                            <div class="skill-rating skill-rating-novice"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">MongoDB</small>
+                            <div class="skill-rating skill-rating-beginner"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Mongoose</small>
+                            <div class="skill-rating skill-rating-beginner"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Node.js</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Express.js</small>
+                            <div class="skill-rating skill-rating-advanced"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">GitHub</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                            <small class="d-block mt-2">Netlify</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Heroku</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
                     </div>
 
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">CSS3</small>
-                        <div class="skill-rating skill-rating-expert"></div>
-                    </div>
+                    <h3 class="text-center small mt-5">- Also knowledgeable in -</h3>
 
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">JavaScript</small>
-                        <div class="skill-rating skill-rating-advanced"></div>
-                    </div>
+                    <div class="row justify-content-around">
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                            <small class="d-block mt-2">AutoCAD</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
 
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Bootstrap</small>
-                        <div class="skill-rating skill-rating-advanced"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
-                        <small class="d-block mt-2">Handlebars</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">React</small>
-                        <div class="skill-rating skill-rating-novice"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">MySQL</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Firebase</small>
-                        <div class="skill-rating skill-rating-novice"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">MongoDB</small>
-                        <div class="skill-rating skill-rating-beginner"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Mongoose</small>
-                        <div class="skill-rating skill-rating-beginner"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Node.js</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Express.js</small>
-                        <div class="skill-rating skill-rating-advanced"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">GitHub</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
-                        <small class="d-block mt-2">Netlify</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">Heroku</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-                </div>
-
-                <h3 class="text-center small mt-5">- Also skilled in -</h3>
-
-                <div class="row justify-content-around">
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
-                        <small class="d-block mt-2">AutoCAD</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
-                    </div>
-
-                    <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                        <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
-                        <small class="d-block mt-2">SolidWorks</small>
-                        <div class="skill-rating skill-rating-intermediate"></div>
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">SolidWorks</small>
+                            <div class="skill-rating skill-rating-intermediate"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -356,7 +365,7 @@
 
                     <div class="row justify-content-between align-items-center text-left">
                         <div class="col-6">
-                            <img class="img-fluid p-3" src="/img/Projects/math_game_min.jpg" alt="">
+                            <img class="img-fluid p-5" src="/img/Projects/math_game_min.jpg" alt="">
                         </div>
 
                         <div class="col-6">
@@ -529,28 +538,56 @@
         </section>
     </main>
 
-    <footer>
-        <nav class="container-fluid">
-            <div class="container text-white">
-                <nav class="navbar text-white row justify-content-even">
-                    <div class="col-4 row">
-                        <h2>Contact Me</h2>
-                        
-                        <a class="text-reset text-decoration-none anim-link-2 mb-2" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio">
-                            Via <strong>WhatsApp</strong>
-                        </a>
-
-                        <a class="text-reset text-decoration-none anim-link-2 mb-2 " target="_blank" href="tel:+1-868-480-8781">
-                            Via <strong>Mobile</strong>
-                        </a>
-
-                        <a class="text-reset text-decoration-none anim-link-2 mb-2" href="#contact">
-                            Via <strong>Email</strong>
-                        </a>
-                    </div>
-                </nav>
+    <footer class="text-white text-center" id="footer">
+        <div class="container pt-5 d-grid h-100">
+            <div>
+                <h2 class="fs-1">Thanks for Stopping By!</h2>
             </div>
-        </nav>
+
+            <nav class="navbar navbar-expand text-white justify-content-center">
+                <ul class="navbar-nav nav">
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/">
+                            <i class="fab fa-linkedin text-white fs-4 px-1"></i>
+                        </a>  
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://github.com/DNoel26">
+                            <i class="fab fa-github text-white fs-4 px-1"></i>
+                        </a>  
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.facebook.com/darnell.noeldev/">
+                            <i class="fab fa-facebook text-white fs-4 px-1"></i>
+                        </a>    
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio">
+                            <i class="fab fa-whatsapp text-white fs-4 px-1"></i>
+                        </a>  
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="tel:+1-868-480-8781">
+                            <i class="fas fa-mobile-alt text-white fs-4 px-1"></i>
+                        </a>  
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" href="#contact">
+                            <i class="far fa-envelope text-white fs-4 px-1"></i>
+                        </a>  
+                    </li>
+                </ul>
+            </nav>
+    
+            <div class="fs-6">
+                <h6>Copyright © Darnell Noel. All rights reserved.</h6>
+            </div>
+        </div>
     </footer>
 
     <!--Tidio chatbot-->
