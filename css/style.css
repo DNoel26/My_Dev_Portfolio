@@ -721,6 +721,7 @@ footer {
     background-size: cover;
     background-position: center 60%;
     height: 450px;
+    position: relative;
 }
 
     /*** General ***/
@@ -749,11 +750,19 @@ section {
 }
 
 .placeholder-div-reveal-start {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("/img/tech.jpg") no-repeat fixed 50% 0%;
+    background: linear-gradient(rgba(0,0,0,0.33), rgba(0,0,0,0.33)), url("/img/tech.jpg") no-repeat fixed 50% 0%;
 }
 
 .placeholder-div-reveal-end {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("/img/tech.jpg") no-repeat fixed 50% 12%;
+    background: linear-gradient(rgba(0,0,0,0.33), rgba(0,0,0,0.33)), url("/img/tech.jpg") no-repeat fixed 50% 12%;
+}
+
+.placeholder-div .fs-1 {
+    font-size: 3rem !important;
+}
+
+.placeholder-div h2 {
+    text-shadow: 0 1px 0 black;
 }
 
 .welcome-section {

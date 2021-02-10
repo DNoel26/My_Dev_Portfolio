@@ -109,7 +109,7 @@ const App = {
                         item.style.fontSize = "initial";
                         item.style.fontWeight = "initial";
                         clicked_once = false; 
-                    }, 3000);
+                    }, 5000);
                 } else {
 
                     item.style.color = "var(--theme-colour-1)"; 
@@ -119,11 +119,6 @@ const App = {
                 };     
             }); 
         });
-
-        if(!tagcloud) {
-            
-            tagcloud.remove();
-        };
 
         /*** Bootstrap Scrollspy ***/
 
@@ -173,6 +168,11 @@ const App = {
             console.log("DOMContentLoaded Successfully");
 
             body.classList.add("will-change-height");
+
+            if(!tagcloud) {
+            
+                tagcloud.remove();
+            };
 
             /*const scrollSpy = new bootstrap.ScrollSpy(document.body, {
                 target: '.bot-header-nav',
