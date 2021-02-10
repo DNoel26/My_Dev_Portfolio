@@ -166,6 +166,14 @@
     height: 1.5rem;
 }
 
+.resume {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+}
+
 .anim-link-1 {
     position: relative;
 }
@@ -610,6 +618,10 @@ a.nav-link,
 .active-list:focus::before {
     z-index: -10 !important;
     animation: none !important;
+}
+
+.modal-body > * {
+    max-height: 100%;
 }
 
 /*.dropdown-menu {

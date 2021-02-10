@@ -24,7 +24,7 @@
             <video autoplay muted src="/media/laptop.mp4"></video>
             <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
 
-            <div class="nav-container m-auto">
+            <div class="nav-container m-auto" >
                 <nav class="navbar navbar-expand-md top-header-nav">
                     <!--Logo-->
                     <div class="logo m-auto d-flex justify-content-center">
@@ -86,7 +86,8 @@
                         </li>
     
                         <li class="nav-item px-3">
-                            <button class="nav-link btn btn-info btn-custom-1">View Resume</button> 
+                            <!-- Button trigger modal -->
+                            <button class="nav-link btn btn-info btn-custom-1" data-bs-toggle="modal" data-bs-target="#resume">View Resume</button> 
                         </li>
                         <!--<iframe src="/assets/Darnell Noel Resume Feb 2020.pdf" height="500px" width="100%"></iframe>-->
                     </ul>
@@ -109,15 +110,36 @@
     </header>
 
     <main>
+        <!-- Modal -->
+        <div class="modal fade" id="resume" tabindex="-1" aria-labelledby="resume_label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resume_label">My Resume</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <embed class="resume" src="/assets/Darnell_Noel_FSD_Resume_Feb_2021.pdf" frameborder="0"></embed>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Return</button>
+                        <a href="/assets/Darnell_Noel_FSD_Resume_Feb_2021.pdf" download="Darnell_Noel_Resume_Feb_2021"" class="btn btn-primary">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Fixes sticky header resize bug-->
-        <div class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
+        <div  class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
             <h2 class="fs-1 pt-5 align-self-end">Hi there, I'd love to help <strong>you</strong></h2>
             <h2 class="pt-5 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></h2>
         </div>
 
         <section class="welcome-section" id="home">
             <div>
-                <h2 class="text-center mb-5 intro">Looking to take your business <strong class="text-custom-1">online?</strong></h2>
+                <h2 class="text-center mb-5 intro">Ready to take your business <strong class="text-custom-1">online?</strong></h2>
             </div>
 
             <!--<div>
@@ -134,7 +156,7 @@
                             <h1 class="text-center">
                                 <strong class="ml13 text-custom-1">Developer Portfolio</strong>
                             </h1>
-                            <h3 class="small text-center">- Built Using -</h3>
+                            <h3 class="small text-center">- Built from Scratch Using -</h3>
                             <div class="d-flex-custom-2 pt-2 icon-row-sm">
                                 <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
                                 <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
@@ -213,7 +235,7 @@
                         <p class="lead fst-italic fs-5">A somewhat unconventional professional with a background in mechanical engineering and now...full stack web development!!!</p>
                         <p class="fs-6 fw-lighter">Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
                             I believe that learning is a life-long process and thus started my venture into programming and web development. Having invested several <strong>thousands</strong> of hours
-                            into learning this craft and building some challenging, intense projects...I must say...I do enjoy it! So...what is it that I can do exactly? Well, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>,
+                            into learning this craft and building some challenging, intense projects...I must say...I really enjoy it! So...what is it that I can do exactly? Well, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>,
                             to more complex web applications such as E-Commerce stores, utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> 
                             if need be. It's definitely a lot of work, so why do I enjoy this?</p>
                         <p class="mx-auto fs-6 fw-lighter">The freedom of <strong>creativity</strong>, designing and making something amazing and useful for people like you <q class="fst-italic">- my right brain</q></p>
@@ -295,19 +317,19 @@
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">Firebase</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">MongoDB</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-1">
                             <small class="d-block mt-2">Mongoose</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
@@ -325,13 +347,13 @@
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">GitHub</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo p-2">
                             <small class="d-block mt-2">Netlify</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -347,13 +369,13 @@
 
                     <div class="row justify-content-around">
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">AutoCAD</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">SolidWorks</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -376,16 +398,18 @@
                         <div class="col-6">
                             <h3>Alien Mathvasion</h3>
                             
-                            <p>This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, with the 
-                                intention of making code DRY and easier to maintain. <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
+                            <p class="text-justify">This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, with the 
+                                intention of making code DRY and easier to maintain. <br>Showcases heavy JavaScript usage and DOM manipulation. Uses promises instead of while loops to track progress. Design is based on retro arcade Shoot-em Up games.
+                                Good luck beating the hardest difficulty!
+                                <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
                             </p>
                             
-                            <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 d-block" target="_blank"><strong class="text-custom-1">Play</strong> Now</a>
-                            <a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 d-block" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
+                            <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Play</strong> Now (expect audio)</a>
+                            <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
 
                             <h4 class="small text-left mt-3">Notes:</h4>
                             <ul>
-                                <li>Gameplay works completely but there are some minor bugs to fix, mainly in the UI</li>
+                                <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser to fix.</li>
                                 <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date</li>
                                 <li>Not yet fully responsive on all devices</li>
                             </ul>
@@ -400,12 +424,15 @@
                         </div>
                     </div>
                 </div>
+                    <div class="mt-5">
+                        <h3 class="text-center small">- Client / Production projects -</h3>
+                        <p class="text-center small mb-5 fst-italic">(Once permission is granted of course)</p>
+                    </div>
 
-                <div class="mt-5">
-                    <h3 class="text-center small">- Client / Production projects -</h3>
-                    <p class="text-center small mb-5 fst-italic">(Permission requested & granted)</p>
+                    <div>
+                        <h4 class="text-center small">Currently working on some projects that I can't talk about yet 🤫 </h4>
+                    </div>
                 </div>
-            </div>
         </section>
 
         <section class="contact-section" id="contact">
@@ -530,7 +557,7 @@
                             </div>
     
                             <div class="mb-3">
-                                <button class="btn btn-custom-2 mb-3" type="submit" id="my-form-button">Send Message</button>
+                                <button class="btn btn-custom-2 mb-3 w-100" type="submit" id="my-form-button">Fire Message</button>
     
                                 <div class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal"></div>
                             </div>
