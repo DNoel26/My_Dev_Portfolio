@@ -155,13 +155,13 @@ const App = {
         /*** FUNCTIONS ***/
 
         
-        /*function myFunction() {
+        function scroll_progress() {
             const scroll_indicator = document.querySelector("#my-bar");
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             scroll_indicator.style.width = scrolled + "%";
-        }*/
+        }
 
         document.addEventListener("DOMContentLoaded", ()=>{
             
@@ -234,6 +234,7 @@ const App = {
             document.addEventListener("scroll", ()=>{
 
                 //observer.observe(test);
+                scroll_progress();
 
                 //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
                 const active_list = document.querySelectorAll(".bot-header-nav .nav-item");

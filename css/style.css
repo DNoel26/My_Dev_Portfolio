@@ -1,7 +1,8 @@
 :root {
     --theme-colour-1: #1f6f8b;
-    --theme-colour-2: #f5f5f5;
+    --theme-colour-2: #e8f0f3;
     --theme-colour-3: #fff;
+    --theme-colour-4: #8C3A1E;
 }
 
 /* CSS Animations */ 
@@ -96,6 +97,10 @@
 
 .text-custom-1 {
     color: var(--theme-colour-1);
+}
+
+.text-custom-2 {
+    color: var(--theme-colour-4);
 }
 
 .text-justify {
@@ -288,6 +293,14 @@
     transition: width 0.2s ease-in-out;
 }
 
+.anim-link-2 .text-white::before {
+    border-bottom-color: white !important;
+}
+
+.anim-link-2 .text-custom-2::before {
+    border-bottom-color: var(--theme-colour-4) !important;
+}
+
 .anim-link-2:hover strong::before,
 .anim-link-2:focus strong::before {
     width: 100%;
@@ -366,7 +379,7 @@ img.handlebars-logo {
 /* The progress bar (scroll indicator) */
 .progress-bar {
     height: 5px;
-    background: var(--theme-colour-1);
+    background: var(--theme-colour-4);
     width: 0%;
     transition: none;
 }
@@ -465,14 +478,14 @@ lottie-player {
     /*** Tag cloud animation ***/
 
 .tag-cloud-content {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .tagcloud {
     font-size: 0.8rem;
     width: 100% !important;
     max-width: 100% !important;
-    height: 400px !important;
+    height: 500px !important;
     margin-top: 3rem;
     margin-bottom: 3rem;
     transition: all 0.3s ease-in-out;
