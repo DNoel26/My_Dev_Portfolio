@@ -87,7 +87,7 @@ const App = {
             
             // interact with cursor move on mouse out
 
-            keep: true,
+            keep: false,
         });
 
         // Add more tags to existing tag cloud
