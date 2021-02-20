@@ -57,9 +57,13 @@
                         <li class="nav-item mx-1 anim-link-1">
                             <a href="#about" class="nav-link">About</a>
                         </li>
+
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#services" class="nav-link">Services</a>
+                        </li>
     
                         <li class="nav-item mx-1 anim-link-1">
-                            <a href="#tools-tech" class="nav-link ">Tools & Technologies</a>
+                            <a href="#tools-tech" class="nav-link">Tools & Technologies</a>
                         </li>
     
                         <li class="nav-item mx-1 dropdown anim-link-1">
@@ -135,7 +139,8 @@
             <h2 class="fs-1 pt-5 align-self-end">Hi there, I'd love to help <strong>you</strong></h2>
             <h2 class="pt-5 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></h2>
         </div>
-
+        
+        <!--Home Section-->
         <section class="welcome-section" id="home">
             <div>
                 <h2 class="text-center mb-5 intro">Ready to take your business <strong class="text-custom-1">online?</strong></h2>
@@ -169,7 +174,7 @@
                         </div>
                     </div>
 
-                    <div id="profile" class="col-lg-6 card shadow container-box text-nowrap w-auto" data-anijs="if: scroll, on: window, do: rubberBand animated, before: $scrollReveal">
+                    <div id="profile" class="col-lg-6 col-auto card shadow container-box text-nowrap" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
                         <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
@@ -188,7 +193,11 @@
                         </svg>
 
                         <div class="row card-body">
-                            <nav class="icon-disp col-md-6 col-12 pb-3 pb-sm-0 d-flex-custom-1 justify-content-even">
+                            <nav class="icon-disp col-12 col-lg-6 pb-3 pb-sm-0 d-flex-custom-1 justify-content-start">
+                                <!--<p>
+                                    My Social Media
+                                </p>-->
+
                                 <a class="icon-disp-link grow-link-1" rel=”noopener” target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/">
                                     <img class="card-link img-fluid icon-disp-img" src="/img/LI-Logo.png" alt="Clickable LinkedIn logo link">
                                 </a>
@@ -206,7 +215,7 @@
                                 </a>
                             </nav>
     
-                            <nav class="col-lg-6 col-auto align-self-center d-flex-custom-1 justify-content-between small">
+                            <nav class="col-12 col-lg-6 align-self-center d-flex-custom-1 justify-content-end small">
                                 <a class="text-reset text-decoration-none anim-link-2 me-2" href="/assets/Darnell_Noel_FSD_Resume_Feb_2021.pdf" download="Darnell_Noel_Resume_Feb_2021"><strong class="text-custom-2">Download</strong> Resume</a>
 
                                 <a class="text-reset text-decoration-none anim-link-2" href="#contact"><strong class="text-custom-1">Contact</strong> Me</a>
@@ -217,31 +226,79 @@
             </div> 
         </section>
 
-        <section class="about-section" id="about">
-            <div class="container clearfix w-50 px-5 text-justify">
-                <div class="float-start about-img me-3">
-                    <img class="img-fluid rounded-3" src="/img/me_nobg.png" alt="">
-                </div>
+        <!--About Me-->
+        <section class="about-section" id="about" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+            <div class="container clearfix px-5 text-white text-justify">
+                <!--<div class="float-start about-img me-3">
+                    <img class="img-fluid rounded-3" src="/img/Me3.jpg" alt="">
+                </div>-->
 
-                <div >
-                    <h2 class="ml9 text-white mb-3">
+                <div>
+                    <h2 class="ml9 text-center mb-3">
                         <span class="text-wrapper">
-                          <span class="letters">A Little About Me...</span>
+                          <span class="letters fs-1">A Little About Me...</span>
                         </span>
                     </h2>
-    
-                    <div class="summary-container text-white">
-                        <p class="lead fst-italic fs-5">A somewhat unconventional professional with a background in mechanical engineering and now...full stack web development!!!</p>
-                        <p class="fs-6 fw-lighter">Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
-                            I believe that learning is a life-long process and thus started my venture into programming and web development. Having invested several <strong>thousands</strong> of hours
-                            into learning this craft and building some challenging, intense projects...I must say...I really enjoy it! So...what is it that I can do exactly? Well, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>,
-                            to more complex web applications such as E-Commerce stores, utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> 
-                            if need be. It's definitely a lot of work, so why do I enjoy this?</p>
-                        <p class="mx-auto fs-6 fw-lighter">The freedom of <strong>creativity</strong>, designing and making something amazing and useful for people like you <q class="fst-italic">- my right brain</q></p>
-                        <p class="mx-auto fs-6 fw-lighter">The constant learning and challenges, applying <strong>logic</strong> to solve difficult problems <q class="fst-italic">- my left brain</q></p>
+                    
+                    <div class="summary-container">    
+                        <div class="my-quote-alt">
+                            <div>
+                                <div>
+                                    <blockquote>
+                                        <p class="lead fst-italic fs-5 fw-normal">A dedicated, competent and somewhat unconventional professional with a background in Mechanical Engineering (BSc) and now...
+                                            full stack web development!!!"</p>
+                                    </blockquote>  
+                                </div>
+                            </div>
+                        </div>  
+
+                        <p>Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
+                            I believe that learning is a life-long process and thus started my venture into programming and web development. Having dedicated several <strong>thousands</strong> of hours
+                            into learning this craft and building some challenging, intense projects...I must say...I really enjoy it! With a little over a year experience, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>,
+                            to more complex web applications from scratch, such as E-commerce stores, utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> if need be. 
+                            So what fuels my passion?</p>
+                        <p>The freedom of <strong>creativity</strong>, designing and building an amazing and useful product for people like you. <br><span class="fst-italic text-end d-block small pe-5 pt-1">- My right brain</span></p>
+                        <p>The constant learning and challenges, applying <strong>logic</strong> to solve unique and difficult problems. <br><span class="fst-italic text-end d-block small pe-5 pt-1">- My left brain</p>
                     </div>
+
+                    <div class="summary-container row justify-content-around d-none text-center">
+                        <div>
+                            <p><span class="fw-bold">Date-of-Birth:</span> 26-Mar-1990</p>
+                        </div>
+
+                        <div>
+                            <p><span class="fw-bold" >Age:</span> <span data-age="my-age"></span></p> 
+                        </div>
+
+                        <div>
+                            <p><span class="fw-bold">Things I enjoy:</span> Gaming, tech, nature (but not always the things in it), psychology, travelling, learning new things, hanging out with friends...</p>
+                        </div>
+
+                        <div>
+                            <p><span class="fw-bold">Things I don't enjoy:</span> The things in nature I mentioned above, good coffee (am I a real developer then?), bad coffee...</p>
+                        </div>
+
+                        <div>
+                            <p><span class="fw-bold">Traits:</span> Hardworking, persistent, competent, patient, empathetic, effective communicator, a critical thinker...</p> 
+                        </div>
+
+                        <div>
+                            <p><span class="fw-bold">Skills:</span> A generally strong technical background, and experienced in HTML, CSS, JS, Node, Express, MySQL and <a class="text-reset" href="#languages">more...</a></p> 
+                        </div>
+
+                        <div>
+                            <p>
+                                <span class="fw-bold">My future plans:</span> Currently improving my skills in React and learning Next.js for a large client project that I'm working on alongside other developers. 
+                                Eventually would like to learn WordPress and PHP if necessary. Machine learning and A.I. is the future and is very interesting as well...
+                            </p> 
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-center">Interested in opportunities to work with you, so feel free to <a class="text-reset" href="#contact">contact</a> me!</p>
+                    </div> 
         
-                    <button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto">
+                    <button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto" data-id="summary-btn">
                         Learn More...
                     </button>        
                 </div>
@@ -254,20 +311,71 @@
             </div>
         </section>
 
+        <!--My Services-->
+        <section class="services-section" id="services">
+            <div class="container d-block mx-auto" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+                <h2 class="h2-divider text-center mb-5 text-custom-1">Services I Can Offer You</h2>
+                
+                <div class="row d-flex-custom-1 justify-content-center my-carousel-wrapper pt-5">
+                    <!--<div class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-prev">
+                        Left Arrow
+                    </div>-->
+
+                    <ul class="col-10 justify-content-around align-self-center text-center list-unstyled my-carousel-content">
+                        <li class="my-carousel-item d-inline-block">
+                            <img src="/svg/046-www.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
+                            <h4>Web Development</h4>
+                            <p>
+                                Not a graphic designer or artist but can build you a good-looking website to effectively promote your business online!
+                                Let me know what themes you like and if in need of advanced or custom graphics we can still discuss a way forward.
+                            </p>
+                        </li>
+
+                        <li class="my-carousel-item d-inline-block">
+                            <img src="/svg/047-responsive-1.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
+                            <h4>Responsive Design</h4>
+                            <p>
+                                Websites are guaranteed to be mobile-friendly and scale well to users on all devices, large or small! 
+                                This also helps improve your rankings in search engines. 
+                            </p>
+                        </li>
+
+                        <li class="my-carousel-item d-inline-block">
+                            <img src="/svg//005-seo.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
+                            <h4>SEO</h4>
+                            <p>
+                                Search Engine Optimization increases your website visibility directing more traffic to it and providing more opportunities to convert prospects into customers!
+                            </p>
+                        </li>
+
+                        <li class="my-carousel-item d-inline-block">
+                            <img src="" alt="">
+                            <h4>SEO</h4>
+                        </li>
+                    </ul>
+
+                    <!--<div class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-next">
+                        Right Arrow
+                    </div>-->
+                </div>
+            </div>
+        </section>
+
+        <!--Tools & Technologies-->
         <section class="tools-tech-section" id="tools-tech">
-            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal">
-                <h2 class="text-center mb-3 text-custom-1">Tools & Technologies</h2>
+            <div class="container" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+                <h2 class="h2-divider text-center mb-5 text-custom-1">Tools & Technologies</h2>
                 <h3 class="text-center small">- My Skills -</h3>
-                <p class="text-center small mb-5 fst-italic">(Move around with your mouse/touch)</p>
+                <p class="text-center small mb-5 fst-italic">(Move around with mouse / touch)</p>
 
                 <div>
                     <div class="tag-cloud-content"></div>
                 </div>
 
-                <div>
+                <div id="languages">
                     <h3 class="text-center small my-5">- Languages, Frameworks, Platforms learned and used -</h3>
 
-                    <div class="row justify-content-around">
+                    <div class="row justify-content-around px-5 px-md-0">
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
                             <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">HTML5</small>
@@ -380,25 +488,51 @@
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
                     </div>
+
+                    <h3 class="text-center small mt-5">- Next on the agenda to learn -</h3>
+
+                    <div class="row justify-content-around">
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Nextjs-logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Next.js</small>
+                            <div class="skill-rating skill-rating-intermediate invisible"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/WordPress_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <small class="d-block mt-2">WordPress</small>
+                            <div class="skill-rating skill-rating-intermediate invisible"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/1067px-PHP-logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <small class="d-block mt-2">PHP 8</small>
+                            <div class="skill-rating skill-rating-intermediate invisible"></div>
+                        </div>
+
+                        <h4 class="text-center mt-5">Most importantly...will learn tools as needed!</h3>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!--My Projects-->
         <section class="projects-section" id="all-projects">
-            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: flipInY animated, before: $scrollReveal">
+            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
                 <div>
-                    <h2 class="text-center mb-3 text-custom-1">My Work</h2>
+                    <h2 class="h2-divider text-center mb-5 text-custom-1">My Work</h2>
                     <h3 class="text-center small mb-5">- Personal / Development projects -</h3>
 
                     <div class="row justify-content-between align-items-center text-left">
                         <div class="col-6">
-                            <img class="img-fluid p-5" src="/img/Projects/math_game_min.jpg" alt="">
+                            <img class="img-fluid p-1" src="/img/Projects/math_game_min.jpg" alt="">
                         </div>
 
                         <div class="col-6">
                             <h3>Alien Mathvasion</h3>
                             
-                            <p class="text-justify">This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, with the 
+                            <p>
+                                This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                                 intention of making code DRY and easier to maintain. <br>Showcases heavy JavaScript usage and DOM manipulation. Uses promises instead of while loops to track progress. Design is based on retro arcade Shoot-em Up games.
                                 Good luck beating the hardest difficulty!
                                 <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
@@ -430,14 +564,15 @@
                     </div>
 
                     <div>
-                        <h4 class="text-center small">Currently working on some projects that I can't talk about yet 🤫 </h4>
+                        <h4 class="text-center">Currently working on some projects that I can't talk about yet 🤫 </h4>
                     </div>
                 </div>
         </section>
 
+        <!--Contact Me Section-->
         <section class="contact-section" id="contact">
             <div class="container" data-anijs="if: scroll, on: window, do: lightSpeedIn animated, before: $scrollReveal">
-                <h2 class="text-center mb-5 text-custom-1">Let's Chat</h2>
+                <h2 class="h2-divider text-center mb-5 text-custom-1">Let's Chat</h2>
 
                 <div class="row">
                     <div class="col-12 m-auto w-auto">
@@ -450,7 +585,7 @@
                                 <div>
                                     <blockquote>
                                         <p>Ready to promote your business online with a fast and well designed website?<br> 
-                                            Need an E-Commerce application or have an idea for an app and want to bring it to life?<br>
+                                            Need an E-commerce application or have an idea for an app and want to bring it to life?<br>
                                             Need to implement a database to help your business run smoothly?<br>
                                             Don't hesitate to reach out to me, I'm always willing to help!”</p>
                                     </blockquote>  

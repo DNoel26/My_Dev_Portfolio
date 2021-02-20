@@ -8,6 +8,7 @@ const App = {
         /*** Dependencies ***/
 
         // Wrap every letter in a span
+        
         const textWrapperML13 = document.querySelector('.ml13');
         textWrapperML13.innerHTML = textWrapperML13.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
@@ -30,6 +31,7 @@ const App = {
             });
         
         // Wrap every letter in a span
+
         const textWrapperML9 = document.querySelector('.ml9 .letters');
         textWrapperML9.innerHTML = textWrapperML9.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
@@ -51,74 +53,50 @@ const App = {
         /*** Tag Cloud ***/
         
         // Define tags in js array
+
         let myTags = [
-            'Object-Oriented-Programming', 'Separation-of-Concerns', 'RESTful-APIs',
-            'Data-Structures', 'Continuous-Integration', 'Front-End-Web-Development',
-            'Back-End-Web-Development', 'Version-Control', 'Database-Management-Systems',
-            'E-Commerce', 'Custom-App-Development', 'Responsive-Web-Design', 
-            'Promises/Async', 'Page-Speed-Optimization', 'Customer-Service',
+            'OOP', 'SOC / MVC', 'RESTful-APIs',
+            'Data-Structures', 'Continuous-Integration', 'UI / UX',
+            'Testing', 'Version-Control', 'Debugging',
+            'Algorithms', 'App-Development', 'Responsive-Design', 
+            'Security', 'Optimization', 'Customer-Service',
         ];
 
         // Render a default tag cloud
         //let tagCloud = TagCloud('.tag-cloud-content', myTags);
 
         // Config tag cloud by overriding default parameters below
+
         let tagCloud = TagCloud('.tag-cloud-content', myTags, {
 
             // radius in px
+
             radius: 320,
         
             // animation speed
             // slow, normal, fast
+
             maxSpeed: 'fast',
-            initSpeed: 'normal',
+            initSpeed: 'slow',
         
             // 0 = top
             // 90 = left
             // 135 = right-bottom
+
             direction: 135,
             
             // interact with cursor move on mouse out
+
             keep: true,
         });
 
         // Add more tags to existing tag cloud
-        myTags = myTags.concat([]);
-        tagCloud.update(myTags);
+
+        //myTags = myTags.concat([]);
+        //tagCloud.update(myTags);
 
         const tagcloud = document.querySelector(".tagcloud");
         const tagcloud_items = document.querySelectorAll(".tagcloud--item");
-        
-        tagcloud_items.forEach(item => {
-            
-            let clicked_once = false;
-
-            item.addEventListener("click", (e)=>{
-
-                //console.log(item); // transform: translate3d(-35px, -146.6px, 0px) scale (1)
-                //console.log(item.style.transform);   
-                //console.log(clicked_once);
-
-                if(clicked_once === true) {
-
-                    item.style.fontSize = "0"; 
-
-                    setTimeout(() => {
-                
-                        item.style.color = "initial"; 
-                        item.style.fontSize = "initial";
-                        item.style.fontWeight = "initial";
-                        clicked_once = false; 
-                    }, 5000);
-                } else {
-
-                    item.style.color = "var(--theme-colour-1)"; 
-                    item.style.fontSize = "1.2rem";
-                    item.style.fontWeight = "900";
-                    clicked_once = true; 
-                };     
-            }); 
-        });
 
         /*** Bootstrap Scrollspy ***/
 
@@ -145,15 +123,20 @@ const App = {
 
         const body = document.querySelector("main");
 
+        const about_section = document.querySelector(".about-section .container");
+        const my_age = document.querySelector("[data-age='my-age']");
+        const summary_containers = document.querySelectorAll(".summary-container");
+        const summary_btn = document.querySelector("[data-id='summary-btn']");
+
         //const submit_btn = document.querySelector("#submit-btn");
 
         //Header Video 
+
         const header = document.querySelector("header");
         const header_vid = document.querySelector("header video");
         const nav_container = document.querySelector(".nav-container");
 
         /*** FUNCTIONS ***/
-
         
         function scroll_progress() {
             const scroll_indicator = document.querySelector("#my-bar");
@@ -169,10 +152,75 @@ const App = {
 
             body.classList.add("will-change-height");
 
-            if(!tagcloud) {
+            //Watch for screen size changes 
+            function on_resize(mq) {
+
+                /*if (mq.matches) { // If media query matches
+                    document.body.style.backgroundColor = "yellow";
+                } else {
+                    document.body.style.backgroundColor = "pink";
+                }*/
+            };
+              
+            const mq = window.matchMedia("(max-width: 540px)");
+            on_resize(mq); // Call listener function at run time
+
+            window.addEventListener("resize", ()=>{
+            
+                console.log("media query", window.matchMedia("(min-width: 0)"))
+            });
+
+            if(tagcloud == "") {
             
                 tagcloud.remove();
             };
+
+            tagcloud_items.forEach(item => {
+            
+                function generateDarkColorHex() {
+                    let color = "#";
+                    for (let i = 0; i < 3; i++)
+                      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+                    return color;
+                }
+
+                item.style.color = generateDarkColorHex(); 
+    
+                let clicked_once = false;
+                let clicked_twice = false;
+    
+                item.addEventListener("click", ()=>{
+    
+                    //console.log(item); // transform: translate3d(-35px, -146.6px, 0px) scale (1)
+                    //console.log(item.style.transform);   
+                    //console.log(clicked_once);
+    
+                    if(clicked_once && clicked_twice) {
+    
+                        item.style.fontSize = "0"; 
+    
+                        setTimeout(() => {
+                    
+                            item.style.color = generateDarkColorHex(); 
+                            item.style.fontSize = "1.2rem";
+                            item.style.fontWeight = "600";
+                            clicked_once = false; 
+                            clicked_twice = false;
+                        }, 5000);
+                    } else if(clicked_once && !clicked_twice) {
+    
+                        item.style.color = "var(--theme-colour-4)"; 
+                        item.style.fontSize = "1.5rem";
+                        clicked_twice = true;
+                    } else {
+
+                        item.style.color = "var(--theme-colour-1)"; 
+                        item.style.fontSize = "1.3rem";
+                        item.style.fontWeight = "900";
+                        clicked_once = true;
+                    } 
+                }); 
+            });
 
             /*const scrollSpy = new bootstrap.ScrollSpy(document.body, {
                 target: '.bot-header-nav',
@@ -203,9 +251,11 @@ const App = {
             let header_vid_ended = false;
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
+
             header_vid.addEventListener("ended", ()=>{
 
                 header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
+                header.style.backgroundSize = "cover";
                 header.style.transition = "background 3s ease-in-out";
                 header_vid.remove();
 
@@ -223,20 +273,24 @@ const App = {
             const intro_div = document.querySelector(".intro-2")
             
             // Generated by the shape divider app (remember to change class name if changing divider using app)
+
             const header_divider = document.querySelector(".custom-shape-divider-bottom-1612032701");        
 
             body_placeholder.addEventListener("transitionend", ()=>{
 
-                console.log("trans end",body_placeholder)
-                   
+                console.log("trans end",body_placeholder)     
             });
 
             document.addEventListener("scroll", ()=>{
 
                 //observer.observe(test);
+
+                // Calls horizontal progress bar indicator function on scroll
+
                 scroll_progress();
 
                 //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
+
                 const active_list = document.querySelectorAll(".bot-header-nav .nav-item");
                 const active_link = document.querySelector("a.active");
 
@@ -253,23 +307,24 @@ const App = {
                     }
                 });
 
-                // Resize header when scrolling
+                // Resize header when scrolling - adds artificial height to compensate for reduction in header height
+
                 if(document.documentElement.scrollTop > 1 || window.pageYOffset > 1) {
 
                     //console.log(window.pageYOffset);
                     body.classList.remove("will-change-height");
                     
                     nav_container.classList.add("row","justify-content-between");
-                    top_nav.classList.add("col-3","w-25");
-                    bot_nav.classList.add("col-9");
+                    top_nav.classList.add("col-2");
+                    bot_nav.classList.add("col-10");
                     header_empty_div.classList.add("d-none");
                     header_divider.classList.add("d-none");
                     body_placeholder.classList.replace("invisible","visible");
 
                     top_nav.style.height = "100%";
                     bot_nav.style.height = "100%";
-                    nav_container.style.height = "70px";
-                    body_placeholder.style.height = "750px";
+                    nav_container.style.height = "6rem";
+                    body_placeholder.style.height = "46.875rem";
                     body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
 
                     header_vid.classList.add("d-none");
@@ -279,20 +334,20 @@ const App = {
                     intro_div.classList.remove("pt-custom-1");
                     
                     scroll_moved = true;
-                    header.style.background = "linear-gradient(rgba(31,111,139,0.67), rgba(31,111,139,0.67)), url('') no-repeat fixed 100% 100%";
+                    header.style.background = "linear-gradient(rgba(31,111,139,0.95), rgba(31,111,139,0.95)), url('') no-repeat fixed 100% 100%";
                 } else {
 
                     nav_container.classList.remove("row","justify-content-between");
-                    top_nav.classList.remove("col-3","w-25");
-                    bot_nav.classList.remove("col-9");
+                    top_nav.classList.remove("col-2");
+                    bot_nav.classList.remove("col-10");
                     header_empty_div.classList.remove("d-none");
                     header_divider.classList.remove("d-none");
                     //body_placeholder.classList.replace("visible","invisible");
 
                     top_nav.style.height = "initial";
                     bot_nav.style.height = "initial";
-                    nav_container.style.height = "400px";
-                    body_placeholder.style.height = "0px";
+                    nav_container.style.height = "25rem";
+                    body_placeholder.style.height = "0";
                     body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start");
 
                     header_vid.classList.remove("d-none");
@@ -304,12 +359,64 @@ const App = {
                     if(scroll_moved && header_vid_ended) {
 
                         header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
+                        header.style.backgroundSize = "cover";
                         header.style.transition = "background 3s ease-in-out";
                     }
                 };
             });
 
             // About me section
+
+            // Automatically adjust my age in bio based on date
+
+            function calculate_age(dob) { 
+                const diff_ms = Date.now() - new Date("26 March 1990");
+                const age_dt = new Date(diff_ms); 
+              
+                return Math.abs(age_dt.getUTCFullYear() - 1970);
+            }
+
+            //console.log(calculate_age(new Date(1982, 20, 4)));
+            my_age.innerHTML = calculate_age("06/24/2008");
+
+            // Adds a fade in and out effect when clicking the button in my bio
+
+            summary_btn.addEventListener("click", ()=>{
+
+                console.log(summary_containers[0], "AND", summary_containers[1]);
+
+                if(summary_containers[1].classList.contains("d-none")) {
+
+                    about_section.classList.add("opacity-0");
+
+                    setTimeout(() => {
+                        
+                        summary_containers[0].classList.add("d-none", "opacity-0");
+                        summary_containers[1].classList.remove("d-none", "opacity-0");
+                        summary_btn.innerHTML = "Go Back";
+                    }, 110);
+
+                    setTimeout(() => {
+
+                        about_section.classList.remove("opacity-0");
+                    }, 310);
+                } else if(summary_containers[0].classList.contains("d-none")) {
+
+                    about_section.classList.add("opacity-0");
+
+                    setTimeout(() => {
+                        
+                        summary_containers[1].classList.add("d-none", "opacity-0");
+                        summary_containers[0].classList.remove("d-none", "opacity-0");
+                        summary_btn.innerHTML = "Learn More...";
+                    }, 110);
+
+                    setTimeout(() => {
+
+                        about_section.classList.remove("opacity-0");
+                    }, 310);
+                };
+            });
 
             //Generates skill rating divs and icons based on class name
 
@@ -420,6 +527,7 @@ const App = {
             /*** Formspree validation ***/
             
             // Example starter JavaScript for disabling form submissions if there are invalid fields (Bootstrap)
+
             (function () {
                 'use strict'
 
@@ -433,9 +541,11 @@ const App = {
                 const invalid_feedback_message = document.querySelector(".invalid-feedback.invalid-feedback-message");
             
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
+
                 let forms = document.querySelectorAll('.needs-validation')
 
                 // Loop over them and prevent submission
+
                 Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
@@ -460,12 +570,14 @@ const App = {
 
                         function error() {
 
-                            status.innerHTML = "Oops, sorry! There was a problem with the form submission. Please try again or use an alternate method to contact me.";
+                            status.innerHTML = 'Oops, sorry! There was a problem with the form submission. Ensure to check "I am not a robot" and try again or use an alternate method to contact me.';
                         };
 
                         if (!form.checkValidity()) {
 
                             event.stopPropagation();
+
+                            // Ensures that validation changes only take effect after submission
 
                             return new Promise((resolve,reject)=>{
 
@@ -474,7 +586,9 @@ const App = {
                                 resolve();
                             })
                             .then(()=>{
-    
+                                
+                                // Updates UI with failed validation messages
+
                                 //console.log(window.getComputedStyle(invalid_feedback_fname).display);
                                 //console.log(window.getComputedStyle(valid_feedback_fname).display);
                                 if(window.getComputedStyle(invalid_feedback_fname).display != "none") {
@@ -501,6 +615,8 @@ const App = {
 
                             const data = new FormData(form);
                             ajax(form.method, form.action, data, success, error);
+
+                            // Clears / resets the form on successful submission
 
                             invalid_feedback_fname.style.display = "none";
                             invalid_feedback_lname.style.display = "none";
