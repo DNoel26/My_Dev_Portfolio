@@ -50,54 +50,6 @@ const App = {
                 delay: 11000,
             });
 
-        /*** Tag Cloud ***/
-        
-        // Define tags in js array
-
-        let myTags = [
-            'OOP', 'SOC / MVC', 'RESTful-APIs',
-            'Data-Structures', 'Continuous-Integration', 'UI / UX',
-            'Testing', 'Version-Control', 'Debugging',
-            'Algorithms', 'App-Development', 'Responsive-Design', 
-            'Security', 'Optimization', 'Customer-Service',
-        ];
-
-        // Render a default tag cloud
-        //let tagCloud = TagCloud('.tag-cloud-content', myTags);
-
-        // Config tag cloud by overriding default parameters below
-
-        let tagCloud = TagCloud('.tag-cloud-content', myTags, {
-
-            // radius in px
-
-            radius: 320,
-        
-            // animation speed
-            // slow, normal, fast
-
-            maxSpeed: 'fast',
-            initSpeed: 'slow',
-        
-            // 0 = top
-            // 90 = left
-            // 135 = right-bottom
-
-            direction: 135,
-            
-            // interact with cursor move on mouse out
-
-            keep: false,
-        });
-
-        // Add more tags to existing tag cloud
-
-        //myTags = myTags.concat([]);
-        //tagCloud.update(myTags);
-
-        const tagcloud = document.querySelector(".tagcloud");
-        const tagcloud_items = document.querySelectorAll(".tagcloud--item");
-
         /*** Bootstrap Scrollspy ***/
 
         /*let scrollSpy = new bootstrap.ScrollSpy(document.body, {
@@ -151,76 +103,6 @@ const App = {
             console.log("DOMContentLoaded Successfully");
 
             body.classList.add("will-change-height");
-
-            //Watch for screen size changes 
-            function on_resize(mq) {
-
-                /*if (mq.matches) { // If media query matches
-                    document.body.style.backgroundColor = "yellow";
-                } else {
-                    document.body.style.backgroundColor = "pink";
-                }*/
-            };
-              
-            const mq = window.matchMedia("(max-width: 540px)");
-            on_resize(mq); // Call listener function at run time
-
-            window.addEventListener("resize", ()=>{
-            
-                console.log("media query", window.matchMedia("(min-width: 0)"))
-            });
-
-            if(tagcloud == "") {
-            
-                tagcloud.remove();
-            };
-
-            tagcloud_items.forEach(item => {
-            
-                function generateDarkColorHex() {
-                    let color = "#";
-                    for (let i = 0; i < 3; i++)
-                      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
-                    return color;
-                }
-
-                item.style.color = generateDarkColorHex(); 
-    
-                let clicked_once = false;
-                let clicked_twice = false;
-    
-                item.addEventListener("click", ()=>{
-    
-                    //console.log(item); // transform: translate3d(-35px, -146.6px, 0px) scale (1)
-                    //console.log(item.style.transform);   
-                    //console.log(clicked_once);
-    
-                    if(clicked_once && clicked_twice) {
-    
-                        item.style.fontSize = "0"; 
-    
-                        setTimeout(() => {
-                    
-                            item.style.color = generateDarkColorHex(); 
-                            item.style.fontSize = "1.2rem";
-                            item.style.fontWeight = "600";
-                            clicked_once = false; 
-                            clicked_twice = false;
-                        }, 5000);
-                    } else if(clicked_once && !clicked_twice) {
-    
-                        item.style.color = "var(--theme-colour-4)"; 
-                        item.style.fontSize = "1.5rem";
-                        clicked_twice = true;
-                    } else {
-
-                        item.style.color = "var(--theme-colour-1)"; 
-                        item.style.fontSize = "1.3rem";
-                        item.style.fontWeight = "900";
-                        clicked_once = true;
-                    } 
-                }); 
-            });
 
             /*const scrollSpy = new bootstrap.ScrollSpy(document.body, {
                 target: '.bot-header-nav',
@@ -645,6 +527,124 @@ const App = {
                     }, false);
                 });
             })();
+
+            /*** Tag Cloud ***/
+        
+            // Define tags in js array
+
+            let myTags = [
+                'OOP', 'SOC / MVC', 'RESTful-APIs',
+                'Data-Structures', 'Continuous-Integration', 'UI / UX',
+                'Testing', 'Version-Control', 'Debugging',
+                'Algorithms', 'App-Development', 'Responsive-Design', 
+                'Security', 'Optimization', 'Customer-Service',
+            ];
+
+            // Render a default tag cloud
+            //let tagCloud = TagCloud('.tag-cloud-content', myTags);
+
+            // Config tag cloud by overriding default parameters below
+
+            let tagCloud = TagCloud('.tag-cloud-content', myTags, {
+
+                // radius in px
+
+                radius: 320,
+            
+                // animation speed
+                // slow, normal, fast
+
+                maxSpeed: 'fast',
+                initSpeed: 'slow',
+            
+                // 0 = top
+                // 90 = left
+                // 135 = right-bottom
+
+                direction: 135,
+                
+                // interact with cursor move on mouse out
+
+                keep: false,
+            });
+
+            // Add more tags to existing tag cloud
+
+            //myTags = myTags.concat([]);
+            //tagCloud.update(myTags);
+
+            const tagcloud = document.querySelector(".tagcloud");
+            const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+
+            //Watch for screen size changes 
+            function on_resize(mq) {
+
+                /*if (mq.matches) { // If media query matches
+                    document.body.style.backgroundColor = "yellow";
+                } else {
+                    document.body.style.backgroundColor = "pink";
+                }*/
+            };
+              
+            const mq = window.matchMedia("(max-width: 540px)");
+            on_resize(mq); // Call listener function at run time
+
+            window.addEventListener("resize", ()=>{
+            
+                console.log("media query", window.matchMedia("(min-width: 0)"))
+            });
+
+            if(tagcloud == "") {
+            
+                tagcloud.remove();
+            };
+
+            tagcloud_items.forEach(item => {
+            
+                function generateDarkColorHex() {
+                    let color = "#";
+                    for (let i = 0; i < 3; i++)
+                      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+                    return color;
+                }
+
+                item.style.color = generateDarkColorHex(); 
+    
+                let clicked_once = false;
+                let clicked_twice = false;
+    
+                item.addEventListener("click", ()=>{
+    
+                    //console.log(item); // transform: translate3d(-35px, -146.6px, 0px) scale (1)
+                    //console.log(item.style.transform);   
+                    //console.log(clicked_once);
+    
+                    if(clicked_once && clicked_twice) {
+    
+                        item.style.fontSize = "0"; 
+    
+                        setTimeout(() => {
+                    
+                            item.style.color = generateDarkColorHex(); 
+                            item.style.fontSize = "1.2rem";
+                            item.style.fontWeight = "600";
+                            clicked_once = false; 
+                            clicked_twice = false;
+                        }, 5000);
+                    } else if(clicked_once && !clicked_twice) {
+    
+                        item.style.color = "var(--theme-colour-4)"; 
+                        item.style.fontSize = "1.5rem";
+                        clicked_twice = true;
+                    } else {
+
+                        item.style.color = "var(--theme-colour-1)"; 
+                        item.style.fontSize = "1.3rem";
+                        item.style.fontWeight = "900";
+                        clicked_once = true;
+                    } 
+                }); 
+            });
         }); // end of DOMContentLoaded event listener
     }, // end of init()
 }; // end of App
