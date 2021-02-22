@@ -174,7 +174,7 @@
                         </div>
                     </div>
 
-                    <div id="profile" class="col-lg-6 col-auto card shadow container-box text-nowrap" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+                    <div id="profile" class="col-lg-6 col-auto card shadow container-box text-nowrap">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
                         <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
@@ -227,41 +227,52 @@
         </section>
 
         <!--About Me-->
-        <section class="about-section" id="about" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
-            <div class="container clearfix px-5 text-white text-justify">
+        <section class="about-section" id="about">
+            <div class="container pb-3" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
                 <!--<div class="float-start about-img me-3">
                     <img class="img-fluid rounded-3" src="/img/Me3.jpg" alt="">
                 </div>-->
 
-                <div>
-                    <h2 class="ml9 text-center mb-3">
+                <div class="quote-wrapper">
+                    <h2 class="h2-divider text-center mb-5 text-custom-1">A Little About Me</h2>
+                    <!--<h2 class="ml9 text-center h2-divider mb-5 text-custom-1">
                         <span class="text-wrapper">
-                          <span class="letters fs-1">A Little About Me...</span>
+                          <span class="letters fs-1">A Little About Me</span>
                         </span>
-                    </h2>
-                    
-                    <div class="summary-container">    
-                        <div class="my-quote-alt">
+                    </h2>-->
+    
+                    <div class="my-quote-alt">
+                        <div>
                             <div>
-                                <div>
-                                    <blockquote>
-                                        <p class="lead fst-italic fs-5 fw-normal">A dedicated, competent and somewhat unconventional professional with a background in Mechanical Engineering (BSc) and now...
-                                            full stack web development!!!"</p>
-                                    </blockquote>  
-                                </div>
+                                <blockquote>
+                                    <p>
+                                        A dedicated, competent and somewhat unconventional professional with a background in Mechanical Engineering (BSc) and now...
+                                        full stack web development!!!"
+                                    </p>
+                                </blockquote>  
                             </div>
-                        </div>  
-
-                        <p>Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="summary-wrapper">
+                    <div class="summary-container">    
+                        <p>
+                            Born and raised in <a target="_blank" class="text-reset" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
                             I believe that learning is a life-long process and thus started my venture into programming and web development. Having dedicated several <strong>thousands</strong> of hours
-                            into learning this craft and building some challenging, intense projects...I must say...I really enjoy it! With a little over a year experience, I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>,
-                            to more complex web applications from scratch, such as E-commerce stores, utilizing the <strong>back-end (databases, server-side functionalities etc.)</strong> if need be. 
-                            So what fuels my passion?</p>
-                        <p>The freedom of <strong>creativity</strong>, designing and building an amazing and useful product for people like you. <br><span class="fst-italic text-end d-block small pe-5 pt-1">- My right brain</span></p>
+                            into learning this craft and building challenging projects... I must say that I really enjoy it! 
+                            With a little over one (1) year experience, I can build from simple websites to more complex web applications end to end, from scratch. 
+                            So what fuels my passion for development?
+                        </p>
+                        <!--I can build from simple websites focusing on the <strong>front-end (design, UI/UX etc.)</strong>, 
+                            to more complex web applications from scratch, such as E-commerce stores, utilizing the <strong>back-end (databases, server-side functionalities etc.)-->
+
+                        <p>The freedom of <strong>creativity</strong>, designing and building amazing and useful products for people like you. <br><span class="fst-italic text-end d-block small pe-5 pt-1">- My right brain</span></p>
+                        
                         <p>The constant learning and challenges, applying <strong>logic</strong> to solve unique and difficult problems. <br><span class="fst-italic text-end d-block small pe-5 pt-1">- My left brain</p>
                     </div>
 
-                    <div class="summary-container row justify-content-around d-none text-center">
+                    <div class="summary-container row justify-content-around d-none">
                         <div>
                             <p><span class="fw-bold">Date-of-Birth:</span> 26-Mar-1990</p>
                         </div>
@@ -283,37 +294,31 @@
                         </div>
 
                         <div>
-                            <p><span class="fw-bold">Skills:</span> A generally strong technical background, and experience in HTML, CSS, JS, Node, Express, MySQL and <a class="text-reset" href="#languages">more...</a></p> 
+                            <p><span class="fw-bold">Skills:</span> A generally strong technical background with good programming fundamentals and experience in HTML, CSS, JS, MySQL, Node.js, Express.js and <a class="text-reset" href="#languages">more...</a></p> 
                         </div>
 
                         <div>
                             <p>
                                 <span class="fw-bold">My future plans:</span> Currently improving my skills in React and learning Next.js for a large client project that I'm working on alongside other developers. 
-                                Eventually would like to learn WordPress and PHP if necessary. Machine learning and A.I. is the future and is very interesting as well...
+                                Eventually would like to learn WordPress and PHP as necessary. Machine learning and A.I. is the future and is very interesting as well...
                             </p> 
                         </div>
                     </div>
 
                     <div>
-                        <p class="text-center">Interested in opportunities to work with you, so feel free to <a class="text-reset" href="#contact">contact</a> me!</p>
+                        <p>Interested in opportunities to work with you, so feel free to <a class="text-reset" href="#contact">contact</a> me!</p>
                     </div> 
         
-                    <button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto" data-id="summary-btn">
-                        Learn More...
+                    <button type="button" class="btn btn-custom-3 mt-4 d-block mx-auto" data-id="summary-btn">
+                        Learn More
                     </button>        
                 </div>
-            </div>
-
-            <div class="custom-shape-divider-bottom-1612186400">
-                <svg data-name="Layer 1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
-                </svg>
             </div>
         </section>
 
         <!--My Services-->
-        <section class="services-section" id="services">
-            <div class="container d-block mx-auto" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+        <section class="services-section" id="services" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+            <div class="container d-block mx-auto pb-5">
                 <h2 class="h2-divider text-center mb-5 text-custom-1">Services I Can Offer You</h2>
                 
                 <div class="row d-flex-custom-1 justify-content-center my-carousel-wrapper pt-5">
@@ -326,8 +331,8 @@
                             <img src="/svg/046-www.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
                             <h4>Web Development</h4>
                             <p>
-                                Not a graphic designer or artist but can build you a good-looking website to effectively promote your business online!
-                                Let me know what themes you like and if in need of advanced or custom graphics we can still discuss a way forward.
+                                Not a graphic designer or artist, but can build you a good-looking website to effectively promote your business online!
+                                Let me know what themes you like and if in need of advanced or custom graphics, we can still discuss a way forward.
                             </p>
                         </li>
 
@@ -336,12 +341,21 @@
                             <h4>Responsive Design</h4>
                             <p>
                                 Websites are guaranteed to be mobile-friendly and scale well to users on all devices, large or small! 
-                                This also helps improve your rankings in search engines. 
+                                This also helps improve your ranking in search engines. 
                             </p>
                         </li>
 
                         <li class="my-carousel-item d-inline-block">
-                            <img src="/svg//005-seo.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
+                            <img src="/svg/023-target-1.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
+                            <h4>Fully Remote Work</h4>
+                            <p>
+                                No matter where you are located, I will work with you professionally to get the job done! 
+                                Feel free to contact me for more details at your convenience.
+                            </p>
+                        </li>
+
+                        <li class="my-carousel-item d-inline-block">
+                            <img src="/svg/005-seo.svg" alt="" class="img-fluid icon-disp-img-lg mb-3">
                             <h4>SEO</h4>
                             <p>
                                 Search Engine Optimization increases your website visibility, directing more traffic to it, and providing more opportunities to convert prospects into customers!
@@ -350,7 +364,7 @@
 
                         <li class="my-carousel-item d-inline-block">
                             <img src="" alt="">
-                            <h4>SEO</h4>
+                            <h4>Web Optimization</h4>
                         </li>
                     </ul>
 
@@ -359,18 +373,28 @@
                     </div>-->
                 </div>
             </div>
+
+            <div class="custom-shape-divider-bottom-1612186400">
+                <svg data-name="Layer 1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
+                </svg>
+            </div>
         </section>
 
         <!--Tools & Technologies-->
-        <section class="tools-tech-section" id="tools-tech">
-            <div class="container" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
-                <h2 class="h2-divider text-center mb-5 text-custom-1">Tools & Technologies</h2>
+        <section class="tools-tech-section" id="tools-tech" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+            <div class="container">
+                <h2 class="h2-divider text-center mb-5 text-custom-1">My Tools & Technologies</h2>
+
                 <h3 class="text-center small">- My Skills -</h3>
+
                 <p class="text-center small mb-5 fst-italic">(Move around with mouse / touch)</p>
 
                 <div>
                     <div class="tag-cloud-content"></div>
                 </div>
+
+                <!--<hr style="margin: 5rem auto; opacity: .5;">-->
 
                 <div id="languages">
                     <h3 class="text-center small my-5">- Languages, Frameworks, Platforms learned and used -</h3>
@@ -455,6 +479,12 @@
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
+                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/postman-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <small class="d-block mt-2">Postman</small>
+                            <div class="skill-rating skill-rating-novice"></div>
+                        </div>
+
+                        <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
                             <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">GitHub</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
@@ -517,56 +547,93 @@
         </section>
 
         <!--My Projects-->
-        <section class="projects-section" id="all-projects">
-            <div class="container px-5 px-md-0" data-anijs="if: scroll, on: window, do: fadeIn animated, before: $scrollReveal">
+        <section class="projects-section" id="all-projects" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+            <div class="container px-5 px-md-0 pb-5">
                 <div>
                     <h2 class="h2-divider text-center mb-5 text-custom-1">My Work</h2>
                     <h3 class="text-center small mb-5">- Personal / Development projects -</h3>
 
-                    <div class="row justify-content-between align-items-center text-left">
+                    <div class="row mb-5">
+                        <button class="col-4 btn">
+                            <img class="img-fluid rounded" src="/img/Projects/math_game_min.jpg" alt="">
+                        </button>
+
+                        <button class="col-4 btn pb-5">
+                            <img class="img-fluid rounded" src="/img/Projects/cyberdise.png" alt="">
+                        </button>
+
+                        <button class="col-4 btn">
+                            <img class="img-fluid rounded" src="/img/Projects/wix.png" alt="">
+                        </button>
+
+                        <button class="col-4 btn mt-custom-neg">
+                            <img class="img-fluid rounded" src="/img/Projects/amazon_clone.png" alt="">
+                        </button>
+
+                        <button class="col-4 btn pb-5 mt-custom-neg">
+                            <img class="img-fluid rounded" src="/img/Projects/movie_db.png" alt="">
+                        </button> 
+
+                        <button class="col-4 btn mt-custom-neg">
+                            <img class="img-fluid rounded" src="/img/Projects/praa.png" alt="">
+                        </button>
+                    </div>
+
+                    <div class="row flex-row card shadow justify-content-between align-items-center text-left">
                         <div class="col-6">
-                            <img class="img-fluid p-1" src="/img/Projects/math_game_min.jpg" alt="">
+                            <img class="img-fluid p-3" src="/img/Projects/math_game_min.jpg" alt="">
                         </div>
 
                         <div class="col-6">
-                            <h3>Alien Mathvasion</h3>
-                            
-                            <p>
-                                This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
-                                intention of making code DRY and easier to maintain. <br>Showcases heavy JavaScript usage and DOM manipulation. Uses promises instead of while loops to track progress. Design is based on retro arcade Shoot-em Up games.
-                                Good luck beating the hardest difficulty!
-                                <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
-                            </p>
-                            
-                            <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
-                            <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
+                            <div class="card-body py-5">
+                                <h3>Alien Mathvasion</h3>
+                                
+                                <p>
+                                    This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
+                                    intention of making code DRY and easier to maintain. <br>Showcases heavy JavaScript usage and DOM manipulation. Uses promises instead of while loops to track progress. Design is based on retro arcade Shoot-em Up games.
+                                    Good luck beating the hardest difficulty!
+                                    <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
+                                </p>
+                                
+                                <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
+                                <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
 
-                            <h4 class="small text-left mt-3">Notes:</h4>
-                            <ul>
-                                <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser to fix.</li>
-                                <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
-                                <li>Not yet fully responsive on all devices!</li>
-                            </ul>
+                                <h4 class="small text-left mt-3">Notes:</h4>
+                                <ul>
+                                    <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser to fix.</li>
+                                    <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
+                                    <li>Not yet fully responsive on all devices!</li>
+                                </ul>  
 
-                            <h3 class="small mt-3">- Built Using -</h3>
+                                <h3 class="small mt-3">- Built Using -</h3>
 
-                            <div class="icon-row-sm">
-                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
-                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
-                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
-                            </div>
+                                <div class="icon-row-sm">
+                                    <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
+                                    <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
+                                    <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
+
+                <div>
                     <div class="mt-5">
                         <h3 class="text-center small">- Client / Production projects -</h3>
                         <p class="text-center small mb-5 fst-italic">(Once permission is granted of course)</p>
-                    </div>
 
-                    <div>
-                        <h4 class="text-center">Currently working on some projects that I can't talk about yet 🤫 </h4>
-                    </div>
-                </div>
+                        <div>
+                            <h4 class="text-center">Currently working on some projects that I can't talk about as yet 🤫 </h4>
+                        </div>  
+                    </div>  
+                </div>     
+            </div>
+
+            <div class="custom-shape-divider-bottom-1612186400">
+                <svg data-name="Layer 1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
+                </svg>
+            </div>
         </section>
 
         <!--Contact Me Section-->
@@ -598,7 +665,7 @@
                             </div>
                         </div>     
     
-                        <hr style="margin: 60px auto; opacity: .5;">
+                        <!--<hr style="margin: 60px auto; opacity: .5;">-->
                     </div>
 
                     <div class="col-12 w-auto mx-auto form-container" data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
@@ -655,7 +722,25 @@
                                 </div>
     
                                 <div class="invalid-feedback invalid-feedback-email mx-3">
-                                    Sorry, but if your email doesn't look like 'name@example.com', it just won't work out for you...
+                                    Sorry, but if your email doesn't look like 'something@example.com', it just won't work out for you...
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">                        
+                                <select required class="form-select" name="country" id="country" aria-describedby="country-help">
+                                    <option selected value="">Select your country</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                </select>
+                                <label class="required form-label" for="country"><sup><i class="fas fa-flag"></i></sup> Country</label>
+                                <div id="country-help" class="form-text mx-3">Where are you located?</div>
+    
+                                <div class="valid-feedback valid-feedback-country mx-3">
+                                    Thanks!
+                                </div>
+    
+                                <div class="invalid-feedback invalid-feedback-country mx-3">
+                                    Are you from Mars?  ❔ ❓ 🤔 ❓ ❔ 
                                 </div>
                             </div>
     
@@ -754,6 +839,11 @@
                     </li>
                 </ul>
             </nav>
+
+            <a href="https://www.theweekendhack.com/" class="twh d-block m-auto p-3 text-decoration-none" target="_blank"> 
+                Interested in learning <span class="text-custom-2 fw-bold">Programming</span> and <span class="text-custom-1 fw-bold">Web Development?</span> Check out  
+                <img class="p-1" src="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png" sizes="(max-width: 479px) 41vw, (max-width: 767px) 17vw, (max-width: 991px) 131.03125px, 169.1875px" srcset="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-500.png 500w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-800.png 800w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1080.png 1080w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1600.png 1600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2000.png 2000w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2600.png 2600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-3200.png 3200w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png 6787w" alt="The Weekend Hack Coding Bootcamp Logo" class="image-3">
+            </a>
     
             <div class="fs-6">
                 <h6>Copyright © Darnell Noel. All rights reserved.</h6>

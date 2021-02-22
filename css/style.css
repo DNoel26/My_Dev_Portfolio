@@ -55,6 +55,18 @@
 
 /* Custom Classes */
 
+.twh {
+    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1));
+    color: black;
+    border-radius: 10px;
+}
+
+.twh:hover,
+.twh:focus {
+    color: black;
+    opacity: 0.9;
+}
+
 .will-change-height {
     will-change: height !important;
 }
@@ -68,11 +80,12 @@
     height: 0;
     width: 100%;
     transition: height 0.4s ease-in-out;
-    z-index: -1100;
+    z-index: -1200;
 }
 
 .form-container {
     border-radius: 2px;
+    max-width: 50%;
 }
 
 .required::after {
@@ -112,6 +125,10 @@
     padding-top: 6rem;
 }
 
+.mt-custom-neg {
+    margin-top: -2.5rem;
+}
+
 .text-custom-1 {
     color: var(--theme-colour-1);
 }
@@ -137,21 +154,31 @@
     color: var(--theme-colour-3) !important; 
 }
 
+.btn-custom-3 {
+    background-color: var(--theme-colour-4) !important;
+    border-color: var(--theme-colour-3) !important;
+    color: var(--theme-colour-3) !important; 
+}
+
 .btn-custom-1,
-.btn-custom-2 {
+.btn-custom-2,
+.btn-custom-3 {
     font-weight: 500;
     transform: scale(1);
     transform-origin: initial;
     transition: all 0.3s ease-in-out;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    will-change: transform;
 }
 
 .btn-custom-1:hover,
 .btn-custom-1:focus,
 .btn-custom-2:hover,
-.btn-custom-2:focus {
-    transform: scale(1.08);
+.btn-custom-2:focus,
+.btn-custom-3:hover,
+.btn-custom-3:focus {
+    transform: scale(1.03);
 }
 
  nav .btn-custom-1 {
@@ -579,13 +606,14 @@ lottie-player {
     /*** Recaptcha widget ***/
 
 .g-recaptcha {
-    transform:scale(0.9);
-    transform-origin:0 0;
+    transform: scale(0.9);
+    transform-origin: 0 0;
 }
 
     /*** Classy Blockquote Styling ***/
 
-.my-quote blockquote {
+.my-quote blockquote,
+.my-quote-alt blockquote {
     background: none;
     color: #6c757d;
     font-family: Georgia, serif;
@@ -594,12 +622,6 @@ lottie-player {
     margin: 0;
     position: relative;
     text-shadow: 0 1px white;
-    z-index: 600;
-}
-
-.my-quote-alt blockquote {
-    font-family: Georgia, serif;
-    position: relative;
     z-index: 600;
 }
 
@@ -619,7 +641,7 @@ lottie-player {
 
 .my-quote-alt blockquote p:first-child::before {
     color: var(--theme-colour-4) !important;
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 .my-quote img {
@@ -751,6 +773,11 @@ a.nav-link,
     border-left: none !important;
 }
 
+.card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
 .welcome-section .card-body {
     background-color: var(--theme-colour-2);
 }
@@ -759,8 +786,13 @@ a.nav-link,
     height: auto;
 }
 
-.form-control {
+.form-control, 
+.form-select {
     border-color: var(--theme-colour-1) !important;
+}
+
+.form-floating .form-select {
+    height: fit-content;
 }
 
 .opacity-0 {
@@ -771,6 +803,12 @@ a.nav-link,
 
 body {
     position: relative !important;
+}
+
+hr {
+    color: var(--theme-colour-4);
+    height: 3px !important;
+    border-radius: 6px;
 }
 
     /*** Header ***/
@@ -844,10 +882,11 @@ footer {
     /*** General ***/
 
 section {
-    padding-top: 6rem !important;
-    padding-bottom: 6rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
     margin-bottom: 1rem !important;
     height: max-content !important;
+    background-size: cover !important;
     transition: height 0.3s ease-in-out !important;
 }
 
@@ -889,10 +928,10 @@ section {
 }
 
 .welcome-section,
-.services-section,
+.about-section,
 .tools-tech-section,
 .contact-section {
-    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.4)), url("/img/cool-background_2.png") no-repeat fixed center center;
+    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("/img/cool-background_2.png") no-repeat fixed center center;
 }
 
 .welcome-section h1 {
@@ -913,9 +952,10 @@ section {
 
 .about-section {
     position: relative;
-    background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.8)), url("../img/Trinidad_sea.jpeg") no-repeat fixed;
+    /*background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url("../img/Trinidad_sea.jpeg") no-repeat fixed;
     background-size: cover;
     background-position: center center;
+    text-shadow: 0 1px 0 black;*/
 }
 
 .about-section .container {
@@ -928,25 +968,18 @@ section {
     height: auto;
 }
 
+.summary-wrapper,
 .summary-container {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 
     /*** Section (Services) ***/
-
-.services-section {
-    margin-top: 6rem;
-}
 
 .services-section .row {
     margin: 0;
 }
 
     /*** Section (Tools & Technologies) ***/
-
-.tools-tech-section {
-
-}
 
 .tools-tech-section .icon-disp-img {
     height: 4rem;
@@ -962,10 +995,9 @@ section {
 
     /*** Section (Projects) ***/
 
+.services-section,
 .projects-section {
     background-color: var(--theme-colour-2) !important;
+    position: relative;
 }
 
-.contact-section {
-
-}
