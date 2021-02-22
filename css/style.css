@@ -126,7 +126,7 @@
 }
 
 .mt-custom-neg {
-    margin-top: -2.5rem;
+    margin-top: -2rem;
 }
 
 .text-custom-1 {
@@ -999,5 +999,14 @@ section {
 .projects-section {
     background-color: var(--theme-colour-2) !important;
     position: relative;
+}
+
+.projects-section .btn {
+    transition: transform 0.3s ease-in-out;
+}
+
+.projects-section .btn:hover, 
+.projects-section .btn:focus {
+    transform: scale(1.03);
 }
 
