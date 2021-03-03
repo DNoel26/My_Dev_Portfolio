@@ -31,7 +31,7 @@ const App = {
 
             setTimeout(() => {
                 
-                UI.create_script("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://www.google.com/recaptcha/api.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
+                UI.create_script("./js/Business_Logic/TagCloud.min.js", "https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://www.google.com/recaptcha/api.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
             }, 3000);
 
             const options = {
@@ -220,7 +220,7 @@ const App = {
                         } 
                     }); 
                 });
-            }, 2000); // end of tag cloud functions
+            }, 3100); // end of tag cloud functions
             
             // Display star rating for each tool / technology based on skill level 
             UI.populate_skill_rating((new Skill_Rating));
