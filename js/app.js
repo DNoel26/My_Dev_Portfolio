@@ -2,13 +2,13 @@
 
 console.log("App.js Loaded Successfully");
 
-import "./Business_Logic/TagCloud.min.js";
 import UI from "./UI_Logic/UI.js";
 import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
     generate_dark_color_hex, form_submit_success, form_submit_error, ajax} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
 import Formspree from "./Business_Logic/Formspree.js";
+// import "./Business_Logic/TagCloud.min.js";
 
 const App = {
     init() {
@@ -220,7 +220,7 @@ const App = {
                         } 
                     }); 
                 });
-            }, 1000); // end of tag cloud functions
+            }, 2000); // end of tag cloud functions
             
             // Display star rating for each tool / technology based on skill level 
             UI.populate_skill_rating((new Skill_Rating));
