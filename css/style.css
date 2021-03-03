@@ -414,11 +414,26 @@ img.handlebars-logo {
 }
 
 .status-complete {
-    color: green;
+    color: #33ff57;
+    background-color: #33ff57;
 }
 
 .status-in-progress {
-    color: #FF5F1F;
+    color: #5733ff;
+    background-color: #5733ff;
+}
+
+.status-hold {
+    color: #ff5f1f;
+    background-color: #ff5f1f;
+}
+
+.status-circle {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .my-carousel-wrapper {
@@ -434,11 +449,11 @@ img.handlebars-logo {
 
 .my-carousel-content {
     display: flex;
-    flex-flow: row nowrap;
-    white-space: nowrap;
+    /*flex-flow: row nowrap;
+    white-space: nowrap;*/
     overflow-y: hidden;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow-x: hidden;
+    /*scroll-snap-type: x mandatory;*/
     scroll-behavior: smooth;
     height: 400px;
 }
@@ -455,6 +470,8 @@ img.handlebars-logo {
 .my-carousel-btn-prev {
     white-space: normal;
     transition: all 0.2s ease-in-out;
+    position: relative;
+    z-index: 1;
 }
 
 .my-carousel-item {
@@ -466,6 +483,7 @@ img.handlebars-logo {
     width: auto;
     min-height: max-content;
     height: 90%;
+    display: inline-block;
 }
 
 .my-carousel-item.card {
@@ -799,12 +817,9 @@ a.nav-link,
     filter: brightness(90%);
 }
 
-/*.dropdown-menu {
-    background-color: var(--theme-colour-3);
-}*/
-
 .dropdown-menu {
-    margin-top: 5px;
+    margin-top: 10px;
+    border-radius: 6px;
 }
 
 .dropdown-item {
@@ -816,6 +831,10 @@ a.nav-link,
 .dropdown-item:hover,
 .dropdown-item:focus {
     padding-left: 1.5rem !important;
+}
+
+.navbar .dropdown-menu-dark {
+    background-color: var(--theme-colour-4);
 }
 
 .img-fluid {
@@ -1032,7 +1051,7 @@ section {
 }
 
 .welcome-section h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
 }
 
 .welcome-section h2 {
@@ -1057,7 +1076,6 @@ section {
 
 .about-section .container {
     max-width: 50rem;
-    transition: opacity 0.1s ease-in-out;
 }
 
 .about-img {
@@ -1067,7 +1085,7 @@ section {
 
 .summary-wrapper,
 .summary-container {
-    transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
     /*** Section (Services) ***/
@@ -1077,7 +1095,8 @@ section {
     position: relative;
 }
 
-.services-section {
+.services-section,
+.welcome-section {
     border-bottom: 2px solid var(--theme-colour-2);
 }
 
@@ -1110,7 +1129,6 @@ section {
     column-count: 3;
     column-gap: 0;
     column-width: 30%;   
-
 }
 
 .dev-project-gallery .btn {

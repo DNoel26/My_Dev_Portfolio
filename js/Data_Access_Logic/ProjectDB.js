@@ -1,11 +1,11 @@
-class Project_DB {
+const Project_DB = {
 
-    db = [];
+    db = [],
 
     set_db(...projects) {
 
         this.db.push(...projects);
-    }
+    },
 };
 
 export default Project_DB; 

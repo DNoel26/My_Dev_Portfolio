@@ -28,25 +28,43 @@ class Project {
         alt: [],
     }; // i.e. to be added to the "- Built Using -" icon section
 
-    constructor(n,s,l,lh,gl,gr)
+    constructor(name, status, link, link_header, github_link, github_readme)
     {
-        if(gr === true) {
+        if(status === 1) {
 
-            gr = "(GitHub - readme available)";
-        } else {
+            this.status = "Completed";
+        } else if(status === 2) {
 
-            gr = "(GitHub)";
+            this.status = "Work in Progress";
+        } else if(status === 3) {
+
+            this.status = "On Hold";
         };
         
-        this.name = n;
-        this.status = s;
-        this.link = l;
-        this.link_header = lh;
-        this.github_link = gl;
-        this.github_readme = gr;
+        if(github_readme === true) {
+
+            github_readme = "(GitHub - readme available)";
+        } else {
+
+            github_readme = "(GitHub)";
+        };
+        
+        this.name = name;
+        this.status = status;
+        this.link = link;
+        this.link_header = link_header;
+        this.github_link = github_link;
+        this.github_readme = github_readme;
     };
 
-    add_tool_icon(id,src,alt) {
+    add_imgs(id, src, alt) {
+
+        this.carousel_img_list.id.push(...id);
+        this.carousel_img_list.src.push(...src);
+        this.carousel_img_list.alt.push(...alt);
+    };
+
+    add_tool_icons(id, src, alt) {
 
         this.tool_icon_list.id.push(...id);
         this.tool_icon_list.src.push(...src);

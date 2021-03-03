@@ -7,7 +7,8 @@
     <title>Homepage | Darnell Noel | Professional Portfolio | Front End Web Developer | Back End Web Developer | Full Stack Web Developer | Mechanical Engineer | Techie</title>
     <link rel="preload" href="/media/laptop.mp4" as="video" type="video/mp4">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" as="style" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="preload" href="/css/style.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="/css/mq.css" as="style">
     <!-- Include the styles definition for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
     <!--<link rel="stylesheet" href="/assets/styles/custom-animations.css">-->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mq.css">
 </head>
 <body>
     <header class="sticky-top" id="header"> 
@@ -64,27 +66,27 @@
                         <li class="nav-item mx-1 anim-link-1">
                             <a href="#tools-tech" class="nav-link">Tools & Technologies</a>
                         </li>
-    
-                        <li class="nav-item mx-1 dropdown anim-link-1">
-                            <button type="button" class="nav-link btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Projects</button>
-    
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li>                            
-                                    <a href="#all-projects" class="dropdown-item nav-link">Overview</a>
-                                </li>
-    
-                                <li>
-                                    <a href="#link-2" class="dropdown-item nav-link">Link 2</a>
-                                </li>
-    
-                                <li>
-                                    <a href="#link-3" class="dropdown-item nav-link">Link 3</a>
-                                </li>
-                            </ul>
+                        
+                        <li class="nav-item mx-1 anim-link-1">
+                            <a href="#projects" class="nav-link">Projects</a>
                         </li>
     
-                        <li class="nav-item mx-1 anim-link-1">
-                            <a href="#contact" class="nav-link">Contact</a>
+                        <li class="nav-item mx-1 dropdown anim-link-1">
+                            <button type="button" class="nav-link btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Contact</button>
+    
+                            <ul class="dropdown-menu dropdown-menu-dark shadow-lg">
+                                <li>                            
+                                    <a href="#contact" class="dropdown-item nav-link px-3">Send me an E-mail</a>
+                                </li>
+    
+                                <li>
+                                    <a href="#profile" class="dropdown-item nav-link px-3">Find me on Social Media</a>
+                                </li>
+    
+                                <li>
+                                    <a href="tel:+1-868-480-8781" class="dropdown-item nav-link px-3">Give me a Call</a>
+                                </li>
+                            </ul>
                         </li>
     
                         <li class="nav-item px-3">
@@ -159,7 +161,7 @@
                             <h1 class="text-center">
                                 <strong class="ml13 text-custom-1">Developer Portfolio</strong>
                             </h1>
-                            <h3 class="small text-center">- Built from scratch using -</h3>
+                            <h3 class="small text-center">- Designed and built from scratch using -</h3>
                             <div class="d-flex-custom-2 pt-2 icon-row-sm">
                                 <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
                                 <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
@@ -298,7 +300,7 @@
 
                         <div>
                             <p>
-                                <span class="fw-bold">My future plans:</span> Currently improving my skills in React and learning Next.js for a large client business app that I'm working on alongside other developers. 
+                                <span class="fw-bold">My future plans:</span> Currently improving my skills in React and learning Next.js for a client project that I'm working on alongside other developers. 
                                 Eventually would like to learn WordPress and PHP as necessary. Machine learning and A.I. is the future and is very interesting as well...
                             </p> 
                         </div>
@@ -328,7 +330,7 @@
                             </svg>
                         </button>
     
-                        <ul class="col-10 justify-content-between align-self-center text-center list-unstyled my-carousel-content">
+                        <ul class="col-10 justify-content-even align-self-center text-center list-unstyled my-carousel-content">
                             <li class="my-carousel-item card shadow">
                                 <!--<strong class="position-absolute top-0 end-0 p-3 small text-custom-1">1 / 10</strong>-->
                                 <div class="card-body">
@@ -391,7 +393,7 @@
                                     <h4>SEO</h4>
                                     <p>
                                         Search Engine Optimization increases your website visibility on search engines like Google!
-                                        This helps with directing more traffic to it, resulting in more opportunities to convert prospects into your customers.
+                                        This helps with directing more traffic to you, resulting in more opportunities to convert prospects into your customers.
                                     </p>    
                                 </div>
                             </li>
@@ -401,8 +403,8 @@
                                     <img src="/svg/013-web-optimization.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
                                     <h4>Web Performance</h4>
                                     <p>
-                                        Fast sites have been shown to increase visitor retention and user satisfaction! 
-                                        Visitors expect a site to load in 2 seconds or less and start leaving after 3.
+                                        Speed matters! Fast sites have been shown to increase visitor retention and user satisfaction. 
+                                        Research done by Google has shown that the chance of losing a visitor increases by over 30% when load time increases from just 1 second to 3.
                                     </p>    
                                 </div>
                             </li>
@@ -621,114 +623,116 @@
         </section>
 
         <!--My Projects-->
-        <section class="projects-section" id="all-projects" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+        <section class="projects-section" id="projects" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
             <div class="container px-5 px-md-0 pb-5">
                 <div>
                     <h2 class="h2-divider text-center mb-5 text-custom-1">My Work</h2>
                     <h3 class="text-center small mb-5">- Personal / Development projects -</h3>
 
                     <div class="mt-3 mb-5 dev-project-gallery" id="dev-project-gallery">
-                        <button class="btn mt-3">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/math_game_min.jpg" alt="">
+                        <button class="btn mt-3" data-dev-project="Alien Mathvasion Game">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/math_game_min.jpg" alt="Thumbnail image for button which shows Alien Mathvasion Game personal project details when clicked">
                         </button>
 
-                        <button class="btn">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/wix.png" alt="">
+                        <button class="btn" data-dev-project="Wix Site Clone">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/wix.png" alt="Thumbnail image for button which shows Wix Site Clone personal project details when clicked">
                         </button>
 
-                        <button class="btn">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/cyberdise.png" alt="">
+                        <button class="btn" data-dev-project="Cyberdise Online Store">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/cyberdise.png" alt="Thumbnail image for button which shows Cyberdise Online Store personal project details when clicked">
                         </button>
 
-                        <button class="btn">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/movie_db.png" alt="">
+                        <button class="btn" data-dev-project="Movie Database">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/movie_db.png" alt="Thumbnail image for button which shows Movie Database personal project details when clicked">
                         </button> 
 
-                        <button class="btn mt-3">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/amazon_clone.png" alt="">
+                        <button class="btn mt-3" data-dev-project="Amazon Clone">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/amazon_clone.png" alt="Thumbnail image for button which shows Amazon Clone personal project details when clicked">
                         </button>
 
-                        <button class="btn">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/praa.png" alt="">
+                        <button class="btn" data-dev-project="Real Estate Site">
+                            <img class="img-fluid rounded shadow" src="/img/Projects/praa.png" alt="Thumbnail image for button which shows Real Estate Site personal project details when clicked">
                         </button>
                     </div> 
 
-                    <div class="row flex-row card shadow justify-content-between align-items-center text-left dev-project-overview" id="dev-project-overview">
-                        <div class="col-6">
-                            <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
-                                </div>
-
-                                <div class="carousel-inner">
-                                  <div class="carousel-item active" data-bs-interval="5000">
-                                    <img class="d-block w-100 p-3" src="/img/Projects/math_game_min.jpg" alt="">
+                    <div class="row card shadow text-left dev-project-overview" id="dev-project-overview">
+                        <div class="flex-row row justify-content-between align-items-center ">
+                            <div class="col-12 col-xl-6">
+                                <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
+                                    </div>
+    
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="5000">
+                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_min.jpg" alt="">
+                                        </div>
+    
+                                        <div class="carousel-item" data-bs-interval="5000">
+                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_2.png" alt="">
+                                        </div>
+    
+                                        <div class="carousel-item" data-bs-interval="5000">
+                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_3.png" alt="">
+                                        </div>
+                                    </div>
+    
+                                    <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel"  data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+    
+                                    <button class="carousel-control-next btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel"  data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                   </div>
-
-                                  <div class="carousel-item" data-bs-interval="5000">
-                                    <img class="d-block w-100 p-3" src="/img/Projects/math_game_2.png" alt="">
-                                  </div>
-
-                                  <div class="carousel-item" data-bs-interval="5000">
-                                    <img class="d-block w-100 p-3" src="/img/Projects/math_game_3.png" alt="">
-                                  </div>
-                                </div>
-
-                                <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel"  data-bs-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-                                  <span class="visually-hidden">Previous</span>
-                                </button>
-
-                                <button class="carousel-control-next btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel"  data-bs-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-                                  <span class="visually-hidden">Next</span>
-                                </button>
-                              </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="card-body py-5">
-                                <h3>Alien Mathvasion</h3>
-                                
-                                <p>
-                                    This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
-                                    intention of making code DRY and easier to maintain. <br>Showcases heavy JavaScript usage and DOM manipulation. Uses promises instead of while loops to track progress. Design is based on retro arcade Shoot-em Up games.
-                                    Good luck beating the hardest difficulty!
-                                    <br><strong>Status: <span class="status-in-progress">Work In Progress</span></strong>
-                                </p>
-                                
-                                <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
-                                <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
-
-                                <h4 class="small text-left mt-3">Notes:</h4>
-                                <ul>
-                                    <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
-                                    <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
-                                    <li class="text-red">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
-                                </ul>  
-
-                                <h3 class="small mt-3">- Built Using -</h3>
-
-                                <div class="icon-row-sm">
-                                    <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
-                                    <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
-                                    <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
-                                </div>
-                            </div>  
+                            </div>
+    
+                            <div class="col-12 col-xl-6">
+                                <div class="card-body py-5">
+                                    <h3>Alien Mathvasion Game</h3>
+                                    
+                                    <p>
+                                        This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
+                                        intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
+                                        Good luck surviving the hardest difficulty!
+                                        <br><strong>Status: Work In Progress <span class="status-in-progress status-circle"></span></strong>
+                                    </p>
+                                    
+                                    <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
+                                    <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
+    
+                                    <h4 class="small text-left mt-3">Notes:</h4>
+                                    <ul>
+                                        <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
+                                        <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
+                                        <li class="text-red">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
+                                    </ul>  
+    
+                                    <h3 class="small mt-3">- Built Using -</h3>
+    
+                                    <div class="icon-row-sm">
+                                        <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
+                                        <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
+                                        <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                    </div>
+                                </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="mt-5">
+                <div class="pt-5">
+                    <div class="pt-5">
                         <h3 class="text-center small">- Client / Production projects -</h3>
                         <p class="text-center small mb-5 fst-italic">(Once permission is granted of course)</p>
 
-                        <div class="pb-5">
+                        <div class="mb-5 client-project-gallery" id="client-project-gallery">
                             <h4 class="text-center">Currently working on some projects that I can't talk about as yet 🤫 </h4>
                         </div>  
                     </div>  
@@ -774,7 +778,7 @@
                         <!--<hr style="margin: 60px auto; opacity: .5;">-->
                     </div>
 
-                    <div class="col-12 w-auto mx-auto form-container mt-5" data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
+                    <div class="col-12 w-100 mx-auto form-container mt-5" data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
                         <form action="https://formspree.io/f/xyybvjzj" method="POST" class="needs-validation" id="my-form" novalidate>
                             <div class="mb-5">
                                 <h3>Get in Touch</h3>
@@ -885,7 +889,7 @@
                             <div class="mb-3">
                                 <button class="btn btn-custom-2 mb-3 w-100" type="submit" id="my-form-button">Launch Message!!!</button>
     
-                                <div class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal"></div>
+                                <div class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal" data-callback="recaptchaCallback"></div>
                             </div>
 
                             <strong id="my-form-status"></strong>

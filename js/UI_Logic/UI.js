@@ -1,4 +1,4 @@
-import Skill_Rating from "../DB_Logic/SkillRating.js";
+import Skill_Rating from "../Business_Logic/SkillRating.js";
 
 const UI = {
 
@@ -17,7 +17,7 @@ const UI = {
     body_placeholder: document.querySelector("body .placeholder-div"),
     header_empty_div: document.querySelector("header .empty-div"),
     scroll_indicator: document.querySelector("#my-bar"),
-    active_list: document.querySelectorAll(".bot-header-nav .nav-item"),
+    active_lists: document.querySelectorAll(".bot-header-nav .nav-item"),
     active_link: document.querySelector("a.active"),
 
     /*** HOME SECTION ***/
@@ -36,11 +36,15 @@ const UI = {
     summary_containers: document.querySelectorAll(".summary-container"),
     summary_btn: document.querySelector("[data-id='summary-btn']"),
 
+    /*** SERVICES SECTION ***/
+
+    my_carousel_prev_btn: document.querySelector(".services-section .my-carousel-btn-prev"),
+    my_carousel_next_btn: document.querySelector(".services-section .my-carousel-btn-next"),
+    my_carousel_wrapper: document.querySelector(".my-carousel-wrapper"),
+    my_carousel_content: document.querySelector(".my-carousel-content"),
+    my_carousel_items: document.querySelectorAll(".my-carousel-item"),
+
     /*** TOOLS & TECHNOLOGIES SECTION ***/ 
-
-    
-
-    /*** PROJECT SECTION ***/ 
 
     skill_ratings: document.querySelectorAll(".skill-rating"),
     skill_ratings_beginner: document.querySelectorAll(".skill-rating-beginner"),
@@ -48,6 +52,15 @@ const UI = {
     skill_ratings_intermediate: document.querySelectorAll(".skill-rating-intermediate"),
     skill_ratings_advanced: document.querySelectorAll(".skill-rating-advanced"),
     skill_ratings_expert: document.querySelectorAll(".skill-rating-expert"),
+
+    /*** PROJECT SECTION ***/ 
+
+    dev_project_gallery: document.getElementById("dev-project-gallery"),
+    dev_project_overview: document.getElementById("dev-project-overview"),
+    dev_project_gallery_btns: document.querySelectorAll("button[data-dev-project]"),
+    client_project_gallery: document.getElementById("client-project-gallery"),
+    client_project_gallery: document.getElementById("client-project-overview"),
+    client_project_gallery_btns: document.querySelectorAll("button[data-client-project]"),
 
     /*** CONTACT ME SECTION ***/
 
@@ -69,6 +82,7 @@ const UI = {
     my_form: document.getElementById("my-form"),
     my_form_button: document.getElementById("my-form-button"),
     my_form_status: document.getElementById("my-form-status"),
+    grecaptcha: document.getElementsByClassName("g-recaptcha"),
 
     create_script(...srcs) {
 
@@ -130,6 +144,7 @@ const UI = {
 
     replace_vid_bg() {
 
+        // To replace the header video bg when it ends
         this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
         this.header.style.backgroundSize = "cover";
         this.header.style.transition = "background 3s ease-in-out";
@@ -141,58 +156,124 @@ const UI = {
         this.text_wrapper_ml13.innerHTML = this.text_wrapper_ml13.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
         
         anime.timeline({loop: true})
-            .add({
+        .add({
 
-                targets: '.ml13 .letter',
-                translateY: [100,0],
-                translateZ: 0,
-                opacity: [0,1],
-                easing: "easeOutExpo",
-                duration: 600,
-                delay: (el, i) => 300 + 30 * i,
-            }).add({
+            targets: '.ml13 .letter',
+            translateY: [100,0],
+            translateZ: 0,
+            opacity: [0,1],
+            easing: "easeOutExpo",
+            duration: 600,
+            delay: (el, i) => 300 + 30 * i,
+        })
+        .add({
 
-                targets: '.ml13 .letter',
-                translateY: [0,-100],
-                opacity: [1,0],
-                easing: "easeInExpo",
-                duration: 600,
-                delay: (el, i) => 6000 + 30 * i,
-            });
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 600,
+            delay: (el, i) => 6000 + 30 * i,
+        });
     },
 
-    populate_skill_rating() {
+    change_about_info() {
+
+        if(this.summary_containers[1].classList.contains("d-none")) {
+
+            this.about_summary_wrapper.classList.add("opacity-0");
+
+            setTimeout(() => {
+                
+                this.summary_containers[0].classList.add("d-none", "opacity-0");
+                this.summary_containers[1].classList.remove("d-none", "opacity-0");
+                this.summary_btn.innerHTML = "Go Back";
+            }, 205);
+
+            setTimeout(() => {
+
+                this.about_summary_wrapper.classList.remove("opacity-0");
+            }, 350);
+        } else if(this.summary_containers[0].classList.contains("d-none")) {
+
+            this.about_summary_wrapper.classList.add("opacity-0");
+
+            setTimeout(() => {
+                
+                this.summary_containers[1].classList.add("d-none", "opacity-0");
+                this.summary_containers[0].classList.remove("d-none", "opacity-0");
+                this.summary_btn.innerHTML = "Learn More";
+            }, 205);
+
+            setTimeout(() => {
+
+                this.about_summary_wrapper.classList.remove("opacity-0");
+            }, 350);
+        };
+    },
+
+    grow_btn_onclick(btn, size, time) {
+
+        btn.style.transform = `scale(${size})`;
+
+        setTimeout(() => {
+            
+            btn.style.transform = "initial";
+        }, time);
+    },
+
+    scroll_horizontally(el, px) {
+
+        el.scrollLeft += px;
+    },
+
+    scroll_start(el, px_limit) {
+
+        if(el.scrollLeft >= (el.scrollWidth - el.clientWidth - px_limit))
+        {
+            el.scrollLeft = 0;
+        };
+    },
+
+    scroll_end(el, px_limit) {
+
+        if(el.scrollLeft <= px_limit)
+        {
+            el.scrollLeft = (el.scrollWidth - el.clientWidth);
+        };
+    },
+
+    populate_skill_rating(Skill) {
 
         this.skill_ratings_beginner.forEach(rating_div => {
 
-            rating_div.innerHTML = new Skill_Rating().getRating("beginner");
+            rating_div.innerHTML = Skill.getRating("beginner");
         });
         
         this.skill_ratings_novice.forEach(rating_div => {
             
-            rating_div.innerHTML = new Skill_Rating().getRating("novice");
+            rating_div.innerHTML = Skill.getRating("novice");
         });
         
         this.skill_ratings_intermediate.forEach(rating_div => {
 
-            rating_div.innerHTML = new Skill_Rating().getRating("intermediate");
+            rating_div.innerHTML = Skill.getRating("intermediate");
         });
         
         this.skill_ratings_advanced.forEach(rating_div => {
 
-            rating_div.innerHTML = new Skill_Rating().getRating("advanced");
+            rating_div.innerHTML = Skill.getRating("advanced");
         });
 
         this.skill_ratings_expert.forEach(rating_div => {
 
-            rating_div.innerHTML = new Skill_Rating().getRating("expert");
+            rating_div.innerHTML = Skill.getRating("expert");
         });
     },
 
     display_form_validation_msg() {
 
-        // Updates UI with failed validation messages
-    
+        // Updates UI with different success validation messages after failure to submit correctly
         if(this.invalid_feedback_fname && window.getComputedStyle(this.invalid_feedback_fname).display != "none") {
     
             this.valid_feedback_fname.innerHTML = "Nice! You remembered your first name!";

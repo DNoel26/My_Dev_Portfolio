@@ -2,7 +2,23 @@
 
 export function logger(...data) {
     
-    return console.log("Logged: ", data);
+    data.forEach((datum, index) => {
+
+        return console.log(`Logged Values[${index}]: `, datum);
+    });
+};
+
+export function wrapper_no_exec(func, ...args) {
+
+    return (function () {
+
+        return func(...args);
+    });
+};
+
+export function wrapper_exec(func, ...args) {
+
+    return func(...args);
 };
 
 export function debounce(func, timer) {
@@ -16,32 +32,53 @@ export function debounce(func, timer) {
         // console.log(this, arguments, func);
 
         clearTimeout(in_debounce);
-        in_debounce = setTimeout(() => func.apply(context, args), timer);
+        in_debounce = setTimeout(() => {
+
+            return func.apply(context, args)
+        }, (timer));
     };
 };
 
 export function throttle(func, timer) {
 
     let in_throttle;
+    let initial = 0;
 
     return function() {
 
         const context = this;
         const args = arguments;
+        //logger(in_throttle, initial)
 
         if(in_throttle !== undefined) {
-
+            
             return;
         } else {
 
-            in_throttle = setTimeout(() => {
+            return new Promise((resolve, reject) => {
 
-                // console.log(in_throttle, args);
+                in_throttle = setTimeout(() => {
+
+                    // console.log(in_throttle, args);
+                    in_throttle = undefined;
+                    
+                    resolve(initial);
+                    return func(context, args);
+                }, (initial ?? timer));
+            })
+            .then(() => {
+
+                if(initial === 0) {
+
+                    initial = undefined;
+                };
+
+                setTimeout(() => {
                 
-                in_throttle = undefined;
-   
-                return func(context, args);
-            }, timer);   
+                    return initial = 0;
+                }, (timer));
+            })
+            .catch(err => console.log(err));
         };
     };
 };
@@ -78,44 +115,6 @@ export function ajax(method, url, data, success, error) {
 
     xhr.send(data);
 }
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-export function bs_validate_forms(forms, validate_disp, ajax_call) {
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to using document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-    .forEach(function(form, index) {
-        
-        form.addEventListener('submit', function (event) {
-        
-            event.preventDefault();
-
-            if(!form.checkValidity()) {
-                
-                event.stopPropagation();
-
-                return new Promise((resolve,reject)=>{
-
-                    form.classList.add('was-validated');
-    
-                    resolve();
-                })
-                .then(()=>{
-                    
-                    validate_disp[index]();
-                })
-                .catch((err) => {
-                    
-                    console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
-                });
-            } else {
-
-                ajax_call[index]();
-            };
-        }, false);
-    });
-};
 
 // Watch for screen size changes 
 export function on_resize(mq, func) {

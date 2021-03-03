@@ -59,7 +59,7 @@ class Skill_Rating {
             rank = 5;
         };
 
-        for(let i=0; i<5; i++) {
+        /*for(let i=0; i<5; i++) {
 
             if (rank > i) {
 
@@ -68,7 +68,9 @@ class Skill_Rating {
 
                 this.classification += this.empty_icon;
             };
-        };
+        };*/
+
+        this.classification = this.filled_icon.repeat(rank) + this.empty_icon.repeat(5 - rank);
 
         return this.classification;
     };
