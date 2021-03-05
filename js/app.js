@@ -29,10 +29,12 @@ const App = {
                 UI.create_script("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
             }, 1000);
 
-            setTimeout(() => {
-                
+            const ext_script_load = new Promise((resolve, reject) => {
+
                 UI.create_script("./js/Business_Logic/TagCloud.min.js", "https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://www.google.com/recaptcha/api.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
-            }, 3000);
+
+                setTimeout(resolve, 3000);
+            });
 
             const options = {
                 rootMargin: "10px",
@@ -146,11 +148,12 @@ const App = {
             let tagcloud_radius;
 
             // Delay loading of tag cloud
-            setTimeout(() => {
-                
+            ext_script_load
+            .then(() => {
+
                 // Define tags in js array
                 let myTags = [
-                    'OOP', 'SOC / MVC', 'RESTful-APIs',
+                    'OOP', 'SOC / MVC', 'REST-APIs',
                     'Data-Structures', 'Continuous-Integration', 'UI / UX',
                     'Testing', 'Version-Control', 'Debugging',
                     'Algorithms', 'App-Development', 'Responsive-Design', 
@@ -220,7 +223,8 @@ const App = {
                         } 
                     }); 
                 });
-            }, 3100); // end of tag cloud functions
+            })
+            .catch(err => logger(err));
             
             // Display star rating for each tool / technology based on skill level 
             UI.populate_skill_rating((new Skill_Rating));
@@ -230,29 +234,134 @@ const App = {
             // Create Projects
             (function() {
 
-                let current_project;
+                let current_project = new Project();
+                let new_inner_html = ``;
+
+                UI.dev_project_gallery_btns.forEach(btn => {
+                    
+                    btn.addEventListener("click", () => {
+
+                        logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
+
+                        if(btn.dataset.devProject === "Wix Site Clone") {
+
+                            current_project = Wix_Clone;
+                        };
+
+                        logger(current_project);
+                        change_project();
+                        UI.dev_project_overview.innerHTML = new_inner_html;
+                    });
+                });
+
+                function change_project() {
+
+                    new_inner_html = 
+                        `
+                            <div class="flex-row row justify-content-between align-items-center ">
+                                <div class="col-12 col-xl-6">
+                                    <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
+                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
+                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
+                                        </div>
+
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active" data-bs-interval="5000">
+                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[0]} alt=${current_project.carousel_img_list.alt[0]}>
+                                            </div>
+
+                                            <div class="carousel-item" data-bs-interval="5000">
+                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[1]} alt=${current_project.carousel_img_list.alt[1]}>
+                                            </div>
+
+                                            <div class="carousel-item" data-bs-interval="5000">
+                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[2]} alt=${current_project.carousel_img_list.alt[2]}>
+                                            </div>
+                                        </div>
+
+                                        <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+
+                                        <button class="carousel-control-next btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="card-body py-5">
+                                        <h3>${current_project.name}</h3>
+                                        
+                                        <p>
+                                            ${current_project.description}
+                                            <br><strong>Status: ${current_project.status} <span class="status-in-progress status-circle"></span></strong>
+                                        </p>
+                                        
+                                        <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">${current_project.link_header}</strong> Now ${current_project.link_note}</a>
+                                        <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code ${current_project.github_readme}</a>
+
+                                        <h4 class="small text-left mt-3">Notes:</h4>
+                                        <ul>
+                                            <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
+                                            <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
+                                            <li class="text-red">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
+                                        </ul>  
+
+                                        <h3 class="small mt-3">- Built Using -</h3>
+
+                                        <div class="icon-row-sm">
+                                            <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
+                                            <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
+                                            <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        `
+                };
 
                 // Alien Mathvasion Project
                 const Alien_Mathvasion = new Project("Alien Mathvasion Game", 2, "https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html", "Play", 
                     "https://github.com/DNoel26/Alien_Mathvasion", true);
 
-                Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
+                Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
-                    Good luck surviving the hardest difficulty!`
+                    Good luck surviving the hardest difficulty!`;
                 Alien_Mathvasion.link_note = "(expect audio)";
                 Alien_Mathvasion.notes.push(`Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`);
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
-
-                Alien_Mathvasion.add_tool_icons(["a","b","c"],["src1","src2","src3"],["alt1","alt2","alt3"]);
+                Alien_Mathvasion.add_imgs([], [], []);
+                Alien_Mathvasion.add_tool_icons(["a","b","c"], ["src1","src2","src3"], ["alt1","alt2","alt3"]);
 
                 // Wix Clone Project
                 const Wix_Clone = new Project("Wix Site Clone", 1, "https://dnoelmotorcyclewixclone.netlify.app/", "View", 
                     "https://github.com/DNoel26/Wix_Motorcycle_Trial", true);
 
+                Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of a selected Wix site. It was built using HTML, CSS and without any JavaScript. 
+                    Showcases the ability to take designs and convert them into functional webpages or websites.`;
+                Wix_Clone.link_note = "(see cloned Wix site here)";
+                Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact`);
+                Wix_Clone.add_imgs([], [], []);
+                Wix_Clone.add_tool_icons([], [], []);
+
                 // Cyberdise Online Store Project
                 const Cyberdise = new Project("Cyberdise Online Store", 2, "https://dnoelcyberdise.herokuapp.com/", "Interact", 
                     "https://github.com/DNoel26/Cyberdise-Dynamic-", true);
+                
+                Cyberdise.description = `This project was my first official Full Stack development project and end-to-end C.R.U.D. application, and was designed to test everything I had learned (and more). This online store was built from scratch using MVC principles for the Back End code.
+                    The database for storing user and product info was designed for and built using MySQL, and server side communication was established using Node and Express.`;
+                Cyberdise.link_note = "(create a customer account and login or see github readme to access the employee account and features)";
+                Cyberdise.notes.push();
+                Cyberdise.add_imgs([], [], []);
+                Cyberdise.add_tool_icons([], [], []);
 
                 // Movie Database Project
                 const Movie_Database = new Project("Movie Database", 2, "https://dnoelmovieapidatabase.netlify.app/", "View", 
@@ -268,15 +377,6 @@ const App = {
 
                 console.log(Alien_Mathvasion.tool_icon_list);
                 console.log(Alien_Mathvasion.tool_icon_list.id[2]);
-
-                UI.dev_project_gallery_btns.forEach(btn => {
-                    
-                    btn.addEventListener("click", () => {
-
-                        logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
-                    });
-                });
-
             })();
 
             /*** CONTACT SECTION ***/

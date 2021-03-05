@@ -32,13 +32,13 @@ class Project {
     {
         if(status === 1) {
 
-            this.status = "Completed";
+            status = "Completed";
         } else if(status === 2) {
 
-            this.status = "Work in Progress";
+            status = "Work in Progress";
         } else if(status === 3) {
 
-            this.status = "On Hold";
+            status = "On Hold";
         };
         
         if(github_readme === true) {

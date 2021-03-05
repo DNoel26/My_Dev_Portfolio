@@ -99,20 +99,23 @@ const UI = {
 
         // On scroll, shrinks header and expands body, pauses video, changes to static bg and adjusts height of placeholder elements for smooth transition
         this.body.classList.remove("will-change-height");
+        this.nav_container.classList.add("row", "justify-content-between", "nav-container-sticky");
+        this.top_nav.classList.add("col-2");
+        this.bot_nav.classList.add("col-10");
+        this.header_empty_div.classList.add("d-none");
+        this.header_divider.classList.add("d-none");
+        //this.top_nav.style.height = "100%";
+        //this.bot_nav.style.height = "100%";
+        //this.nav_container.style.height = "6rem";
+        this.top_nav.style.height = "auto";
+        this.bot_nav.style.height = "auto";
+        this.nav_container.style.height = "auto";
+        this.body_placeholder.style.height = "46.875rem";
+        this.body_placeholder.classList.replace("invisible","visible");
+        this.body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
         this.header_vid.classList.add("d-none");
         this.header_vid.pause();
         this.header.style.background = "linear-gradient(rgba(31,111,139,0.95), rgba(31,111,139,0.95)), url('') no-repeat fixed 100% 100%";
-        this.header_empty_div.classList.add("d-none");
-        this.header_divider.classList.add("d-none");
-        this.nav_container.classList.add("row","justify-content-between");
-        this.nav_container.style.height = "6rem";
-        this.top_nav.classList.add("col-2");
-        this.top_nav.style.height = "100%";
-        this.bot_nav.classList.add("col-10");
-        this.bot_nav.style.height = "100%";
-        this.body_placeholder.classList.replace("invisible","visible");
-        this.body_placeholder.style.height = "46.875rem";
-        this.body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
         
         // On scroll, hides introduction msg and removes top padding from welcome section below
         this.intro_msg.classList.add("h-0");
@@ -123,16 +126,19 @@ const UI = {
 
         // Returns header and body to initial states when scrolled to the top
         this.body.classList.add("will-change-height");
-        this.nav_container.classList.remove("row","justify-content-between");
+        this.nav_container.classList.remove("row", "justify-content-between", "nav-container-sticky");
         this.top_nav.classList.remove("col-2");
         this.bot_nav.classList.remove("col-10");
         this.header_empty_div.classList.remove("d-none");
         this.header_divider.classList.remove("d-none");
-        this.body_placeholder.classList.replace("visible","invisible");
-        this.top_nav.style.height = "initial";
-        this.bot_nav.style.height = "initial";
-        this.nav_container.style.height = "25rem";
+        //this.top_nav.style.height = "initial";
+        //this.bot_nav.style.height = "initial";
+        //this.nav_container.style.height = "25rem";
+        this.top_nav.style.height = "auto";
+        this.bot_nav.style.height = "auto";
+        this.nav_container.style.height = "auto";
         this.body_placeholder.style.height = "0";
+        this.body_placeholder.classList.replace("visible","invisible");
         this.body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start");
         this.header_vid.classList.remove("d-none");
         this.header_vid.play();
