@@ -12,10 +12,6 @@
     <link rel="preload" href="/css/mq.css" as="style">
     <!-- Include the styles definition for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <!-- AniCollection.css library -->
-    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
-    <!--<link rel="stylesheet" href="/assets/styles/custom-animations.css">-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/mq.css">
 </head>
@@ -30,23 +26,9 @@
                     <!--Logo-->
                     <div class="logo m-auto d-flex justify-content-center">
                         <a href="/" class="navbar-brand logo-link">
-                            <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto" data-anijs="if: mouseout, do: zoomIn animated, to: .logo">
+                            <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto">
                         </a>  
                     </div>
-    
-                    <!--<ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">A</a>
-                        </li>
-    
-                        <li class="nav-item">
-                            <a href="" class="nav-link">B</a>
-                        </li>
-    
-                        <li class="nav-item">
-                            <a href="" class="nav-link">C</a>
-                        </li>
-                    </ul>-->
                 </nav> 
     
                 <nav class="navbar navbar-dark navbar-expand-lg bot-header-nav fixed-bottom" id="page-nav">
@@ -143,12 +125,13 @@
 
         <!--Fixes sticky header resize bug-->
         <div  class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
-            <h2 class="fs-1 pt-5 align-self-end">Hi there, I'd love to help <strong>you</strong></h2>
-            <h2 class="pt-5 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></h2>
+            <h2 class="fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></h2>
+            <h2 class="pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></h2>
+            <a href="#services" class="fs-5 align-self-start text-white text-decoration-none cta">View Services Now</a>
         </div>
         
         <!--Home Section-->
-        <section class="welcome-section" id="home">
+        <section class="welcome-section px-2" id="home">
             <div>
                 <h2 class="text-center mb-5 intro">Ready to take your business <strong class="text-custom-1">online?</strong></h2>
             </div>
@@ -159,7 +142,7 @@
 
             <div class="container pt-custom-1 welcome">
                 <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-6 col-auto pb-5 pb-xl-0" data-anijs="if: scroll, on: window, do: rollIn animated, before: $scrollReveal">
+                    <div class="col-lg-6 col-auto pb-5 pb-xl-0">
                         <div>
                             <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
                             <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
@@ -169,10 +152,10 @@
                             </h1>
                             <h3 class="small text-center">- Designed and built from scratch using -</h3>
                             <div class="d-flex-custom-2 pt-2 icon-row-sm">
-                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
-                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
-                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
-                                <img class="img-fluid icon-disp-img" id="icon-bootstrap" src="/img/800px-Bootstrap_logo.svg.png" alt="Bootstrap Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-bootstrap, after: $removeAnim">
+                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge">
+                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge">
+                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge">
+                                <img class="img-fluid icon-disp-img" id="icon-bootstrap" src="/img/800px-Bootstrap_logo.svg.png" alt="Bootstrap Icon Badge">
                             </div>
                         </div>
 
@@ -183,7 +166,7 @@
 
                     <div id="profile" class="col-lg-6 col-auto card shadow container-box text-nowrap">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
-                        <svg data-anijs="if: click, do: rubberBand animated, to: .container-box" viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
+                        <svg viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
                             <defs>
                                 <pattern id="img-pattern" x="-0.15" y="-0.05" width="1.15" height="1.15">
                                     <image href="/img/profile_pic_1f6f8b_blue_bg.png"/>
@@ -234,8 +217,8 @@
         </section>
 
         <!--About Me-->
-        <section class="about-section" id="about">
-            <div class="container pb-3" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+        <section class="about-section px-2" id="about">
+            <div class="container pb-3">
                 <!--<div class="float-start about-img me-3">
                     <img class="img-fluid rounded-3" src="/img/Me3.jpg" alt="">
                 </div>-->
@@ -316,7 +299,7 @@
                         <p>Interested in opportunities to work with you, so feel free to <a class="text-reset text-decoration-none anim-link-3" href="#contact">contact</a> me!</p>
                     </div> 
         
-                    <button type="button" class="btn btn-custom-3 mt-4 d-block mx-auto" data-id="summary-btn">
+                    <button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto" data-id="summary-btn">
                         Learn More
                     </button>        
                 </div>
@@ -324,7 +307,7 @@
         </section>
 
         <!--My Services-->
-        <section class="services-section" id="services" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+        <section class="services-section" id="services">
             <div>
                 <div class="container d-block mx-auto pb-5 mt-custom-neg">
                     <h2 class="h2-divider text-center mb-5 pt-5 text-custom-1">Services I Can Offer You</h2>
@@ -458,7 +441,7 @@
         </section>
 
         <!--Tools & Technologies-->
-        <section class="tools-tech-section" id="tools-tech" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
+        <section class="tools-tech-section" id="tools-tech">
             <div class="container">
                 <h2 class="h2-divider text-center mb-5 text-custom-1">My Tools & Technologies</h2>
 
@@ -477,7 +460,7 @@
 
                     <div class="row justify-content-evenly px-5 px-md-0">
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">HTML5</small>
                             <div class="skill-rating skill-rating-expert">
                                 <!--<img src="/svg/star-fill.svg" alt="Filled star Icon">
@@ -489,91 +472,91 @@
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">CSS3</small>
                             <div class="skill-rating skill-rating-expert"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">JavaScript</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Bootstrap</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
+                            <img src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
                             <small class="d-block mt-2">Handlebars</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">React</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">MySQL</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">Firebase</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">MongoDB</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-1">
+                            <img src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-1">
                             <small class="d-block mt-2">Mongoose</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Node.js</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Express.js</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/postman-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/postman-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Postman</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">GitHub</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo p-2">
+                            <img src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo p-2">
                             <small class="d-block mt-2">Netlify</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Heroku</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -583,13 +566,13 @@
 
                     <div class="row justify-content-evenly">
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">AutoCAD</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">SolidWorks</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -599,25 +582,25 @@
 
                     <div class="row justify-content-evenly">
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Nextjs-logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/svg/Nextjs-logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">Next.js</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/Typescript_logo_2020.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img src="/svg/Typescript_logo_2020.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
                             <small class="d-block mt-2">TypeScript</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/svg/WordPress_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/svg/WordPress_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">WordPress</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-md-3 col-auto pt-5 pt-sm-5 text-center">
-                            <img data-anijs="if: click, do: flip animated, to: $closest target, after: $removeAnim" src="/img/1067px-PHP-logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img src="/img/1067px-PHP-logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
                             <small class="d-block mt-2">PHP 8</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
@@ -629,8 +612,8 @@
         </section>
 
         <!--My Projects-->
-        <section class="projects-section" id="projects" data-anijs="if: scroll, on: window, do: slideInUp animated, before: $scrollReveal">
-            <div class="container px-5 px-md-0 pb-5">
+        <section class="projects-section" id="projects">
+            <div class="container px-2 px-md-0 pb-5">
                 <div>
                     <h2 class="h2-divider text-center mb-5 text-custom-1">My Work</h2>
                     <h3 class="text-center small mb-5">- Personal / Development projects -</h3>
@@ -722,10 +705,10 @@
     
                                     <h3 class="small mt-3">- Built Using -</h3>
     
-                                    <div class="icon-row-sm">
-                                        <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
-                                        <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
-                                        <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                    <div class="icon-row-sm mb-3">
+                                        <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge">
+                                        <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge">
+                                        <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge">
                                     </div>
                                 </div>  
                             </div>
@@ -753,8 +736,8 @@
         </section>
 
         <!--Contact Me Section-->
-        <section class="contact-section" id="contact">
-            <div class="container" data-anijs="if: scroll, on: window, do: lightSpeedIn animated, before: $scrollReveal">
+        <section class="contact-section px-2" id="contact">
+            <div class="container">
                 <h2 class="h2-divider text-center mb-5 text-custom-1">Let's Chat</h2>
 
                 <div class="row">
@@ -784,7 +767,7 @@
                         <!--<hr style="margin: 60px auto; opacity: .5;">-->
                     </div>
 
-                    <div class="col-12 w-100 mx-auto form-container mt-5" data-anijs="if: scroll, on: window, do: zoomIn animated, before: $scrollReveal">
+                    <div class="col-12 w-100 mx-auto form-container mt-5">
                         <form action="https://formspree.io/f/xyybvjzj" method="POST" class="needs-validation" id="my-form" novalidate>
                             <div class="mb-5">
                                 <h3>Get in Touch</h3>
@@ -972,29 +955,8 @@
     <script src="https://kit.fontawesome.com/3ad7481254.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-    <!--<script src="anijs-min.js"></script>-->
-    <!-- AniJS core library -->
-    <script src="https://anijs.github.io/lib/anijs/anijs-min.js"></script> 
-      <!-- Include to use $addClass, $toggleClass or $removeClass -->
-    <script src="https://anijs.github.io/lib/anijs/helpers/dom/anijs-helper-dom-min.js"></script>
-    <!-- ScrollReveal Helper -->
-    <!--<script src="helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>-->
-    <!-- AniJS Core File -->
-    <!--<script src="bower_components/anijs/dist/anijs-min.js"></script>-->
-    <!-- ScrollReveal Helper -->
-    <!--<script src="bower_components/anijs/dist/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>-->
-    <!--<script src="https://anijs.github.io/lib/anijs/anijs.js"></script>-->
-    <script src="https://anijs.github.io/lib/anijs/helpers/scrollreveal/anijs-helper-scrollreveal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>  
-    <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>-->
-    <!--Tag Cloud-->
-    <!--<script src="https://www.cssscript.com/./dist/TagCloud.min.js"></script>
-    <script type="text/javascript" src="./dist/TagCloud.min.js"></script>-->
-    <!--<script src="https://www.google.com/recaptcha/api.js" async></script>-->
+    <script src="https://www.google.com/recaptcha/api.js" async></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" async></script>-->
     <!--<script src="./js/Business_Logic/TagCloud.min.js" async></script>-->
     <script type="module" src="/js/app.js"></script>

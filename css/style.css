@@ -55,6 +55,35 @@
 
 /* Custom Classes */
 
+.shrink-el {
+    height: 0 !important;
+    transition: height 0.2s ease-in-out;  
+    overflow: hidden;  
+}
+
+.expand-el {
+    height: 100% !important;
+    transition: height 0.2s ease-in-out;
+}
+
+.cta {
+    will-change: transform;
+    border: 2px solid var(--theme-colour-3);
+    border-radius: 6px;
+    width: max-content;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    background-color: var(--theme-colour-4);
+    transition: all 0.2s ease-in-out;
+}
+
+.cta:hover,
+.cta:focus {
+    transform: scale(1.02);
+}
+
 .twh {
     background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1));
     color: black;
@@ -79,8 +108,8 @@
     position: relative;
     height: 0;
     width: 100%;
-    transition: height 0.4s ease-in-out;
-    z-index: -1200;
+    transition: height 0.3s ease-in-out;
+    z-index: 0;
 }
 
 .form-container {
@@ -187,10 +216,12 @@
 
 .logo {
     max-height: 100%;
+    height: 100% !important;
 }
 
 .logo-link {
     margin-right: 0;
+    padding: 0;
 }
 
 .logo-link, .logo-img {
@@ -200,6 +231,11 @@
 .logo-img {
     max-width: 80%;
     object-fit: contain !important;
+}
+
+.nav-container.nav-container-sticky .logo-link,
+.nav-container.nav-container-sticky .logo-img {
+    height: 100% !important;
 }
 
 .icon-disp-link {
@@ -438,13 +474,14 @@ img.handlebars-logo {
 
 .my-carousel-wrapper {
     width: 100%;
-    min-width: 100%;
+    max-width: 100%;
     height: max-content;
 }
 
 .my-carousel-wrapper ul {
     padding-left: 0;
     padding-right: 0;
+    width: 1080px;
 }
 
 .my-carousel-content {
@@ -512,7 +549,7 @@ img.handlebars-logo {
 
 .my-carousel-item .card-body {
     width: 300px;
-    height: max-content; 
+    height: fit-content; 
 }
 
 /* API / CDN / Other Imported Classes */
@@ -557,7 +594,7 @@ img.handlebars-logo {
     height: 5px;
     background: var(--theme-colour-4);
     width: 0%;
-    transition: none;
+    transition: all 0.5s ease-in-out;
 }
 
     /*** Styling for Anijs data attributes ***/
@@ -644,7 +681,7 @@ lottie-player {
     margin-bottom: 3rem;
     margin-left: auto;
     margin-right: auto;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
     
 .tagcloud--item {
@@ -812,7 +849,8 @@ a.nav-link,
     padding: 0;
     margin-left: auto;
     margin-right: calc(2% + 10px);
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    z-index: 11;
     /*margin-left: 13px;*/  
 }
 
@@ -881,7 +919,8 @@ a.nav-link,
 }
 
 .dropdown-menu {
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     border-radius: 6px;
 }
 
@@ -1021,8 +1060,8 @@ header, header button {
 }
 
 .nav-container {
-    min-height: 25rem;
-    transition: height 0.3s ease-in-out;
+    opacity: 1;
+    transition: height 0.3s ease-in-out;     
 }
 
 .nav-container.nav-container-sticky {
@@ -1030,38 +1069,25 @@ header, header button {
     transition: height 0.3s ease-in-out;
 }
 
+/*.nav-container.nav-container-sticky .navbar-collapse {
+    height: 100%;
+}*/
+
 .top-header-nav {
     height: 62.5%;
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
+    /*transition: height 0.3s ease-in-out;*/
 }
 
 .bot-header-nav {
     height: 37.5%;
     font-weight: 500;
-    transition: height 0.3s ease-in-out;
+    /*transition: height 0.3s ease-in-out;*/
 }
 
 header .nav-container .navbar {
     display: block;
     align-self: center;
-}
-
-.bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
-.bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
-    max-height: 8rem;
-    flex-wrap: unset;
-    overflow-y: scroll;
-    overflow-x: auto;
-    background: linear-gradient(rgba(31,111,139,0.5), rgba(31,111,139,0.5)), url('') no-repeat fixed 100% 100%;
-}
-
-/* Handle */
-.bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll::-webkit-scrollbar-thumb,
-.bot-header-nav .navbar-collapse.show .navbar-nav-scroll::-webkit-scrollbar-thumb {
-    background: var(--theme-colour-4) !important; 
-    border-radius: 12px;
-    height: auto;
 }
 
 header video {
@@ -1119,7 +1145,7 @@ section {
 
 .placeholder-div-reveal {
     background-size: cover !important;
-    transition: all 0.6s ease-in-out !important;
+    transition: all 0.4s ease-in-out !important;
 }
 
 .placeholder-div-reveal-start {
@@ -1140,6 +1166,7 @@ section {
 
 .welcome-section {
     position: relative;
+    padding-top: 4rem !important;
 }
 
 .welcome-section,

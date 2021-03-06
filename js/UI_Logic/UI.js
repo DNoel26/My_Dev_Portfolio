@@ -1,3 +1,4 @@
+import { debounce, media_queries } from "../Business_Logic/Functions.js";
 import Skill_Rating from "../Business_Logic/SkillRating.js";
 
 const UI = {
@@ -19,6 +20,10 @@ const UI = {
     scroll_indicator: document.querySelector("#my-bar"),
     active_lists: document.querySelectorAll(".bot-header-nav .nav-item"),
     active_link: document.querySelector("a.active"),
+
+    // Hamburger menu button in header
+    toggler_btn: document.querySelector(".navbar-toggler"),
+    navbar_scroll: document.querySelector(".navbar-nav-scroll"),
 
     /*** HOME SECTION ***/
 
@@ -95,8 +100,25 @@ const UI = {
         });
     },
 
-    shrink_header() {
+    toggler_menu_reveal() {
 
+        UI.navbar_scroll.style.width = "33vw";
+        UI.body.style.height = "100%";
+    },
+
+    toggler_menu_hide() {
+
+        UI.navbar_scroll.style.width = "0";
+        UI.body.style.height = "initial";
+
+        // Timeout resets header quickly before there is a window resize
+        setTimeout(() => {
+            UI.navbar_scroll.style.width = "initial";
+        }, 200);
+    },
+
+    shrink_header() {
+        
         // On scroll, shrinks header and expands body, pauses video, changes to static bg and adjusts height of placeholder elements for smooth transition
         this.body.classList.remove("will-change-height");
         this.nav_container.classList.add("row", "justify-content-between", "nav-container-sticky");
@@ -104,22 +126,25 @@ const UI = {
         this.bot_nav.classList.add("col-10");
         this.header_empty_div.classList.add("d-none");
         this.header_divider.classList.add("d-none");
-        //this.top_nav.style.height = "100%";
-        //this.bot_nav.style.height = "100%";
+        this.top_nav.style.height = "100%";
+        this.bot_nav.style.height = "100%";
         //this.nav_container.style.height = "6rem";
-        this.top_nav.style.height = "auto";
-        this.bot_nav.style.height = "auto";
-        this.nav_container.style.height = "auto";
-        this.body_placeholder.style.height = "46.875rem";
-        this.body_placeholder.classList.replace("invisible","visible");
-        this.body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
+        /*this.top_nav.style.height = "auto";
+        this.bot_nav.style.height = "auto";*/
+        this.nav_container.style.height = "4.7rem";
         this.header_vid.classList.add("d-none");
         this.header_vid.pause();
         this.header.style.background = "linear-gradient(rgba(31,111,139,0.95), rgba(31,111,139,0.95)), url('') no-repeat fixed 100% 100%";
         
         // On scroll, hides introduction msg and removes top padding from welcome section below
         this.intro_msg.classList.add("h-0");
-        this.welcome.classList.remove("pt-custom-1");                    
+        this.welcome.classList.remove("pt-custom-1");     
+    },
+
+    expand_placeholder_div() {
+        this.body_placeholder.style.height = "46.875rem";
+        this.body_placeholder.classList.replace("invisible","visible");
+        this.body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
     },
 
     expand_header() {
@@ -131,21 +156,47 @@ const UI = {
         this.bot_nav.classList.remove("col-10");
         this.header_empty_div.classList.remove("d-none");
         this.header_divider.classList.remove("d-none");
-        //this.top_nav.style.height = "initial";
-        //this.bot_nav.style.height = "initial";
+        this.top_nav.style.height = "initial";
+        this.bot_nav.style.height = "initial";
         //this.nav_container.style.height = "25rem";
-        this.top_nav.style.height = "auto";
-        this.bot_nav.style.height = "auto";
-        this.nav_container.style.height = "auto";
-        this.body_placeholder.style.height = "0";
-        this.body_placeholder.classList.replace("visible","invisible");
-        this.body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start");
+        /*this.top_nav.style.height = "auto";
+        this.bot_nav.style.height = "auto";*/
+
+        const lg = window.matchMedia("(min-width: 992px)"); 
+        media_queries(lg, () => {
+            this.nav_container.style.height = "65vh";      
+        });
+
+        const sm = window.matchMedia("(max-width: 991.98px)");
+        media_queries(sm, () => {
+            this.nav_container.style.height = "45vh";    
+        });
+
+        /*window.addEventListener("resize", debounce(() => {
+
+            const lg = window.matchMedia("(min-width: 992px)"); 
+            media_queries(lg, () => {
+                this.nav_container.style.height = "65vh";      
+            });
+
+            const sm = window.matchMedia("(max-width: 991.98px)");
+            media_queries(sm, () => {
+                this.nav_container.style.height = "45vh";    
+            });
+        }));*/
+        
         this.header_vid.classList.remove("d-none");
         this.header_vid.play();
 
         // Returns introduction msg and welcome section to initial state when scrolled to the top
         this.intro_msg.classList.remove("h-0");
-        this.welcome.classList.add("pt-custom-1");
+        this.welcome.classList.add("pt-custom-1");     
+    },
+
+    shrink_placeholder_div() {
+        this.body_placeholder.style.height = "0";
+        this.body_placeholder.classList.replace("visible","invisible");
+        this.body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start");
     },
 
     replace_vid_bg() {

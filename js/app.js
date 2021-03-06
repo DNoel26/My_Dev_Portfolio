@@ -4,7 +4,7 @@ console.log("App.js Loaded Successfully");
 
 import UI from "./UI_Logic/UI.js";
 import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
-    generate_dark_color_hex, form_submit_success, form_submit_error, ajax} from "./Business_Logic/Functions.js";
+    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
 import Formspree from "./Business_Logic/Formspree.js";
@@ -31,7 +31,7 @@ const App = {
 
             const ext_script_load = new Promise((resolve, reject) => {
 
-                UI.create_script("./js/Business_Logic/TagCloud.min.js", "https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://www.google.com/recaptcha/api.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
+                UI.create_script("./js/Business_Logic/TagCloud.min.js", "https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
 
                 setTimeout(resolve, 3000);
             });
@@ -57,6 +57,36 @@ const App = {
             let scroll_moved = false;
             let header_vid_ended = false;
 
+            /*const x = window.matchMedia("(max-width: 991.98px");
+            media_queries(x, function() {
+                this.nav_container.style.height = "35vh";    
+            });*/
+                
+            UI.toggler_btn.addEventListener("click", () => {
+
+                const x = window.matchMedia("(min-width: 768px) and (max-width: 991.98px)");
+
+                if(!UI.toggler_btn.classList.contains("collapsed")) {
+
+                    UI.toggler_menu_reveal();
+                } else {
+                    
+                    UI.toggler_menu_hide();
+                };
+            });
+
+            if(document.documentElement.scrollTop > 1 || window.pageYOffset > 1) {
+
+                UI.shrink_header();
+                UI.expand_placeholder_div();
+                scroll_moved = true;
+            } else {
+                
+                UI.expand_header();
+                UI.shrink_placeholder_div();
+                scroll_moved = false;
+            };
+
             // Removes video after playing once and then adds a static background image (refresh to play video again)
             UI.header_vid.addEventListener("ended", ()=>{
 
@@ -67,28 +97,43 @@ const App = {
 
             //document.addEventListener('scroll', debounce(logger, 1000));
 
-            document.addEventListener("scroll", throttle(function() {
+            document.addEventListener("scroll", debounce(function() {
 
                 // Calls horizontal progress bar indicator function on scroll
                 scroll_progress(UI.scroll_indicator);
-            }, 15));
+            }, 300));
+
+            document.addEventListener("scroll", debounce(function() {
+
+                scroll_moved = false;
+            }, 800));
 
             document.addEventListener("scroll", throttle(function() {
 
-                console.log("throttling");
+                console.log("throttling", scroll_moved);
+                //UI.nav_container.style.height = UI.header.offsetHeight;
 
                 // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                if(document.documentElement.scrollTop > 2 || window.pageYOffset > 2) {
+                if((document.documentElement.scrollTop > 1 || window.pageYOffset > 1) && scroll_moved === false) {
+
                     
                     UI.shrink_header();
+                    UI.expand_placeholder_div();
                     scroll_moved = true;
-                } else {
+                } else if((document.documentElement.scrollTop <= 1 || window.pageYOffset <= 1) && scroll_moved === true) {
 
+                    //UI.nav_container.style.overflow = "hidden";
+                    //UI.nav_container.style.height = 0;
                     UI.expand_header();
+                    UI.shrink_placeholder_div(); 
+                    
                     if(scroll_moved && header_vid_ended) {
 
                         UI.replace_vid_bg();
                     };
+
+                    scroll_moved = false;
+                    document.documentElement.scrollTop = 0;
                 };
             }, 100));
 
@@ -127,19 +172,46 @@ const App = {
 
             let my_carousel_btn_click = false;
 
-            UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
+            // Changes scroll amount depending on the screen size
+            (function() {
+                
+                let scroll_amt = 360;
+                const mq_limits = [
+                    window.matchMedia("(max-width: 575.98px)"),
+                    window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
+                    window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
+                    window.matchMedia("(min-width: 992px) and (max-width: 1199.98px)"),
+                    window.matchMedia("(min-width: 1200px) and (max-width: 1399.98px)"),
+                    window.matchMedia("(min-width: 1400px)")
+                ];
 
-                UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
-                UI.scroll_horizontally(UI.my_carousel_content, -360);
-                UI.scroll_end(UI.my_carousel_content, 20);
-            }, 700));
+                addEventListener("load", () => {
+                    media_queries(mq_limits[0], () => {
+                        return scroll_amt = 296;
+                    });
+    
+                    media_queries(mq_limits[1], () => {
+                        return scroll_amt = 328;
+                    });
+    
+                })
 
-            UI.my_carousel_next_btn.addEventListener("click", throttle(function() {
+                UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
 
-                UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
-                UI.scroll_horizontally(UI.my_carousel_content, 360);
-                UI.scroll_start(UI.my_carousel_content, 20);
-            }, 700));
+                    logger(scroll_amt);
+                    UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
+                    UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
+                    UI.scroll_end(UI.my_carousel_content, 20);
+                }, 700));
+    
+                UI.my_carousel_next_btn.addEventListener("click", throttle(function() {
+
+                    logger(scroll_amt);
+                    UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
+                    UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
+                    UI.scroll_start(UI.my_carousel_content, 20);
+                }, 700));
+            })();
 
             /*** TOOLS & TECHNOLOGIES SECTION ***/
 

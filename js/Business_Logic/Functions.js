@@ -117,15 +117,15 @@ export function ajax(method, url, data, success, error) {
 }
 
 // Watch for screen size changes 
-export function on_resize(mq, func) {
+export function media_queries(mq, func) {
 
-    /*if (mq.matches) { // If media query matches
-        document.body.style.backgroundColor = "yellow";
+    if (mq.matches) { // If media query matches
+
+        return func();
     } else {
-        document.body.style.backgroundColor = "pink";
-    }*/
 
-    return func;
+        return;
+    };
 };
 
 /* const mq = window.matchMedia("(max-width: 540px)");
