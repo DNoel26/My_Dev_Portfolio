@@ -75,7 +75,7 @@ const App = {
                 };
             });
 
-            if(document.documentElement.scrollTop > 1 || window.pageYOffset > 1) {
+            if(document.documentElement.scrollTop > 2 || window.pageYOffset > 2) {
 
                 UI.shrink_header();
                 UI.expand_placeholder_div();
@@ -114,13 +114,13 @@ const App = {
                 //UI.nav_container.style.height = UI.header.offsetHeight;
 
                 // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                if((document.documentElement.scrollTop > 1 || window.pageYOffset > 1) && scroll_moved === false) {
+                if((document.documentElement.scrollTop > 2 || window.pageYOffset > 2) && scroll_moved === false) {
 
                     
                     UI.shrink_header();
                     UI.expand_placeholder_div();
                     scroll_moved = true;
-                } else if((document.documentElement.scrollTop <= 1 || window.pageYOffset <= 1) && scroll_moved === true) {
+                } else if((document.documentElement.scrollTop <= 2 || window.pageYOffset <= 2) && scroll_moved === true) {
 
                     //UI.nav_container.style.overflow = "hidden";
                     //UI.nav_container.style.height = 0;

@@ -98,14 +98,7 @@ Extra large devices (large desktops, 1200px and up)
         /*background: linear-gradient(rgba(31,111,139,1), rgba(31,111,139,1)), url('') no-repeat fixed 100% 100%;*/
         background: var(--theme-colour-3);
         overscroll-behavior: contain;
-        position: fixed;
-        z-index: 1030;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100vh;
-        transition: width 0.1s ease-in-out;
-        box-shadow: rgba(0, 0, 0, 0.75) 0px 0.5rem 1rem !important;
+        
     }
 
     .nav-container .bot-header-nav .navbar-nav-scroll .nav-item .nav-link {
@@ -398,6 +391,20 @@ Extra large devices (large desktops, 1200px and up)
 @media (min-width: 992px) { 
     .nav-container.nav-container-sticky .navbar-collapse {
         height: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
+    .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
+        position: fixed;
+        z-index: 1030;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100vh;
+        transition: width 0.1s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.75) 0px 0.5rem 1rem !important;
     }
 }
 
