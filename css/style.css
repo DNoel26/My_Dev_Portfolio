@@ -1016,11 +1016,14 @@ a.nav-link,
 /* HTML */ 
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
+    height: -webkit-fill-available !important;
 }
 
 body {
     position: relative !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
 }
 
 hr {
