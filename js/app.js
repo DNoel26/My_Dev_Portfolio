@@ -114,13 +114,13 @@ const App = {
                 //UI.nav_container.style.height = UI.header.offsetHeight;
 
                 // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                if((document.documentElement.scrollTop > 2 || window.pageYOffset > 2) && scroll_moved === false) {
+                if((document.documentElement.scrollTop > 0 || window.pageYOffset > 0) && scroll_moved === false) {
 
                     
                     UI.shrink_header();
                     UI.expand_placeholder_div();
                     scroll_moved = true;
-                } else if((document.documentElement.scrollTop <= 2 || window.pageYOffset <= 2) && scroll_moved === true) {
+                } else if((document.documentElement.scrollTop <= 0 || window.pageYOffset <= 0) && scroll_moved === true) {
 
                     //UI.nav_container.style.overflow = "hidden";
                     //UI.nav_container.style.height = 0;
@@ -177,7 +177,8 @@ const App = {
                 
                 let scroll_amt = 360;
                 const mq_limits = [
-                    window.matchMedia("(max-width: 575.98px)"),
+                    window.matchMedia("(max-width: 320.98px)"),
+                    window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
                     window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
                     window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
                     window.matchMedia("(min-width: 992px) and (max-width: 1199.98px)"),
@@ -185,16 +186,30 @@ const App = {
                     window.matchMedia("(min-width: 1400px)")
                 ];
 
-                addEventListener("load", () => {
+                const scroll_amt_modifier = function() {
+
                     media_queries(mq_limits[0], () => {
+                        return scroll_amt = 280;
+                    });
+
+                    media_queries(mq_limits[1], () => {
                         return scroll_amt = 296;
                     });
     
-                    media_queries(mq_limits[1], () => {
-                        return scroll_amt = 328;
+                    media_queries(mq_limits[2], () => {
+                        return scroll_amt = 360;
                     });
-    
-                })
+
+                    media_queries(mq_limits[3], () => {
+                        return scroll_amt = 580;
+                    });
+
+                    media_queries(mq_limits[4], () => {
+                        return scroll_amt = 580;
+                    });
+                };
+
+                scroll_amt_modifier();
 
                 UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
 

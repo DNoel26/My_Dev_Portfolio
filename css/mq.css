@@ -32,6 +32,28 @@ Extra large devices (large desktops, 1200px and up)
         padding-top: 0 !important;
     }
 
+    .my-carousel-wrapper ul {
+        width: 720px;
+    }
+
+    .my-carousel-item .card-body {
+        width: 275px;
+    }
+
+    .my-carousel-wrapper .my-carousel-item,
+    .my-carousel-item .card-body {
+        padding: 0;
+    }
+
+    .my-carousel-item .card-body p {
+        padding: 0 0.75rem;
+    }
+
+    .my-carousel-item.card {
+        margin-left: 6.5px;
+        margin-right: 6.5px;
+    }   
+
     .carousel-indicators {
         bottom: 0;
     }
@@ -191,6 +213,28 @@ Extra large devices (large desktops, 1200px and up)
         font-size: 1.9rem;
     }
 
+    .my-carousel-wrapper ul {
+        width: 580px;
+    }
+
+    .my-carousel-item .card-body {
+        width: 275px;
+    }
+
+    .my-carousel-wrapper .my-carousel-item,
+    .my-carousel-item .card-body {
+        padding: 0;
+    }
+
+    .my-carousel-item .card-body p {
+        padding: 0 0.75rem;
+    }
+
+    .my-carousel-item.card {
+        margin-left: 6.5px;
+        margin-right: 6.5px;
+    }   
+
     .about-section,
     .projects-section {
         text-align: center !important;
@@ -345,6 +389,14 @@ Extra large devices (large desktops, 1200px and up)
     .bot-header-nav .dropdown-toggle {
         text-align: center;
     }
+
+    .my-carousel-wrapper ul {
+        width: 360px;
+    }
+
+    .my-carousel-item .card-body {
+        width: 332px;
+    }
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
@@ -357,17 +409,8 @@ Extra large devices (large desktops, 1200px and up)
         width: 296px;
     }
 
-    .my-carousel-wrapper .my-carousel-item,
-    .my-carousel-item .card-body {
-        padding: 0;
-    }
-
     .my-carousel-item .card-body {
         width: 268px;
-    }
-
-    .my-carousel-item .card-body p {
-        padding: 0 0.75rem;
     }
 
     .my-carousel-btn-next,
@@ -386,11 +429,21 @@ Extra large devices (large desktops, 1200px and up)
     }
 }
 
-/* Specific MQ */
+/* Other / Specific MQ */
 
 @media (min-width: 992px) { 
     .nav-container.nav-container-sticky .navbar-collapse {
         height: 100%;
+    }
+}
+
+@media (max-width: 320.98px) {  
+    .my-carousel-wrapper ul {
+        width: 280px;
+    }
+
+    .my-carousel-item .card-body {
+        width: 252px;
     }
 }
 

@@ -1017,13 +1017,16 @@ a.nav-link,
 
 html {
     scroll-behavior: smooth !important;
+    height: 100% !important;
     height: -webkit-fill-available !important;
 }
 
 body {
     position: relative !important;
+    min-height: 100% !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
+    padding: 0;
 }
 
 hr {
