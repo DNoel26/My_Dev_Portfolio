@@ -1067,7 +1067,8 @@ header, header button {
 
 .nav-container {
     opacity: 1;
-    transition: height 0.3s ease-in-out;     
+    transition: height 0.3s ease-in-out;   
+    position: relative; 
 }
 
 .nav-container.nav-container-sticky {

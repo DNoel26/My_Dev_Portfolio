@@ -278,8 +278,9 @@ Extra large devices (large desktops, 1200px and up)
 
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {  
-    .nav-container.nav-container-sticky  {
+    .nav-container.nav-container-sticky {
         height: 0 !important;
+        overflow: hidden;
     }
 
     .nav-container.nav-container-sticky .logo {
@@ -367,7 +368,7 @@ Extra large devices (large desktops, 1200px and up)
         display: block;
         width: 100% !important;
         max-height: unset !important;
-        height: calc(100vh - 72px) !important;
+        height: calc(90vh - 72px) !important;
         flex-wrap: unset;
         overscroll-behavior: contain;
         position: relative;
