@@ -24,6 +24,7 @@ const UI = {
     // Hamburger menu button in header
     toggler_btn: document.querySelector(".navbar-toggler"),
     navbar_scroll: document.querySelector(".navbar-nav-scroll"),
+    bot_nav_collapse: document.querySelector("#bot-header-nav"),
 
     /*** HOME SECTION ***/
 
@@ -68,16 +69,21 @@ const UI = {
     client_project_gallery_btns: document.querySelectorAll("button[data-client-project]"),
 
     /*** CONTACT ME SECTION ***/
+    
+    country_select: document.getElementById("country"),
+    phone: document.getElementById("phone"),
 
     /* Formspree */
 
     valid_feedback_fname: document.querySelector(".valid-feedback.valid-feedback-fname"),
     valid_feedback_lname: document.querySelector(".valid-feedback.valid-feedback-lname"),
     valid_feedback_email: document.querySelector(".valid-feedback.valid-feedback-email"),
+    valid_feedback_country: document.querySelector(".valid-feedback.valid-feedback-country"),
     valid_feedback_message: document.querySelector(".valid-feedback.valid-feedback-message"),
     invalid_feedback_fname: document.querySelector(".invalid-feedback.invalid-feedback-fname"),
     invalid_feedback_lname: document.querySelector(".invalid-feedback.invalid-feedback-lname"),
     invalid_feedback_email: document.querySelector(".invalid-feedback.invalid-feedback-email"),
+    invalid_feedback_country: document.querySelector(".invalid-feedback.invalid-feedback-country"),
     invalid_feedback_message: document.querySelector(".invalid-feedback.invalid-feedback-message"),
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -100,21 +106,34 @@ const UI = {
         });
     },
 
-    toggler_menu_reveal() {
+    side_menu_reveal() {
 
-        UI.navbar_scroll.style.width = "33vw";
-        UI.body.style.height = "100%";
+        //UI.navbar_scroll.parentElement.classList.add(".side-menu-reveal");
+        //UI.navbar_scroll.classList.remove(".side-menu-hide");
+        // UI.navbar_scroll.style.width = "33vw";
+        
+        //UI.body.style.height = "100%";
+        UI.bot_nav_collapse.style.width = "40vw";
+        UI.bot_nav_collapse.classList.add(".side-menu-reveal");
+        UI.bot_nav_collapse.classList.remove(".side-menu-hide");
     },
 
-    toggler_menu_hide() {
+    side_menu_hide() {
 
-        UI.navbar_scroll.style.width = "0";
-        UI.body.style.height = "initial";
+        //UI.navbar_scroll.parentElement.classList.remove(".side-menu-reveal");
+        //UI.navbar_scroll.classList.add(".side-menu-hide");
+        // UI.navbar_scroll.style.width = "initial";
+        
+        //UI.body.style.height = "initial";
+        UI.bot_nav_collapse.style.width = "0";
+        UI.bot_nav_collapse.classList.remove(".side-menu-reveal");
+        UI.bot_nav_collapse.classList.add(".side-menu-hide");
+    },
 
-        // Timeout resets header quickly before there is a window resize
-        setTimeout(() => {
-            UI.navbar_scroll.style.width = "initial";
-        }, 200);
+    no_side_menu() {
+        UI.bot_nav_collapse.classList.remove(".side-menu-reveal");
+        UI.bot_nav_collapse.classList.remove(".side-menu-hide");
+        UI.bot_nav_collapse.style.width = "100%";
     },
 
     shrink_header() {
@@ -165,12 +184,12 @@ const UI = {
         const lg = window.matchMedia("(min-width: 992px)"); 
         media_queries(lg, () => {
             this.nav_container.style.height = "65vh";      
-        });
+        }, null);
 
         const sm = window.matchMedia("(max-width: 991.98px)");
         media_queries(sm, () => {
             this.nav_container.style.height = "45vh";    
-        });
+        }, null);
 
         /*window.addEventListener("resize", debounce(() => {
 
@@ -346,11 +365,18 @@ const UI = {
             this.valid_feedback_email.innerHTML = "Much better...please ensure that the spelling of your email is correct";
         };
 
+        if(this.invalid_feedback_country && window.getComputedStyle(this.invalid_feedback_country).display != "none") {
+
+            this.valid_feedback_country.innerHTML = "Welcome to Earth " + `👽`;
+        };
+
         if(this.invalid_feedback_message && window.getComputedStyle(this.invalid_feedback_message).display != "none") {
 
             this.valid_feedback_message.innerHTML = "How did you forget the most important part? Oh well, at least it's fine now...";
         };
-    }
+
+        return;
+    },
 };
 
 export default UI;

@@ -66,6 +66,14 @@
     transition: height 0.2s ease-in-out;
 }
 
+.side-menu-reveal {
+    width: initial !important;
+}
+
+.side-menu-hide {
+    width: initial !important;
+}
+
 .cta {
     will-change: transform;
     border: 2px solid var(--theme-colour-3);
@@ -476,6 +484,7 @@ img.handlebars-logo {
     width: 100%;
     max-width: 100%;
     height: max-content;
+    position: relative;
 }
 
 .my-carousel-wrapper ul {
@@ -508,7 +517,7 @@ img.handlebars-logo {
     white-space: normal;
     transition: all 0.2s ease-in-out;
     position: relative;
-    z-index: 1;
+    z-index: 100;
 }
 
 .my-carousel-item {
@@ -1241,6 +1250,7 @@ section {
 
 .tools-tech-section .icon-disp-img {
     height: 4rem;
+    width: auto;
 }
 
 .skill-rating {

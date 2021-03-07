@@ -8,7 +8,7 @@ import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttl
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
 import Formspree from "./Business_Logic/Formspree.js";
-// import "./Business_Logic/TagCloud.min.js";
+import API from "./Business_Logic/API.js"
 
 const App = {
     init() {
@@ -61,19 +61,32 @@ const App = {
             media_queries(x, function() {
                 this.nav_container.style.height = "35vh";    
             });*/
-                
-            UI.toggler_btn.addEventListener("click", () => {
 
-                const x = window.matchMedia("(min-width: 768px) and (max-width: 991.98px)");
+            (function() {
 
-                if(!UI.toggler_btn.classList.contains("collapsed")) {
+                const side_menu_toggler = () => {
 
-                    UI.toggler_menu_reveal();
-                } else {
-                    
-                    UI.toggler_menu_hide();
+                    if(!UI.toggler_btn.classList.contains("collapsed")) {
+                        
+                        UI.side_menu_reveal();
+                    } else {
+                        
+                        UI.side_menu_hide();
+                    };
                 };
-            });
+
+                const mq_side_menu_toggler = () => {
+
+                    const mq_limit = window.matchMedia("(min-width: 768px) and (max-width: 991.98px)");
+                    media_queries(mq_limit, side_menu_toggler, null);
+                };
+
+                UI.toggler_btn.addEventListener("click", mq_side_menu_toggler);
+                window.addEventListener("resize", debounce(function() {
+
+                    UI.no_side_menu()
+                }),1500);
+            }());
 
             if(document.documentElement.scrollTop > 2 || window.pageYOffset > 2) {
 
@@ -93,63 +106,70 @@ const App = {
                 UI.replace_vid_bg();
                 UI.header_vid.remove();
                 header_vid_ended = true;
-            })
+            });
 
-            //document.addEventListener('scroll', debounce(logger, 1000));
+            (function() {
+                
+                const scroll_progress_debounce_wrapper = debounce(function() {
 
-            document.addEventListener("scroll", debounce(function() {
+                    // Calls horizontal progress bar indicator function on scroll
+                    scroll_progress(UI.scroll_indicator);
+                }, 300);
 
-                // Calls horizontal progress bar indicator function on scroll
-                scroll_progress(UI.scroll_indicator);
-            }, 300));
-
-            document.addEventListener("scroll", debounce(function() {
-
-                scroll_moved = false;
-            }, 800));
-
-            document.addEventListener("scroll", throttle(function() {
-
-                console.log("throttling", scroll_moved);
-                //UI.nav_container.style.height = UI.header.offsetHeight;
-
-                // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                if((document.documentElement.scrollTop > 0 || window.pageYOffset > 0) && scroll_moved === false) {
-
-                    
-                    UI.shrink_header();
-                    UI.expand_placeholder_div();
-                    scroll_moved = true;
-                } else if((document.documentElement.scrollTop <= 0 || window.pageYOffset <= 0) && scroll_moved === true) {
-
-                    //UI.nav_container.style.overflow = "hidden";
-                    //UI.nav_container.style.height = 0;
-                    UI.expand_header();
-                    UI.shrink_placeholder_div(); 
-                    
-                    if(scroll_moved && header_vid_ended) {
-
-                        UI.replace_vid_bg();
-                    };
+                const scroll_moved_debounce_wrapper = debounce(function() {
 
                     scroll_moved = false;
-                    document.documentElement.scrollTop = 0;
-                };
-            }, 100));
+                }, 800);
 
-            document.addEventListener("scroll", ()=>{
+                const sticky_header_throttle_wrapper = throttle(function() {
 
-                //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
-                UI.active_lists.forEach(li => {
+                    //console.log("throttling", scroll_moved);
+                    //UI.nav_container.style.height = UI.header.offsetHeight;
+    
+                    // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
+                    if((document.documentElement.scrollTop > 0 || window.pageYOffset > 0) && scroll_moved === false) {
+    
                         
-                    if(li.children[0].classList.contains("active")) {
-  
-                        li.classList.add("active-list");
-                    } else {
-
-                        li.classList.remove("active-list"); 
+                        UI.shrink_header();
+                        UI.expand_placeholder_div();
+                        scroll_moved = true;
+                    } else if((document.documentElement.scrollTop <= 0 || window.pageYOffset <= 0) && scroll_moved === true) {
+    
+                        //UI.nav_container.style.overflow = "hidden";
+                        //UI.nav_container.style.height = 0;
+                        UI.expand_header();
+                        UI.shrink_placeholder_div(); 
+                        
+                        if(scroll_moved && header_vid_ended) {
+    
+                            UI.replace_vid_bg();
+                        };
+    
+                        scroll_moved = false;
+                        document.documentElement.scrollTop = 0;
                     };
-                });
+                }, 100);
+
+                document.addEventListener("scroll", scroll_progress_debounce_wrapper);
+                document.addEventListener("touchmove", scroll_progress_debounce_wrapper);
+
+                document.addEventListener("scroll", scroll_moved_debounce_wrapper);
+                document.addEventListener("touchmove", scroll_moved_debounce_wrapper);
+
+                document.addEventListener("scroll", sticky_header_throttle_wrapper);
+                document.addEventListener("touchmove", sticky_header_throttle_wrapper);
+            })();
+
+            //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
+            UI.active_lists.forEach(li => {
+                    
+                if(li.children[0].classList.contains("active")) {
+
+                    li.classList.add("active-list");
+                } else {
+
+                    li.classList.remove("active-list"); 
+                };
             });
 
             /*** HOME SECTION ***/
@@ -190,30 +210,43 @@ const App = {
 
                     media_queries(mq_limits[0], () => {
                         return scroll_amt = 280;
-                    });
+                    }, null);
 
                     media_queries(mq_limits[1], () => {
                         return scroll_amt = 296;
-                    });
+                    }, null);
     
                     media_queries(mq_limits[2], () => {
                         return scroll_amt = 360;
-                    });
+                    }, null);
 
                     media_queries(mq_limits[3], () => {
-                        return scroll_amt = 580;
-                    });
+                        return scroll_amt = 656/2;
+                    }, null);
 
                     media_queries(mq_limits[4], () => {
-                        return scroll_amt = 580;
-                    });
+                        return scroll_amt = 720/2;
+                    }, null);
+
+                    media_queries(mq_limits[5], () => {
+                        return scroll_amt = 980/3;
+                    }, null);
+
+                    media_queries(mq_limits[6], () => {
+                        return scroll_amt = 1080/3;
+                    }, null);
                 };
 
                 scroll_amt_modifier();
+                window.addEventListener("resize", debounce(() => {
+
+                    scroll_amt_modifier();
+                    UI.my_carousel_content.scrollLeft = 0;
+                }, 1500));
 
                 UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
 
-                    logger(scroll_amt);
+                    //logger(scroll_amt);
                     UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
                     UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
                     UI.scroll_end(UI.my_carousel_content, 20);
@@ -221,7 +254,7 @@ const App = {
     
                 UI.my_carousel_next_btn.addEventListener("click", throttle(function() {
 
-                    logger(scroll_amt);
+                    //logger(scroll_amt);
                     UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
                     UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
                     UI.scroll_start(UI.my_carousel_content, 20);
@@ -232,86 +265,136 @@ const App = {
 
             /** Tag Cloud **/
             
-            let tagcloud_radius;
+            (function() {
 
-            // Delay loading of tag cloud
-            ext_script_load
-            .then(() => {
-
-                // Define tags in js array
-                let myTags = [
-                    'OOP', 'SOC / MVC', 'REST-APIs',
-                    'Data-Structures', 'Continuous-Integration', 'UI / UX',
-                    'Testing', 'Version-Control', 'Debugging',
-                    'Algorithms', 'App-Development', 'Responsive-Design', 
-                    'Security', 'Optimization', 'Customer-Service',
+                let tagcloud_radius;
+                const mq_limits = [
+                    window.matchMedia("(max-width: 320.98px)"),
+                    window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
+                    window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
+                    window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
                 ];
 
-                // Render a default tag cloud
-                // let tagCloud = TagCloud('.tag-cloud-content', myTags);
-                // Config tag cloud by overriding default parameters below
+                const tagcloud_resizer = function() {
 
-                const tagCloud = TagCloud('.tag-cloud-content', myTags, {
+                    media_queries(mq_limits[0], () => {
 
-                    // radius in px
-                    radius: tagcloud_radius ?? 320,
+                        return tagcloud_radius = 140;
+                    }, null); 
 
-                    // animation speed
-                    // slow, normal, fast
-                    maxSpeed: 'fast',
-                    initSpeed: 'slow',
+                    media_queries(mq_limits[1], () => {
 
-                    // 0 = top
-                    // 90 = left
-                    // 135 = right-bottom
-                    direction: 135,
-                    
-                    // interact with cursor move on mouse out
-                    keep: false,
-                });
+                        return tagcloud_radius = 150;
+                    }, null); 
 
-                // Add more tags to existing tag cloud
-                // myTags = myTags.concat([]);
-                // tagCloud.update(myTags);
+                    media_queries(mq_limits[2], () => {
 
-                const tagcloud = document.querySelector(".tagcloud");
-                const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+                        return tagcloud_radius = 250;
+                    }, null); 
 
-                tagcloud_items.forEach(item => {
+                    media_queries(mq_limits[3], () => {
 
-                    item.style.color = generate_dark_color_hex(); 
-                    let clicked_once = false;
-                    let clicked_twice = false;
+                        return tagcloud_radius = 300;
+                    }, null); 
 
-                    item.addEventListener("click", ()=>{
-                        
-                        if(clicked_once && clicked_twice) {
+                    return tagcloud_radius;
+                };
 
-                            item.style.fontSize = "0"; 
-                            setTimeout(() => {
-                        
-                                item.style.color = generate_dark_color_hex(); 
-                                item.style.fontSize = "1.2rem";
-                                item.style.fontWeight = "600";
-                                clicked_once = false; 
-                                clicked_twice = false;
-                            }, 5000);
-                        } else if(clicked_once && !clicked_twice) {
+                tagcloud_resizer();
 
-                            item.style.color = "var(--theme-colour-4)"; 
-                            item.style.fontSize = "1.5rem";
-                            clicked_twice = true;
-                        } else {
+                // Delay loading of tag cloud
+                ext_script_load
+                .then(() => {
 
-                            item.style.color = "var(--theme-colour-1)"; 
-                            item.style.fontSize = "1.3rem";
-                            item.style.fontWeight = "900";
-                            clicked_once = true;
-                        } 
-                    }); 
-                });
-            })
-            .catch(err => logger(err));
+                    const tagcloud_loader = function() {
+
+                        // Define tags in js array
+                        let myTags = [
+                            'OOP', 'SOC / MVC', 'REST-APIs',
+                            'Data-Structures', 'Continuous-Integration', 'UI / UX',
+                            'Testing', 'Version-Control', 'Debugging',
+                            'Algorithms', 'App-Development', 'Responsive-Design', 
+                            'Security', 'Optimization', 'Customer-Service',
+                        ];
+
+                        // Render a default tag cloud
+                        // let tagCloud = TagCloud('.tag-cloud-content', myTags);
+                        // Config tag cloud by overriding default parameters below
+
+                        const tagCloud = TagCloud('.tag-cloud-content', myTags, {
+
+                            // radius in px
+                            radius: tagcloud_radius ?? 340,
+
+                            // animation speed
+                            // slow, normal, fast
+                            maxSpeed: 'fast',
+                            initSpeed: 'slow',
+
+                            // 0 = top
+                            // 90 = left
+                            // 135 = right-bottom
+                            direction: 135,
+                            
+                            // interact with cursor move on mouse out
+                            keep: false,
+                        });
+
+                        // Add more tags to existing tag cloud
+                        // myTags = myTags.concat([]);
+                        // tagCloud.update(myTags);
+
+                        const tagcloud = document.querySelector(".tagcloud");
+                        const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+
+                        tagcloud_items.forEach(item => {
+
+                            item.style.color = generate_dark_color_hex(); 
+                            let clicked_once = false;
+                            let clicked_twice = false;
+
+                            item.addEventListener("click", ()=>{
+                                
+                                if(clicked_once && clicked_twice) {
+
+                                    item.style.fontSize = "0"; 
+                                    setTimeout(() => {
+                                
+                                        item.style.color = generate_dark_color_hex(); 
+                                        item.style.fontSize = "initial";
+                                        item.style.fontWeight = "400";
+                                        clicked_once = false; 
+                                        clicked_twice = false;
+                                    }, 7000);
+                                } else if(clicked_once && !clicked_twice) {
+
+                                    item.style.color = "var(--theme-colour-4)"; 
+                                    //item.style.fontSize = "1.5rem";
+                                    item.style.fontSize = "140%";
+                                    clicked_twice = true;
+                                } else {
+
+                                    item.style.color = "var(--theme-colour-1)"; 
+                                    //item.style.fontSize = "1.3rem";
+                                    //item.style.fontWeight = "900";
+                                    item.style.fontSize = "120%";
+                                    clicked_once = true;
+                                } 
+                            }); 
+                        });
+                    };
+
+                    tagcloud_loader();
+
+                    window.addEventListener("resize", debounce(function() {
+
+                        tagcloud_resizer();
+                        if(document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
+                        tagcloud_loader();
+                    }, 800));
+                })
+                .catch(err => logger(err));
+            })();
             
             // Display star rating for each tool / technology based on skill level 
             UI.populate_skill_rating((new Skill_Rating));
@@ -473,60 +556,120 @@ const App = {
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function() {
                 
-                const validation_msgs = [UI.display_form_validation_msg];
-                
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to using document.querySelectorAll('.needs-validation')
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(UI.forms_need_validation)
-                .forEach(function(form, index) {
-                    
-                    form.addEventListener("submit", function(event) {
-                    
-                        event.preventDefault();
-                        console.log(UI.my_form.children);
+                const Country_API = new API("https://restcountries.eu/rest/v2/all");
 
-                        if(!form.checkValidity()) {
+                Country_API.fetch_api()
+                .then((data) => {
+
+                    let user_typed = false;
+
+                    //logger(data);
+                    data.forEach(datum => {
+                        
+                        const new_option = document.createElement("option");
+                        new_option.setAttribute("value", datum.name);
+                        new_option.setAttribute("data-flag", datum.flag);
+                        new_option.setAttribute("data-calling-codes", datum.callingCodes);
+                        new_option.innerHTML = new_option.value;
+                        UI.country_select.appendChild(new_option);
+                    });
+
+                    UI.phone.addEventListener("keyup", debounce(() => {
+
+                        user_typed = true;
+                    },500));
+
+                    UI.country_select.addEventListener("input", debounce(() => {
+
+                        const selected_options = document.querySelectorAll("option");
+                        selected_options.forEach(option => {
                             
-                            event.stopPropagation();
+                            if((option.value && option.selected) && option.value !== "") {
 
-                            return new Promise((resolve,reject)=>{
-                                
-                                form.classList.add('was-validated');
-                                resolve();
-                            })
-                            .then(()=>{
+                                const flag = option.getAttribute("data-flag");
+                                const calling_codes = option.getAttribute("data-calling-codes");
+                                const img = document.createElement("img");
+                                img.setAttribute("src", flag);
+                                img.setAttribute("alt", `Country flag for ${option.value}`);
+                                img.setAttribute("width", "40px");
+                                img.setAttribute("height", "auto"); 
 
-                                // Displays validation messages if failed to enter info correctly
-                                validation_msgs[index]();
-                            })
-                            .catch((err) => {
-                                
-                                console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
-                            });
-                        } else {
+                                if(!user_typed) UI.phone.value = `+${calling_codes}-`;
+                                if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
 
-                            const My_Form = new Formspree(UI.my_form);
-                            My_Form.method = UI.my_form.method;
-                            My_Form.url = UI.my_form.action;
-                            My_Form.data = new FormData(My_Form.form);
-                            My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
-                            My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
-
-                            const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
-                            const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
-                            ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
-
-                            // Google recaptcha data function (function name must be same as data-callback attribute value)
-                            function recaptchaCallback() {
-
-                                console.log("grecaptcha checked");
-                                form.classList.remove('was-validated');
+                                UI.country_select.labels[0].appendChild(img);
                             };
+                        });
+                    }, 500))
+                    formspree();
+                })
+                .catch(err => console.log("Error: ", err));
 
-                            recaptchaCallback();
-                        };
-                    }, false);
-                });
+                function formspree() {
+
+                    // Formspree 
+                    const validation_msgs = [
+                        (function() {
+                            return UI.display_form_validation_msg();
+                        })
+                    ];
+                    
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to using document.querySelectorAll('.needs-validation')
+                    // Loop over them and prevent submission
+                    Array.prototype.slice.call(UI.forms_need_validation)
+                    .forEach(function(form, index) {
+                        
+                        form.addEventListener("submit", function(event) {
+                        
+                            event.preventDefault();
+                            //console.log(UI.my_form.children);
+
+                            if(!form.checkValidity()) {
+                                
+                                event.stopPropagation();
+
+                                return new Promise((resolve,reject)=>{
+                                    
+                                    form.classList.add('was-validated');
+                                    resolve();
+                                })
+                                .then(() => {
+
+                                    // Displays validation messages if failed to enter info correctly
+                                    //UI.display_form_validation_msg();
+                                    validation_msgs[index]();
+                                })
+                                .catch((err) => {
+                                    
+                                    console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
+                                });
+                            } else {
+
+                                const My_Form = new Formspree(UI.my_form);
+                                My_Form.method = UI.my_form.method;
+                                My_Form.url = UI.my_form.action;
+                                My_Form.data = new FormData(My_Form.form);
+                                My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
+                                My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
+
+                                const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
+                                const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
+                                ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
+
+                                // Google recaptcha data function (function name must be same as data-callback attribute value)
+                                function recaptchaCallback() {
+
+                                    console.log("grecaptcha checked");
+                                    form.classList.remove('was-validated');
+                                };
+
+                                recaptchaCallback();
+                            };
+                        }, false);
+                    });
+                };
+
+                formspree();
             })();
 
         }); // end of DOMContentLoaded event listener

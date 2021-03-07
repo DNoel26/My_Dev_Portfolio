@@ -24,6 +24,44 @@ Extra large devices (large desktops, 1200px and up)
     .welcome-section {
         padding-top: 2rem !important;
     }
+
+    .my-carousel-wrapper ul {
+        width: 980px;
+    }
+
+    .my-carousel-item .card-body {
+        width: 300px;
+    }
+
+    .my-carousel-wrapper .my-carousel-item,
+    .my-carousel-item .card-body {
+        padding: 0;
+    }
+
+    .my-carousel-item .card-body p {
+        padding: 0 0.75rem;
+    }
+
+    /*.my-carousel-item.card {
+        margin-left: 6.5px;
+        margin-right: 6.5px;
+    }   */
+
+    .my-carousel-btn-next,
+    .my-carousel-btn-prev {
+        width: 25px !important;
+        height: 25px !important;
+        padding: 0;
+        position: absolute;
+    }
+
+    .my-carousel-btn-next {
+        right: 0;
+    }
+
+    .my-carousel-btn-prev {
+        left: 0;
+    }
 }
 
 /* Large devices (desktops, less than 1200px) */
@@ -37,7 +75,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .my-carousel-item .card-body {
-        width: 275px;
+        width: 331px;
     }
 
     .my-carousel-wrapper .my-carousel-item,
@@ -49,10 +87,18 @@ Extra large devices (large desktops, 1200px and up)
         padding: 0 0.75rem;
     }
 
-    .my-carousel-item.card {
+    /*.my-carousel-item.card {
         margin-left: 6.5px;
         margin-right: 6.5px;
-    }   
+    }   */
+
+    .my-carousel-btn-next {
+        right: 0;
+    }
+
+    .my-carousel-btn-prev {
+        left: 0;
+    }
 
     .carousel-indicators {
         bottom: 0;
@@ -111,8 +157,8 @@ Extra large devices (large desktops, 1200px and up)
     .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
     .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
         display: block;
-        max-height: unset;
-        flex-wrap: unset;
+        max-height: unset !important;
+        flex-wrap: unset !important;
         overflow-y: auto;
         overflow-x: hidden;
         padding: 10px;
@@ -120,7 +166,6 @@ Extra large devices (large desktops, 1200px and up)
         /*background: linear-gradient(rgba(31,111,139,1), rgba(31,111,139,1)), url('') no-repeat fixed 100% 100%;*/
         background: var(--theme-colour-3);
         overscroll-behavior: contain;
-        
     }
 
     .nav-container .bot-header-nav .navbar-nav-scroll .nav-item .nav-link {
@@ -140,7 +185,7 @@ Extra large devices (large desktops, 1200px and up)
     .bot-header-nav .navbar-collapse.show .navbar-nav-scroll::-webkit-scrollbar-thumb {
         background: var(--theme-colour-4) !important; 
         border-radius: 12px;
-        height: 20px;
+        height: auto;
     } 
 
     .bot-header-nav .navbar-collapse.collapsing .nav-item .btn-info,
@@ -214,11 +259,11 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .my-carousel-wrapper ul {
-        width: 580px;
+        width: 656px;
     }
 
     .my-carousel-item .card-body {
-        width: 275px;
+        width: 300px;
     }
 
     .my-carousel-wrapper .my-carousel-item,
@@ -228,12 +273,15 @@ Extra large devices (large desktops, 1200px and up)
 
     .my-carousel-item .card-body p {
         padding: 0 0.75rem;
+    } 
+
+    .my-carousel-btn-next {
+        right: 0;
     }
 
-    .my-carousel-item.card {
-        margin-left: 6.5px;
-        margin-right: 6.5px;
-    }   
+    .my-carousel-btn-prev {
+        left: 0;
+    }
 
     .about-section,
     .projects-section {
@@ -274,6 +322,10 @@ Extra large devices (large desktops, 1200px and up)
         top: unset;
         bottom: -15px !important;
     }    
+
+    .tagcloud {
+        font-size: 1rem;
+    }
 }
 
 /* Small devices (landscape phones, less than 768px) */
@@ -365,14 +417,10 @@ Extra large devices (large desktops, 1200px and up)
 
     .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
     .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
-        display: block;
-        width: 100% !important;
-        max-height: unset !important;
-        height: calc(90vh - 72px) !important;
-        flex-wrap: unset;
-        overscroll-behavior: contain;
-        position: relative;
-        z-index: 1;
+        max-width: unset !important;
+        max-height: 60vh !important;
+        width: 100%;
+        height: max-content !important;
     }   
 
     .bot-header-nav .dropdown-menu {
@@ -406,6 +454,10 @@ Extra large devices (large desktops, 1200px and up)
         padding-top: 5rem !important;
     }
 
+    .welcome-section h1 {
+        font-size: 1.6rem;
+    }
+
     .my-carousel-wrapper ul {
         width: 296px;
     }
@@ -414,19 +466,8 @@ Extra large devices (large desktops, 1200px and up)
         width: 268px;
     }
 
-    .my-carousel-btn-next,
-    .my-carousel-btn-prev {
-        width: 25px !important;
-        padding: 0;
-        position: absolute;
-    }
-
-    .my-carousel-btn-next {
-        right: 6px;
-    }
-
-    .my-carousel-btn-prev {
-        left: 6px;
+    .tagcloud {
+        font-size: 0.8rem;
     }
 }
 
@@ -439,6 +480,14 @@ Extra large devices (large desktops, 1200px and up)
 }
 
 @media (max-width: 320.98px) {  
+    section, 
+    .container {
+        padding-left: 1%;
+        padding-right: 1%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .my-carousel-wrapper ul {
         width: 280px;
     }
@@ -449,16 +498,30 @@ Extra large devices (large desktops, 1200px and up)
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
-    .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
+    .nav-container .bot-header-nav .navbar-collapse {
         position: fixed;
-        z-index: 1030;
+        z-index: 2;
         top: 0;
         left: 0;
+        right: unset;
+        bottom: unset;
+        height: 100vh !important;
         width: 0;
-        height: 100vh;
-        transition: width 0.1s ease-in-out;
         box-shadow: rgba(0, 0, 0, 0.75) 0px 0.5rem 1rem !important;
+        background: var(--theme-colour-3);
+        transition: width 0.3s ease-in-out !important;
+    }
+
+    #bot-header-nav > ul > li.nav-item.mx-1.dropdown.anim-link-1 {
+        width: 100%;
+    }
+
+    #bot-header-nav .side-menu-reveal {
+        width: 40vw !important;
+    }
+
+    #bot-header-nav .side-menu-hide {
+        width: 0 !important;
     }
 }
 

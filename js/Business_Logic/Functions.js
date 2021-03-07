@@ -105,36 +105,28 @@ export function ajax(method, url, data, success, error) {
         if (xhr.status === 200) {
 
             success();
-            logger(xhr.response, xhr.responseType);
+            //logger(xhr.response, xhr.responseType);
         } else {
             
             error();
-            logger(xhr.status, xhr.response, xhr.responseType);
+            //logger(xhr.status, xhr.response, xhr.responseType);
         }
     };
 
     xhr.send(data);
 }
 
-// Watch for screen size changes 
-export function media_queries(mq, func) {
+// Include for screen size changes 
+export function media_queries(mq, func_true, func_false) {
 
     if (mq.matches) { // If media query matches
 
-        return func();
+        return func_true();
     } else {
-
-        return;
+        
+        return (func_false ? func_false() : null);
     };
 };
-
-/* const mq = window.matchMedia("(max-width: 540px)");
-            on_resize(mq);  Call listener function at run time
-
-            window.addEventListener("resize", ()=>{
-
-                console.log("media query", window.matchMedia("(min-width: 0)"))
-            }); */
 
 export function scroll_progress(indicator) {
 
