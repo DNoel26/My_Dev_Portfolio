@@ -6,6 +6,7 @@ const UI = {
     /*** GENERAL ***/
 
     body: document.body,
+    all_imgs: document.querySelectorAll("img"),
 
     /*** HEADER ***/
 

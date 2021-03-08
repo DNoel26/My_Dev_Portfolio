@@ -8,12 +8,13 @@
     <link rel="preload" href="https://kit.fontawesome.com/3ad7481254.js" as="script" crossorigin="anonymous">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" as="script" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" as="style" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="preload" href="/css/style.css" as="style">
-    <link rel="preload" href="/css/mq.css" as="style">
-    <link rel="preload" href="/js/UI_Logic/UI.js" as="script">
-    <link rel="preload" href="/js/Business_Logic/Functions.js" as="script">
-    <link rel="preload" href="/js/Business_Logic/Project.js" as="script">
-    <link rel="preload" href="/js/Business_Logic/SkillRating.js" as="script">
+    <!--<link rel="preload" href="/css/style.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="/css/mq.css" as="style" crossorigin="anonymous">-->
+    <link rel="preload" href="/js/UI_Logic/UI.js" as="script" crossorigin="anonymous">
+    <link rel="preload" href="/js/Business_Logic/Functions.js" as="script" crossorigin="anonymous">
+    <link rel="preload" href="/js/Business_Logic/Project.js" as="script" crossorigin="anonymous">
+    <link rel="preload" href="/js/Business_Logic/SkillRating.js" as="script" crossorigin="anonymous">
+    <link rel="preload" href="/js/Business_Logic/API.js" as="script" crossorigin="anonymous">
     <!-- Include the styles definition for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
     <link rel="stylesheet" href="/css/style.css">
@@ -30,7 +31,7 @@
                     <!--Logo-->
                     <div class="logo m-auto d-flex justify-content-center">
                         <a href="/" class="navbar-brand logo-link">
-                            <img src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto">
+                            <img loading="lazy" src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto" width="768" height="248">
                         </a>  
                     </div>
                 </nav> 
@@ -75,7 +76,7 @@
                                     </li>
         
                                     <li>
-                                        <a href="tel:+1-868-480-8781" class="dropdown-item nav-link px-3 flex-fill">Give me a Call</a>
+                                        <a href="tel:+1-868-480-8781" class="dropdown-item nav-link px-3 flex-fill" rel="noopener">Give me a Call</a>
                                     </li>
                                 </ul>
                             </li>
@@ -107,11 +108,11 @@
 
     <main>
         <!-- Modal -->
-        <div class="modal fade" id="resume" tabindex="-1" aria-labelledby="resume_label" aria-hidden="true">
+        <div class="modal fade" id="resume" tabindex="-1" aria-labelledby="resume-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="resume_label">My Resume</h5>
+                        <h2 class="modal-title h5" id="resume-label">My Resume</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -129,8 +130,8 @@
 
         <!--Fixes sticky header resize bug-->
         <div  class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
-            <h2 class="fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></h2>
-            <h2 class="pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></h2>
+            <p class="h2 fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></p>
+            <p class="h2 pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></p>
             <a href="#services" class="fs-5 align-self-start text-white text-decoration-none cta">View Services Now</a>
         </div>
         
@@ -150,16 +151,16 @@
                         <div>
                             <!--<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
                             <lottie-player class="mx-auto px-4" src="https://assets5.lottiefiles.com/packages/lf20_fft5vg8j.json" background="transparent" style="width: 100px; height: 100px;" speed="1" loop autoplay></lottie-player>-->
-                            <h2 class="text-center">Welcome officially to my</h2>
+                            <p class="text-center h2">Welcome officially to my</p>
                             <h1 class="text-center">
                                 <strong class="ml13 text-custom-1">Developer Portfolio</strong>
                             </h1>
-                            <h3 class="small text-center">- Designed and built from scratch using -</h3>
+                            <p class="small text-center h3">- Designed and built from scratch using -</p>
                             <div class="d-flex-custom-2 pt-2 icon-row-sm">
-                                <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge">
-                                <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge">
-                                <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge">
-                                <img class="img-fluid icon-disp-img" id="icon-bootstrap" src="/img/800px-Bootstrap_logo.svg.png" alt="Bootstrap Icon Badge">
+                                <img loading="lazy" class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" width="39" height="20">
+                                <img loading="lazy" class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" width="39" height="20">
+                                <img loading="lazy" class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" width="39" height="20">
+                                <img loading="lazy" class="img-fluid icon-disp-img" id="icon-bootstrap" src="/img/800px-Bootstrap_logo.svg.png" alt="Bootstrap Icon Badge" width="39" height="20">
                             </div>
                         </div>
 
@@ -170,9 +171,10 @@
 
                     <div id="profile" class="col-lg-6 col-auto card shadow container-box text-nowrap">
                         <!--<img src="/img/profile_pic.jpg" alt="Darnell Noel's profile pic" class="prof-pic svg-clip">-->
-                        <svg viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto">
+                        <svg viewBox="0 0 400 200" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="profile-svg d-block mx-auto" role="img" aria-label="A professional forward facing photo of me, Darnell Noel">
                             <defs>
                                 <pattern id="img-pattern" x="-0.15" y="-0.05" width="1.15" height="1.15">
+                                    <title>A professional forward facing photo of me, Darnell Noel</title>
                                     <image href="/img/profile_pic_1f6f8b_blue_bg.png"/>
                                 </pattern>
                             </defs>
@@ -193,19 +195,19 @@
                                 </p>-->
 
                                 <a class="icon-disp-link grow-link-1" rel=”noopener” target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/">
-                                    <img class="card-link img-fluid icon-disp-img" src="/img/LI-Logo.png" alt="Clickable LinkedIn logo link">
+                                    <img loading="lazy" class="card-link img-fluid icon-disp-img" src="/img/LI-Logo.png" alt="Clickable LinkedIn logo link" width="79" height="20">
                                 </a>
     
                                 <a class="icon-disp-link grow-link-1" rel=”noopener” target="_blank" href="https://github.com/DNoel26">
-                                    <img class="card-link img-fluid icon-disp-img" src="/img/GitHub_Logo.png" alt="Clickable GitHub logo link">
+                                    <img loading="lazy" class="card-link img-fluid icon-disp-img" src="/img/GitHub_Logo.png" alt="Clickable GitHub logo link" width="47" height="20">
                                 </a>
     
                                 <a class="icon-disp-link grow-link-1" rel=”noopener” target="_blank" href="https://www.facebook.com/darnell.noeldev/">
-                                    <img class="card-link img-fluid icon-disp-img" src="/img/f_logo_RGB-Blue_512.png" alt="Clickable Facebook logo link">
+                                    <img loading="lazy" class="card-link img-fluid icon-disp-img" src="/img/f_logo_RGB-Blue_512.png" alt="Clickable Facebook logo link" width="26" height="27">
                                 </a>
 
                                 <a class="icon-disp-link grow-link-1" rel=”noopener” target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio">
-                                    <img class="card-link img-fluid icon-disp-img-whatsapp" src="/img/WhatsApp_Logo_1.png" alt="Clickable WhatsApp logo link">
+                                    <img loading="lazy" class="card-link img-fluid icon-disp-img-whatsapp" src="/img/WhatsApp_Logo_1.png" alt="Clickable WhatsApp logo link" width="24" height="24">
                                 </a>
                             </nav>
     
@@ -252,7 +254,7 @@
                 <div class="summary-wrapper">
                     <div class="summary-container">    
                         <p>
-                            Born and raised in <a target="_blank" class="text-reset text-decoration-none anim-link-3" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
+                            Born and raised in <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.google.com/maps/d/embed?mid=10Js43wmQJBCZo31aM34hZ1Srlgw">Trinidad & Tobago</a>, 
                             I believe that learning is a life-long process and thus started my venture into programming and web development. Having dedicated several <strong>thousands</strong> of hours
                             into learning this craft and building challenging projects... I must say that I really enjoy it! 
                             With a little over one (1) year experience, I can build from simple websites to more complex web applications end to end, from scratch. 
@@ -317,18 +319,18 @@
                     <h2 class="h2-divider text-center mb-5 pt-5 text-custom-1">Services I Can Offer You</h2>
                     
                     <div class="row d-flex-custom-1 justify-content-center my-carousel-wrapper pb-5">
-                        <button class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-prev btn w-auto">
+                        <button class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-prev btn w-auto" aria-controls="my-carousel-content" aria-label="carousel previous selection">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                                 <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
                             </svg>
                         </button>
     
-                        <ul class="col-10 justify-content-even align-self-center text-center list-unstyled my-carousel-content">
+                        <ul class="col-10 justify-content-even align-self-center text-center list-unstyled my-carousel-content" id="my-carousel-content">
                             <li class="my-carousel-item card shadow">
                                 <!--<strong class="position-absolute top-0 end-0 p-3 small text-custom-1">1 / 10</strong>-->
                                 <div class="card-body">
-                                    <img src="/svg/046-www.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Web Development</h4>
+                                    <img loading="lazy" src="/svg/046-www.svg" alt="Web Development svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Web Development</h3>
                                     <p>
                                         Not a graphic designer or artist, but can build you a good-looking website to effectively promote your business online!
                                         Let me know what themes you like and if in need of advanced or custom graphics, we can still discuss a way forward.
@@ -338,8 +340,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/047-responsive-1.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Responsive Design</h4>
+                                    <img loading="lazy" src="/svg/047-responsive-1.svg" alt="Responsive design svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Responsive Design</h3>
                                     <p>
                                         Websites are guaranteed to be mobile-friendly and scale well to users on all devices, large or small! 
                                         This also helps improve your ranking in search engines, making your website easier to find. 
@@ -349,8 +351,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/040-concept.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>App Development</h4>
+                                    <img loading="lazy" src="/svg/040-concept.svg" alt="App Development svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">App Development</h3>
                                     <p>
                                         Need an app to start or scale your business? Interested in your own Software as a Service (SaaS)?
                                         My team and I would love to help you out.
@@ -360,8 +362,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/023-target-1.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Fully Remote Work</h4>
+                                    <img loading="lazy" src="/svg/023-target-1.svg" alt="Fully Remote Work svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Fully Remote Work</h3>
                                     <p>
                                         No matter where you are located, I will work with you professionally to get the job done! 
                                         Feel free to contact me for more details at your convenience.
@@ -371,8 +373,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/043-technical-support.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Web Maintenance</h4>
+                                    <img loading="lazy" src="/svg/043-technical-support.svg" alt="Web Maintenance svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Web Maintenance</h3>
                                     <p>
                                         Websites will be coded for readability and ease of maintenance!
                                         Maintenance includes checking for issues or mistakes, and updating your website to ensure that it remains relevant.
@@ -382,8 +384,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/005-seo.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>SEO</h4>
+                                    <img loading="lazy" src="/svg/005-seo.svg" alt="SEO svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">SEO</h3>
                                     <p>
                                         Search Engine Optimization increases your website visibility on search engines like Google!
                                         This helps with directing more traffic to you, resulting in more opportunities to convert prospects into your customers.
@@ -393,8 +395,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/013-web-optimization.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Web Performance</h4>
+                                    <img loading="lazy" src="/svg/013-web-optimization.svg" alt="Web Performance svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Web Performance</h>
                                     <p>
                                         Speed matters! Fast sites have been shown to increase visitor retention and user satisfaction. 
                                         Research done by Google has shown that the chance of losing a visitor increases by over 30% when load time increases from just 1 second to 3.
@@ -404,8 +406,8 @@
     
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
-                                    <img src="/svg/007-target.svg" alt="" class="img-fluid icon-disp-img-lg my-3">
-                                    <h4>Web Accessibility</h4>
+                                    <img loading="lazy" src="/svg/007-target.svg" alt="Web Accessibility svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
+                                    <h3 class="h4">Web Accessibility</h3>
                                     <p>
                                         Websites will be designed to be user friendly for people with disabilities! 
                                         This includes those who use assistive technologies such as screen readers and those that navigate without a mouse.
@@ -413,10 +415,10 @@
                                 </div>
                             </li>
     
-                            <div class="ps-filler"></div>
+                            <li class="ps-filler"></li>
                         </ul>
     
-                        <button class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-next btn w-auto">
+                        <button class="col-1 d-flex justify-content-center align-self-center text-custom-2 my-carousel-btn-next btn w-auto" aria-controls="my-carousel-content" aria-label="carousel next selection">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                 <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                             </svg>
@@ -436,8 +438,8 @@
                     <div class="pt-5">
                         <h3 class="text-center small">- My Google audit results -</h3>
 
-                        <a href="/html/mygoogleaudit.html" class="d-block mx-auto w-50">
-                            <img src="/Capture.PNG" alt="" class="img-fluid">
+                        <a href="/html/mygoogleaudit.html" class="d-block mx-auto w-50" rel="noopener" title="View my Lighthouse Audit result webpage" aria-label="View my Lighthouse Audit result webpage">
+                            <img loading="lazy" src="/Capture.PNG" alt="Results for my site Lighthouse Google Audit" class="img-fluid" width="648" height="201">
                         </a>
                     </div>
                 </div>
@@ -464,7 +466,7 @@
 
                     <div class="row justify-content-evenly px-5 px-md-0">
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/HTML5_Badge_256.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block" height="64px" width="64px">
+                            <img loading="lazy" src="/img/HTML5_Badge_256.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">HTML5</small>
                             <div class="skill-rating skill-rating-expert">
                                 <!--<img src="/svg/star-fill.svg" alt="Filled star Icon">
@@ -476,91 +478,91 @@
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/CSS3_Badge.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/CSS3_Badge.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">CSS3</small>
                             <div class="skill-rating skill-rating-expert"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/JavaScript-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/JavaScript-logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">JavaScript</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/800px-Bootstrap_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/800px-Bootstrap_logo.svg.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Bootstrap</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/handlebars_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo">
+                            <img loading="lazy" src="/img/handlebars_logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block handlebars-logo" width="64" height="64">
                             <small class="d-block mt-2">Handlebars</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/React_logo_transparent.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/React_logo_transparent.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">React</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/mysql-hd-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/mysql-hd-logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">MySQL</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/logo-standard.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/img/logo-standard.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">Firebase</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/MongoDB_Logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/svg/MongoDB_Logo.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">MongoDB</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/mongoose_logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-1">
+                            <img loading="lazy" src="/img/mongoose_logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-1" width="64" height="64">
                             <small class="d-block mt-2">Mongoose</small>
                             <div class="skill-rating skill-rating-beginner"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/500px-Node.js_logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/500px-Node.js_logo.svg.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Node.js</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/expressjs-ar21.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/svg/expressjs-ar21.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Express.js</small>
                             <div class="skill-rating skill-rating-advanced"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/postman-logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/postman-logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Postman</small>
                             <div class="skill-rating skill-rating-novice"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/GitHub_Logo.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/img/GitHub_Logo.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">GitHub</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/Netlify_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo p-2">
+                            <img loading="lazy" src="/svg/Netlify_logo.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block netlify-logo p-2" width="64" height="64">
                             <small class="d-block mt-2">Netlify</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/heroku-logotype-vertical-purple.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/heroku-logotype-vertical-purple.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Heroku</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -570,13 +572,13 @@
 
                     <div class="row justify-content-evenly">
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/AutoCAD-Logo-768x432.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/img/AutoCAD-Logo-768x432.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">AutoCAD</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/SolidWorks_Logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/img/SolidWorks_Logo.svg.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">SolidWorks</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
@@ -586,25 +588,25 @@
 
                     <div class="row justify-content-evenly">
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/Nextjs-logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/svg/Nextjs-logo.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">Next.js</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/Typescript_logo_2020.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block">
+                            <img loading="lazy" src="/svg/Typescript_logo_2020.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">TypeScript</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/svg/WordPress_logo.svg" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/svg/WordPress_logo.svg" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">WordPress</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
 
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
-                            <img src="/img/1067px-PHP-logo.svg.png" alt="" class="img-fluid icon-disp-img mx-auto d-inline-block p-2">
+                            <img loading="lazy" src="/img/1067px-PHP-logo.svg.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block p-2" width="64" height="64">
                             <small class="d-block mt-2">PHP 8</small>
                             <div class="skill-rating skill-rating-intermediate invisible"></div>
                         </div>
@@ -624,27 +626,27 @@
 
                     <div class="mt-3 mb-5 dev-project-gallery" id="dev-project-gallery">
                         <button class="btn mt-3" data-dev-project="Alien Mathvasion Game">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/math_game_min.jpg" alt="Thumbnail image for button which shows Alien Mathvasion Game personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/math_game_min.jpg" alt="Thumbnail image for button which shows Alien Mathvasion Game personal project details when clicked" width="414" height="206">
                         </button>
 
                         <button class="btn" data-dev-project="Wix Site Clone">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/wix.png" alt="Thumbnail image for button which shows Wix Site Clone personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/wix.png" alt="Thumbnail image for button which shows Wix Site Clone personal project details when clicked" width="414" height="206">
                         </button>
 
                         <button class="btn" data-dev-project="Cyberdise Online Store">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/cyberdise.png" alt="Thumbnail image for button which shows Cyberdise Online Store personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/cyberdise.png" alt="Thumbnail image for button which shows Cyberdise Online Store personal project details when clicked" width="414" height="206">
                         </button>
 
                         <button class="btn" data-dev-project="Movie Database">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/movie_db.png" alt="Thumbnail image for button which shows Movie Database personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/movie_db.png" alt="Thumbnail image for button which shows Movie Database personal project details when clicked" width="414" height="206">
                         </button> 
 
                         <button class="btn mt-3" data-dev-project="Amazon Clone">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/amazon_clone.png" alt="Thumbnail image for button which shows Amazon Clone personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/amazon_clone.png" alt="Thumbnail image for button which shows Amazon Clone personal project details when clicked" width="414" height="206">
                         </button>
 
                         <button class="btn" data-dev-project="Real Estate Site">
-                            <img class="img-fluid rounded shadow" src="/img/Projects/praa.png" alt="Thumbnail image for button which shows Real Estate Site personal project details when clicked">
+                            <img loading="lazy" class="img-fluid rounded shadow" src="/img/Projects/praa.png" alt="Thumbnail image for button which shows Real Estate Site personal project details when clicked" width="414" height="206">
                         </button>
                     </div> 
 
@@ -660,15 +662,15 @@
     
                                     <div class="carousel-inner">
                                         <div class="carousel-item active" data-bs-interval="5000">
-                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_min.jpg" alt="">
+                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/Projects/math_game_min.jpg" alt="My project carousel image" width="625" height="500">
                                         </div>
     
                                         <div class="carousel-item" data-bs-interval="5000">
-                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_2.png" alt="">
+                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/Projects/math_game_2.png" alt="My project carousel image" width="625" height="500">
                                         </div>
     
                                         <div class="carousel-item" data-bs-interval="5000">
-                                            <img class="d-block w-100 p-3" src="/img/Projects/math_game_3.png" alt="">
+                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/Projects/math_game_3.png" alt="My project carousel image" width="625" height="500">
                                         </div>
                                     </div>
     
@@ -697,22 +699,22 @@
                                         <br><strong>Status: Work In Progress <span class="status-in-progress status-circle"></span></strong>
                                     </p>
                                     
-                                    <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
-                                    <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
+                                    <a href="https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2">Play</strong> Now (expect audio)</a>
+                                    <br><a href="https://github.com/DNoel26/Alien_Mathvasion" class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1">Review</strong> Code (GitHub - readme available)</a>
     
                                     <h4 class="small text-left mt-3">Notes:</h4>
                                     <ul class="text-wrap">
                                         <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
                                         <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
-                                        <li class="text-red">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
+                                        <li class="fw-bold">Use Google Chrome on a desktop or laptop for the best experience. Not yet fully responsive on tablets and mobile devices!</li>
                                     </ul>  
     
                                     <h3 class="small mt-3">- Built Using -</h3>
     
                                     <div class="icon-row-sm mb-3">
-                                        <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge">
-                                        <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge">
-                                        <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" width="39" height="20">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" width="39" height="20">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" width="39" height="20">
                                     </div>
                                 </div>  
                             </div>
@@ -750,7 +752,7 @@
                             <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
                         </svg>  
                         <div class="my-quote group right">
-                            <img src="/img/profile_pic_2.jpg">
+                            <img loading="lazy" src="/img/profile_pic_2.jpg" alt="A side profile pic of me, Darnell Noel" width="120" height="120">
                             <div class="my-quote-container">
                                 <div>
                                     <blockquote>
@@ -783,14 +785,14 @@
                                         <strong class="text-custom-1">Click</strong> here for social media
                                     </a>
     
-                                    <a class="text-reset text-decoration-none anim-link-2" href="tel:+1-868-480-8781">
+                                    <a class="text-reset text-decoration-none anim-link-2" href="tel:+1-868-480-8781" rel="noopener">
                                         or <strong class="text-custom-1">Call</strong> me directly
                                     </a> -
                                 </small>
                             </div>
     
                             <div class="form-floating mb-3">    
-                                <input class="form-control" type="text" id="first-name" name="first_name" placeholder="John" required>   
+                                <input class="form-control" type="text" id="first-name" name="first_name" placeholder="John" required aria-required="true">   
                                 <label class="required form-label" for="first-name"><sup><i class="fas fa-user-alt"></i></sup> First Name</label>
     
                                 <div class="valid-feedback valid-feedback-fname mx-3">
@@ -803,7 +805,7 @@
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input required class="form-control" type="text" id="last-name" name="last_name" placeholder="Doe">
+                                <input class="form-control" type="text" id="last-name" name="last_name" placeholder="Doe" required aria-required="true">
                                 <label class="required form-label" for="last-name"><sup><i class="fas fa-user-alt"></i></sup> Last Name</label>
                                 
                                 <div class="valid-feedback valid-feedback-lname mx-3">
@@ -816,7 +818,7 @@
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input required class="form-control" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help">
+                                <input class="form-control" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help" required aria-required="true">
                                 <label class="required form-label" for="email"><sup><i class="fas fa-envelope"></i></sup> Email</label>
                                 <div id="email-help" class="form-text mx-3">I won't share your details with anyone else...I promise</div>
     
@@ -830,7 +832,7 @@
                             </div>
 
                             <div class="form-floating mb-3">                        
-                                <select required class="form-select" name="country" id="country" aria-describedby="country-help">
+                                <select class="form-select" name="country" id="country" aria-describedby="country-help" required aria-required="true">
                                     <option selected value="">Select your country</option>
                                     <!--<option value=""></option>
                                     <option value="">2</option>-->
@@ -848,25 +850,25 @@
                             </div>
     
                             <div class="form-floating mb-3">                                                    
-                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help">
+                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help" aria-required="false">
                                 <label class="form-label" for="phone"><sup><i class="fas fa-phone-alt"></i></sup> Phone Number</label>
                                 <div id="phone-help" class="form-text mx-3">Optional field</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help"> 
+                                <input class="form-control" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help" aria-required="false"> 
                                 <label class="form-label" for="company"><sup><i class="far fa-registered"></i></sup> Company</label>
                                 <div id="company-help" class="form-text mx-3">Optional field</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help">
+                                <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help" aria-required="false">
                                 <label class="form-label" for="website"><sup><i class="fas fa-globe"></i></sup> Website</label> 
                                 <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available (copy and paste for best results)</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <textarea minlength="30" required pattern="[\w,./_=?-]+" class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help"></textarea>
+                                <textarea minlength="30" pattern="[\w,./_=?-]+" class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help" required aria-required="true"></textarea>
                                 <label class="required form-label" for="message-body"><sup><i class="fas fa-grin-beam"></i></sup> How can I be of assistance?</label>
                                 <div id="message-help" class="form-text mx-3">Your message must contain at least 30 characters</div>
     
@@ -900,37 +902,37 @@
             </div>
 
             <div>
-                <a href="https://github.com/DNoel26/My_Dev_Portfolio" class="fs-5 text-reset text-decoration-none text-white anim-link-2" target="_blank"><strong class="text-white">Review</strong> Code for this site</a>
+                <a href="https://github.com/DNoel26/My_Dev_Portfolio" class="fs-5 text-reset text-decoration-none text-white anim-link-2" target="_blank" rel="noopener"><strong class="text-white">Review</strong> Code for this site</a>
             </div>
 
             <nav class="navbar navbar-expand text-white justify-content-center">
                 <ul class="navbar-nav nav">
                     <li class="nav-item">
-                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/" title="View my LinkedIn Profile" aria-label="View my LinkedIn Profile">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.linkedin.com/in/darnellnoel1990/" rel="noopener" title="View my LinkedIn Profile" aria-label="View my LinkedIn Profile">
                             <i class="fab fa-linkedin text-white fs-4 px-1"></i>
                         </a>  
                     </li>
                     
                     <li class="nav-item">
-                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://github.com/DNoel26" title="View my GitHub Repositories" aria-label="View my GitHub Repositories">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://github.com/DNoel26" rel="noopener" title="View my GitHub Repositories" aria-label="View my GitHub Repositories">
                             <i class="fab fa-github text-white fs-4 px-1"></i>
                         </a>  
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.facebook.com/darnell.noeldev/" title="View my Facebook Profile" aria-label="View my Facebook Profile">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://www.facebook.com/darnell.noeldev/" rel="noopener" title="View my Facebook Profile" aria-label="View my Facebook Profile">
                             <i class="fab fa-facebook text-white fs-4 px-1"></i>
                         </a>    
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio" title="Contact me via WhatsApp Business" aria-label="Contact me via WhatsApp Business">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="https://wa.me/18684808781?text=Hi,%20I%20just%20checked%20out%20your%20portfolio" rel="noopener" title="Contact me via WhatsApp Business" aria-label="Contact me via WhatsApp Business">
                             <i class="fab fa-whatsapp text-white fs-4 px-1"></i>
                         </a>  
                     </li>
 
                     <li class="nav-item">
-                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="tel:+1-868-480-8781" title="Call my Business Number" aria-label="Call my Business Number">
+                        <a class="text-reset text-decoration-none nav-link grow-link-1" target="_blank" href="tel:+1-868-480-8781" rel="noopener" title="Call my Business Number" aria-label="Call my Business Number">
                             <i class="fas fa-mobile-alt text-white fs-4 px-1"></i>
                         </a>  
                     </li>
@@ -943,13 +945,13 @@
                 </ul>
             </nav>
 
-            <a href="https://www.theweekendhack.com/" class="twh d-block m-auto p-3 text-decoration-none" target="_blank"> 
+            <a href="https://www.theweekendhack.com/" class="twh d-block m-auto p-3 text-decoration-none" target="_blank" rel="noopener"> 
                 Interested in learning <span class="text-custom-2 fw-bold">Programming</span> and <span class="text-custom-1 fw-bold">Web Development?</span> Check out  
-                <img class="p-1" src="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png" sizes="(max-width: 479px) 41vw, (max-width: 767px) 17vw, (max-width: 991px) 131.03125px, 169.1875px" srcset="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-500.png 500w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-800.png 800w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1080.png 1080w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1600.png 1600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2000.png 2000w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2600.png 2600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-3200.png 3200w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png 6787w" alt="The Weekend Hack Coding Bootcamp Logo" class="image-3">
+                <img loading="lazy" class="p-1 img-fluid" src="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png" width="178" height="47" sizes="(max-width: 479px) 41vw, (max-width: 767px) 17vw, (max-width: 991px) 131.03125px, 169.1875px" srcset="https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-500.png 500w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-800.png 800w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1080.png 1080w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-1600.png 1600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2000.png 2000w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-2600.png 2600w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo-p-3200.png 3200w, https://uploads-ssl.webflow.com/5e8cc60af9072a9b8d218c2e/5ecc6b4534031c98cb152f2a_logo.png 6787w" alt="The Weekend Hack Coding Bootcamp Logo" class="image-3">
             </a>
     
             <div class="fs-6">
-                <h6>Copyright &#169; 2021 <a href="/" class="text-reset text-decoration-none">Darnell Noel</a>. All rights reserved. This site requires JavaScript enabled.</h6>
+                <h2 class="h6">Copyright &#169; 2021 <a href="/" class="text-reset text-decoration-none">Darnell Noel</a>. All rights reserved. This site requires JavaScript enabled.</h2>
             </div>
         </div>
     </footer>

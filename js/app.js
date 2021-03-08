@@ -7,7 +7,7 @@ import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttl
     generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
-import Formspree from "./Business_Logic/Formspree.js";
+//import Formspree from "./Business_Logic/Formspree.js";
 import API from "./Business_Logic/API.js"
 
 const App = {
@@ -19,9 +19,19 @@ const App = {
             
             console.log("DOMContentLoaded Successfully");
 
+             // Google recaptcha data function (function name must be same as data-callback attribute value)
+             function recaptchaCallback(func) {
+                
+                func();
+            };
+
             /*** GENERAL ***/
 
             UI.body.classList.add("will-change-height");
+            /*UI.all_imgs.forEach(img => {
+                
+                img.setAttribute("loading", "lazy");
+            });*/
             
             // Delay load of non-essential scripts
             setTimeout(() => {
@@ -598,9 +608,12 @@ const App = {
                                 if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
 
                                 UI.country_select.labels[0].appendChild(img);
-                            };
+                            } else if(option.selected && !option.value) {
+
+                                if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
+                            }
                         });
-                    }, 500))
+                    }, 300))
                     formspree();
                 })
                 .catch(err => console.log("Error: ", err));
@@ -622,49 +635,50 @@ const App = {
                         form.addEventListener("submit", function(event) {
                         
                             event.preventDefault();
-                            //console.log(UI.my_form.children);
+                            import('./Business_Logic/Formspree.js')
+                            .then(module => module.default) // uses the default export
+                            .then((Formspree) => {
 
-                            if(!form.checkValidity()) {
+                                if(!form.checkValidity()) {
                                 
-                                event.stopPropagation();
-
-                                return new Promise((resolve,reject)=>{
+                                    event.stopPropagation();
+    
+                                    return new Promise((resolve,reject)=>{
+                                        
+                                        form.classList.add('was-validated');
+                                        resolve();
+                                    })
+                                    .then(() => {
+    
+                                        // Displays validation messages if failed to enter info correctly
+                                        //UI.display_form_validation_msg();
+                                        validation_msgs[index]();
+                                    })
+                                    .catch((err) => {
+                                        
+                                        console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
+                                    });
+                                } else {
+    
+                                    const My_Form = new Formspree(UI.my_form);
+                                    My_Form.method = UI.my_form.method;
+                                    My_Form.url = UI.my_form.action;
+                                    My_Form.data = new FormData(My_Form.form);
+                                    My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
+                                    My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
+    
+                                    const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
+                                    const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
+                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
                                     
-                                    form.classList.add('was-validated');
-                                    resolve();
-                                })
-                                .then(() => {
+                                    recaptchaCallback(() => {
 
-                                    // Displays validation messages if failed to enter info correctly
-                                    //UI.display_form_validation_msg();
-                                    validation_msgs[index]();
-                                })
-                                .catch((err) => {
-                                    
-                                    console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
-                                });
-                            } else {
-
-                                const My_Form = new Formspree(UI.my_form);
-                                My_Form.method = UI.my_form.method;
-                                My_Form.url = UI.my_form.action;
-                                My_Form.data = new FormData(My_Form.form);
-                                My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
-                                My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
-
-                                const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
-                                const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
-                                ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
-
-                                // Google recaptcha data function (function name must be same as data-callback attribute value)
-                                function recaptchaCallback() {
-
-                                    console.log("grecaptcha checked");
-                                    form.classList.remove('was-validated');
+                                        console.log("grecaptcha checked");
+                                        form.classList.remove('was-validated');
+                                    });
                                 };
-
-                                recaptchaCallback();
-                            };
+                            })
+                            .catch(err => console.log("Failed to import module: ", err))
                         }, false);
                     });
                 };
