@@ -469,6 +469,10 @@ Extra large devices (large desktops, 1200px and up)
     .tagcloud {
         font-size: 0.8rem;
     }
+
+    .tools-tech-section .icon-disp-img {
+        height: 2.8rem;
+    }
 }
 
 /* Other / Specific MQ */
@@ -494,6 +498,10 @@ Extra large devices (large desktops, 1200px and up)
 
     .my-carousel-item .card-body {
         width: 252px;
+    }
+
+    .tools-tech-section .icon-disp-img {
+        height: 2.2rem;
     }
 }
 
