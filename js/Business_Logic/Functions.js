@@ -4,7 +4,7 @@ export function logger(...data) {
     
     data.forEach((datum, index) => {
 
-        return console.log(`Logged Values[${index}]: `, datum);
+        return console.trace(`Logged Values[${index}]: `, datum);
     });
 };
 
@@ -78,7 +78,7 @@ export function throttle(func, timer) {
                     return initial = 0;
                 }, (timer));
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
         };
     };
 };
@@ -101,19 +101,20 @@ export function ajax(method, url, data, success, error) {
     xhr.open(method, url);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onreadystatechange = function() {
+
         if (xhr.readyState !== XMLHttpRequest.DONE) return;
         if (xhr.status === 200) {
 
+            logger(xhr.status, xhr.response, xhr.responseType);
             success();
-            //logger(xhr.response, xhr.responseType);
         } else {
             
+            logger(xhr.status, xhr.response, xhr.responseType);
             error();
-            //logger(xhr.status, xhr.response, xhr.responseType);
-        }
+        };
     };
 
-    xhr.send(data);
+    return xhr.send(data);
 }
 
 // Include for screen size changes 

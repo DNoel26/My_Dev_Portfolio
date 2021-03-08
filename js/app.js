@@ -22,7 +22,7 @@ const App = {
              // Google recaptcha data function (function name must be same as data-callback attribute value)
              function recaptchaCallback(func) {
                 
-                func();
+                return func();
             };
 
             /*** GENERAL ***/
@@ -37,12 +37,12 @@ const App = {
             setTimeout(() => {
                 
                 return UI.create_script("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
-            }, 1500);
+            }, 1000);
 
             setTimeout(() => {
                 
-                return UI.create_script("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
-            }, 5000);
+                return UI.create_script("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
+            }, 10000);
 
             const options = {
                 rootMargin: "10px",
@@ -91,9 +91,9 @@ const App = {
 
                 UI.toggler_btn.addEventListener("click", mq_side_menu_toggler);
                 window.addEventListener("resize", debounce(function() {
-
+                    
                     UI.no_side_menu()
-                }),1500);
+                }, 1500));
             }());
 
             if(document.documentElement.scrollTop > 2 || window.pageYOffset > 2) {
@@ -410,7 +410,7 @@ const App = {
                         tagcloud_loader();
                     }, 800)); 
                 })
-                .catch((err) => logger(err));
+                .catch((err) => console.error(err));
             })();
             
             // Display star rating for each tool / technology based on skill level 
@@ -433,7 +433,10 @@ const App = {
                         if(btn.dataset.devProject === "Wix Site Clone") {
 
                             current_project = Wix_Clone;
-                        };
+                        } else {
+
+                            return logger("PROJECT NOT LOADED YET");
+                        }
 
                         logger(current_project);
                         change_project();
@@ -573,59 +576,7 @@ const App = {
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function() {
                 
-                const Country_API = new API("https://restcountries.eu/rest/v2/all");
-
-                Country_API.fetch_api()
-                .then((data) => {
-
-                    let user_typed = false;
-
-                    //logger(data);
-                    data.forEach(datum => {
-                        
-                        const new_option = document.createElement("option");
-                        new_option.setAttribute("value", datum.name);
-                        new_option.setAttribute("data-flag", datum.flag);
-                        new_option.setAttribute("data-calling-codes", datum.callingCodes);
-                        new_option.innerHTML = new_option.value;
-                        UI.country_select.appendChild(new_option);
-                    });
-
-                    UI.phone.addEventListener("keyup", debounce(() => {
-
-                        user_typed = true;
-                    },500));
-
-                    UI.country_select.addEventListener("input", debounce(() => {
-
-                        const selected_options = document.querySelectorAll("option");
-                        selected_options.forEach(option => {
-                            
-                            if((option.value && option.selected) && option.value !== "") {
-
-                                const flag = option.getAttribute("data-flag");
-                                const calling_codes = option.getAttribute("data-calling-codes");
-                                const img = document.createElement("img");
-                                img.setAttribute("src", flag);
-                                img.setAttribute("alt", `Country flag for ${option.value}`);
-                                img.setAttribute("width", "40px");
-                                img.setAttribute("height", "auto"); 
-
-                                if(!user_typed) UI.phone.value = `+${calling_codes}-`;
-                                if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-
-                                UI.country_select.labels[0].appendChild(img);
-                            } else if(option.selected && !option.value) {
-
-                                if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-                            }
-                        });
-                    }, 300))
-                    formspree();
-                })
-                .catch(err => console.log("Error: ", err));
-
-                function formspree() {
+                const formspree = function() {
 
                     // Formspree 
                     const validation_msgs = [
@@ -642,13 +593,12 @@ const App = {
                         form.addEventListener("submit", function(event) {
                         
                             event.preventDefault();
+                            event.stopImmediatePropagation();
                             import('./Business_Logic/Formspree.js')
                             .then(module => module.default) // uses the default export
                             .then((Formspree) => {
 
                                 if(!form.checkValidity()) {
-                                
-                                    event.stopPropagation();
     
                                     return new Promise((resolve,reject)=>{
                                         
@@ -658,12 +608,11 @@ const App = {
                                     .then(() => {
     
                                         // Displays validation messages if failed to enter info correctly
-                                        //UI.display_form_validation_msg();
                                         validation_msgs[index]();
                                     })
                                     .catch((err) => {
                                         
-                                        console.log(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
+                                        console.error(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
                                     });
                                 } else {
     
@@ -680,17 +629,72 @@ const App = {
                                     
                                     recaptchaCallback(() => {
 
-                                        console.log("grecaptcha checked");
+                                        console.log("in grecaptcha callback");
                                         form.classList.remove('was-validated');
+                                        if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
                                     });
                                 };
                             })
-                            .catch(err => console.log("Failed to import module: ", err))
+                            .catch(err => console.error("Failed to import module: ", err))
                         }, false);
                     });
                 };
 
-                formspree();
+                const Country_API = new API("https://restcountries.eu/rest/v2/all");
+
+                let user_typed = false;
+                const select_change = function() {
+
+                    const selected_options = document.querySelectorAll("option");
+                    selected_options.forEach(option => {
+                        
+                        if((option.value && option.selected) && option.value !== "") {
+
+                            const flag = option.getAttribute("data-flag");
+                            const calling_codes = option.getAttribute("data-calling-codes");
+                            const img = document.createElement("img");
+                            img.setAttribute("src", flag);
+                            img.setAttribute("alt", `Country flag for ${option.value}`);
+                            img.setAttribute("width", "40px");
+                            img.setAttribute("height", "auto"); 
+
+                            if(!user_typed) UI.phone.value = `+${calling_codes}-`;
+                            if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
+
+                            UI.country_select.labels[0].appendChild(img);
+                        } else if(option.selected && !option.value) {
+
+                            if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
+                        };
+                    });
+                };
+
+                Country_API.fetch_api()
+                .then((data) => {
+
+                    //logger(data);
+                    data.forEach(datum => {
+                        
+                        const new_option = document.createElement("option");
+                        new_option.setAttribute("value", datum.name);
+                        new_option.setAttribute("data-flag", datum.flag);
+                        new_option.setAttribute("data-calling-codes", datum.callingCodes);
+                        new_option.innerHTML = new_option.value;
+                        UI.country_select.appendChild(new_option);
+                    });
+
+                    UI.phone.addEventListener("keyup", debounce(() => {
+
+                        user_typed = true;
+                    }, 500));
+
+                    UI.country_select.addEventListener("change", debounce(() => {
+
+                        select_change();
+                    }, 300));
+                })
+                .catch(err => console.error("Error: ", err))
+                .then(() => formspree());    
             })();
 
         }); // end of DOMContentLoaded event listener
