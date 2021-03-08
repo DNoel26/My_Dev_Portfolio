@@ -36,15 +36,13 @@ const App = {
             // Delay load of non-essential scripts
             setTimeout(() => {
                 
-                UI.create_script("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
-            }, 1000);
+                return UI.create_script("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
+            }, 1500);
 
-            const ext_script_load = new Promise((resolve, reject) => {
-
-                UI.create_script("./js/Business_Logic/TagCloud.min.js", "https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
-
-                setTimeout(resolve, 3000);
-            });
+            setTimeout(() => {
+                
+                return UI.create_script("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
+            }, 5000);
 
             const options = {
                 rootMargin: "10px",
@@ -312,88 +310,97 @@ const App = {
 
                 tagcloud_resizer();
 
-                // Delay loading of tag cloud
-                ext_script_load
-                .then(() => {
+                let tagCloud;
 
-                    const tagcloud_loader = function() {
+                const tagcloud_loader = function() {
+                    
+                    // Define tags in js array
+                    let myTags = [
+                        'OOP', 'SOC / MVC', 'REST-APIs',
+                        'Data-Structures', 'Continuous-Integration', 'UI / UX',
+                        'Testing', 'Version-Control', 'Debugging',
+                        'Algorithms', 'App-Development', 'Responsive-Design', 
+                        'Security', 'Optimization', 'Customer-Service',
+                    ];
 
-                        // Define tags in js array
-                        let myTags = [
-                            'OOP', 'SOC / MVC', 'REST-APIs',
-                            'Data-Structures', 'Continuous-Integration', 'UI / UX',
-                            'Testing', 'Version-Control', 'Debugging',
-                            'Algorithms', 'App-Development', 'Responsive-Design', 
-                            'Security', 'Optimization', 'Customer-Service',
-                        ];
+                    // Render a default tag cloud
+                    // let tagCloud = TagCloud('.tag-cloud-content', myTags);
+                    // Config tag cloud by overriding default parameters below
 
-                        // Render a default tag cloud
-                        // let tagCloud = TagCloud('.tag-cloud-content', myTags);
-                        // Config tag cloud by overriding default parameters below
+                    tagCloud = TagCloud('.tag-cloud-content', myTags, {
 
-                        const tagCloud = TagCloud('.tag-cloud-content', myTags, {
+                        // radius in px
+                        radius: tagcloud_radius ?? 340,
 
-                            // radius in px
-                            radius: tagcloud_radius ?? 340,
+                        // animation speed
+                        // slow, normal, fast
+                        maxSpeed: 'fast',
+                        initSpeed: 'slow',
 
-                            // animation speed
-                            // slow, normal, fast
-                            maxSpeed: 'fast',
-                            initSpeed: 'slow',
+                        // 0 = top
+                        // 90 = left
+                        // 135 = right-bottom
+                        direction: 135,
+                        
+                        // interact with cursor move on mouse out
+                        keep: false,
+                    });
 
-                            // 0 = top
-                            // 90 = left
-                            // 135 = right-bottom
-                            direction: 135,
+                    //console.log(tagCloud)
+
+                    // Add more tags to existing tag cloud
+                    // myTags = myTags.concat([]);
+                    // tagCloud.update(myTags);
+
+                    const tagcloud = document.querySelector(".tagcloud");
+                    const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+
+                    tagcloud_items.forEach(item => {
+
+                        item.style.color = generate_dark_color_hex(); 
+                        let clicked_once = false;
+                        let clicked_twice = false;
+
+                        item.addEventListener("click", ()=>{
                             
-                            // interact with cursor move on mouse out
-                            keep: false,
-                        });
+                            if(clicked_once && clicked_twice) {
 
-                        // Add more tags to existing tag cloud
-                        // myTags = myTags.concat([]);
-                        // tagCloud.update(myTags);
+                                item.style.fontSize = "0"; 
+                                setTimeout(() => {
+                            
+                                    item.style.color = generate_dark_color_hex(); 
+                                    item.style.fontSize = "initial";
+                                    item.style.fontWeight = "400";
+                                    clicked_once = false; 
+                                    clicked_twice = false;
+                                }, 7000);
+                            } else if(clicked_once && !clicked_twice) {
 
-                        const tagcloud = document.querySelector(".tagcloud");
-                        const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+                                item.style.color = "var(--theme-colour-4)"; 
+                                //item.style.fontSize = "1.5rem";
+                                item.style.fontSize = "140%";
+                                clicked_twice = true;
+                            } else {
 
-                        tagcloud_items.forEach(item => {
+                                item.style.color = "var(--theme-colour-1)"; 
+                                //item.style.fontSize = "1.3rem";
+                                //item.style.fontWeight = "900";
+                                item.style.fontSize = "120%";
+                                clicked_once = true;
+                            } 
+                        }); 
+                    });
+                };
 
-                            item.style.color = generate_dark_color_hex(); 
-                            let clicked_once = false;
-                            let clicked_twice = false;
+                // Delay loading of tag cloud
+                new Promise((resolve, reject) => {
 
-                            item.addEventListener("click", ()=>{
-                                
-                                if(clicked_once && clicked_twice) {
-
-                                    item.style.fontSize = "0"; 
-                                    setTimeout(() => {
-                                
-                                        item.style.color = generate_dark_color_hex(); 
-                                        item.style.fontSize = "initial";
-                                        item.style.fontWeight = "400";
-                                        clicked_once = false; 
-                                        clicked_twice = false;
-                                    }, 7000);
-                                } else if(clicked_once && !clicked_twice) {
-
-                                    item.style.color = "var(--theme-colour-4)"; 
-                                    //item.style.fontSize = "1.5rem";
-                                    item.style.fontSize = "140%";
-                                    clicked_twice = true;
-                                } else {
-
-                                    item.style.color = "var(--theme-colour-1)"; 
-                                    //item.style.fontSize = "1.3rem";
-                                    //item.style.fontWeight = "900";
-                                    item.style.fontSize = "120%";
-                                    clicked_once = true;
-                                } 
-                            }); 
-                        });
-                    };
-
+                    return setTimeout(resolve, 3100);
+                })
+                .then(() => import("./Business_Logic/TagCloud.min.js"))
+                .then(module => module.default)
+                .then(() => {
+                    
                     tagcloud_loader();
 
                     window.addEventListener("resize", debounce(function() {
@@ -401,9 +408,9 @@ const App = {
                         tagcloud_resizer();
                         if(document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
                         tagcloud_loader();
-                    }, 800));
+                    }, 800)); 
                 })
-                .catch(err => logger(err));
+                .catch((err) => logger(err));
             })();
             
             // Display star rating for each tool / technology based on skill level 
