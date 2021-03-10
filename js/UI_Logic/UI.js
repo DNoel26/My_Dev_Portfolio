@@ -96,7 +96,7 @@ const UI = {
     my_form_status: document.getElementById("my-form-status"),
     grecaptcha: document.getElementsByClassName("g-recaptcha"),
 
-    create_script(...srcs) {
+    create_scripts(...srcs) {
 
         srcs.forEach(src => {
 
@@ -109,88 +109,105 @@ const UI = {
 
     side_menu_reveal() {
 
-        //UI.navbar_scroll.parentElement.classList.add(".side-menu-reveal");
-        //UI.navbar_scroll.classList.remove(".side-menu-hide");
-        // UI.navbar_scroll.style.width = "33vw";
-        
-        //UI.body.style.height = "100%";
-        UI.bot_nav_collapse.style.width = "40vw";
-        UI.bot_nav_collapse.classList.add(".side-menu-reveal");
-        UI.bot_nav_collapse.classList.remove(".side-menu-hide");
+        UI.bot_nav_collapse.classList.add("side-menu-reveal");
+        UI.bot_nav_collapse.classList.remove("side-menu-hide");
     },
 
     side_menu_hide() {
 
-        //UI.navbar_scroll.parentElement.classList.remove(".side-menu-reveal");
-        //UI.navbar_scroll.classList.add(".side-menu-hide");
-        // UI.navbar_scroll.style.width = "initial";
-        
-        //UI.body.style.height = "initial";
-        UI.bot_nav_collapse.style.width = "0";
-        UI.bot_nav_collapse.classList.remove(".side-menu-reveal");
-        UI.bot_nav_collapse.classList.add(".side-menu-hide");
+        UI.bot_nav_collapse.classList.remove("side-menu-reveal");
+        UI.bot_nav_collapse.classList.add("side-menu-hide");
     },
 
-    no_side_menu() {
-        UI.bot_nav_collapse.classList.remove(".side-menu-reveal");
-        UI.bot_nav_collapse.classList.remove(".side-menu-hide");
-        UI.bot_nav_collapse.style.width = "100%";
+    mobile_menu_reveal() {
+
+        UI.header.classList.add("mobile-menu-reveal");
+        UI.header.classList.remove("mobile-menu-hide");
+    },
+
+    mobile_menu_hide() {
+
+        UI.header.classList.remove("mobile-menu-reveal");
+        UI.header.classList.add("mobile-menu-hide");
+    },
+
+    no_menu() {
+            
+        UI.bot_nav_collapse.classList.remove("side-menu-hide");
+        UI.bot_nav_collapse.classList.remove("side-menu-reveal");
+        UI.header.classList.remove("mobile-menu-hide");
+        UI.header.classList.remove("mobile-menu-reveal");
+        UI.bot_nav_collapse.classList.remove("show");
     },
 
     shrink_header() {
         
         // On scroll, shrinks header and expands body, pauses video, changes to static bg and adjusts height of placeholder elements for smooth transition
         this.body.classList.remove("will-change-height");
-        this.nav_container.classList.add("row", "justify-content-between", "nav-container-sticky");
-        this.top_nav.classList.add("col-2");
-        this.bot_nav.classList.add("col-10");
-        this.header_empty_div.classList.add("d-none");
-        this.header_divider.classList.add("d-none");
-        this.top_nav.style.height = "100%";
-        this.bot_nav.style.height = "100%";
+        //this.nav_container.classList.add("row", "justify-content-between", "nav-container-sticky");
+        this.nav_container.classList.add("nav-container-sticky");
+        //this.top_nav.classList.add("col-2");
+        //this.bot_nav.classList.add("col-10");
+        //this.header_empty_div.classList.add("d-none");
+        //this.header_divider.classList.add("opacity-0"); //d-none or opacity-0
+        //this.top_nav.style.height = "100%";
+        //this.bot_nav.style.height = "100%";
         //this.nav_container.style.height = "6rem";
         /*this.top_nav.style.height = "auto";
         this.bot_nav.style.height = "auto";*/
-        this.nav_container.style.height = "4.7rem";
+        //this.nav_container.style.height = "75px"; // 4.7rem or 75px
+        this.header.style.height = "100px";
+        this.header.style.boxShadow = "0 0.1rem 5rem rgba(0,0,0,0.5)";
         this.header_vid.classList.add("d-none");
         this.header_vid.pause();
-        this.header.style.background = "linear-gradient(rgba(31,111,139,0.95), rgba(31,111,139,0.95)), url('') no-repeat fixed 100% 100%";
+        this.header.style.background = "linear-gradient(rgba(31,111,139,1), rgba(31,111,139,1)), url('') no-repeat fixed 100% 100%";
         
         // On scroll, hides introduction msg and removes top padding from welcome section below
         this.intro_msg.classList.add("h-0");
-        this.welcome.classList.remove("pt-custom-1");     
+        //this.intro_msg.classList.replace("opacity-100","opacity-0");
+        //this.welcome.classList.remove("pt-custom-1");     
     },
 
     expand_placeholder_div() {
-        this.body_placeholder.style.height = "46.875rem";
-        this.body_placeholder.classList.replace("invisible","visible");
-        this.body_placeholder.classList.replace("placeholder-div-reveal-start","placeholder-div-reveal-end");
+        this.body_placeholder.style.height = "100vh"; // 46.875rem for large, 520px for smaller
+        this.body_placeholder.classList.replace("invisible", "visible");
+        this.body_placeholder.classList.replace("placeholder-div-reveal-start", "placeholder-div-reveal-end");
     },
 
     expand_header() {
 
         // Returns header and body to initial states when scrolled to the top
         this.body.classList.add("will-change-height");
-        this.nav_container.classList.remove("row", "justify-content-between", "nav-container-sticky");
-        this.top_nav.classList.remove("col-2");
-        this.bot_nav.classList.remove("col-10");
-        this.header_empty_div.classList.remove("d-none");
-        this.header_divider.classList.remove("d-none");
-        this.top_nav.style.height = "initial";
-        this.bot_nav.style.height = "initial";
+        //this.nav_container.classList.remove("row", "justify-content-between", "nav-container-sticky");
+        this.nav_container.classList.remove("nav-container-sticky");
+        //this.top_nav.classList.remove("col-2");
+        //this.bot_nav.classList.remove("col-10");
+        //this.header_empty_div.classList.remove("d-none");
+        //this.header_divider.classList.remove("opacity-0"); //d-none or opacity-0
+        //this.top_nav.style.height = "initial";
+        //this.bot_nav.style.height = "initial";
         //this.nav_container.style.height = "25rem";
         /*this.top_nav.style.height = "auto";
         this.bot_nav.style.height = "auto";*/
 
-        const lg = window.matchMedia("(min-width: 992px)"); 
-        media_queries(lg, () => {
-            this.nav_container.style.height = "65vh";      
+        const mq_limits = [
+            window.matchMedia("(min-width: 992px)"),
+            window.matchMedia("(max-width: 991.98px)"),
+        ];
+
+        media_queries(mq_limits[0], () => {
+
+            //this.nav_container.style.height = "65vh";     
+            this.header.style.height = "70vh";
         }, null);
 
-        const sm = window.matchMedia("(max-width: 991.98px)");
-        media_queries(sm, () => {
-            this.nav_container.style.height = "45vh";    
+        media_queries(mq_limits[1], () => {
+
+            //this.nav_container.style.height = "45vh";  
+            this.header.style.height = "70vh";  
         }, null);
+
+        this.header.style.boxShadow = "unset";
 
         /*window.addEventListener("resize", debounce(() => {
 
@@ -205,18 +222,20 @@ const UI = {
             });
         }));*/
         
+        //this.header.style.height = "initial";
         this.header_vid.classList.remove("d-none");
         this.header_vid.play();
 
         // Returns introduction msg and welcome section to initial state when scrolled to the top
         this.intro_msg.classList.remove("h-0");
-        this.welcome.classList.add("pt-custom-1");     
+        //this.intro_msg.classList.replace("opacity-0","opacity-100");
+        //this.welcome.classList.add("pt-custom-1");     
     },
 
     shrink_placeholder_div() {
         this.body_placeholder.style.height = "0";
-        this.body_placeholder.classList.replace("visible","invisible");
-        this.body_placeholder.classList.replace("placeholder-div-reveal-end","placeholder-div-reveal-start");
+        this.body_placeholder.classList.replace("visible", "invisible");
+        this.body_placeholder.classList.replace("placeholder-div-reveal-end", "placeholder-div-reveal-start");
     },
 
     replace_vid_bg() {
@@ -224,7 +243,24 @@ const UI = {
         // To replace the header video bg when it ends
         this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed";
         this.header.style.backgroundSize = "cover";
-        this.header.style.transition = "background 3s ease-in-out";
+        //this.header.style.transition = "background 3s ease-in-out";
+    },
+
+    fixed_bottom_header() {
+
+        const mq_limit = window.matchMedia("(max-width: 767.98px)")
+        media_queries(mq_limit, () => {
+
+            this.header.classList.replace("sticky-top", "fixed-bottom");
+        }, () => {
+
+            this.header.classList.replace("fixed-bottom", "sticky-top");
+        });
+    },
+
+    no_fixed_bottom_header() {
+
+        if(this.header.classList.contains("fixed-bottom")) this.header.classList.replace("fixed-bottom", "sticky-top");
     },
 
     animate_letters() {

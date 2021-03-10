@@ -8,8 +8,8 @@
     <link rel="preload" href="https://kit.fontawesome.com/3ad7481254.js" as="script" crossorigin="anonymous">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" as="script" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" as="style" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="preload" href="/css/style.css" as="style" crossorigin="anonymous">
-    <link rel="preload" href="/css/mq.css" as="style" crossorigin="anonymous">
+    <!--<link rel="preload" href="/css/style.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="/css/mq.css" as="style" crossorigin="anonymous">-->
     <link rel="preload" href="/js/UI_Logic/UI.js" as="script" crossorigin="anonymous">
     <link rel="preload" href="/js/Business_Logic/Functions.js" as="script" crossorigin="anonymous">
     <link rel="preload" href="/js/Business_Logic/Project.js" as="script" crossorigin="anonymous">
@@ -21,28 +21,28 @@
     <link rel="stylesheet" href="/css/mq.css">
 </head>
 <body>
-    <header id="header" class="sticky-top"> <!---->
+    <header id="header" class="sticky-top"> <!--m-auto-->
         <div class="container">
-            <video autoplay muted src="/media/laptop.mp4"></video>
+            <video autoplay preload="auto" muted src="/media/laptop.mp4" class="fs-1"></video>
             <!--<img src="/img/laptop.jpg" class="header-bg-img" alt="">-->
 
-            <div class="nav-container m-auto" >
-                <nav class="navbar navbar-expand-md top-header-nav">
+            <div class="nav-container row justify-content-evenly"> <!--m-auto-->
+                <nav class="navbar navbar-expand-md top-header-nav col-12 col-md-4 col-lg-2 col-xl-auto">
                     <!--Logo-->
-                    <div class="logo m-auto d-flex justify-content-center">
+                    <div class="logo"> <!--m-auto d-flex justify-content-center-->
                         <a href="/" class="navbar-brand logo-link">
-                            <img loading="lazy" src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto" width="768" height="248">
+                            <img loading="lazy" src="/img/Darnell-Noel-logos_white_no_bg_sm.png" alt="Darnell Noel's Full Stack Web Development Logo for his portfolio" class="img-fluid logo-img d-block m-auto" width="306" height="99">
                         </a>  
                     </div>
                 </nav> 
     
-                <nav class="navbar navbar-dark navbar-expand-lg bot-header-nav fixed-bottom" id="page-nav">
+                <nav class="navbar navbar-dark navbar-expand-lg bot-header-nav col-12 col-md-4 col-lg-10 col-xl-auto" id="page-nav">
                     <button class="navbar-toggler collapsed btn" type="button" data-bs-toggle="collapse" data-bs-target="#bot-header-nav" aria-controls="bot-header-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="bot-header-nav">
                         <!--Nav Links-->
-                        <ul class="navbar-nav nav mx-auto navbar-nav-scroll justify-content-center">
+                        <ul class="navbar-nav nav ms-auto navbar-nav-scroll justify-self-right">
                             <li class="nav-item mx-1 anim-link-1">
                                 <a href="#home" class="nav-link">Home</a>
                             </li>
@@ -92,14 +92,14 @@
             </div>
         </div>
 
-        <!--Adds padding to svg divider below (prevents cutting off of nav content)-->
-        <div class="empty-div"></div>
+        <!--Adds padding to svg divider below (prevents cutting off of nav content)
+        <div class="empty-div"></div>-->
 
-        <div class="custom-shape-divider-bottom-1612032701">
+        <!--<div class="custom-shape-divider-bottom-1612032701 position-relative">
             <svg data-name="Layer 1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
             </svg>
-        </div>
+        </div>-->
 
         <div class="progress-container">
             <div class="progress-bar" id="my-bar"></div>
@@ -128,17 +128,19 @@
             </div>
         </div>
 
-        <!--Fixes sticky header resize bug-->
-        <div  class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
-            <p class="h2 fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></p>
-            <p class="h2 pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></p>
-            <a href="#services" class="fs-5 align-self-start text-white text-decoration-none cta">View Services Now</a>
-        </div>
+        
         
         <!--Home Section-->
-        <section class="welcome-section px-2" id="home">
-            <div>
-                <h2 class="text-center mb-5 intro">Ready to take your business <strong class="text-custom-1">online?</strong></h2>
+        <section class="welcome-section" id="home">
+            <!--Fixes sticky header resize bug-->
+            <div  class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
+                <p class="h2 fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></p>
+                <p class="h2 pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive <strong>websites</strong> and <strong> web applications</strong></p>
+                <a href="#services" class="fs-5 align-self-start text-white text-decoration-none cta">View Services Now</a>
+            </div>
+
+            <div class="intro mb-5 mt-5">
+                <h2 class="text-center fs-3">Ready to take your business <strong class="text-custom-1">online?</strong></h2>
             </div>
 
             <!--<div>
@@ -295,7 +297,7 @@
 
                         <div>
                             <p>
-                                <span class="fw-bold">My future plans:</span> Currently improving my skills in React and learning Next.js for a client project that I'm working on alongside other developers. 
+                                <span class="fw-bold">My future plans:</span> Currently improving my skills in Functional Programming, React and learning Next.js for a client project that I'm working on alongside other developers. 
                                 Eventually would like to learn WordPress and PHP as necessary. Machine learning and A.I. is the future and is very interesting as well...
                             </p> 
                         </div>
@@ -396,7 +398,7 @@
                             <li class="my-carousel-item card shadow">
                                 <div class="card-body">
                                     <img loading="lazy" src="/svg/013-web-optimization.svg" alt="Web Performance svg icon" class="img-fluid icon-disp-img-lg my-3" width="80" height="80">
-                                    <h3 class="h4">Web Performance</h>
+                                    <h3 class="h4">Web Performance</h3>
                                     <p>
                                         Speed matters! Fast sites have been shown to increase visitor retention and user satisfaction. 
                                         Research done by Google has shown that the chance of losing a visitor increases by over 30% when load time increases from just 1 second to 3.
@@ -464,7 +466,7 @@
                 <div id="languages">
                     <h3 class="text-center small my-5">- Languages, Frameworks, Platforms learned and used -</h3>
 
-                    <div class="row justify-content-evenly px-5 px-md-0">
+                    <div class="row justify-content-evenly px-md-0">
                         <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
                             <img loading="lazy" src="/img/HTML5_Badge_256.png" alt="Icon" class="img-fluid icon-disp-img mx-auto d-inline-block" width="64" height="64">
                             <small class="d-block mt-2">HTML5</small>

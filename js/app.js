@@ -28,6 +28,7 @@ const App = {
             /*** GENERAL ***/
 
             UI.body.classList.add("will-change-height");
+            UI.header.classList.add("will-change-height");
             /*UI.all_imgs.forEach(img => {
                 
                 img.setAttribute("loading", "lazy");
@@ -36,13 +37,13 @@ const App = {
             // Delay load of non-essential scripts
             setTimeout(() => {
                 
-                return UI.create_script("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
+                return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
             }, 1000);
 
             setTimeout(() => {
                 
-                return UI.create_script("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
-            }, 10000);
+                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
+            }, 7000);
 
             const options = {
                 rootMargin: "10px",
@@ -62,7 +63,11 @@ const App = {
                 });
             }, options);
 
+            let is_scrolling = false;
+            let scroll_limit = 0;
             let scroll_moved = false;
+            let scroll_top_reset = true;
+            let scroll_timer;
             let header_vid_ended = false;
 
             /*const x = window.matchMedia("(max-width: 991.98px");
@@ -83,30 +88,34 @@ const App = {
                     };
                 };
 
-                const mq_side_menu_toggler = () => {
+                const mobile_menu_toggler = () => {
 
-                    const mq_limit = window.matchMedia("(min-width: 768px) and (max-width: 991.98px)");
-                    media_queries(mq_limit, side_menu_toggler, null);
+                    if(!UI.toggler_btn.classList.contains("collapsed")) {
+                        
+                        UI.mobile_menu_reveal();
+                    } else {
+                        
+                        UI.mobile_menu_hide();
+                    };
                 };
 
-                UI.toggler_btn.addEventListener("click", mq_side_menu_toggler);
+                const mq_menu_toggler = () => {
+
+                    const mq_limits = [
+                        window.matchMedia("(max-width: 767.98px)"),
+                        window.matchMedia("(min-width: 768px) and (max-width: 991.98px)")
+                    ];
+
+                    media_queries(mq_limits[0], mobile_menu_toggler, null);
+                    media_queries(mq_limits[1], side_menu_toggler, null);
+                };
+
+                UI.toggler_btn.addEventListener("click", mq_menu_toggler);
                 window.addEventListener("resize", debounce(function() {
                     
-                    UI.no_side_menu()
-                }, 1500));
+                    UI.no_menu();
+                }, 500));
             }());
-
-            if(document.documentElement.scrollTop > 2 || window.pageYOffset > 2) {
-
-                UI.shrink_header();
-                UI.expand_placeholder_div();
-                scroll_moved = true;
-            } else {
-                
-                UI.expand_header();
-                UI.shrink_placeholder_div();
-                scroll_moved = false;
-            };
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
             UI.header_vid.addEventListener("ended", ()=>{
@@ -114,62 +123,115 @@ const App = {
                 UI.replace_vid_bg();
                 UI.header_vid.remove();
                 header_vid_ended = true;
-            });
+            }); 
 
+            //let header_transition_shrink_end = false;
+            //let header_transition_expand_end = false;
+
+            /*UI.header.addEventListener('transitionend', (e) => {
+
+                console.log("Animation ended ", e);
+                if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && e.propertyName === "height") header_transition_shrink_end = true, header_transition_expand_end = false;
+                else if((document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) && e.propertyName === "height") header_transition_shrink_end = false, header_transition_expand_end = true;
+            });*/
+
+            // Scroll Events
             (function() {
-                
-                const scroll_progress_debounce_wrapper = debounce(function() {
 
-                    // Calls horizontal progress bar indicator function on scroll
-                    scroll_progress(UI.scroll_indicator);
-                }, 300);
+                const header_transform = function() {
+
+                    // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
+                    if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === false) {
+                    
+                        UI.shrink_header();
+                        UI.expand_placeholder_div();
+   
+                        //if(header_transition_shrink_end) UI.fixed_bottom_header();
+                        scroll_moved = true;
+                    } else if((document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) && scroll_moved === true) {
+                        
+                        UI.expand_header();
+                        UI.shrink_placeholder_div();
+                        //if(header_transition_expand_end) UI.no_fixed_bottom_header();
+
+                        if(scroll_moved && header_vid_ended) {
+    
+                            UI.replace_vid_bg();
+                        };
+                        
+                        //clearTimeout(zz);
+                        scroll_moved = false;
+                        scroll_top_reset = true;
+                        //window.scrollTo(0, 0);
+                    };
+                };
+
+                // Checks scroll position on load or refresh and executes 
+                if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) scroll_top_reset = false;
+                header_transform();
 
                 const scroll_moved_debounce_wrapper = debounce(function() {
-
+                    
                     scroll_moved = false;
                 }, 800);
 
                 const sticky_header_throttle_wrapper = throttle(function() {
 
-                    //console.log("throttling", scroll_moved);
-                    //UI.nav_container.style.height = UI.header.offsetHeight;
-    
-                    // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                    if((document.documentElement.scrollTop > 0 || window.pageYOffset > 0) && scroll_moved === false) {
-    
-                        
-                        UI.shrink_header();
-                        UI.expand_placeholder_div();
-                        scroll_moved = true;
-                    } else if((document.documentElement.scrollTop <= 0 || window.pageYOffset <= 0) && scroll_moved === true) {
-    
-                        //UI.nav_container.style.overflow = "hidden";
-                        //UI.nav_container.style.height = 0;
-                        UI.expand_header();
-                        UI.shrink_placeholder_div(); 
-                        
-                        if(scroll_moved && header_vid_ended) {
-    
-                            UI.replace_vid_bg();
-                        };
-    
-                        scroll_moved = false;
-                        document.documentElement.scrollTop = 0;
-                    };
+                    header_transform();
                 }, 100);
 
-                document.addEventListener("scroll", scroll_progress_debounce_wrapper);
-                document.addEventListener("touchmove", scroll_progress_debounce_wrapper);
+                window.addEventListener("resize", debounce(() => {
+
+                    header_transform();
+                    //if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) return UI.fixed_bottom_header();
+                    //else if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) return UI.no_fixed_bottom_header(); 
+                }, 200));
+
+                //document.addEventListener("scroll", scroll_progress_debounce_wrapper);
+                //document.addEventListener("touchmove", scroll_progress_debounce_wrapper);
+
+                //Hides header on scroll and returns to normal position when stopped after a few seconds
+                document.addEventListener("scroll", () => {
+
+                    scroll_progress(UI.scroll_indicator);
+
+                    /*if(document.documentElement.scrollTop > 110 || window.pageYOffset > 110) is_scrolling = true;
+
+                    if(document.documentElement.scrollTop <= 110 || window.pageYOffset <= 110) is_scrolling = false;
+
+                    if(is_scrolling) {
+
+                        clearTimeout(scroll_timer);
+                        UI.header.style.opacity = "unset"
+                        UI.header.style.visibility = "unset"
+                        
+                        scroll_timer = setTimeout(() => {
+                            
+                            is_scrolling = false;
+                            
+                            if(!is_scrolling) {
+
+                                UI.header.style.opacity = "0";
+                                UI.header.style.visibility = "hidden"
+                            };
+                        }, 500);
+                    } else {
+
+                        clearTimeout(scroll_timer)
+                        UI.header.style.opacity = "unset"
+                        UI.header.style.visibility = "unset"
+                    };*/
+                });
 
                 document.addEventListener("scroll", scroll_moved_debounce_wrapper);
-                document.addEventListener("touchmove", scroll_moved_debounce_wrapper);
+                document.addEventListener("touchmove", scroll_moved_debounce_wrapper, {passive: true});
 
                 document.addEventListener("scroll", sticky_header_throttle_wrapper);
-                document.addEventListener("touchmove", sticky_header_throttle_wrapper);
+                document.addEventListener("touchmove", sticky_header_throttle_wrapper, {passive: true});
             })();
 
             //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
-            UI.active_lists.forEach(li => {
+            /*UI.active_lists.forEach(li => {
                     
                 if(li.children[0].classList.contains("active")) {
 
@@ -178,7 +240,7 @@ const App = {
 
                     li.classList.remove("active-list"); 
                 };
-            });
+            });*/
 
             /*** HOME SECTION ***/
 
@@ -250,7 +312,7 @@ const App = {
 
                     scroll_amt_modifier();
                     UI.my_carousel_content.scrollLeft = 0;
-                }, 1500));
+                }, 500));
 
                 UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
 
