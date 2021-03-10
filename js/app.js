@@ -30,6 +30,7 @@ const App = {
 
             UI.body.classList.add("will-change-height");
             UI.header.classList.add("will-change-height");
+            UI.my_form_button.setAttribute("disabled", "disabled");
             
             // Delay load of non-essential scripts
             setTimeout(() => {
@@ -39,17 +40,18 @@ const App = {
 
             setTimeout(() => {
                 
-                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js?render=explicit");
-            }, 7000);
+                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
+            }, 5000);
 
             // Checks to see if recaptcha has loaded correctly and if not, makes up to 10 attempts to reload
-            setTimeout(() => {
+            /*setTimeout(() => {
                 
                 recaptchaCallback(() => {
 
                     if(UI.grecaptcha.length > 0) {
 
-                        console.log(grecaptcha);
+                        UI.my_form_button.removeAttribute("disabled");
+                        //console.log(grecaptcha);
                         grecaptcha.render("recaptcha", {
 
                             sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
@@ -61,7 +63,7 @@ const App = {
                         
                     };
                 });
-            }, 7500);
+            }, 10500);*/
 
             const options = {
                 rootMargin: "10px",
@@ -243,12 +245,12 @@ const App = {
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
                     };
-                });
+                }, {passive: true});
 
-                document.addEventListener("scroll", scroll_moved_debounce_wrapper);
+                document.addEventListener("scroll", scroll_moved_debounce_wrapper, {passive: true});
                 document.addEventListener("touchmove", scroll_moved_debounce_wrapper, {passive: true});
 
-                document.addEventListener("scroll", sticky_header_throttle_wrapper);
+                document.addEventListener("scroll", sticky_header_throttle_wrapper, {passive: true});
                 document.addEventListener("touchmove", sticky_header_throttle_wrapper, {passive: true});
             })();
 
@@ -685,7 +687,7 @@ const App = {
                                 if(data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name);   
                                 if(data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);              
                                 
-                                console.log(data, data.tagName, data.name, data.value);
+                                //console.log(data, data.tagName, data.name, data.value);
                                 select_change()
                                 
                                 // Save contact form info in cookies
