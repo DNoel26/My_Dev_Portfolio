@@ -71,6 +71,7 @@ const UI = {
 
     /*** CONTACT ME SECTION ***/
     
+    form_data: document.querySelectorAll(".form-data"),
     country_select: document.getElementById("country"),
     phone: document.getElementById("phone"),
 
@@ -144,18 +145,7 @@ const UI = {
         
         // On scroll, shrinks header and expands body, pauses video, changes to static bg and adjusts height of placeholder elements for smooth transition
         this.body.classList.remove("will-change-height");
-        //this.nav_container.classList.add("row", "justify-content-between", "nav-container-sticky");
         this.nav_container.classList.add("nav-container-sticky");
-        //this.top_nav.classList.add("col-2");
-        //this.bot_nav.classList.add("col-10");
-        //this.header_empty_div.classList.add("d-none");
-        //this.header_divider.classList.add("opacity-0"); //d-none or opacity-0
-        //this.top_nav.style.height = "100%";
-        //this.bot_nav.style.height = "100%";
-        //this.nav_container.style.height = "6rem";
-        /*this.top_nav.style.height = "auto";
-        this.bot_nav.style.height = "auto";*/
-        //this.nav_container.style.height = "75px"; // 4.7rem or 75px
         this.header.style.height = "100px";
         this.header.style.boxShadow = "0 0.1rem 5rem rgba(0,0,0,0.5)";
         this.header_vid.classList.add("d-none");
@@ -163,9 +153,7 @@ const UI = {
         this.header.style.background = "linear-gradient(rgba(31,111,139,1), rgba(31,111,139,1)), url('') no-repeat fixed 100% 100%";
         
         // On scroll, hides introduction msg and removes top padding from welcome section below
-        this.intro_msg.classList.add("h-0");
-        //this.intro_msg.classList.replace("opacity-100","opacity-0");
-        //this.welcome.classList.remove("pt-custom-1");     
+        this.intro_msg.classList.add("h-0");   
     },
 
     expand_placeholder_div() {
@@ -178,17 +166,7 @@ const UI = {
 
         // Returns header and body to initial states when scrolled to the top
         this.body.classList.add("will-change-height");
-        //this.nav_container.classList.remove("row", "justify-content-between", "nav-container-sticky");
         this.nav_container.classList.remove("nav-container-sticky");
-        //this.top_nav.classList.remove("col-2");
-        //this.bot_nav.classList.remove("col-10");
-        //this.header_empty_div.classList.remove("d-none");
-        //this.header_divider.classList.remove("opacity-0"); //d-none or opacity-0
-        //this.top_nav.style.height = "initial";
-        //this.bot_nav.style.height = "initial";
-        //this.nav_container.style.height = "25rem";
-        /*this.top_nav.style.height = "auto";
-        this.bot_nav.style.height = "auto";*/
 
         const mq_limits = [
             window.matchMedia("(min-width: 992px)"),
@@ -196,40 +174,21 @@ const UI = {
         ];
 
         media_queries(mq_limits[0], () => {
-
-            //this.nav_container.style.height = "65vh";     
+ 
             this.header.style.height = "70vh";
         }, null);
 
         media_queries(mq_limits[1], () => {
 
-            //this.nav_container.style.height = "45vh";  
             this.header.style.height = "70vh";  
         }, null);
 
         this.header.style.boxShadow = "unset";
-
-        /*window.addEventListener("resize", debounce(() => {
-
-            const lg = window.matchMedia("(min-width: 992px)"); 
-            media_queries(lg, () => {
-                this.nav_container.style.height = "65vh";      
-            });
-
-            const sm = window.matchMedia("(max-width: 991.98px)");
-            media_queries(sm, () => {
-                this.nav_container.style.height = "45vh";    
-            });
-        }));*/
-        
-        //this.header.style.height = "initial";
         this.header_vid.classList.remove("d-none");
         this.header_vid.play();
 
         // Returns introduction msg and welcome section to initial state when scrolled to the top
-        this.intro_msg.classList.remove("h-0");
-        //this.intro_msg.classList.replace("opacity-0","opacity-100");
-        //this.welcome.classList.add("pt-custom-1");     
+        this.intro_msg.classList.remove("h-0");   
     },
 
     shrink_placeholder_div() {
@@ -243,7 +202,6 @@ const UI = {
         // To replace the header video bg when it ends
         this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed 20% 20%";
         this.header.style.backgroundSize = "cover";
-        //this.header.style.transition = "background 3s ease-in-out";
     },
 
     fixed_bottom_header() {

@@ -1068,7 +1068,7 @@ label {
 
 input:focus, select:focus, textarea:focus,
 input:hover, select:hover, textarea:hover {
-    background: linear-gradient(rgba(232,240,243,1), rgba(232,240,243,1)) !important;
+    background-color: var(--theme-colour-2);
 }
 
     /*** Header ***/

@@ -95,7 +95,7 @@ export function form_submit_error(status, msg) {
     status.innerHTML = msg ?? "Submission Failed!";
 };
 
-export function ajax(method, url, data, success, error) {
+export function ajax(method, url, data, success, error, callback) {
 
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
@@ -105,17 +105,19 @@ export function ajax(method, url, data, success, error) {
         if (xhr.readyState !== XMLHttpRequest.DONE) return;
         if (xhr.status === 200) {
 
-            logger(xhr.status, xhr.response, xhr.responseType);
+            //logger(xhr.status, xhr.response, xhr.responseType);
             success();
+            callback(xhr.status);
         } else {
             
-            logger(xhr.status, xhr.response, xhr.responseType);
-            error();
+            //logger(xhr.status, xhr.response, xhr.responseType);
+            error(); 
+            callback(xhr.status);
         };
     };
-
+ 
     return xhr.send(data);
-}
+};
 
 // Include for screen size changes 
 export function media_queries(mq, func_true, func_false) {
@@ -134,7 +136,6 @@ export function scroll_progress(indicator) {
     const win_scroll = document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (win_scroll / height) * 100;
-    // console.log("SCROLLED", indicator);
     
     return indicator.style.width = scrolled + "%";
 };

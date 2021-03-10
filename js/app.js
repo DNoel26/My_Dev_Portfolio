@@ -10,6 +10,13 @@ import Project from "./Business_Logic/Project.js";
 //import Formspree from "./Business_Logic/Formspree.js";
 import API from "./Business_Logic/API.js"
 
+// Google recaptcha data function (function name must be same as data-callback attribute value)
+function recaptchaCallback(func) {
+                
+    console.log("In recaptcha");
+    return func();
+};
+
 const App = {
     init() {
 
@@ -19,20 +26,10 @@ const App = {
             
             console.log("DOMContentLoaded Successfully");
 
-             // Google recaptcha data function (function name must be same as data-callback attribute value)
-             function recaptchaCallback(func) {
-                
-                return func();
-            };
-
             /*** GENERAL ***/
 
             UI.body.classList.add("will-change-height");
             UI.header.classList.add("will-change-height");
-            /*UI.all_imgs.forEach(img => {
-                
-                img.setAttribute("loading", "lazy");
-            });*/
             
             // Delay load of non-essential scripts
             setTimeout(() => {
@@ -50,28 +47,19 @@ const App = {
                 
                 recaptchaCallback(() => {
 
-                    let i = 0;
-
-                    // Maximum of 10 attempts before requiring refresh
-                    if(i > 9) return;
-
                     if(UI.grecaptcha.length > 0) {
 
-                        i++;
-
+                        console.log(grecaptcha);
                         grecaptcha.render("recaptcha", {
 
                             sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
                             callback: () => {
 
-                                console.log(`Recaptcha failed to load after ${i} attempts`);
-                            },
+                                return;
+                            }
                         });
-
-                        return;
+                        
                     };
-
-                    //window.setTimeout(recaptchaCallback, 1000);
                 });
             }, 7500);
 
@@ -100,11 +88,7 @@ const App = {
             let scroll_timer;
             let header_vid_ended = false;
 
-            /*const x = window.matchMedia("(max-width: 991.98px");
-            media_queries(x, function() {
-                this.nav_container.style.height = "35vh";    
-            });*/
-
+            // Controls the side menu (tablet) and mobile menu functions 
             (function() {
 
                 const side_menu_toggler = () => {
@@ -155,17 +139,7 @@ const App = {
                 header_vid_ended = true;
             }); 
 
-            //let header_transition_shrink_end = false;
-            //let header_transition_expand_end = false;
-
-            /*UI.header.addEventListener('transitionend', (e) => {
-
-                console.log("Animation ended ", e);
-                if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && e.propertyName === "height") header_transition_shrink_end = true, header_transition_expand_end = false;
-                else if((document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) && e.propertyName === "height") header_transition_shrink_end = false, header_transition_expand_end = true;
-            });*/
-
-            // Scroll Events
+            // Controls the Scroll Events
             (function() {
 
                 const header_transform = function() {
@@ -175,24 +149,19 @@ const App = {
                     
                         UI.shrink_header();
                         UI.expand_placeholder_div();
-   
-                        //if(header_transition_shrink_end) UI.fixed_bottom_header();
                         scroll_moved = true;
                     } else if((document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) && scroll_moved === true) {
                         
                         UI.expand_header();
                         UI.shrink_placeholder_div();
-                        //if(header_transition_expand_end) UI.no_fixed_bottom_header();
 
                         if(scroll_moved && header_vid_ended) {
     
                             UI.replace_vid_bg();
                         };
-                        
-                        //clearTimeout(zz);
+
                         scroll_moved = false;
                         scroll_top_reset = true;
-                        //window.scrollTo(0, 0);
                     };
                 };
 
@@ -210,15 +179,41 @@ const App = {
                     header_transform();
                 }, 100);
 
+                // Adjusts header to match screen size if resized
                 window.addEventListener("resize", debounce(() => {
 
                     header_transform();
-                    //if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) return UI.fixed_bottom_header();
-                    //else if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) return UI.no_fixed_bottom_header(); 
                 }, 200));
 
-                //document.addEventListener("scroll", scroll_progress_debounce_wrapper);
-                //document.addEventListener("touchmove", scroll_progress_debounce_wrapper);
+                // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
+                const header_timer = function() {
+
+                    return (scroll_timer = setTimeout(() => {
+                            
+                        is_scrolling = false;
+                        
+                        if(!is_scrolling) {
+
+                            UI.header.style.opacity = "0";
+                            UI.header.style.visibility = "hidden";
+                        };
+                    }, 800));
+                };
+
+                // Stops the header timer when mouse hovers over the header
+                UI.header.addEventListener("mouseover", () => {
+
+                    clearTimeout(scroll_timer);
+                });
+
+                // Resumes header timer to hide header when mouse leaves the element
+                if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit)) {
+
+                    UI.header.addEventListener("mouseout", () => {
+
+                        header_timer();
+                    });
+                };
 
                 //Hides header on scroll and returns to normal position when stopped after a few seconds
                 document.addEventListener("scroll", () => {
@@ -229,6 +224,7 @@ const App = {
 
                     if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) is_scrolling = false;
 
+                    // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if(is_scrolling) {
 
                         if(UI.bot_nav_collapse.classList.contains("show")) {
@@ -240,17 +236,7 @@ const App = {
                         clearTimeout(scroll_timer);
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
-                        
-                        scroll_timer = setTimeout(() => {
-                            
-                            is_scrolling = false;
-                            
-                            if(!is_scrolling) {
-
-                                UI.header.style.opacity = "0";
-                                UI.header.style.visibility = "hidden";
-                            };
-                        }, 800);
+                        header_timer();
                     } else {
 
                         clearTimeout(scroll_timer);
@@ -298,7 +284,7 @@ const App = {
 
             let my_carousel_btn_click = false;
 
-            // Changes scroll amount depending on the screen size
+            // Changes carousel horizontal scroll amount depending on the screen size
             (function() {
                 
                 let scroll_amt = 360;
@@ -453,6 +439,7 @@ const App = {
                     const tagcloud = document.querySelector(".tagcloud");
                     const tagcloud_items = document.querySelectorAll(".tagcloud--item");
 
+                    // Randomizes tag word colours and adds effects on click
                     tagcloud_items.forEach(item => {
 
                         item.style.color = generate_dark_color_hex(); 
@@ -501,6 +488,7 @@ const App = {
                     
                     tagcloud_loader();
 
+                    // Resets and resizes tag cloud for different screen sizes
                     window.addEventListener("resize", debounce(function() {
 
                         tagcloud_resizer();
@@ -676,7 +664,7 @@ const App = {
                 
                 const formspree = function() {
 
-                    // Formspree 
+                    // Contact form validation responses on fail (for each form)
                     const validation_msgs = [
                         (function() {
                             return UI.display_form_validation_msg();
@@ -688,9 +676,31 @@ const App = {
                     Array.prototype.slice.call(UI.forms_need_validation)
                     .forEach(function(form, index) {
                         
-                        form.addEventListener("submit", function(event) {
+                        (function() {
+   
+                            // Cycle through each form input/select/text area tags and store or populate with sessionStorage
+                            form.querySelectorAll(".form-data").forEach(data => {
+
+                                if(data.tagName === "INPUT") data.value = sessionStorage.getItem(data.name);
+                                if(data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name);   
+                                if(data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);              
+                                
+                                console.log(data, data.tagName, data.name, data.value);
+                                select_change()
+                                
+                                // Save contact form info in cookies
+                                data.addEventListener("input", debounce(() => {
+ 
+                                    sessionStorage.setItem(data.name, (data.value));
+                                }, 500));
+                            });
+                        })();
+                        
+                        // Heavily modified Bootstrap validation and Formspree functions (Ajax method - prevents redirection on form submit)
+                        form.addEventListener("submit", (event) => {
                         
                             event.preventDefault();
+                            // Stop multiple submits from occurring 
                             event.stopImmediatePropagation();
                             import('./Business_Logic/Formspree.js')
                             .then(module => module.default) // uses the default export
@@ -700,6 +710,7 @@ const App = {
     
                                     return new Promise((resolve,reject)=>{
                                         
+                                        // Checks validation on submit
                                         form.classList.add('was-validated');
                                         resolve();
                                     })
@@ -723,13 +734,22 @@ const App = {
     
                                     const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
                                     const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
-                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
-                                    
-                                    recaptchaCallback(() => {
+  
+                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error, (status) => {
+                                        
+                                        // Callback executed onreadystatechange
+                                        if(status === 200) {
+
+                                            recaptchaCallback(() => {
                                        
-                                        console.log("in grecaptcha callback", grecaptcha);
-                                        form.classList.remove('was-validated');
-                                        if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
+                                                console.log("in grecaptcha callback", grecaptcha);
+                                                form.classList.remove('was-validated');
+                                                sessionStorage.clear();
+                                                if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
+                                            });
+                                        } else return;
+
+                                        return;
                                     });
                                 };
                             })
@@ -738,12 +758,14 @@ const App = {
                     });
                 };
 
+                // Populates form countries using API
                 const Country_API = new API("https://restcountries.eu/rest/v2/all");
 
                 let user_typed = false;
                 const select_change = function() {
 
                     const selected_options = document.querySelectorAll("option");
+                    // Adds country flag and phone calling code on country select
                     selected_options.forEach(option => {
                         
                         if((option.value && option.selected) && option.value !== "") {
@@ -769,8 +791,8 @@ const App = {
 
                 Country_API.fetch_api()
                 .then((data) => {
-
-                    //logger(data);
+          
+                    // Populates with API data
                     data.forEach(datum => {
                         
                         const new_option = document.createElement("option");
@@ -792,7 +814,7 @@ const App = {
                     }, 300));
                 })
                 .catch(err => console.error("Error: ", err))
-                .then(() => formspree());    
+                .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection    
             })();
 
         }); // end of DOMContentLoaded event listener

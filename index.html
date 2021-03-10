@@ -795,7 +795,7 @@
                             </div>
     
                             <div class="form-floating mb-3">    
-                                <input class="form-control" type="text" id="first-name" name="first_name" placeholder="John" required aria-required="true">   
+                                <input class="form-control form-data" type="text" id="first-name" name="first_name" placeholder="John" required aria-required="true">   
                                 <label class="required form-label" for="first-name"><sup><i class="fas fa-user-alt"></i></sup> First Name</label>
     
                                 <div class="valid-feedback valid-feedback-fname mx-3">
@@ -808,7 +808,7 @@
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="text" id="last-name" name="last_name" placeholder="Doe" required aria-required="true">
+                                <input class="form-control form-data" type="text" id="last-name" name="last_name" placeholder="Doe" required aria-required="true">
                                 <label class="required form-label" for="last-name"><sup><i class="fas fa-user-alt"></i></sup> Last Name</label>
                                 
                                 <div class="valid-feedback valid-feedback-lname mx-3">
@@ -821,7 +821,7 @@
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help" required aria-required="true">
+                                <input class="form-control form-data" type="email" id="email" name="email" placeholder="name@example.com" aria-describedby="email-help" required aria-required="true">
                                 <label class="required form-label" for="email"><sup><i class="fas fa-envelope"></i></sup> Email</label>
                                 <div id="email-help" class="form-text mx-3">I won't share your details with anyone else...I promise</div>
     
@@ -835,7 +835,7 @@
                             </div>
 
                             <div class="form-floating mb-3">                        
-                                <select class="form-select" name="country" id="country" aria-describedby="country-help" required aria-required="true">
+                                <select class="form-select form-data" name="country" id="country" aria-describedby="country-help" required aria-required="true">
                                     <option selected value="">Select your country</option>
                                     <!--<option value=""></option>
                                     <option value="">2</option>-->
@@ -853,25 +853,25 @@
                             </div>
     
                             <div class="form-floating mb-3">                                                    
-                                <input class="form-control" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help" aria-required="false">
+                                <input class="form-control form-data" type="tel" id="phone" name="phone" placeholder="+x-xxx-xxx-xxxx" aria-describedby="phone-help" aria-required="false">
                                 <label class="form-label" for="phone"><sup><i class="fas fa-phone-alt"></i></sup> Phone Number</label>
                                 <div id="phone-help" class="form-text mx-3">Optional field</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help" aria-required="false"> 
+                                <input class="form-control form-data" type="text" id="company" name="company" placeholder="Your Company Limited" aria-describedby="company-help" aria-required="false"> 
                                 <label class="form-label" for="company"><sup><i class="far fa-registered"></i></sup> Company</label>
                                 <div id="company-help" class="form-text mx-3">Optional field</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <input class="form-control" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help" aria-required="false">
+                                <input class="form-control form-data" type="text" id="website" name="website" placeholder="www.your-website.com" aria-describedby="website-help" aria-required="false">
                                 <label class="form-label" for="website"><sup><i class="fas fa-globe"></i></sup> Website</label> 
                                 <div id="website-help" class="form-text mx-3">Optional field: Include website URL if available (copy and paste for best results)</div> 
                             </div>
     
                             <div class="form-floating mb-3">                        
-                                <textarea minlength="30" pattern="[\w,./_=?-]+" class="form-control" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help" required aria-required="true"></textarea>
+                                <textarea minlength="30" ng-trim="false" pattern="[\w,./_=?-]+" class="form-control form-data" id="message-body" name="message_body" cols="50" rows="10" placeholder="Your message" aria-describedby="message-help" required aria-required="true"></textarea>
                                 <label class="required form-label" for="message-body"><sup><i class="fas fa-grin-beam"></i></sup> How can I be of assistance?</label>
                                 <div id="message-help" class="form-text mx-3">Your message must contain at least 30 characters</div>
     
