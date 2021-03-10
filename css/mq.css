@@ -115,6 +115,10 @@ Extra large devices (large desktops, 1200px and up)
         font-size: 80% !important;
     }*/
 
+    header {
+        background-position: 100% 100%;
+    }
+
     .anim-link-1::before,
     .anim-link-1::after {
         border: unset !important;
@@ -375,13 +379,13 @@ Extra large devices (large desktops, 1200px and up)
     .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
         max-width: unset !important;
         max-height: 60vh !important;
-        width: 90%;
+        width: 95%;
         height: max-content !important;
         margin-left: auto;
         margin-right: auto;
         padding-bottom: 7rem !important;
         border-bottom: 2px solid var(--theme-colour-2);
-        border-radius: 2px;
+        border-radius: 3px;
     }   
 
     .bot-header-nav .dropdown-menu {

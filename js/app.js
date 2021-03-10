@@ -42,8 +42,38 @@ const App = {
 
             setTimeout(() => {
                 
-                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
+                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js?render=explicit");
             }, 7000);
+
+            // Checks to see if recaptcha has loaded correctly and if not, makes up to 10 attempts to reload
+            setTimeout(() => {
+                
+                recaptchaCallback(() => {
+
+                    let i = 0;
+
+                    // Maximum of 10 attempts before requiring refresh
+                    if(i > 9) return;
+
+                    if(UI.grecaptcha.length > 0) {
+
+                        i++;
+
+                        grecaptcha.render("recaptcha", {
+
+                            sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
+                            callback: () => {
+
+                                console.log(`Recaptcha failed to load after ${i} attempts`);
+                            },
+                        });
+
+                        return;
+                    };
+
+                    //window.setTimeout(recaptchaCallback, 1000);
+                });
+            }, 7500);
 
             const options = {
                 rootMargin: "10px",
@@ -195,15 +225,21 @@ const App = {
 
                     scroll_progress(UI.scroll_indicator);
 
-                    /*if(document.documentElement.scrollTop > 110 || window.pageYOffset > 110) is_scrolling = true;
+                    if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) is_scrolling = true;
 
-                    if(document.documentElement.scrollTop <= 110 || window.pageYOffset <= 110) is_scrolling = false;
+                    if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) is_scrolling = false;
 
                     if(is_scrolling) {
 
+                        if(UI.bot_nav_collapse.classList.contains("show")) {
+
+                            clearTimeout(scroll_timer);
+                            return;
+                        };
+
                         clearTimeout(scroll_timer);
-                        UI.header.style.opacity = "unset"
-                        UI.header.style.visibility = "unset"
+                        UI.header.style.opacity = "unset";
+                        UI.header.style.visibility = "unset";
                         
                         scroll_timer = setTimeout(() => {
                             
@@ -212,15 +248,15 @@ const App = {
                             if(!is_scrolling) {
 
                                 UI.header.style.opacity = "0";
-                                UI.header.style.visibility = "hidden"
+                                UI.header.style.visibility = "hidden";
                             };
-                        }, 500);
+                        }, 800);
                     } else {
 
-                        clearTimeout(scroll_timer)
-                        UI.header.style.opacity = "unset"
-                        UI.header.style.visibility = "unset"
-                    };*/
+                        clearTimeout(scroll_timer);
+                        UI.header.style.opacity = "unset";
+                        UI.header.style.visibility = "unset";
+                    };
                 });
 
                 document.addEventListener("scroll", scroll_moved_debounce_wrapper);
@@ -690,8 +726,8 @@ const App = {
                                     ajax(My_Form.method, My_Form.url, My_Form.data, success, error);
                                     
                                     recaptchaCallback(() => {
-
-                                        console.log("in grecaptcha callback");
+                                       
+                                        console.log("in grecaptcha callback", grecaptcha);
                                         form.classList.remove('was-validated');
                                         if(UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
                                     });
