@@ -20,3 +20,5 @@ also a lot of functionality has been included. It incorporates things like API c
 ## Contact 
 Like what you see? Feel free to contact me via the website. There are links to find me on social media, send me an email, live chat or even call. 
 I'd love to hear from you and get your feedback.
+
+Hosted on Netlify: darnellnoeldev.netlify.app
