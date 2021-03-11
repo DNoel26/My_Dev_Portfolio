@@ -68,8 +68,7 @@
 
 .cta {
     will-change: transform;
-    border: 2px solid var(--theme-colour-3);
-    border-radius: 6px;
+    border-radius: 3px;
     width: max-content;
     display: inline-block;
     margin: 0 auto;
@@ -235,6 +234,10 @@
     max-width: 100%;
     height: 100%;
     object-fit: contain !important;
+}
+
+.google-audit img {
+    width: 15vw;
 }
 
 /*.nav-container.nav-container-sticky .logo-link,
@@ -954,6 +957,7 @@ a.nav-link,
 
 .img-fluid {
     background-color: unset;
+    width: auto;
 }
 
 .border-right-0 {
