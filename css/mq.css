@@ -274,6 +274,14 @@ Extra large devices (large desktops, 1200px and up)
         left: 0;
     }
 
+    .google-audit .audit-results {
+        width: 75vw;
+    }
+    
+    .google-audit .devices {
+        width: 30vw;
+    }
+
     .about-section,
     .projects-section {
         text-align: center !important;
@@ -418,6 +426,14 @@ Extra large devices (large desktops, 1200px and up)
 
     .my-carousel-item .card-body {
         width: 332px;
+    }
+
+    .google-audit .audit-results {
+        width: 95vw;
+    }
+    
+    .google-audit .devices {
+        width: 40vw;
     }
 }
 

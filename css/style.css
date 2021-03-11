@@ -236,8 +236,12 @@
     object-fit: contain !important;
 }
 
-.google-audit img {
-    width: 15vw;
+.google-audit .audit-results {
+    width: 50vw;
+}
+
+.google-audit .devices {
+    width: 20vw;
 }
 
 /*.nav-container.nav-container-sticky .logo-link,
