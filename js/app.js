@@ -38,32 +38,32 @@ const App = {
                 return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
             }, 1000);
 
-            setTimeout(() => {
-                
-                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js");
-            }, 5000);
+            const script_delay = new Promise((resolve, reject) => {
 
-            // Checks to see if recaptcha has loaded correctly and if not, makes up to 10 attempts to reload
-            /*setTimeout(() => {
-                
+                UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js?render=explicit");
+                setTimeout(resolve, 5000);
+            })
+            .then(() => {
+
+                // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
                 recaptchaCallback(() => {
 
                     if(UI.grecaptcha.length > 0) {
 
                         UI.my_form_button.removeAttribute("disabled");
-                        //console.log(grecaptcha);
+                        console.log(grecaptcha);
                         grecaptcha.render("recaptcha", {
 
                             sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
                             callback: () => {
 
                                 return;
-                            }
+                            },
                         });
-                        
                     };
                 });
-            }, 10500);*/
+            })
+            .catch(err => console.log("Error in script delay promise: ", err)) 
 
             const options = {
                 rootMargin: "10px",
@@ -83,7 +83,7 @@ const App = {
                 });
             }, options);
 
-            let is_scrolling = false;
+            let show_header = true;
             let scroll_limit = 0;
             let scroll_moved = false;
             let scroll_top_reset = true;
@@ -192,9 +192,9 @@ const App = {
 
                     return (scroll_timer = setTimeout(() => {
                             
-                        is_scrolling = false;
+                        //is_scrolling = false;
                         
-                        if(!is_scrolling) {
+                        if(!show_header) {
 
                             UI.header.style.opacity = "0";
                             UI.header.style.visibility = "hidden";
@@ -205,29 +205,31 @@ const App = {
                 // Stops the header timer when mouse hovers over the header
                 UI.header.addEventListener("mouseover", () => {
 
+                    show_header = true;
                     clearTimeout(scroll_timer);
                 });
 
                 // Resumes header timer to hide header when mouse leaves the element
-                if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit)) {
+                UI.header.addEventListener("mouseout", () => {
 
-                    UI.header.addEventListener("mouseout", () => {
+                    if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit)) {
 
+                        show_header = false;
                         header_timer();
-                    });
-                };
+                    };
+                });
 
                 //Hides header on scroll and returns to normal position when stopped after a few seconds
                 document.addEventListener("scroll", () => {
 
                     scroll_progress(UI.scroll_indicator);
 
-                    if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) is_scrolling = true;
+                    if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) show_header = false;
 
-                    if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) is_scrolling = false;
+                    if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) show_header = true;
 
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
-                    if(is_scrolling) {
+                    if(!show_header) {
 
                         if(UI.bot_nav_collapse.classList.contains("show")) {
 
@@ -684,11 +686,11 @@ const App = {
                             form.querySelectorAll(".form-data").forEach(data => {
 
                                 if(data.tagName === "INPUT") data.value = sessionStorage.getItem(data.name);
-                                if(data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name);   
-                                if(data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);              
+                                if(data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);  
+                                if(data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name) || "";           
                                 
                                 //console.log(data, data.tagName, data.name, data.value);
-                                select_change()
+                                select_change();
                                 
                                 // Save contact form info in cookies
                                 data.addEventListener("input", debounce(() => {
