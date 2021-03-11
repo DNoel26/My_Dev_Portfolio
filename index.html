@@ -83,7 +83,17 @@
         
                             <li class="nav-item px-3">
                                 <!-- Button trigger modal -->
-                                <button class="nav-link btn btn-info btn-custom-1" data-bs-toggle="modal" data-bs-target="#resume">View Resume</button> 
+                                <!--<button class="nav-link btn btn-info btn-custom-1" data-bs-toggle="modal" data-bs-target="#resume">View Resume</button>-->
+
+                                <button class="nav-link btn btn-info btn-custom-1 btn-anim" data-bs-toggle="modal" data-bs-target="#resume">
+                                    <span class="circle" aria-hidden="true">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+            
+                                    <span class="btn-text">
+                                        View Resume
+                                    </span>
+                                </button>
                             </li>
                             <!--<iframe src="/assets/Darnell Noel Resume Feb 2020.pdf" height="500px" width="100%"></iframe>-->
                         </ul>
@@ -308,9 +318,19 @@
                         <p>Interested in opportunities to work with you, so feel free to <a class="text-reset text-decoration-none anim-link-3" href="#contact">contact</a> me!</p>
                     </div> 
         
-                    <button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto" data-id="summary-btn">
+                    <!--<button type="button" class="btn btn-custom-2 mt-4 d-block mx-auto" >
                         Learn More
-                    </button>        
+                    </button>-->     
+                    
+                    <button class="btn btn-custom-2 mt-4 d-block mx-auto btn-anim" data-id="summary-btn">
+                        <span class="circle" aria-hidden="true">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+
+                        <span class="btn-text">
+                            Learn More
+                        </span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -899,9 +919,17 @@
                             </div>
     
                             <div class="mb-3">
-                                <button class="btn btn-custom-2 mb-3 w-auto" type="submit" id="my-form-button">Send Email</button>
+                                <button class="btn btn-custom-2 mb-3 w-auto btn-anim" type="submit" id="my-form-button">
+                                    <span class="circle" aria-hidden="true">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </span>
+
+                                    <span class="btn-text">
+                                        Send Email
+                                    </span>
+                                </button>
     
-                                <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal" data-callback="recaptchaCallback"></div>
+                                <div id="recaptcha" class="g-recaptcha mt-5" data-sitekey="6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3" data-size="normal" data-callback="recaptchaCallback"></div>
                             </div>
 
                             <strong id="my-form-status"></strong>

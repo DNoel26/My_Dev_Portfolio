@@ -214,6 +214,93 @@
     justify-self: right;
  }
 
+ .btn-anim {
+    position: relative !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 5px;
+    transform: none !important;
+}
+
+.btn-anim .btn-text {
+    color: var(--theme-colour-1);
+    transition: all 0.6s ease-in-out;
+}
+
+.btn-anim:hover .btn-text,
+.btn-anim:focus .btn-text {
+    color: var(--theme-colour-3);
+}
+
+.btn-anim .circle {
+    position: relative;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.btn-anim .circle::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 2rem;
+    content: "";
+    background: var(--theme-colour-1);
+    height: 100%;
+    width: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.btn-anim:hover .circle::after,
+.btn-anim:focus .circle::after {
+    z-index: -1;
+    width: 10rem;
+    background: var(--theme-colour-1);
+}
+
+.circle .fas {
+    color: var(--theme-colour-3);
+    transition: all 0.6s ease-in-out;
+}
+
+.circle .fa-info-circle,
+.circle .fa-eye {
+    position: relative;
+    left: 2px;
+}
+
+header .btn-anim {
+    border: none !important;
+    margin: 8px;
+}
+
+header .btn-anim .btn-text {
+    color: var(--theme-colour-3);
+}
+
+header .btn-anim:hover .btn-text,
+header .btn-anim:focus .btn-text {
+    color: var(--theme-colour-1);
+}
+
+header .btn-anim:hover .circle::after,
+header .btn-anim:focus .circle::after {
+    background: var(--theme-colour-3);
+    width: 11rem;
+}
+
+header .circle .fas {
+    color: var(--theme-colour-1);
+}
+
+header .btn-anim .circle::after {
+    background: var(--theme-colour-3);
+}
+
 .logo {
     height: 100%;
 }
@@ -742,6 +829,7 @@ lottie-player {
 .g-recaptcha {
     transform: scale(0.9);
     transform-origin: 0 0;
+    height: 1rem;
 }
 
     /*** Classy Blockquote Styling ***/

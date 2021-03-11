@@ -119,6 +119,34 @@ Extra large devices (large desktops, 1200px and up)
         background-position: 100% 100%;
     }
 
+    header .btn-anim {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    header .btn-anim .btn-text {
+        color: var(--theme-colour-1);
+    }
+    
+    header .btn-anim:hover .btn-text,
+    header .btn-anim:focus .btn-text {
+        color: var(--theme-colour-3);
+    }
+    
+    header .btn-anim:hover .circle::after,
+    header .btn-anim:focus .circle::after {
+        background: var(--theme-colour-1);
+        width: 10.5rem;
+    }
+    
+    header .circle .fas {
+        color: var(--theme-colour-3);
+    }
+    
+    header .btn-anim .circle::after {
+        background: var(--theme-colour-1);
+    }
+
     .anim-link-1::before,
     .anim-link-1::after {
         border: unset !important;

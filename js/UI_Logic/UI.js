@@ -258,7 +258,15 @@ const UI = {
                 
                 this.summary_containers[0].classList.add("d-none", "opacity-0");
                 this.summary_containers[1].classList.remove("d-none", "opacity-0");
-                this.summary_btn.innerHTML = "Go Back";
+                this.summary_btn.innerHTML = `
+                    <span class="circle" aria-hidden="true">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+
+                    <span class="btn-text">
+                        Learn More
+                    </span>
+                `;
             }, 205);
 
             setTimeout(() => {
@@ -273,7 +281,15 @@ const UI = {
                 
                 this.summary_containers[1].classList.add("d-none", "opacity-0");
                 this.summary_containers[0].classList.remove("d-none", "opacity-0");
-                this.summary_btn.innerHTML = "Learn More";
+                this.summary_btn.innerHTML = `
+                    <span class="circle" aria-hidden="true">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+
+                    <span class="btn-text">
+                        Learn More
+                    </span>
+                `;
             }, 205);
 
             setTimeout(() => {
