@@ -41,9 +41,14 @@ const App = {
                 return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
             }, 1000);
 
+            setTimeout(() => {
+                
+                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
+            }, 10000);
+
             const script_delay = new Promise((resolve, reject) => {
 
-                UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "https://www.google.com/recaptcha/api.js?render=explicit");
+                UI.create_scripts("https://www.google.com/recaptcha/api.js?render=explicit");
                 setTimeout(resolve, 5000);
             })
             .then(() => {

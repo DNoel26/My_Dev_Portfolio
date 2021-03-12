@@ -44,13 +44,13 @@
 }
 
 @keyframes fade-out {
-    0% {opacity:1;}
-    100% {opacity:0;}
+    0% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 @keyframes bg-fade-in {
-    0% {background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('') no-repeat fixed}
-    100% {background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed}
+    0% {opacity: 0}
+    100% {opacity: 1;}
 }
 
 /* Custom Classes */
