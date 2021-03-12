@@ -467,6 +467,14 @@ Extra large devices (large desktops, 1200px and up)
     .google-audit .devices {
         width: 40vw;
     }
+
+    .tag-cloud-content {
+        height: 26.5rem;
+    }
+
+    .dev-project-gallery .btn.btn-project > span {
+        font-size: 1rem;
+    }
 }
 
 /* X-Small devices (portrait phones, less than 576px) */

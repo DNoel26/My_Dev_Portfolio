@@ -148,7 +148,7 @@ const App = {
             UI.header_vid.addEventListener("animationend", ()=>{
 
                 setTimeout(() => {
-                    
+
                     UI.replace_vid_bg();
                     UI.header_vid.remove();
                     header_vid_ended = true;
@@ -235,14 +235,14 @@ const App = {
 
                     show_header = true;
                     clearTimeout(scroll_timer);
-                });
+                }, {passive: true});
 
                 // Stops the header timer when screen is moved on the header
                 UI.header.addEventListener("touchmove", () => {
 
                     show_header = true;
                     clearTimeout(scroll_timer);
-                });
+                }, {passive: true});
 
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener("mouseout", () => {
@@ -252,6 +252,16 @@ const App = {
                         show_header = false;
                         header_timer();
                     };
+                });
+
+                // Stops the header timer when mouse moves over the header
+                UI.header_btns.forEach(btn => {
+                    
+                    btn.addEventListener("focus", () => {
+
+                        show_header = true;
+                        clearTimeout(scroll_timer);
+                    });
                 });
 
                 //Hides header on scroll and returns to normal position when stopped after a few seconds
@@ -283,13 +293,15 @@ const App = {
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
                     };
-                }, {passive: true});
+                },  {passive: true});
 
-                document.addEventListener("scroll", scroll_moved_debounce_wrapper, {passive: true});
-                document.addEventListener("touchmove", scroll_moved_debounce_wrapper, {passive: true});
+                document.addEventListener("scroll", scroll_moved_debounce_wrapper,  {passive: true});
+                document.addEventListener("touchmove", scroll_moved_debounce_wrapper,  {passive: true});
+                document.addEventListener("touchstart", scroll_moved_debounce_wrapper,  {passive: true});
 
-                document.addEventListener("scroll", sticky_header_throttle_wrapper, {passive: true});
-                document.addEventListener("touchmove", sticky_header_throttle_wrapper, {passive: true});
+                document.addEventListener("scroll", sticky_header_throttle_wrapper,  {passive: true});
+                document.addEventListener("touchmove", sticky_header_throttle_wrapper,  {passive: true});
+                document.addEventListener("touchstart", sticky_header_throttle_wrapper,  {passive: true});
             })();
 
             //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
@@ -400,11 +412,13 @@ const App = {
             (function() {
 
                 let tagcloud_radius;
+
                 const mq_limits = [
                     window.matchMedia("(max-width: 320.98px)"),
                     window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
                     window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
                     window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
+                    window.matchMedia("(min-width: 992px)")
                 ];
 
                 const tagcloud_resizer = function() {
@@ -429,7 +443,10 @@ const App = {
                         return tagcloud_radius = 300;
                     }, null); 
 
-                    return tagcloud_radius;
+                    media_queries(mq_limits[4], () => {
+
+                        return tagcloud_radius = undefined;
+                    }, null); 
                 };
 
                 tagcloud_resizer();
@@ -549,98 +566,81 @@ const App = {
 
                 let current_project = new Project();
                 let new_inner_html = ``;
-
-                UI.dev_project_gallery_btns.forEach(btn => {
+                const dev_project_carousel = new bootstrap.Carousel(UI.dev_project_carousel, {
                     
-                    btn.addEventListener("click", () => {
-
-                        logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
-
-                        if(btn.dataset.devProject === "Wix Site Clone") {
-
-                            current_project = Wix_Clone;
-                        } else {
-
-                            return logger("PROJECT NOT LOADED YET");
-                        }
-
-                        logger(current_project);
-                        change_project();
-                        UI.dev_project_overview.innerHTML = new_inner_html;
-                    });
+                    interval: 5000,
                 });
 
                 function change_project() {
 
-                    new_inner_html = 
-                        `
-                            <div class="flex-row row justify-content-between align-items-center ">
-                                <div class="col-12 col-xl-6">
-                                    <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-indicators">
-                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
-                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
-                                            <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
-                                        </div>
-
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active" data-bs-interval="5000">
-                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[0]} alt=${current_project.carousel_img_list.alt[0]}>
-                                            </div>
-
-                                            <div class="carousel-item" data-bs-interval="5000">
-                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[1]} alt=${current_project.carousel_img_list.alt[1]}>
-                                            </div>
-
-                                            <div class="carousel-item" data-bs-interval="5000">
-                                                <img class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[2]} alt=${current_project.carousel_img_list.alt[2]}>
-                                            </div>
-                                        </div>
-
-                                        <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-
-                                        <button class="carousel-control-next btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+                    new_inner_html = `
+                        <div class="flex-row row justify-content-between align-items-center">
+                            <div class="col-12 col-xl-6">
+                                <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-indicators" id="dev-project-carousel-indicators">
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
                                     </div>
-                                </div>
 
-                                <div class="col-12 col-xl-6">
-                                    <div class="card-body py-5">
-                                        <h3>${current_project.name}</h3>
-                                        
-                                        <p>
-                                            ${current_project.description}
-                                            <br><strong>Status: ${current_project.status} <span class="status-in-progress status-circle"></span></strong>
-                                        </p>
-                                        
-                                        <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-2">${current_project.link_header}</strong> Now ${current_project.link_note}</a>
-                                        <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank"><strong class="text-custom-1">Review</strong> Code ${current_project.github_readme}</a>
-
-                                        <h4 class="small text-left mt-3">Notes:</h4>
-                                        <ul>
-                                            <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
-                                            <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
-                                            <li class="text-red">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
-                                        </ul>  
-
-                                        <h3 class="small mt-3">- Built Using -</h3>
-
-                                        <div class="icon-row-sm">
-                                            <img class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-html, after: $removeAnim">
-                                            <img class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-css, after: $removeAnim">
-                                            <img class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" data-anijs="if: mouseout, do: flip animated, to: #icon-js, after: $removeAnim">
+                                    <div class="carousel-inner" id="dev-project-carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[0]} alt=${current_project.carousel_img_list.alt[0]} width="625" height="500">
                                         </div>
-                                    </div>  
+
+                                        <div class="carousel-item">
+                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[1]} alt=${current_project.carousel_img_list.alt[1]} width="625" height="500">
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[2]} alt=${current_project.carousel_img_list.alt[2]} width="625" height="500">
+                                        </div>
+                                    </div>
+
+                                    <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+    
+                                    <button class="carousel-control-next btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
                             </div>
-                        `
+
+                            <div class="col-12 col-xl-6">
+                                <div class="card-body py-5">
+                                    <h3 class="text-center">${current_project.name}</h3>
+                                    
+                                    <p>
+                                        ${current_project.description}
+                                        <br><strong>Status: ${current_project.status} <span class="status-in-progress status-circle"></span></strong>
+                                    </p>
+                                    
+                                    <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2">${current_project.link_header}</strong> Now ${current_project.link_note}</a>
+                                    <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1">Review</strong> Code ${current_project.github_readme}</a>
+
+                                    <h4 class="small text-left mt-3">Notes:</h4>
+                                    <ul class="text-wrap" id="dev-project-carousel-notes">
+                                        <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
+                                        <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
+                                        <li class="fw-bold">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
+                                    </ul>  
+
+                                    <h3 class="small mt-3">- Built Using -</h3>
+
+                                    <div class="icon-row-sm mb-3" id="dev-project-carousel-icons">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" width="39" height="20">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" width="39" height="20">
+                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" width="39" height="20">
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    `
                 };
 
                 // Alien Mathvasion Project
@@ -649,7 +649,8 @@ const App = {
 
                 Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
-                    Good luck surviving the hardest difficulty!`;
+                    Good luck surviving the hardest difficulty!
+                `;
                 Alien_Mathvasion.link_note = "(expect audio)";
                 Alien_Mathvasion.notes.push(`Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`);
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
@@ -661,8 +662,11 @@ const App = {
                 const Wix_Clone = new Project("Wix Site Clone", 1, "https://dnoelmotorcyclewixclone.netlify.app/", "View", 
                     "https://github.com/DNoel26/Wix_Motorcycle_Trial", true);
 
-                Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of a selected Wix site. It was built using HTML, CSS and without any JavaScript. 
-                    Showcases the ability to take designs and convert them into functional webpages or websites.`;
+                Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
+                    <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected original Wix site</a>. 
+                    It was built using HTML, CSS and without any JavaScript. 
+                    Showcases the ability to take designs and convert them into functional webpages or websites.
+                `;
                 Wix_Clone.link_note = "(see cloned Wix site here)";
                 Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact`);
                 Wix_Clone.add_imgs([], [], []);
@@ -693,6 +697,30 @@ const App = {
 
                 console.log(Alien_Mathvasion.tool_icon_list);
                 console.log(Alien_Mathvasion.tool_icon_list.id[2]);
+                
+
+                UI.dev_project_gallery_btns.forEach(btn => {
+                    
+                    btn.addEventListener("click", () => {
+
+                        logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
+
+                        if(btn.dataset.devProject === "Wix Site Clone") {
+
+                            current_project = Wix_Clone;
+                        } else {
+
+                            return logger("PROJECT NOT LOADED YET");
+                        }
+
+                        logger(current_project);
+                        change_project();
+                        dev_project_carousel;
+                        UI.dev_project_overview.innerHTML = new_inner_html;
+                        dispatchEvent(new Event('load'));
+                        UI.dev_project_overview.scrollIntoView();
+                    });
+                });
             })();
 
             /*** CONTACT SECTION ***/

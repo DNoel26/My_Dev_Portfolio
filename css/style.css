@@ -518,7 +518,7 @@ header .btn-anim .circle::after {
     margin: auto;
     width: 100%;
     height: 0;
-    z-index: -1;
+    z-index: 0;
     background: linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.3)) ;
     border-bottom: 2px solid black;
     transition: all 0.3s ease-in-out;
@@ -789,15 +789,15 @@ lottie-player {
 
 .tag-cloud-content {
     overflow: hidden;
+    height: 37.5rem;
 }
 
 .tagcloud {
     font-size: 1.2rem;
     width: 100% !important;
     max-width: 100% !important;
-    height: 31.25rem !important;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    min-height: 100%;
+    height: fit-content !important; /*31.25rem;*/
     margin-left: auto;
     margin-right: auto;
     transition: all 0.2s ease-in-out;
@@ -1424,7 +1424,6 @@ section {
 .dev-project-gallery .btn:hover, 
 .dev-project-gallery .btn:focus {
     filter: brightness(100%);
-    transform: scale(1.02);
 }
 
 .dev-project-gallery .btn.btn-project > span {
