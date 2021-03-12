@@ -31,6 +31,9 @@ const App = {
             UI.body.classList.add("will-change-height");
             UI.header.classList.add("will-change-height");
             UI.my_form_button.setAttribute("disabled", "disabled");
+
+            // Load BG video from selection
+            UI.load_bg_vid();
             
             // Delay load of non-essential scripts
             setTimeout(() => {
@@ -140,6 +143,17 @@ const App = {
                 UI.header_vid.remove();
                 header_vid_ended = true;
             }); 
+                        
+            // Removes poster or bg if video fails to load and then adds a static background image
+            UI.header_vid.addEventListener("animationend", ()=>{
+
+                setTimeout(() => {
+                    
+                    UI.replace_vid_bg();
+                    UI.header_vid.remove();
+                    header_vid_ended = true;
+                }, 3000);
+            }); 
 
             // Controls the Scroll Events
             (function() {
@@ -209,6 +223,27 @@ const App = {
                     clearTimeout(scroll_timer);
                 });
 
+                // Stops the header timer when mouse moves over the header
+                UI.header.addEventListener("mousemove", () => {
+
+                    show_header = true;
+                    clearTimeout(scroll_timer);
+                });
+
+                // Stops the header timer when screen is touched on the header
+                UI.header.addEventListener("touchstart", () => {
+
+                    show_header = true;
+                    clearTimeout(scroll_timer);
+                });
+
+                // Stops the header timer when screen is moved on the header
+                UI.header.addEventListener("touchmove", () => {
+
+                    show_header = true;
+                    clearTimeout(scroll_timer);
+                });
+
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener("mouseout", () => {
 
@@ -234,6 +269,7 @@ const App = {
                         if(UI.bot_nav_collapse.classList.contains("show")) {
 
                             clearTimeout(scroll_timer);
+                            show_header = true;
                             return;
                         };
 

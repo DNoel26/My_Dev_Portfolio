@@ -68,7 +68,7 @@
 
 .cta {
     will-change: transform;
-    border-radius: 3px;
+    border-radius: 5px;
     width: max-content;
     display: inline-block;
     margin: 0 auto;
@@ -237,7 +237,7 @@
 .btn-anim .circle {
     position: relative;
     margin-right: 1rem;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-radius: 2rem;
 }
 
@@ -265,12 +265,21 @@
 .circle .fas {
     color: var(--theme-colour-3);
     transition: all 0.6s ease-in-out;
+    width: 1rem;
+    height: 1rem;
 }
 
 .circle .fa-info-circle,
-.circle .fa-eye {
+.circle .fa-file {
     position: relative;
+    bottom: 1px;
+}
+
+.circle .fa-info-circle {
     left: 2px;
+}
+.circle .fa-file {
+    left: 3px;
 }
 
 header .btn-anim {
@@ -425,6 +434,7 @@ header .btn-anim .circle::after {
     width: 35%;
     height: 50%;
     opacity: 0.8;
+    border-radius: 4px;
 }
 
 .anim-link-1:hover::before,
@@ -1245,6 +1255,7 @@ header video {
     animation:  fade-in 10s ease-in-out 0s 1,
                 fade-out 1.5s ease-in-out 10s 1;
     opacity: 0;
+    filter: brightness(1);
 }
 
 /*.header-bg-img {
@@ -1397,15 +1408,16 @@ section {
     position: relative;
 }
 
-.dev-project-gallery {
+/*.dev-project-gallery {
     column-count: 3;
     column-gap: 0;
     column-width: 30%;   
-}
+}*/
 
 .dev-project-gallery .btn {
-    transition: all 0.2s ease-in-out;
-    filter: brightness(75%);
+    will-change: transform;
+    position: relative;
+    transition: all 0.3s ease-in-out;
     -webkit-backface-visibility: hidden;
 }
 
@@ -1415,3 +1427,33 @@ section {
     transform: scale(1.02);
 }
 
+.dev-project-gallery .btn.btn-project > span {
+    position: absolute;
+    top: 50%; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 5;
+    transform: translateY(-50%);
+    color: transparent;
+    font-size: 2rem;
+    font-weight: 100;
+    transition: all 0.3s ease-in-out;
+}
+
+.dev-project-gallery .btn.btn-project:hover > span {
+    color: var(--theme-colour-3);
+    font-weight: 600;
+}
+
+.dev-project-gallery .btn.btn-project > img {
+    position: relative;
+    filter: brightness(100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.dev-project-gallery .btn.btn-project:hover > img,
+.dev-project-gallery .btn.btn-project:focus > img {
+    filter: brightness(50%);
+}

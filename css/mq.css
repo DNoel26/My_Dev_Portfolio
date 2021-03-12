@@ -444,6 +444,10 @@ Extra large devices (large desktops, 1200px and up)
         padding-top: 2rem !important;
     }
 
+    .profile {
+        max-width: 95%;
+    }
+
     .carousel-indicators {
         bottom: 18%;
     }
@@ -500,6 +504,10 @@ Extra large devices (large desktops, 1200px and up)
     section {
         margin-left: 0;
         margin-right: 0;
+    }
+
+    .profile {
+        max-width: 90%;
     }
 
     .my-carousel-wrapper ul {

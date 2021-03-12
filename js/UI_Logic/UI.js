@@ -13,6 +13,7 @@ const UI = {
     // Header Video 
     header: document.querySelector("header"),
     header_vid: document.querySelector("header video"),
+    header_vid_multi: document.querySelectorAll("video [data-src]"),
     nav_container: document.querySelector(".nav-container"),
     top_nav: document.querySelector(".top-header-nav"),
     bot_nav: document.querySelector(".bot-header-nav"),
@@ -105,6 +106,24 @@ const UI = {
             script.src = src;
             script.setAttribute("async", "async");
             this.body.appendChild(script);    
+        });
+    },
+
+    load_bg_vid() {
+        
+        console.log(this.header_vid_multi);
+        this.header_vid_multi.forEach(vid => {
+
+            const data_src = vid.getAttribute("data-src");
+            const data_media = vid.getAttribute("data-media");
+            const mq_limit = window.matchMedia(data_media);
+
+            media_queries(mq_limit, () => {
+                
+                vid.setAttribute("src", data_src);
+                vid.setAttribute("media", data_media);
+                vid.parentElement.load();
+            }, null);
         });
     },
 
