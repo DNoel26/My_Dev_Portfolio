@@ -663,7 +663,7 @@ const App = {
                     "https://github.com/DNoel26/Wix_Motorcycle_Trial", true);
 
                 Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
-                    <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected original Wix site</a>. 
+                    <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected, original Wix site</a>. 
                     It was built using HTML, CSS and without any JavaScript. 
                     Showcases the ability to take designs and convert them into functional webpages or websites.
                 `;
