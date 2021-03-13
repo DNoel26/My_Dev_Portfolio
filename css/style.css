@@ -38,9 +38,9 @@
 }
 
 @keyframes fade-in {
-    0% {opacity:0;}
-    15% {opacity:1;}
-    100% {opacity:1;}
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 1;}
 }
 
 @keyframes fade-out {
@@ -357,7 +357,7 @@ header .btn-anim .circle::after {
 }
 
 .icon-disp-img-lg {
-    height: 5rem;
+    height: 4rem;
     width: auto;
     max-width: 100%;
 }
@@ -545,11 +545,11 @@ header .btn-anim .circle::after {
     justify-content: center;
 }
 
-img.handlebars-logo {
+/*img.handlebars-logo {
     background-color: #f0772b;
     border-radius: 2px;
     padding: 0.2rem;
-}
+}*/
 
 .h-0 {
     height: 0 !important;
@@ -839,7 +839,6 @@ lottie-player {
 .g-recaptcha {
     transform: scale(0.9);
     transform-origin: 0 0;
-    height: 1rem;
 }
 
     /*** Classy Blockquote Styling ***/

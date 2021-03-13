@@ -2,43 +2,50 @@ class Project {
 
     name;
     description; 
-    status; // Completed, Work in Progress, On Hold
+    status = {
+
+        msg: null, // Completed, Work in Progress, On Hold
+        class_code: null,
+    };
     link; // href to project hosted site
     link_header; // e.g. "Play" or "View" Now
     link_note; // e.g. (expect audio)
     github_link; // href to project github repo
     github_readme; // boolean
-    notes = [];
+    notes = []; // displayed as an unordered list
     thumbnail = {
         
         btn_id: null,
         src: null,
         alt: null,
-    }; // main image displayed in gallery
+    }; // main button image displayed in gallery above project overview
     carousel_img_list = {
 
-        id: [],
-        src: [],
-        alt: [],
-    };
+        ids: [],
+        srcs: [],
+        alts: [],
+    }; // images to be displayed in the carousel
     tool_icon_list = {
 
-        id: [],
-        src: [],
-        alt: [],
+        ids: [],
+        srcs: [],
+        alts: [],
     }; // i.e. to be added to the "- Built Using -" icon section
 
-    constructor(name, status, link, link_header, github_link, github_readme)
+    constructor(name, status_msg, link, link_header, github_link, github_readme)
     {
-        if(status === 1) {
+        if(status_msg === 1) {
 
-            status = "Completed";
-        } else if(status === 2) {
+            status_msg = "Completed";
+            this.status.class_code = "status-complete";
+        } else if(status_msg === 2) {
 
-            status = "Work in Progress";
-        } else if(status === 3) {
+            status_msg = "Work in Progress";
+            this.status.class_code = "status-in-progress";
+        } else if(status_msg === 3) {
 
-            status = "On Hold";
+            status_msg = "On Hold";
+            this.status.class_code = "status-hold";
         };
         
         if(github_readme === true) {
@@ -50,25 +57,25 @@ class Project {
         };
         
         this.name = name;
-        this.status = status;
+        this.status.msg = status_msg;
         this.link = link;
         this.link_header = link_header;
         this.github_link = github_link;
         this.github_readme = github_readme;
     };
 
-    add_imgs(id, src, alt) {
+    add_imgs(ids, srcs, alts) {
 
-        this.carousel_img_list.id.push(...id);
-        this.carousel_img_list.src.push(...src);
-        this.carousel_img_list.alt.push(...alt);
+        this.carousel_img_list.ids.push(...ids);
+        this.carousel_img_list.srcs.push(...srcs);
+        this.carousel_img_list.alts.push(...alts);
     };
 
-    add_tool_icons(id, src, alt) {
+    add_tool_icons(ids, srcs, alts) {
 
-        this.tool_icon_list.id.push(...id);
-        this.tool_icon_list.src.push(...src);
-        this.tool_icon_list.alt.push(...alt);
+        this.tool_icon_list.ids.push(...ids);
+        this.tool_icon_list.srcs.push(...srcs);
+        this.tool_icon_list.alts.push(...alts);
     };
 };
 

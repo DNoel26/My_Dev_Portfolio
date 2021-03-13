@@ -218,7 +218,7 @@ const App = {
                             UI.header.style.opacity = "0";
                             UI.header.style.visibility = "hidden";
                         };
-                    }, 800));
+                    }, 510));
                 };
 
                 // Stops the header timer when mouse hovers over the header
@@ -358,30 +358,37 @@ const App = {
                 const scroll_amt_modifier = function() {
 
                     media_queries(mq_limits[0], () => {
+
                         return scroll_amt = 280;
                     }, null);
 
                     media_queries(mq_limits[1], () => {
+
                         return scroll_amt = 296;
                     }, null);
     
                     media_queries(mq_limits[2], () => {
+
                         return scroll_amt = 360;
                     }, null);
 
                     media_queries(mq_limits[3], () => {
+
                         return scroll_amt = 656/2;
                     }, null);
 
                     media_queries(mq_limits[4], () => {
+
                         return scroll_amt = 720/2;
                     }, null);
 
                     media_queries(mq_limits[5], () => {
+
                         return scroll_amt = 980/3;
                     }, null);
 
                     media_queries(mq_limits[6], () => {
+
                         return scroll_amt = 1080/3;
                     }, null);
                 };
@@ -576,6 +583,86 @@ const App = {
                     interval: 5000,
                 });
 
+                // Adds an indicator button, along with attributes per image and sets active class to first slide
+                // Accepts a single parameter with values "dev" or "client"
+                function populate_carousel_indicators(proj_type) {
+
+                    current_project.carousel_img_list.srcs.forEach((indicator, index) => {
+                        
+                        const btn = document.createElement("button");
+                        btn.setAttribute("type", "button");
+                        btn.setAttribute("data-bs-target", "#dev-project-carousel");
+                        if(index === 0) btn.classList.add("active", "btn"), btn.setAttribute("aria-current", "true");
+                        else btn.classList.add("btn");
+                        btn.setAttribute("aria-label", `Slide ${index+1}`);
+
+                        // Append to dev or client project depending on parameter set
+                        if(proj_type === "dev".toLowerCase()) UI.dev_project_carousel_indicator_section.appendChild(btn);
+                        else if(proj_type === "client".toLowerCase()) UI.dev_project_carousel_indicator_section.appendChild(btn);
+                    });
+                };
+
+                // Adds each image along with attributes, to the carousel slideshow
+                // Accepts a single parameter with values "dev" or "client"
+                function populate_carousel_img_data(proj_type) {
+
+                    current_project.carousel_img_list.srcs.forEach((src, index) => {
+                        
+                        const div = document.createElement("div");
+                        if(index === 0) div.classList.add("carousel-item", "active");
+                        else div.classList.add("carousel-item");
+                        const img = document.createElement("img");
+                        img.setAttribute("loading", "lazy");
+                        img.classList.add("d-block", "w-100", "p-3");
+                        img.setAttribute("src", src);
+                        img.setAttribute("alt", (current_project.carousel_img_list.alts[index] || "My project carousel image"));
+                        img.setAttribute("width", "625");
+                        img.setAttribute("height", "500");
+                        div.appendChild(img);
+
+                        // Append to dev or client project depending on parameter set
+                        if(proj_type === "dev".toLowerCase()) UI.dev_project_carousel_inner_section.appendChild(div);
+                        else if(proj_type === "client".toLowerCase()) UI.client_project_carousel_inner_section.appendChild(div);
+                    });
+                };
+
+                // Adds notes to project overview
+                // Accepts a single parameter with values "dev" or "client"
+                function populate_project_notes(proj_type) {
+
+                    current_project.notes.forEach((note, index) => {
+                        
+                        const list = document.createElement("li");
+                        list.innerHTML = note;
+                        if(index === current_project.notes.length - 1) list.classList.add("fw-bold");
+
+                        // Append to dev or client project depending on parameter set
+                        if(proj_type === "dev".toLowerCase()) UI.dev_project_carousel_note_section.appendChild(list);
+                        else if(proj_type === "client".toLowerCase()) UI.client_project_carousel_note_section.appendChild(list);
+                    });
+                };
+
+                // Adds each tool / technology icon to the end of the project overview
+                // Accepts a single parameter with values "dev" or "client"
+                function populate_project_tool_icons(proj_type) {
+
+                    current_project.tool_icon_list.srcs.forEach((src, index) => {
+                        
+                        const img = document.createElement("img");
+                        img.setAttribute("loading", "lazy");
+                        img.classList.add("img-fluid", "icon-disp-img-lg", "m-3");
+                        img.id = current_project.tool_icon_list.ids[index] || null;
+                        img.setAttribute("src", src);
+                        img.setAttribute("alt", (current_project.tool_icon_list.alts[index] || "Tool and Technology Icon Badge"));
+                        img.setAttribute("width", "85");
+                        img.setAttribute("height", "64");
+
+                        // Append to dev or client project depending on parameter set
+                        if(proj_type === "dev".toLowerCase()) UI.dev_project_carousel_icon_section.appendChild(img);
+                        else if(proj_type === "client".toLowerCase()) UI.client_project_carousel_icon_section.appendChild(img);
+                    });
+                };
+
                 function change_project() {
 
                     new_inner_html = `
@@ -583,23 +670,11 @@ const App = {
                             <div class="col-12 col-xl-6">
                                 <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-indicators" id="dev-project-carousel-indicators">
-                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="0" class="active btn" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="1" class="btn" aria-label="Slide 2"></button>
-                                        <button type="button" data-bs-target="#dev-project-carousel" data-bs-slide-to="2" class="btn" aria-label="Slide 3"></button>
+                                        
                                     </div>
 
                                     <div class="carousel-inner" id="dev-project-carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[0]} alt=${current_project.carousel_img_list.alt[0]} width="625" height="500">
-                                        </div>
 
-                                        <div class="carousel-item">
-                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[1]} alt=${current_project.carousel_img_list.alt[1]} width="625" height="500">
-                                        </div>
-
-                                        <div class="carousel-item">
-                                            <img loading="lazy" class="d-block w-100 p-3" src=${current_project.carousel_img_list.src[2]} alt=${current_project.carousel_img_list.alt[2]} width="625" height="500">
-                                        </div>
                                     </div>
 
                                     <button class="carousel-control-prev btn h-50 m-auto" type="button" data-bs-target="#dev-project-carousel" data-bs-slide="prev">
@@ -622,7 +697,7 @@ const App = {
                                     
                                     <p>
                                         ${current_project.description}
-                                        <br><strong>Status: ${current_project.status} <span class="status-in-progress status-circle"></span></strong>
+                                        <br><strong>Status: ${current_project.status.msg} <span class="${current_project.status.class_code} status-circle"></span></strong>
                                     </p>
                                     
                                     <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2">${current_project.link_header}</strong> Now ${current_project.link_note}</a>
@@ -630,17 +705,13 @@ const App = {
 
                                     <h4 class="small text-left mt-3">Notes:</h4>
                                     <ul class="text-wrap" id="dev-project-carousel-notes">
-                                        <li>Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.</li>
-                                        <li>Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.</li>
-                                        <li class="fw-bold">Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!</li>
+                                        
                                     </ul>  
 
                                     <h3 class="small mt-3">- Built Using -</h3>
 
-                                    <div class="icon-row-sm mb-3" id="dev-project-carousel-icons">
-                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-html" src="/img/HTML5_Badge_256.png" alt="HTML5 Icon Badge" width="39" height="20">
-                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-css" src="/img/CSS3_Badge.png" alt="CSS3 Icon Badge" width="39" height="20">
-                                        <img loading="lazy" class="img-fluid icon-disp-img" id="icon-js" src="/img/JavaScript-logo.png" alt="Javascript Icon Badge" width="39" height="20">
+                                    <div class="icon-row-sm mb-3" id="dev-project-carousel-icon-section">
+                                        
                                     </div>
                                 </div>  
                             </div>
@@ -651,7 +722,6 @@ const App = {
                 // Alien Mathvasion Project
                 const Alien_Mathvasion = new Project("Alien Mathvasion Game", 2, "https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html", "Play", 
                     "https://github.com/DNoel26/Alien_Mathvasion", true);
-
                 Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
                     Good luck surviving the hardest difficulty!
@@ -660,49 +730,122 @@ const App = {
                 Alien_Mathvasion.notes.push(`Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`);
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
-                Alien_Mathvasion.add_imgs([], [], []);
-                Alien_Mathvasion.add_tool_icons(["a","b","c"], ["src1","src2","src3"], ["alt1","alt2","alt3"]);
+                const alien_m_carousel_img_ids = [];
+                const alien_m_carousel_img_srcs = ["/img/projects/math_game.png", "/img/projects/math_game_2.png", "/img/projects/math_game_3.png"];
+                const alien_m_carousel_img_alts = [];
+                const alien_m_tool_img_ids = [];
+                const alien_m_tool_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png", "/img/JavaScript-logo.png"];
+                const alien_m_tool_img_alts = [];
+                Alien_Mathvasion.add_imgs(alien_m_carousel_img_ids, alien_m_carousel_img_srcs, alien_m_carousel_img_alts);
+                Alien_Mathvasion.add_tool_icons(alien_m_tool_img_ids, alien_m_tool_img_srcs, alien_m_tool_img_alts);
 
                 // Wix Clone Project
                 const Wix_Clone = new Project("Wix Site Clone", 1, "https://dnoelmotorcyclewixclone.netlify.app/", "View", 
                     "https://github.com/DNoel26/Wix_Motorcycle_Trial", true);
-
                 Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
                     <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected, original Wix site</a>. 
                     It was built using HTML, CSS and without any JavaScript. 
-                    Showcases the ability to take designs and convert them into functional webpages or websites.
+                    Showcases the ability to take a design and convert it into a functional webpage or website.
                 `;
-                Wix_Clone.link_note = "(see cloned Wix site here)";
-                Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact`);
-                Wix_Clone.add_imgs([], [], []);
-                Wix_Clone.add_tool_icons([], [], []);
+                Wix_Clone.link_note = "(see link to cloned Wix site above)";
+                Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact.`);
+                Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
+                const wix_c_carousel_img_ids = [];
+                const wix_c_carousel_img_srcs = ["/img/projects/wix.png", "/img/projects/wix_2.png", "/img/projects/wix_3.png"];
+                const wix_c_carousel_img_alts = [];
+                const wix_c_tool_img_ids = [];
+                const wix_c_tool_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png"];
+                const wix_c_tool_img_alts = [];
+                Wix_Clone.add_imgs(wix_c_carousel_img_ids, wix_c_carousel_img_srcs, wix_c_carousel_img_alts);
+                Wix_Clone.add_tool_icons(wix_c_tool_img_ids, wix_c_tool_img_srcs, wix_c_tool_img_alts);
 
                 // Cyberdise Online Store Project
                 const Cyberdise = new Project("Cyberdise Online Store", 2, "https://dnoelcyberdise.herokuapp.com/", "Interact", 
                     "https://github.com/DNoel26/Cyberdise-Dynamic-", true);
-                
                 Cyberdise.description = `This project was my first official Full Stack development project and end-to-end C.R.U.D. application, and was designed to test everything I had learned (and more). This online store was built from scratch using MVC principles for the Back End code.
-                    The database for storing user and product info was designed for and built using MySQL, and server side communication was established using Node and Express.`;
-                Cyberdise.link_note = "(create a customer account and login or see github readme to access the employee account and features)";
-                Cyberdise.notes.push();
-                Cyberdise.add_imgs([], [], []);
-                Cyberdise.add_tool_icons([], [], []);
+                    The database was designed, normalized and created in MySQL. There are both customer and employee functionalities to experiment with. Features such as 
+                    authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site.
+                    Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc. 
+                `;
+                Cyberdise.link_note = "(fake credentials only)";
+                Cyberdise.notes.push(`Most other major features are working as expected. Search functionality not implemented just yet.`);
+                Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
+                Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
+                const cyberdise_carousel_img_ids = [];
+                const cyberdise_carousel_img_srcs = ["/img/projects/cyberdise.png", "/img/projects/cyberdise_2.png", "/img/projects/cyberdise_3.png", "/img/projects/cyberdise_4.png",
+                    "/img/projects/cyberdise_5.png"
+                ];
+                const cyberdise_carousel_img_alts = [];
+                const cyberdise_tool_img_ids = [];
+                const cyberdise_tool_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png", "/img/JavaScript-logo.png", "/img/handlebars_logo.png",
+                    "/img/mysql-hd-logo.png", "/img/500px-Node.js_logo.svg.png", "/svg/expressjs-ar21.svg", "/img/postman-logo.png"];
+                const cyberdise_tool_img_alts = [];
+                Cyberdise.add_imgs(cyberdise_carousel_img_ids, cyberdise_carousel_img_srcs, cyberdise_carousel_img_alts);
+                Cyberdise.add_tool_icons(cyberdise_tool_img_ids, cyberdise_tool_img_srcs, cyberdise_tool_img_alts);
 
                 // Movie Database Project
                 const Movie_Database = new Project("Movie Database", 2, "https://dnoelmovieapidatabase.netlify.app/", "View", 
                     "https://github.com/DNoel26/Movie_Database", true);
+                Movie_Database.description = `
+                    This project was built from scratch to dynamically display "Now Showing" movie details and trailers via consuming multiple APIs; meaning all data shown on my website is requested
+                    and pulled from another server, and manipulated on my website using JavaScript. Design is based on retro theatres. Click the link and take a look at all the trending movies now!
+                `;
+                Movie_Database.link_note = "";
+                Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
+                Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
+                const movie_db_carousel_img_ids = [];
+                const movie_db_carousel_img_srcs = ["/img/projects/movie_db.png", "/img/projects/movie_db_2.png", "/img/projects/movie_db_3.png"];
+                const movie_db_carousel_img_alts = [];
+                const movie_db_tools_img_ids = [];
+                const movie_db_tools_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png", "/img/JavaScript-logo.png"];
+                const movie_db_tools_img_alts = [];
+                Movie_Database.add_imgs(movie_db_carousel_img_ids, movie_db_carousel_img_srcs, movie_db_carousel_img_alts);
+                Movie_Database.add_tool_icons(movie_db_tools_img_ids, movie_db_tools_img_srcs, movie_db_tools_img_alts);
 
                 // Amazon Clone Project
                 const Amazon_Clone = new Project("Amazon Clone", 2, "https://clone-905a7.web.app/", "Interact", 
                     "https://github.com/DNoel26/Amazon_React_Clone", true);
+                Amazon_Clone.description = `
+                    This project was done as my hands on introduction to React and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch.
+                    The main purpose was to understand the concepts behind the very popular React framework, as well as to learn new methods for coding. Main project features are account creation, 
+                    login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
+                `;
+                Amazon_Clone.link_note = "(fake credentials only)";
+                Amazon_Clone.notes.push(`All major features are working as expected.`);
+                Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
+                const amazon_c_carousel_img_ids = [];
+                const amazon_c_carousel_img_srcs = ["/img/projects/amazon_clone.png", "/img/projects/amazon_clone_2.png", "/img/projects/amazon_clone_3.png", "/img/projects/amazon_clone_4.png"];
+                const amazon_c_carousel_img_alts = [];
+                const amazon_c_tool_img_ids = [];
+                const amazon_c_tool_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png", "/img/JavaScript-logo.png", "/img/React_logo_transparent.png",
+                    "/img/logo-standard.png", "/img/500px-Node.js_logo.svg.png", "/svg/expressjs-ar21.svg"
+                ];
+                const amazon_c_tool_img_alts = [];
+                Amazon_Clone.add_imgs(amazon_c_carousel_img_ids, amazon_c_carousel_img_srcs, amazon_c_carousel_img_alts);
+                Amazon_Clone.add_tool_icons(amazon_c_tool_img_ids, amazon_c_tool_img_srcs, amazon_c_tool_img_alts);
 
                 // Real Estate Website Project
-                const Real_Estate_Site = new Project("Real Estate Site", 2, "https://presidentialrealtors-dev-static.netlify.app/", "View", 
+                const Real_Estate_Site = new Project("Real Estate Site", 3, "https://presidentialrealtors-dev-static.netlify.app/", "View", 
                     "https://github.com/DNoel26/Presidential-Realtors-Static", true);
+                Real_Estate_Site.description = `
+                    The focus of this project was for me to learn and implement modern design, user interface (UI) and user experience (UX) elements. It was built from scratch and will eventually be converted
+                    to a fully functional single page application (SPA) using React, MongoDB and Next.js. Let me know what you think!
+                `;
+                Real_Estate_Site.link_note = "";
+                Real_Estate_Site.notes.push(`Most client side features work as expected. Focus of this project was on design elements rather than functionality.`);
+                Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
+                Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
+                const real_estate_carousel_img_ids = [];
+                const real_estate_carousel_img_srcs = ["/img/projects/praa.png", "/img/projects/praa_2.png", "/img/projects/praa_3.png"];
+                const real_estate_carousel_img_alts = [];
+                const real_estate_tool_img_ids = [];
+                const real_estate_tool_img_srcs = ["/img/HTML5_Badge_256.png", "/img/CSS3_Badge.png"];
+                const real_estate_tool_img_alts = [];
+                Real_Estate_Site.add_imgs(real_estate_carousel_img_ids, real_estate_carousel_img_srcs, real_estate_carousel_img_alts);
+                Real_Estate_Site.add_tool_icons(real_estate_tool_img_ids, real_estate_tool_img_srcs, real_estate_tool_img_alts);
 
-                console.log(Alien_Mathvasion.tool_icon_list);
-                console.log(Alien_Mathvasion.tool_icon_list.id[2]);
-                
+                //console.log(Alien_Mathvasion.tool_icon_list);
+                //console.log(Alien_Mathvasion.tool_icon_list.ids[2]);
 
                 UI.dev_project_gallery_btns.forEach(btn => {
                     
@@ -710,22 +853,90 @@ const App = {
 
                         logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
 
-                        if(btn.dataset.devProject === "Wix Site Clone") {
+                        if(btn.dataset.devProject === "Alien Mathvasion Game") {
+
+                            current_project = Alien_Mathvasion;
+                        } else if(btn.dataset.devProject === "Wix Site Clone") {
 
                             current_project = Wix_Clone;
+                        } else if(btn.dataset.devProject === "Cyberdise Online Store") {
+
+                            current_project = Cyberdise;
+                        } else if(btn.dataset.devProject === "Movie Database") {
+
+                            current_project = Movie_Database;
+                        } else if(btn.dataset.devProject === "Amazon Clone") {
+
+                            current_project = Amazon_Clone;
+                        } else if(btn.dataset.devProject === "Real Estate Site") {
+
+                            current_project = Real_Estate_Site;
                         } else {
 
                             return logger("PROJECT NOT LOADED YET");
                         }
 
+                        // Adds new project to carousel container
                         logger(current_project);
                         change_project();
-                        dev_project_carousel;
+                        console.log("old indicators", UI.dev_project_carousel_indicator_section, "old inner", UI.dev_project_carousel_inner_section);
                         UI.dev_project_overview.innerHTML = new_inner_html;
+
+                        // Re-declare (update) document IDs on new inner html
+                        UI.dev_project_carousel = document.getElementById("dev-project-carousel");
+                        UI.dev_project_carousel_indicator_section = document.getElementById("dev-project-carousel-indicators");
+                        UI.dev_project_carousel_inner_section = document.getElementById("dev-project-carousel-inner");
+                        UI.dev_project_carousel_note_section = document.getElementById("dev-project-carousel-notes");
+                        UI.dev_project_carousel_icon_section = document.getElementById("dev-project-carousel-icon-section");
+                        populate_carousel_img_data("dev");
+                        populate_carousel_indicators("dev");
+                        populate_project_notes("dev");
+                        populate_project_tool_icons("dev");
+                        console.log("new indicators", UI.dev_project_carousel_indicator_section, "new inner", UI.dev_project_carousel_inner_section);
+                        //dev_project_carousel;
                         dispatchEvent(new Event('load'));
                         UI.dev_project_overview.scrollIntoView();
                     });
                 });
+
+                // Executes function and provides closure for development projects
+                (function() {
+
+                    // Select the node that will be observed for mutations
+                    const target_node = UI.dev_project_overview;
+
+                    // Options for the observer (which mutations to observe)
+                    const config = { attributes: false, childList: true, subtree: true };
+
+                    // Callback function to execute when mutations are observed
+                    const callback = function(mutationsList, observer) {
+
+                        // Use traditional 'for loops' for IE 11
+                        for(const mutation of mutationsList) {
+                            if (mutation.type === 'childList') {
+
+                                console.log('A child node has been added or removed.');
+                            } else if (mutation.type === 'attributes') {
+
+                                console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                            } else if (mutation.type === 'subtree') {
+
+                                console.log('The subtree attribute was modified.');
+                            };
+
+                            console.log(mutation, "and ", observer);
+                        }
+                    };
+
+                    // Create an observer instance linked to the callback function
+                    const observer = new MutationObserver(callback);
+
+                    // Start observing the target node for configured mutations
+                    observer.observe(target_node, config);
+
+                    // Later, you can stop observing
+                    // observer.disconnect();
+                })();
             })();
 
             /*** CONTACT SECTION ***/

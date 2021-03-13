@@ -64,15 +64,29 @@ const UI = {
 
     /*** PROJECT SECTION ***/ 
 
+    // Development Projects
     dev_project_gallery: document.getElementById("dev-project-gallery"),
     dev_project_overview: document.getElementById("dev-project-overview"),
     dev_project_gallery_btns: document.querySelectorAll("button[data-dev-project]"),
-    dev_project_carousel: document.querySelector("#dev-project-carousel"),
-    dev_project_carousel_next: document.querySelector(".carousel-control-next"),
-    dev_project_carousel_prev: document.querySelector(".carousel-control-prev"),
+    dev_project_carousel: document.getElementById("dev-project-carousel"),
+    dev_project_carousel_indicator_section: document.getElementById("dev-project-carousel-indicators"),
+    dev_project_carousel_inner_section: document.getElementById("dev-project-carousel-inner"),
+    dev_project_carousel_note_section: document.getElementById("dev-project-carousel-notes"),
+    dev_project_carousel_icon_section: document.getElementById("dev-project-carousel-icon-section"),
+    dev_project_carousel_next: document.querySelectorAll("#dev-project-overview .carousel-control-next"),
+    dev_project_carousel_prev: document.querySelectorAll("#dev-project-overview .carousel-control-prev"),
+
+    // Client Projects
     client_project_gallery: document.getElementById("client-project-gallery"),
-    client_project_gallery: document.getElementById("client-project-overview"),
+    client_project_overview: document.getElementById("client-project-overview"),
     client_project_gallery_btns: document.querySelectorAll("button[data-client-project]"),
+    client_project_carousel: document.getElementById("client-project-carousel"),
+    client_project_carousel_indicator_section: document.getElementById("client-project-carousel-indicators"),
+    client_project_carousel_inner_section: document.getElementById("client-project-carousel-inner"),
+    client_project_carousel_note_section: document.getElementById("client-project-carousel-notes"),
+    client_project_carousel_icon_section: document.getElementById("client-project-carousel-icon-section"),
+    client_project_carousel_next: document.querySelectorAll("#client-project-overview .carousel-control-next"),
+    client_project_carousel_prev: document.querySelectorAll("#client-project-overview .carousel-control-prev"),
 
     /*** CONTACT ME SECTION ***/
     
