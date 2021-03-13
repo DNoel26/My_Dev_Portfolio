@@ -1072,6 +1072,7 @@ a.nav-link,
 .card {
     overflow: hidden;
     border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.125);
 }
 
 .welcome-section .card-body {
