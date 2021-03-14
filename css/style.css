@@ -367,6 +367,15 @@ header .btn-anim .circle::after {
     width: auto;
 }
 
+.profile {
+    transition: all 0.4s ease-in-out;
+}
+
+.profile:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.25);
+    transform: scale(1.01);
+}
+
 .resume {
     display: block;
     margin: auto;
@@ -713,7 +722,7 @@ header .btn-anim .circle::after {
     background: var(--theme-colour-4);
     transition: none;
     width: 0%;
-    /*transition: all 0.5s ease-in-out;*/
+    transition: all 0.4s ease-in-out;
 }
 
     /*** Styling for Anijs data attributes ***/
@@ -1455,4 +1464,8 @@ section {
 .dev-project-gallery .btn.btn-project:hover > img,
 .dev-project-gallery .btn.btn-project:focus > img {
     filter: brightness(50%);
+}
+
+.projects-section .fas {
+    color: inherit !important;
 }

@@ -183,7 +183,10 @@ const App = {
 
                         scroll_moved = false;
                         scroll_top_reset = true;
-                    };
+                    } else if((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === true) {
+
+                        return;
+                    }
                 };
 
                 // Checks scroll position on load or refresh and executes 
@@ -270,13 +273,10 @@ const App = {
                 });
 
                 //Hides header on scroll and returns to normal position when stopped after a few seconds
-                document.addEventListener("scroll", () => {
-
-                    scroll_progress(UI.scroll_indicator);
+                document.addEventListener("scroll", throttle(() => {
 
                     if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) show_header = false;
-
-                    if(document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) show_header = true;
+                    else show_header = true;
 
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if(!show_header) {
@@ -288,6 +288,7 @@ const App = {
                             return;
                         };
 
+                        // Clear previous timer and reset
                         clearTimeout(scroll_timer);
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
@@ -297,8 +298,14 @@ const App = {
                         clearTimeout(scroll_timer);
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
+                        return;
                     };
-                },  {passive: true});
+                }, 100), {passive: true});
+
+                document.addEventListener("scroll", debounce(() => {
+
+                    scroll_progress(UI.scroll_indicator);
+                }, 100), {passive: true});
 
                 document.addEventListener("scroll", scroll_moved_debounce_wrapper,  {passive: true});
                 document.addEventListener("touchmove", scroll_moved_debounce_wrapper,  {passive: true});
@@ -700,8 +707,8 @@ const App = {
                                         <br><strong>Status: ${current_project.status.msg} <span class="${current_project.status.class_code} status-circle"></span></strong>
                                     </p>
                                     
-                                    <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2">${current_project.link_header}</strong> Now ${current_project.link_note}</a>
-                                    <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1">Review</strong> Code ${current_project.github_readme}</a>
+                                    <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${current_project.link_header}</strong> Now ${current_project.link_note}</a>
+                                    <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${current_project.github_readme}</a>
 
                                     <h4 class="small text-left mt-3">Notes:</h4>
                                     <ul class="text-wrap" id="dev-project-carousel-notes">
