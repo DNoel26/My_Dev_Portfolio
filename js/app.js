@@ -494,7 +494,7 @@ const App = {
 
                         // animation speed
                         // slow, normal, fast
-                        maxSpeed: 'fast',
+                        maxSpeed: 'slow',
                         initSpeed: 'slow',
 
                         // 0 = top
@@ -503,7 +503,7 @@ const App = {
                         direction: 135,
                         
                         // interact with cursor move on mouse out
-                        keep: false,
+                        keep: true,
                     });
 
                     //console.log(tagCloud)
@@ -534,7 +534,7 @@ const App = {
                                     item.style.fontWeight = "400";
                                     clicked_once = false; 
                                     clicked_twice = false;
-                                }, 7000);
+                                }, 5000);
                             } else if(clicked_once && !clicked_twice) {
 
                                 item.style.color = "var(--theme-colour-4)"; 
@@ -570,7 +570,7 @@ const App = {
                         tagcloud_resizer();
                         if(document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
                         tagcloud_loader();
-                    }, 800)); 
+                    }, 500)); 
                 })
                 .catch((err) => console.error(err));
             })();
