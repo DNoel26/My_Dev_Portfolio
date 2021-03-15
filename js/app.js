@@ -494,7 +494,7 @@ const App = {
 
                         // animation speed
                         // slow, normal, fast
-                        maxSpeed: 'slow',
+                        maxSpeed: 'fast',
                         initSpeed: 'slow',
 
                         // 0 = top
@@ -503,7 +503,7 @@ const App = {
                         direction: 135,
                         
                         // interact with cursor move on mouse out
-                        keep: true,
+                        keep: false,
                     });
 
                     //console.log(tagCloud)

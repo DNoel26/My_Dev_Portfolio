@@ -237,7 +237,7 @@ const UI = {
     replace_vid_bg() {
 
         // To replace the header video bg when it ends
-        this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/laptop.jpg') no-repeat fixed 20% 20%";
+        this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('/img/base/webp/laptop-keyboard.webp') no-repeat fixed 20% 20%";
         this.header.style.backgroundSize = "cover";
     },
 

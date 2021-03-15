@@ -1274,7 +1274,7 @@ header video {
     /*** Footer ***/
 
 footer {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/code-bg-4.jpg") no-repeat fixed;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/base/webp/laptop-showing-code.webp") no-repeat fixed;
     background-size: cover;
     background-position: center 60%;
     height: 450px;
@@ -1310,11 +1310,11 @@ section {
 }
 
 .placeholder-div-reveal-start {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/tech.jpg") no-repeat fixed 50% 0%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/base/webp/robot-arm.webp") no-repeat fixed 50% 0%;
 }
 
 .placeholder-div-reveal-end {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/tech.jpg") no-repeat fixed 50% 12%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/base/webp/robot-arm.webp") no-repeat fixed 50% 12%;
 }
 
 .placeholder-div .fs-1 {
@@ -1335,7 +1335,7 @@ section {
 .about-section,
 .tools-tech-section,
 .contact-section {
-    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("/img/cool-background_2.png") no-repeat fixed center center;
+    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("/img/base/webp/cool-bg-white.webp") no-repeat fixed center center;
     z-index: 0;
 }
 
@@ -1381,7 +1381,7 @@ section {
     /*** Section (Services) ***/
 
 .services-section > div:first-child {
-    background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("/img/white_laptop_bg.jpg") no-repeat fixed center 40%; /*var(--theme-colour-2) !important;*/
+    background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("/img/base/webp/white-laptop-cellphone.webp") no-repeat fixed center 40%; /*var(--theme-colour-2) !important;*/
     position: relative;
 }
 
@@ -1413,7 +1413,7 @@ section {
     /*** Section (Projects) ***/
 
 .projects-section {
-    background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("/img/cool-background_2.png") no-repeat fixed center 50%; /*var(--theme-colour-2) !important;*/
+    background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("/img/base/webp/cool-bg-white.webp") no-repeat fixed center 50%; /*var(--theme-colour-2) !important;*/
     position: relative;
 }
 
