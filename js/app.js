@@ -37,9 +37,12 @@ const App = {
             
             // Delay load of non-essential scripts
             setTimeout(() => {
-                
-                return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
-            }, 1000);
+
+                media_queries(window.matchMedia("(min-width: 768px)"), () => {
+
+                    return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
+                }, () => {return})
+            }, 2000);
 
             setTimeout(() => {
                 
