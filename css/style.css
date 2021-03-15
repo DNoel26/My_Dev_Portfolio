@@ -1467,19 +1467,20 @@ section {
     transition: all 0.3s ease-in-out;
 }
 
-.dev-project-gallery .btn.btn-project:hover > span {
+.dev-project-gallery .btn.btn-project:hover span,
+.dev-project-gallery .btn.btn-project:focus span {
     color: var(--theme-colour-3);
     font-weight: 600;
 }
 
-.dev-project-gallery .btn.btn-project > img {
+.dev-project-gallery .btn.btn-project img {
     position: relative;
     filter: brightness(100%);
     transition: all 0.3s ease-in-out;
 }
 
-.dev-project-gallery .btn.btn-project:hover > img,
-.dev-project-gallery .btn.btn-project:focus > img {
+.dev-project-gallery .btn.btn-project:hover img,
+.dev-project-gallery .btn.btn-project:focus img {
     filter: brightness(50%);
 }
 
