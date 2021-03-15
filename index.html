@@ -21,8 +21,8 @@
 <body>
     <header id="header" class="sticky-top"> <!--m-auto-->
         <div class="container">
-            <video autoplay preload="auto" muted class="fs-1"> <!--poster="/img/laptop.jpg"-->
-                <source data-src="/media/laptop.mp4" type="video/mp4" data-media="(min-width: 0px)"> 
+            <video autoplay preload="auto" muted class="fs-1" poster="/img/base/webp/think-different-700.webp"> <!--poster="/img/laptop.jpg"-->
+                <source data-src="/media/laptop.mp4" type="video/mp4" data-media="(min-width: 768px)"> 
                 <!--<source data-src="/media/programming.mp4" type="video/mp4" data-media="(min-width: 768px)"> 
                 <source data-src="/media/programming.mp4" type="video/mp4" data-media="(min-width: 1200px)">-->
             </video>
@@ -464,7 +464,7 @@
                         <div class="col-12">
                             <h3 class="text-center small pb-3">- My Google desktop audit results -</h3>
 
-                            <a href="/html/my-google-desktop-audit.html" rel="noopener" title="View my Lighthouse Audit result webpage for desktop" aria-label="View my Lighthouse Audit result webpage for desktop">
+                            <a href="/html/my-google-desktop-audit.html" target="_blank" rel="noopener" title="View my Lighthouse Audit result webpage for desktop" aria-label="View my Lighthouse Audit result webpage for desktop">
                                 <img loading="lazy" src="/img/base/webp/google-desktop-audit-results.webp" alt="Results for my site Lighthouse Google audit for desktop" class="audit-results img-fluid d-block mx-auto" width="648" height="201">
                             </a>
                         </div>
@@ -476,7 +476,7 @@
                         <div class="col-12">
                             <h3 class="text-center small pb-3">- My Google mobile audit results -</h3>
 
-                            <a href="/html/my-google-desktop-audit.html" rel="noopener" title="View my Lighthouse Audit result webpage for mobile" aria-label="View my Lighthouse Audit result webpage for mobile">
+                            <a href="/html/my-google-desktop-audit.html" target="_blank" rel="noopener" title="View my Lighthouse Audit result webpage for mobile" aria-label="View my Lighthouse Audit result webpage for mobile">
                                 <img loading="lazy" src="/img/base/webp/google-desktop-audit-results.webp" alt="Results for my site Lighthouse Google audit for mobile" class="audit-results img-fluid d-block mx-auto" width="648" height="201">
                             </a>
                         </div>
@@ -666,32 +666,56 @@
                     <div class="mt-3 mb-5 dev-project-gallery row" id="dev-project-gallery">
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4 mt-lg-3" data-dev-project="Alien Mathvasion Game">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/alien-mathvasion-1-min.webp" alt="Thumbnail image for button which shows Alien Mathvasion Game personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/alien-mathvasion-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/alien-mathvasion-1-min.webp" alt="Thumbnail image for button which shows Alien Mathvasion Game personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button>
 
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4" data-dev-project="Wix Site Clone">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/wix-clone-1-min.webp" alt="Thumbnail image for button which shows Wix Site Clone personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/wix-clone-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/wix-clone-1-min.webp" alt="Thumbnail image for button which shows Wix Site Clone personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button>
 
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4 mt-lg-3" data-dev-project="Cyberdise Online Store">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/cyberdise-online-store-1-min.webp" alt="Thumbnail image for button which shows Cyberdise Online Store personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/cyberdise-online-store-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/cyberdise-online-store-1-min.webp" alt="Thumbnail image for button which shows Cyberdise Online Store personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button>
 
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4 mt-lg-3" data-dev-project="Movie Database">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/movie-db-1-min.webp" alt="Thumbnail image for button which shows Movie Database personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/movie-db-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/movie-db-1-min.webp" alt="Thumbnail image for button which shows Movie Database personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button> 
 
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4" data-dev-project="Amazon Clone">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/amazon-clone-1-min.webp" alt="Thumbnail image for button which shows Amazon Clone personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/amazon-clone-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/amazon-clone-1-min.webp" alt="Thumbnail image for button which shows Amazon Clone personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button>
 
                         <button class="btn btn-project px-1 px-md-2 col-6 col-lg-4 mt-lg-3" data-dev-project="Real Estate Site">
                             <span>View Project</span>
-                            <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/real-estate-1-min.webp" alt="Thumbnail image for button which shows Real Estate Site personal project details when clicked" width="414" height="206">
+
+                            <picture>
+                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/real-estate-1-700.webp">
+                                <img loading="lazy" class="img-fluid rounded" src="/img/projects/webp/min/real-estate-1-min.webp" alt="Thumbnail image for button which shows Real Estate Site personal project details when clicked" width="414" height="206">
+                            </picture>
                         </button>
                     </div> 
 
@@ -707,15 +731,24 @@
     
                                     <div class="carousel-inner" id="dev-project-carousel-inner">
                                         <div class="carousel-item active">
-                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/alien-mathvasion-1.webp" alt="My project carousel image" width="625" height="500">
+                                            <picture>
+                                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/alien-mathvasion-1-700.webp">
+                                                <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/min/alien-mathvasion-1-min.webp" alt="My project carousel image" width="625" height="500">
+                                            </picture>
                                         </div>
     
                                         <div class="carousel-item">
-                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/alien-mathvasion-2.webp" alt="My project carousel image" width="625" height="500">
+                                            <picture>
+                                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/alien-mathvasion-2-700.webp">
+                                                <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/min/alien-mathvasion-2-min.webp" alt="My project carousel image" width="625" height="500">
+                                            </picture>
                                         </div>
     
                                         <div class="carousel-item">
-                                            <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/alien-mathvasion-3.webp" alt="My project carousel image" width="625" height="500">
+                                            <picture>
+                                                <source media="(max-width: 767.98px)" srcset="/img/projects/webp/alien-mathvasion-3-700.webp">
+                                                <img loading="lazy" class="d-block w-100 p-3" src="/img/projects/webp/min/alien-mathvasion-3-min.webp" alt="My project carousel image" width="625" height="500">
+                                            </picture>
                                         </div> 
                                     </div>
     
@@ -731,6 +764,16 @@
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
+
+                                <button class="btn btn-custom-2 my-5 d-block mx-auto w-auto btn-anim" data-id="dev-project-gallery">
+                                    <span class="circle" aria-hidden="true">
+                                        <i class="fas fa-arrow-alt-circle-up"></i>
+                                    </span>
+
+                                    <span class="btn-text">
+                                        Return to Gallery
+                                    </span>
+                                </button>
                             </div>
     
                             <div class="col-12 col-xl-6">
@@ -762,6 +805,16 @@
                                         <img loading="lazy" class="img-fluid icon-disp-img-lg m-3" id="icon-js" src="/img/logos/javascript-badge.svg" alt="Javascript Icon Badge" width="85" height="64">
                                     </div>
                                 </div>  
+
+                                <button class="btn btn-custom-2 my-5 d-block mx-auto w-auto btn-anim d-lg-none" data-id="dev-project-gallery">
+                                    <span class="circle" aria-hidden="true">
+                                        <i class="fas fa-arrow-alt-circle-up"></i>
+                                    </span>
+
+                                    <span class="btn-text">
+                                        Return to Gallery
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>

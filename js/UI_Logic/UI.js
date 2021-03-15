@@ -65,6 +65,7 @@ const UI = {
     /*** PROJECT SECTION ***/ 
 
     // Development Projects
+    return_to_dev_gallery_btns: document.querySelectorAll("[data-id='dev-project-gallery']"),
     dev_project_gallery: document.getElementById("dev-project-gallery"),
     dev_project_overview: document.getElementById("dev-project-overview"),
     dev_project_gallery_btns: document.querySelectorAll("button[data-dev-project]"),

@@ -259,7 +259,7 @@
 .btn-anim:focus .circle::after {
     z-index: -1;
     width: 10rem;
-    background: var(--theme-colour-1);
+    background: var(--theme-colour-4);
 }
 
 .circle .fas {
@@ -270,7 +270,8 @@
 }
 
 .circle .fa-info-circle,
-.circle .fa-file {
+.circle .fa-file,
+.circle .fa-arrow-alt-circle-up {
     position: relative;
     bottom: 1px;
 }
@@ -280,6 +281,15 @@
 }
 .circle .fa-file {
     left: 3px;
+}
+
+.circle .fa-arrow-alt-circle-up {
+    left: 2px;
+}
+
+[data-id="dev-project-gallery"]:hover .circle::after,
+[data-id="dev-project-gallery"]:focus .circle::after {
+    width: 13rem;
 }
 
 header .btn-anim {
@@ -307,7 +317,7 @@ header .circle .fas {
 }
 
 header .btn-anim .circle::after {
-    background: var(--theme-colour-3);
+    background: var(--theme-colour-2);
 }
 
 .logo {
@@ -1139,6 +1149,13 @@ a.nav-link,
 .carousel-indicators .btn.active {
     border-color: var(--theme-colour-4);
     background-color: var(--theme-colour-4);
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-color: lightgrey;
+    border: 2px solid var(--theme-colour-2);
+    border-radius: 5px;
 }
 
 .projects-section .text-red {

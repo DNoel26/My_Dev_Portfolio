@@ -475,6 +475,33 @@ Extra large devices (large desktops, 1200px and up)
     .dev-project-gallery .btn.btn-project > span {
         font-size: 1rem;
     }
+
+    footer {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/base/webp/laptop-showing-code-650.webp") no-repeat fixed;
+    }
+
+    .placeholder-div-reveal-start {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/base/webp/robot-arm-650.webp") no-repeat fixed 50% 0%;
+    }
+    
+    .placeholder-div-reveal-end {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/base/webp/robot-arm-650.webp") no-repeat fixed 50% 12%;
+    }
+
+    .welcome-section,
+    .about-section,
+    .tools-tech-section,
+    .contact-section {
+        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("/img/base/webp/cool-bg-white-650.webp") no-repeat fixed center center;
+    }
+
+    .services-section > div:first-child {
+        background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("/img/base/webp/white-laptop-cellphone-650.webp") no-repeat fixed center 40%;
+    }
+
+    .projects-section {
+        background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("/img/base/webp/cool-bg-white-650.webp") no-repeat fixed center 50%;
+    }
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
