@@ -1,5 +1,5 @@
-import { debounce, media_queries } from "../Business_Logic/Functions.js";
-import Skill_Rating from "../Business_Logic/SkillRating.js";
+import { debounce, media_queries } from "../../js/Business_Logic/Functions.js";
+import Skill_Rating from "../../js/Business_Logic/SkillRating.js";
 
 const UI = {
 

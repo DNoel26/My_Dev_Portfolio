@@ -2,13 +2,13 @@
 
 console.log("App.js Loaded Successfully");
 
-import UI from "./UI_Logic/UI.js";
+import UI from "../js/UI_Logic/UI.js";
 import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
-    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
-import Skill_Rating from "./Business_Logic/SkillRating.js";
-import Project from "./Business_Logic/Project.js";
+    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "../js/Business_Logic/Functions.js";
+import Skill_Rating from "../js/Business_Logic/SkillRating.js";
+import Project from "../js/Business_Logic/Project.js";
 //import Formspree from "./Business_Logic/Formspree.js";
-import API from "./Business_Logic/API.js"
+import API from "../js/Business_Logic/API.js"
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
 function recaptchaCallback(func) {
@@ -563,7 +563,7 @@ const App = {
 
                     return setTimeout(resolve, 3100);
                 })
-                .then(() => import("./Business_Logic/TagCloud.min.js"))
+                .then(() => import("../js/Business_Logic/TagCloud.min.js"))
                 .then(module => module.default)
                 .then(() => {
                     
@@ -763,10 +763,10 @@ const App = {
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
                 const alien_m_carousel_img_ids = [];
-                const alien_m_carousel_img_srcs = ["/img/projects/webp/min/alien-mathvasion-1-min.webp", "/img/projects/webp/min/alien-mathvasion-2-min.webp", "/img/projects/webp/min/alien-mathvasion-3-min.webp"];
+                const alien_m_carousel_img_srcs = ["./img/projects/webp/min/alien-mathvasion-1-min.webp", "./img/projects/webp/min/alien-mathvasion-2-min.webp", "./img/projects/webp/min/alien-mathvasion-3-min.webp"];
                 const alien_m_carousel_img_alts = [];
                 const alien_m_tool_img_ids = [];
-                const alien_m_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png"];
+                const alien_m_tool_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png", "./img/logos/javascript-badge.png"];
                 const alien_m_tool_img_alts = [];
                 Alien_Mathvasion.add_imgs(alien_m_carousel_img_ids, alien_m_carousel_img_srcs, alien_m_carousel_img_alts);
                 Alien_Mathvasion.add_tool_icons(alien_m_tool_img_ids, alien_m_tool_img_srcs, alien_m_tool_img_alts);
@@ -783,10 +783,10 @@ const App = {
                 Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact.`);
                 Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
                 const wix_c_carousel_img_ids = [];
-                const wix_c_carousel_img_srcs = ["/img/projects/webp/min/wix-clone-1-min.webp", "/img/projects/webp/min/wix-clone-2-min.webp", "/img/projects/webp/min/wix-clone-3-min.webp"];
+                const wix_c_carousel_img_srcs = ["./img/projects/webp/min/wix-clone-1-min.webp", "./img/projects/webp/min/wix-clone-2-min.webp", "./img/projects/webp/min/wix-clone-3-min.webp"];
                 const wix_c_carousel_img_alts = [];
                 const wix_c_tool_img_ids = [];
-                const wix_c_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png"];
+                const wix_c_tool_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png"];
                 const wix_c_tool_img_alts = [];
                 Wix_Clone.add_imgs(wix_c_carousel_img_ids, wix_c_carousel_img_srcs, wix_c_carousel_img_alts);
                 Wix_Clone.add_tool_icons(wix_c_tool_img_ids, wix_c_tool_img_srcs, wix_c_tool_img_alts);
@@ -804,13 +804,13 @@ const App = {
                 Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
                 Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
                 const cyberdise_carousel_img_ids = [];
-                const cyberdise_carousel_img_srcs = ["/img/projects/webp/min/cyberdise-online-store-1-min.webp", "/img/projects/webp/min/cyberdise-online-store-2-min.webp", "/img/projects/webp/min/cyberdise-online-store-3-min.webp", 
-                    "/img/projects/webp/min/cyberdise-online-store-4-min.webp", "/img/projects/webp/min/cyberdise-online-store-5-min.webp"
+                const cyberdise_carousel_img_srcs = ["./img/projects/webp/min/cyberdise-online-store-1-min.webp", "./img/projects/webp/min/cyberdise-online-store-2-min.webp", "./img/projects/webp/min/cyberdise-online-store-3-min.webp", 
+                    "./img/projects/webp/min/cyberdise-online-store-4-min.webp", "./img/projects/webp/min/cyberdise-online-store-5-min.webp"
                 ];
                 const cyberdise_carousel_img_alts = [];
                 const cyberdise_tool_img_ids = [];
-                const cyberdise_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png", "/img/logos/handlebars-badge.png",
-                    "/img/logos/mysql-badge.png", "/img/logos/nodejs-badge.png", "/img/logos/express-logo.png", "/img/logos/postman-badge.png"];
+                const cyberdise_tool_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png", "./img/logos/javascript-badge.png", "./img/logos/handlebars-badge.png",
+                    "/img/logos/mysql-badge.png", "./img/logos/nodejs-badge.png", "./img/logos/express-logo.png", "./img/logos/postman-badge.png"];
                 const cyberdise_tool_img_alts = [];
                 Cyberdise.add_imgs(cyberdise_carousel_img_ids, cyberdise_carousel_img_srcs, cyberdise_carousel_img_alts);
                 Cyberdise.add_tool_icons(cyberdise_tool_img_ids, cyberdise_tool_img_srcs, cyberdise_tool_img_alts);
@@ -826,10 +826,10 @@ const App = {
                 Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
                 Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
                 const movie_db_carousel_img_ids = [];
-                const movie_db_carousel_img_srcs = ["/img/projects/webp/min/movie-db-1-min.webp", "/img/projects/webp/min/movie-db-2-min.webp", "/img/projects/webp/min/movie-db-3-min.webp"];
+                const movie_db_carousel_img_srcs = ["./img/projects/webp/min/movie-db-1-min.webp", "./img/projects/webp/min/movie-db-2-min.webp", "./img/projects/webp/min/movie-db-3-min.webp"];
                 const movie_db_carousel_img_alts = [];
                 const movie_db_tools_img_ids = [];
-                const movie_db_tools_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png"];
+                const movie_db_tools_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png", "./img/logos/javascript-badge.png"];
                 const movie_db_tools_img_alts = [];
                 Movie_Database.add_imgs(movie_db_carousel_img_ids, movie_db_carousel_img_srcs, movie_db_carousel_img_alts);
                 Movie_Database.add_tool_icons(movie_db_tools_img_ids, movie_db_tools_img_srcs, movie_db_tools_img_alts);
@@ -847,13 +847,13 @@ const App = {
                 Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
                 const amazon_c_carousel_img_ids = [];
                 const amazon_c_carousel_img_srcs = [
-                    "/img/projects/webp/min/amazon-clone-1-min.webp", "/img/projects/webp/min/amazon-clone-2-min.webp", "/img/projects/webp/min/amazon-clone-3-min.webp",
-                    "/img/projects/webp/min/amazon-clone-4-min.webp"
+                    "./img/projects/webp/min/amazon-clone-1-min.webp", "./img/projects/webp/min/amazon-clone-2-min.webp", "./img/projects/webp/min/amazon-clone-3-min.webp",
+                    "./img/projects/webp/min/amazon-clone-4-min.webp"
                 ];
                 const amazon_c_carousel_img_alts = [];
                 const amazon_c_tool_img_ids = [];
-                const amazon_c_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png", "/img/logos/react-badge.png",
-                    "/img/logos/firebase-badge.png", "/img/logos/nodejs-badge.png", "/img/logos/express-logo.png"
+                const amazon_c_tool_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png", "./img/logos/javascript-badge.png", "./img/logos/react-badge.png",
+                    "./img/logos/firebase-badge.png", "./img/logos/nodejs-badge.png", "./img/logos/express-logo.png"
                 ];
                 const amazon_c_tool_img_alts = [];
                 Amazon_Clone.add_imgs(amazon_c_carousel_img_ids, amazon_c_carousel_img_srcs, amazon_c_carousel_img_alts);
@@ -871,10 +871,10 @@ const App = {
                 Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
                 Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
                 const real_estate_carousel_img_ids = [];
-                const real_estate_carousel_img_srcs = ["/img/projects/webp/min/real-estate-1-min.webp", "/img/projects/webp/min/real-estate-2-min.webp", "/img/projects/webp/min/real-estate-3-min.webp"];
+                const real_estate_carousel_img_srcs = ["./img/projects/webp/min/real-estate-1-min.webp", "./img/projects/webp/min/real-estate-2-min.webp", "./img/projects/webp/min/real-estate-3-min.webp"];
                 const real_estate_carousel_img_alts = [];
                 const real_estate_tool_img_ids = [];
-                const real_estate_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png"];
+                const real_estate_tool_img_srcs = ["./img/logos/html5-badge.png", "./img/logos/css3-badge.png"];
                 const real_estate_tool_img_alts = [];
                 Real_Estate_Site.add_imgs(real_estate_carousel_img_ids, real_estate_carousel_img_srcs, real_estate_carousel_img_alts);
                 Real_Estate_Site.add_tool_icons(real_estate_tool_img_ids, real_estate_tool_img_srcs, real_estate_tool_img_alts);
@@ -1038,7 +1038,7 @@ const App = {
                             event.preventDefault();
                             // Stop multiple submits from occurring 
                             event.stopImmediatePropagation();
-                            import('./Business_Logic/Formspree.js')
+                            import('../js/Business_Logic/Formspree.js')
                             .then(module => module.default) // uses the default export
                             .then((Formspree) => {
 
