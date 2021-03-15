@@ -270,8 +270,7 @@
 }
 
 .circle .fa-info-circle,
-.circle .fa-file,
-.circle .fa-arrow-alt-circle-up {
+.circle .fa-file {
     position: relative;
     bottom: 1px;
 }
@@ -284,6 +283,7 @@
 }
 
 .circle .fa-arrow-alt-circle-up {
+    position: relative;
     left: 2px;
 }
 
