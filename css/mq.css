@@ -476,9 +476,10 @@ Extra large devices (large desktops, 1200px and up)
         font-size: 1rem;
     }
 
-    footer {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/base/webp/laptop-showing-code-650.webp") no-repeat fixed;
-    }
+    /*footer {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("/img/base/webp/laptop-showing-code-650.webp") no-repeat fixed 50% 10%;
+        background-size: cover;
+    }*/
 
     .placeholder-div-reveal-start {
         background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/img/base/webp/robot-arm-650.webp") no-repeat fixed 50% 0%;
