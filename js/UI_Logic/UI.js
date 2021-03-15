@@ -26,6 +26,8 @@ const UI = {
 
     // Hamburger menu button in header
     toggler_btn: document.querySelector(".navbar-toggler"),
+    toggler_btn_icon: document.querySelector(".navbar-toggler-icon"),
+    toggler_btn_word: document.querySelector(".navbar-toggler-word"),
     navbar_scroll: document.querySelector(".navbar-nav-scroll"),
     bot_nav_collapse: document.querySelector("#bot-header-nav"),
 
@@ -144,6 +146,22 @@ const UI = {
                 vid.parentElement.load();
             }, null);
         });
+    },
+
+    toggler_menu_icon_switch() {
+
+        setInterval(() => {
+
+            if(this.toggler_btn_word.classList.contains("d-none") && this.toggler_btn_word) {
+
+                this.toggler_btn_icon.classList.add("d-none");
+                this.toggler_btn_word.classList.remove("d-none");
+            } else if(this.toggler_btn_icon.classList.contains("d-none") && this.toggler_btn_word) {
+
+                this.toggler_btn_icon.classList.remove("d-none");
+                this.toggler_btn_word.classList.add("d-none");
+            };
+        }, 5000);
     },
 
     side_menu_reveal() {

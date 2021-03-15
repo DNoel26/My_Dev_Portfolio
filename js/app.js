@@ -26,6 +26,8 @@ const App = {
             
             console.log("DOMContentLoaded Successfully");
 
+            //UI.toggler_menu_icon_switch();
+
             /*** GENERAL ***/
 
             UI.body.classList.add("will-change-height");
@@ -764,7 +766,7 @@ const App = {
                 const alien_m_carousel_img_srcs = ["/img/projects/webp/min/alien-mathvasion-1-min.webp", "/img/projects/webp/min/alien-mathvasion-2-min.webp", "/img/projects/webp/min/alien-mathvasion-3-min.webp"];
                 const alien_m_carousel_img_alts = [];
                 const alien_m_tool_img_ids = [];
-                const alien_m_tool_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg", "/img/logos/javascript-badge.svg"];
+                const alien_m_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png"];
                 const alien_m_tool_img_alts = [];
                 Alien_Mathvasion.add_imgs(alien_m_carousel_img_ids, alien_m_carousel_img_srcs, alien_m_carousel_img_alts);
                 Alien_Mathvasion.add_tool_icons(alien_m_tool_img_ids, alien_m_tool_img_srcs, alien_m_tool_img_alts);
@@ -784,7 +786,7 @@ const App = {
                 const wix_c_carousel_img_srcs = ["/img/projects/webp/min/wix-clone-1-min.webp", "/img/projects/webp/min/wix-clone-2-min.webp", "/img/projects/webp/min/wix-clone-3-min.webp"];
                 const wix_c_carousel_img_alts = [];
                 const wix_c_tool_img_ids = [];
-                const wix_c_tool_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg"];
+                const wix_c_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png"];
                 const wix_c_tool_img_alts = [];
                 Wix_Clone.add_imgs(wix_c_carousel_img_ids, wix_c_carousel_img_srcs, wix_c_carousel_img_alts);
                 Wix_Clone.add_tool_icons(wix_c_tool_img_ids, wix_c_tool_img_srcs, wix_c_tool_img_alts);
@@ -807,8 +809,8 @@ const App = {
                 ];
                 const cyberdise_carousel_img_alts = [];
                 const cyberdise_tool_img_ids = [];
-                const cyberdise_tool_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg", "/img/logos/javascript-badge.svg", "/img/logos/handlebars-badge.svg",
-                    "/img/logos/mysql-badge.svg", "/img/logos/nodejs-badge.svg", "/img/logos/express-logo.svg", "/img/logos/postman-badge.svg"];
+                const cyberdise_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png", "/img/logos/handlebars-badge.png",
+                    "/img/logos/mysql-badge.png", "/img/logos/nodejs-badge.png", "/img/logos/express-logo.png", "/img/logos/postman-badge.png"];
                 const cyberdise_tool_img_alts = [];
                 Cyberdise.add_imgs(cyberdise_carousel_img_ids, cyberdise_carousel_img_srcs, cyberdise_carousel_img_alts);
                 Cyberdise.add_tool_icons(cyberdise_tool_img_ids, cyberdise_tool_img_srcs, cyberdise_tool_img_alts);
@@ -827,7 +829,7 @@ const App = {
                 const movie_db_carousel_img_srcs = ["/img/projects/webp/min/movie-db-1-min.webp", "/img/projects/webp/min/movie-db-2-min.webp", "/img/projects/webp/min/movie-db-3-min.webp"];
                 const movie_db_carousel_img_alts = [];
                 const movie_db_tools_img_ids = [];
-                const movie_db_tools_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg", "/img/logos/javascript-badge.svg"];
+                const movie_db_tools_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png"];
                 const movie_db_tools_img_alts = [];
                 Movie_Database.add_imgs(movie_db_carousel_img_ids, movie_db_carousel_img_srcs, movie_db_carousel_img_alts);
                 Movie_Database.add_tool_icons(movie_db_tools_img_ids, movie_db_tools_img_srcs, movie_db_tools_img_alts);
@@ -850,8 +852,8 @@ const App = {
                 ];
                 const amazon_c_carousel_img_alts = [];
                 const amazon_c_tool_img_ids = [];
-                const amazon_c_tool_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg", "/img/logos/javascript-badge.svg", "/img/logos/react-badge.svg",
-                    "/img/logos/firebase-badge.svg", "/img/logos/nodejs-badge.svg", "/img/logos/express-logo.svg"
+                const amazon_c_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png", "/img/logos/javascript-badge.png", "/img/logos/react-badge.png",
+                    "/img/logos/firebase-badge.png", "/img/logos/nodejs-badge.png", "/img/logos/express-logo.png"
                 ];
                 const amazon_c_tool_img_alts = [];
                 Amazon_Clone.add_imgs(amazon_c_carousel_img_ids, amazon_c_carousel_img_srcs, amazon_c_carousel_img_alts);
@@ -872,7 +874,7 @@ const App = {
                 const real_estate_carousel_img_srcs = ["/img/projects/webp/min/real-estate-1-min.webp", "/img/projects/webp/min/real-estate-2-min.webp", "/img/projects/webp/min/real-estate-3-min.webp"];
                 const real_estate_carousel_img_alts = [];
                 const real_estate_tool_img_ids = [];
-                const real_estate_tool_img_srcs = ["/img/logos/html5-badge.svg", "/img/logos/css3-badge.svg"];
+                const real_estate_tool_img_srcs = ["/img/logos/html5-badge.png", "/img/logos/css3-badge.png"];
                 const real_estate_tool_img_alts = [];
                 Real_Estate_Site.add_imgs(real_estate_carousel_img_ids, real_estate_carousel_img_srcs, real_estate_carousel_img_alts);
                 Real_Estate_Site.add_tool_icons(real_estate_tool_img_ids, real_estate_tool_img_srcs, real_estate_tool_img_alts);
