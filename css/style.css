@@ -502,7 +502,7 @@ header .btn-anim .circle::after {
 .anim-link-2 strong::before {
     position: absolute;
     content: "";
-    bottom: -5px;
+    bottom: -4px;
     left: 0;
     width: 0;
     border-bottom: 2px solid var(--theme-colour-1);
@@ -1096,6 +1096,8 @@ a.nav-link,
 
 .welcome-section .card-body {
     background-color: var(--theme-colour-2);
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 }
 
 .form-floating > textarea.form-control {
@@ -1172,6 +1174,7 @@ html {
 }
 
 body {
+    /*font-family: 'Roboto', sans-serif !important; */
     position: relative !important;
     min-height: 100% !important;
     min-height: 100vh !important;
@@ -1356,8 +1359,8 @@ section {
     z-index: 0;
 }
 
-.welcome-section h1 {
-    font-size: 3.2rem;
+.ml13 {
+    font-size: 3rem;
 }
 
 .welcome-section h2,
@@ -1484,6 +1487,8 @@ section {
     filter: brightness(50%);
 }
 
-.projects-section .fas {
+.projects-section .fas,
+.welcome-section .fas,
+footer .fas {
     color: inherit !important;
 }

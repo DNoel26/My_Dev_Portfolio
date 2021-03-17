@@ -273,8 +273,8 @@ Extra large devices (large desktops, 1200px and up)
         margin-right: 3rem;
     }
 
-    .welcome-section h1 {
-        font-size: 1.9rem;
+    .ml13 {
+        font-size: 2.2rem;
     }
 
     .my-carousel-wrapper ul {
@@ -450,6 +450,10 @@ Extra large devices (large desktops, 1200px and up)
         padding-top: 2rem !important;
     }
 
+    .welcome-section h2 {
+        font-size: calc(1rem + .6vw)!important;;
+    }
+
     .profile {
         max-width: 95%;
     }
@@ -513,7 +517,7 @@ Extra large devices (large desktops, 1200px and up)
 
 /* X-Small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {  
-    .welcome-section h1 {
+    .ml13 {
         font-size: 1.6rem;
     }
 

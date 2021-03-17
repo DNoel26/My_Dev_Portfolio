@@ -1,0 +1,31 @@
+{
+  "name": "My_Dev_Portfolio",
+  "version": "1.0.0",
+  "description": "* [Summary] (#summary)\r * [Services] (#services)\r * [Tools & Technologies] (#tools-tech)\r * [Contact] (#contact)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node ./index.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DNoel26/My_Dev_Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DNoel26/My_Dev_Portfolio/issues"
+  },
+  "homepage": "https://github.com/DNoel26/My_Dev_Portfolio#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-loader": "^8.2.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "webpack": "^5.26.0"
+  }
+}

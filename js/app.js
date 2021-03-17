@@ -737,7 +737,7 @@ const App = {
                                     </div>
                                 </div>  
 
-                                <button class="btn btn-custom-2 my-5 d-block mx-auto w-auto btn-anim d-lg-none" data-id="dev-project-gallery">
+                                <button class="btn btn-custom-2 my-5 d-block mx-auto w-auto btn-anim d-xl-none" data-id="dev-project-gallery">
                                     <span class="circle" aria-hidden="true">
                                         <i class="fas fa-arrow-alt-circle-up"></i>
                                     </span>
