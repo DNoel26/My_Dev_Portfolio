@@ -2,13 +2,13 @@
 
 console.log("App.js Loaded Successfully");
 
-import UI from "../js/UI_Logic/UI.js";
+import UI from "./UI_Logic/UI.js";
 import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
-    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "../js/Business_Logic/Functions.js";
-import Skill_Rating from "../js/Business_Logic/SkillRating.js";
-import Project from "../js/Business_Logic/Project.js";
+    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
+import Skill_Rating from "./Business_Logic/SkillRating.js";
+import Project from "./Business_Logic/Project.js";
 //import Formspree from "./Business_Logic/Formspree.js";
-import API from "../js/Business_Logic/API.js"
+import API from "./Business_Logic/API.js"
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
 function recaptchaCallback(func) {
@@ -24,7 +24,7 @@ const App = {
 
         document.addEventListener("DOMContentLoaded", ()=>{
             
-            console.log("DOMContentLoaded Successfully");
+            console.log("DOMContentLoaded Successfully");            
 
             //UI.toggler_menu_icon_switch();
 
@@ -61,19 +61,34 @@ const App = {
                 // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
                 recaptchaCallback(() => {
 
-                    if(UI.grecaptcha.length > 0) {
+                    const grecaptcha_check = function() {
 
-                        UI.my_form_button.removeAttribute("disabled");
-                        console.log(grecaptcha);
-                        grecaptcha.render("recaptcha", {
+                        if(UI.grecaptcha.length > 0) {
 
-                            sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
-                            callback: () => {
+                            UI.my_form_button.removeAttribute("disabled");
+                            console.log(grecaptcha);
+                            grecaptcha.render("recaptcha", {
 
-                                return;
-                            },
-                        });
+                                sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
+                                callback: () => {
+
+                                    return;
+                                },
+                            });
+                        } else {
+
+                            setTimeout(() => {
+                                
+                                grecaptcha_check();
+                            }, 15000);
+                        };
                     };
+
+                    grecaptcha_check();
+
+                    /*setTimeout(() => {
+                        
+                    }, ); */                   
                 });
             })
             .catch(err => console.log("Error in script delay promise: ", err)) 
@@ -371,12 +386,12 @@ const App = {
 
                     media_queries(mq_limits[0], () => {
 
-                        return scroll_amt = 280;
+                        return scroll_amt = 283;
                     }, null);
 
                     media_queries(mq_limits[1], () => {
 
-                        return scroll_amt = 296;
+                        return scroll_amt = 298.5;
                     }, null);
     
                     media_queries(mq_limits[2], () => {
@@ -563,7 +578,7 @@ const App = {
 
                     return setTimeout(resolve, 3100);
                 })
-                .then(() => import("../js/Business_Logic/TagCloud.min.js"))
+                .then(() => import("./Business_Logic/TagCloud.min.js"))
                 .then(module => module.default)
                 .then(() => {
                     
@@ -1038,7 +1053,7 @@ const App = {
                             event.preventDefault();
                             // Stop multiple submits from occurring 
                             event.stopImmediatePropagation();
-                            import('../js/Business_Logic/Formspree.js')
+                            import('./Business_Logic/Formspree.js')
                             .then(module => module.default) // uses the default export
                             .then((Formspree) => {
 

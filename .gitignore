@@ -1,7 +1,5 @@
 git_ignore/
 .history/
-node_modules/
-.babelrc
-.babelrc.js
-index.js
-webpack.config.js
+svg/
+media/ignore/
+img/ignore
