@@ -66,7 +66,7 @@ const App = {
                         if(UI.grecaptcha.length > 0) {
 
                             UI.my_form_button.removeAttribute("disabled");
-                            console.log(grecaptcha);
+                            //console.log(grecaptcha);
                             grecaptcha.render("recaptcha", {
 
                                 sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
@@ -603,7 +603,7 @@ const App = {
             // Create Projects
             (function() {
 
-                let current_project = new Project();
+                let current_project = {};
                 let new_inner_html = ``;
                 const dev_project_carousel = new bootstrap.Carousel(UI.dev_project_carousel, {
                     
@@ -612,7 +612,7 @@ const App = {
 
                 // Adds an indicator button, along with attributes per image and sets active class to first slide
                 // Accepts a single parameter with values "dev" or "client"
-                function populate_carousel_indicators(proj_type) {
+                const populate_carousel_indicators = function(proj_type) {
 
                     current_project.carousel_img_list.srcs.forEach((indicator, index) => {
                         
@@ -631,7 +631,7 @@ const App = {
 
                 // Adds each image along with attributes, to the carousel slideshow
                 // Accepts a single parameter with values "dev" or "client"
-                function populate_carousel_img_data(proj_type) {
+                const populate_carousel_img_data = function(proj_type) {
 
                     current_project.carousel_img_list.srcs.forEach((src, index) => {
                         
@@ -655,7 +655,7 @@ const App = {
 
                 // Adds notes to project overview
                 // Accepts a single parameter with values "dev" or "client"
-                function populate_project_notes(proj_type) {
+                const populate_project_notes = function(proj_type) {
 
                     current_project.notes.forEach((note, index) => {
                         
@@ -671,7 +671,7 @@ const App = {
 
                 // Adds each tool / technology icon to the end of the project overview
                 // Accepts a single parameter with values "dev" or "client"
-                function populate_project_tool_icons(proj_type) {
+                const populate_project_tool_icons = function(proj_type) {
 
                     current_project.tool_icon_list.srcs.forEach((src, index) => {
                         
@@ -690,7 +690,7 @@ const App = {
                     });
                 };
 
-                function change_project() {
+                const change_project = function() {
 
                     new_inner_html = `
                         <div class="flex-row row justify-content-between align-items-center">
@@ -766,6 +766,24 @@ const App = {
                     `
                 };
 
+                const reinitialize_el = function() {
+
+                    // Re-declare (update) document IDs on new inner html
+                    UI.return_to_dev_gallery_btns = document.querySelectorAll("[data-id='dev-project-gallery']");
+                    UI.dev_project_carousel = document.getElementById("dev-project-carousel");
+                    UI.dev_project_carousel_indicator_section = document.getElementById("dev-project-carousel-indicators");
+                    UI.dev_project_carousel_inner_section = document.getElementById("dev-project-carousel-inner");
+                    UI.dev_project_carousel_note_section = document.getElementById("dev-project-carousel-notes");
+                    UI.dev_project_carousel_icon_section = document.getElementById("dev-project-carousel-icon-section");
+                    populate_carousel_img_data("dev");
+                    populate_carousel_indicators("dev");
+                    populate_project_notes("dev");
+                    populate_project_tool_icons("dev");
+                    //console.log("new indicators", UI.dev_project_carousel_indicator_section, "new inner", UI.dev_project_carousel_inner_section);
+                    //dev_project_carousel;
+                    dispatchEvent(new Event('load'));
+                };
+
                 // Alien Mathvasion Project
                 const Alien_Mathvasion = new Project("Alien Mathvasion Game", 2, "https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html", "Play", 
                     "https://github.com/DNoel26/Alien_Mathvasion", true);
@@ -773,7 +791,7 @@ const App = {
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
                     Good luck surviving the hardest difficulty!
                 `;
-                Alien_Mathvasion.link_note = "(expect audio)";
+                Alien_Mathvasion.link_note = "(expect audio - desktop version only!)";
                 Alien_Mathvasion.notes.push(`Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`);
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
@@ -814,7 +832,7 @@ const App = {
                     authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site.
                     Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc. 
                 `;
-                Cyberdise.link_note = "(fake credentials only)";
+                Cyberdise.link_note = "(fake credentials only - desktop version only!)";
                 Cyberdise.notes.push(`Most other major features are working as expected. Search functionality not implemented just yet.`);
                 Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
                 Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
@@ -837,7 +855,7 @@ const App = {
                     This project was built from scratch to dynamically display "Now Showing" movie details and trailers via consuming multiple APIs; meaning all data shown on my website is requested
                     and pulled from another server, and manipulated on my website using JavaScript. Design is based on retro theatres. Click the link and take a look at all the trending movies now!
                 `;
-                Movie_Database.link_note = "";
+                Movie_Database.link_note = "(desktop version only!)";
                 Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
                 Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
                 const movie_db_carousel_img_ids = [];
@@ -857,7 +875,7 @@ const App = {
                     The main purpose was to understand the concepts behind the very popular React framework, as well as to learn new methods for coding. Main project features are account creation, 
                     login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
                 `;
-                Amazon_Clone.link_note = "(fake credentials only)";
+                Amazon_Clone.link_note = "(fake credentials only - desktop version only!)";
                 Amazon_Clone.notes.push(`All major features are working as expected.`);
                 Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
                 const amazon_c_carousel_img_ids = [];
@@ -881,7 +899,7 @@ const App = {
                     The focus of this project was for me to learn and implement modern design, user interface (UI) and user experience (UX) elements. It was built from scratch and will eventually be converted
                     to a fully functional single page application (SPA) using React, MongoDB and Next.js. Let me know what you think!
                 `;
-                Real_Estate_Site.link_note = "";
+                Real_Estate_Site.link_note = "(desktop version only!)";
                 Real_Estate_Site.notes.push(`Most client side features work as expected. Focus of this project was on design elements rather than functionality.`);
                 Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
                 Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
@@ -894,8 +912,14 @@ const App = {
                 Real_Estate_Site.add_imgs(real_estate_carousel_img_ids, real_estate_carousel_img_srcs, real_estate_carousel_img_alts);
                 Real_Estate_Site.add_tool_icons(real_estate_tool_img_ids, real_estate_tool_img_srcs, real_estate_tool_img_alts);
 
-                //console.log(Alien_Mathvasion.tool_icon_list);
-                //console.log(Alien_Mathvasion.tool_icon_list.ids[2]);
+                // Retrieve last project stored in session and execute change project if current project is not empty
+                current_project = JSON.parse(sessionStorage.getItem("current_project"));
+                if(current_project) {
+
+                    change_project();
+                    UI.dev_project_overview.innerHTML = new_inner_html;    
+                    reinitialize_el();
+                };
 
                 UI.dev_project_gallery_btns.forEach(btn => {
                     
@@ -929,23 +953,11 @@ const App = {
                         // Adds new project to carousel container
                         logger(current_project);
                         change_project();
-                        console.log("old indicators", UI.dev_project_carousel_indicator_section, "old inner", UI.dev_project_carousel_inner_section);
+                        // Store current project in session storage
+                        sessionStorage.setItem("current_project", JSON.stringify(current_project));
+                        //console.log("old indicators", UI.dev_project_carousel_indicator_section, "old inner", UI.dev_project_carousel_inner_section);
                         UI.dev_project_overview.innerHTML = new_inner_html;
-
-                        // Re-declare (update) document IDs on new inner html
-                        UI.return_to_dev_gallery_btns = document.querySelectorAll("[data-id='dev-project-gallery']");
-                        UI.dev_project_carousel = document.getElementById("dev-project-carousel");
-                        UI.dev_project_carousel_indicator_section = document.getElementById("dev-project-carousel-indicators");
-                        UI.dev_project_carousel_inner_section = document.getElementById("dev-project-carousel-inner");
-                        UI.dev_project_carousel_note_section = document.getElementById("dev-project-carousel-notes");
-                        UI.dev_project_carousel_icon_section = document.getElementById("dev-project-carousel-icon-section");
-                        populate_carousel_img_data("dev");
-                        populate_carousel_indicators("dev");
-                        populate_project_notes("dev");
-                        populate_project_tool_icons("dev");
-                        console.log("new indicators", UI.dev_project_carousel_indicator_section, "new inner", UI.dev_project_carousel_inner_section);
-                        //dev_project_carousel;
-                        dispatchEvent(new Event('load'));
+                        reinitialize_el();
                         UI.dev_project_overview.scrollIntoView();
 
                         UI.return_to_dev_gallery_btns.forEach(btn => {
@@ -974,16 +986,16 @@ const App = {
                         for(const mutation of mutationsList) {
                             if (mutation.type === 'childList') {
 
-                                console.log('A child node has been added or removed.');
+                                //console.log('A child node has been added or removed.');
                             } else if (mutation.type === 'attributes') {
 
-                                console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                                //console.log('The ' + mutation.attributeName + ' attribute was modified.');
                             } else if (mutation.type === 'subtree') {
 
-                                console.log('The subtree attribute was modified.');
+                                //console.log('The subtree attribute was modified.');
                             };
 
-                            console.log(mutation, "and ", observer);
+                            //console.log(mutation, "and ", observer);
                         }
                     };
 
