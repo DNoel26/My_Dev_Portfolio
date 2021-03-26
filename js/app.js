@@ -34,8 +34,15 @@ const App = {
             UI.header.classList.add("will-change-height");
             UI.my_form_button.setAttribute("disabled", "disabled");
 
+            // Set new poster image if on mobile device
             // Load BG video from selection
+            UI.add_poster_img_sm();
             UI.load_bg_vid();
+            window.addEventListener("resize", debounce(function() {
+                    
+                UI.add_poster_img_sm();
+                UI.load_bg_vid();
+            }, 500));
             
             // Delay load of non-essential scripts
             setTimeout(() => {
@@ -871,8 +878,8 @@ const App = {
                 const Amazon_Clone = new Project("Amazon Clone", 2, "https://clone-905a7.web.app/", "Interact", 
                     "https://github.com/DNoel26/Amazon_React_Clone", true);
                 Amazon_Clone.description = `
-                    This project was done as my hands on introduction to React and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch.
-                    The main purpose was to understand the concepts behind the very popular React framework, as well as to learn new methods for coding. Main project features are account creation, 
+                    This project was done as my hands on introduction to React.js and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch.
+                    The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, 
                     login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
                 `;
                 Amazon_Clone.link_note = "(fake credentials only - desktop version only!)";
@@ -897,7 +904,7 @@ const App = {
                     "https://github.com/DNoel26/Presidential-Realtors-Static", true);
                 Real_Estate_Site.description = `
                     The focus of this project was for me to learn and implement modern design, user interface (UI) and user experience (UX) elements. It was built from scratch and will eventually be converted
-                    to a fully functional single page application (SPA) using React, MongoDB and Next.js. Let me know what you think!
+                    to a fully functional single page application (SPA) using React.js, MongoDB, Node.js and Express.js. Let me know what you think!
                 `;
                 Real_Estate_Site.link_note = "(desktop version only!)";
                 Real_Estate_Site.notes.push(`Most client side features work as expected. Focus of this project was on design elements rather than functionality.`);

@@ -144,8 +144,18 @@ const UI = {
                 vid.setAttribute("src", data_src);
                 vid.setAttribute("media", data_media);
                 vid.parentElement.load();
-            }, null);
+            }, () => vid.removeAttribute("src"));
         });
+    },
+
+    add_poster_img_sm() {
+
+        const mq_limit = window.matchMedia("(max-width: 767.98px)");
+
+        media_queries(mq_limit, () => {
+ 
+            this.header_vid.setAttribute("poster", "./img/base/webp/think-different-700.webp");
+        }, null);
     },
 
     toggler_menu_icon_switch() {
