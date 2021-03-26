@@ -132,7 +132,7 @@ const UI = {
 
     load_bg_vid() {
         
-        console.log(this.header_vid_multi);
+        //console.log(this.header_vid_multi);
         this.header_vid_multi.forEach(vid => {
 
             const data_src = vid.getAttribute("data-src");

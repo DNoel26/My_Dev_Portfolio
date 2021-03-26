@@ -75,7 +75,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .my-carousel-item .card-body {
-        width: 331px;
+        width: 332px;
     }
 
     .my-carousel-wrapper .my-carousel-item,
@@ -471,7 +471,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .google-audit .audit-results {
-        width: 60vw;
+        width: 70vw;
     }
     
     .google-audit .devices {
@@ -525,12 +525,25 @@ Extra large devices (large desktops, 1200px and up)
         width: 296px;
     }
 
+    .my-carousel-item.card {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
     .my-carousel-item .card-body {
         width: 268px;
     }
 
     .tagcloud {
         font-size: 0.8rem;
+    }
+
+    .google-audit .audit-results {
+        width: 80vw;
+    }
+    
+    .google-audit .devices {
+        width: 50vw;
     }
 
     .tools-tech-section .icon-disp-img {
@@ -557,15 +570,33 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .my-carousel-wrapper ul {
-        width: 280px;
+        width: 274px;
+    }
+
+    .my-carousel-item.card {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .my-carousel-item .card-body {
-        width: 252px;
+        width: 250px;
     }
 
     .tools-tech-section .icon-disp-img {
         height: 2.2rem;
+    }
+
+    .my-carousel-btn-next,
+    .my-carousel-btn-prev {
+        transform: scale(0.8) !important;
+    }
+
+    .my-carousel-btn-next {
+        margin-right: -2px;
+    }
+
+    .my-carousel-btn-prev {
+        margin-left: -2px;
     }
 }
 

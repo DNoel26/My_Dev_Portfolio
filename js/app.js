@@ -393,12 +393,12 @@ const App = {
 
                     media_queries(mq_limits[0], () => {
 
-                        return scroll_amt = 283;
+                        return scroll_amt = 274;
                     }, null);
 
                     media_queries(mq_limits[1], () => {
 
-                        return scroll_amt = 298.5;
+                        return scroll_amt = 296;
                     }, null);
     
                     media_queries(mq_limits[2], () => {

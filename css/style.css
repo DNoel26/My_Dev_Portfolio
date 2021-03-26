@@ -663,8 +663,8 @@ header .btn-anim .circle::after {
 .my-carousel-item.card {
     min-width: unset;
     overflow: unset;
-    margin-left: 13px;
-    margin-right: 13px;
+    margin-left: 12px;
+    margin-right: 12px;
     background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95));
     transition: all 0.3s ease-in-out;
     will-change: transform;
