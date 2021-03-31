@@ -14,8 +14,8 @@ function importAll(r) {
 })
 .catch(err => console.log("Failed to import CSS files: ", err));*/
 
-//require("../css/style.css");
-//require("../css/mq.css");
+require("../css/style.css");
+require("../css/mq.css");
 //importAll(require.context('./js/', true, /\.js$/));
 //importAll(require.context('../css/', true, /\.css$/));
 //importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
