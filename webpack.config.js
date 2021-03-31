@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
@@ -18,12 +19,17 @@ module.exports = {
         port: 8080
     },
     optimization: {
-        usedExports: true
+        usedExports: true,
+        minimize: true,
+        minimizer: [
+            `...`,
+            new CssMinimizerPlugin(),
+          ]
     },
     output: {
-        //chunkFilename: "[id]-bundle-[contenthash].js",
-        //filename: "[name]-bundle-[contenthash].js",
-        filename: "[name]-bundle.js",
+        chunkFilename: "[id]-bundle-[contenthash].js",
+        filename: "[name]-bundle-[contenthash].js",
+        //filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/",
         sourceMapFilename: "[name].map",
@@ -70,7 +76,18 @@ module.exports = {
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        /*new CssMinimizerPlugin()
+        new CssMinimizerPlugin({
+            minimizerOptions: {
+                preset: [
+                    'default',
+                    {
+                        discardComments: { removeAll: true },
+                    },
+                ],
+            },
+        })*/
     ],
     module: {
         rules: [
