@@ -1,5 +1,3 @@
 git_ignore/
 .history/
-svg/
-media/ignore/
-img/ignore
+node_modules

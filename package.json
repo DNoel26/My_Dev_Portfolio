@@ -1,0 +1,60 @@
+{
+  "name": "My_Dev_Portfolio",
+  "version": "1.0.0",
+  "description": "* [Summary] (#summary)\r * [Services] (#services)\r * [Tools & Technologies] (#tools-tech)\r * [Contact] (#contact)",
+  "main": "./dist/[name].bundle.js",
+  "private": "true",
+  "sideEffects": false,
+  "scripts": {
+    "start": "webpack serve --open --config webpack.config.js --hot",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DNoel26/My_Dev_Portfolio.git"
+  },
+  "keywords": [
+    "Darnell Nicholas Noel",
+    "Professional Developer Portfolio",
+    "Front End Web Developer",
+    "Back End Web Developer",
+    "Full Stack Web Developer",
+    "Software Developer",
+    "Mechanical Engineer",
+    "Techie"
+  ],
+  "author": "Darnell Noel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DNoel26/My_Dev_Portfolio/issues"
+  },
+  "homepage": "https://github.com/DNoel26/My_Dev_Portfolio#readme",
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.13.10",
+    "html-webpack-plugin": "^5.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.13.12",
+    "@gfx/zopfli": "^1.0.15",
+    "babel-loader": "^8.2.2",
+    "compression-webpack-plugin": "^7.1.2",
+    "copy-webpack-plugin": "^8.1.0",
+    "css-loader": "^5.2.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^1.4.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.28.0",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
