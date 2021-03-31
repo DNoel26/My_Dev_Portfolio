@@ -120,7 +120,7 @@ module.exports = {
             },          
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'] // 'style-loader', 
+                use: ['style-loader', 'css-loader'] // ,MiniCssExtractPlugin.loader 
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp|mp4)$/i,
