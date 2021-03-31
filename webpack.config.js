@@ -23,6 +23,7 @@ module.exports = {
     optimization: {
         usedExports: true,
         minimize: true,
+        minimizer: [new CssMinimizerPlugin(), "..."],
         splitChunks: {
             cacheGroups: {
                 styles: {
@@ -140,7 +141,8 @@ module.exports = {
                         name: '[name].[ext]',
                         outputPath: './assets/'
                     }
-                }
+                },
+                type: "javascript/auto"
             },
             /*{
                 test: /\.(pdf)$/i,
@@ -154,7 +156,8 @@ module.exports = {
                 test: /\.html$/i,
                 use: {
                     loader: 'html-loader'
-                }
+                },
+                type: "javascript/auto"
             }
         ],
     }
