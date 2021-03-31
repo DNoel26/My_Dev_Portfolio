@@ -23,7 +23,7 @@ module.exports = {
     optimization: {
         usedExports: true,
         minimize: true,
-        minimizer: [new CssMinimizerPlugin(), "..."],
+        /*minimizer: [new CssMinimizerPlugin(), "..."],
         splitChunks: {
             cacheGroups: {
                 styles: {
@@ -32,7 +32,7 @@ module.exports = {
                     enforce: true
                 }
             }
-        }
+        }*/
     },
     output: {
         chunkFilename: "[id]-bundle-[contenthash].js",
@@ -74,7 +74,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
         }),
-        new CompressionPlugin({
+        /*new CompressionPlugin({
             filename: "[path][base].br",
             algorithm: "brotliCompress",
             test: /\.(js|css|html|svg|pdf)$/,
@@ -97,7 +97,7 @@ module.exports = {
                     },
                 ],
             },
-        }),
+        }),*/
     ],
     module: {
         rules: [
