@@ -1,11 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
 const path = require("path");
 const zlib = require("zlib");
+const glob = require('glob')
 
 module.exports = {
     mode: "production",
@@ -21,10 +23,16 @@ module.exports = {
     optimization: {
         usedExports: true,
         minimize: true,
-        minimizer: [
-            `...`,
-            new CssMinimizerPlugin(),
-          ]
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     },
     output: {
         chunkFilename: "[id]-bundle-[contenthash].js",
@@ -76,8 +84,9 @@ module.exports = {
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
-        new MiniCssExtractPlugin(),
-        /*new CssMinimizerPlugin()
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+        }),
         new CssMinimizerPlugin({
             minimizerOptions: {
                 preset: [
@@ -87,7 +96,10 @@ module.exports = {
                     },
                 ],
             },
-        })*/
+        }),
+        new PurgeCSSPlugin({
+            paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true})
+        })
     ],
     module: {
         rules: [
