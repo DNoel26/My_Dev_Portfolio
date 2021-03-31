@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
@@ -18,6 +17,7 @@ module.exports = {
     devServer: {
         publicPath: "/",
         contentBase: './dist',
+        compress: true,
         port: 8080
     },
     optimization: {
@@ -27,7 +27,6 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 styles: {
-                    name: 'styles',
                     test: /\.css$/,
                     chunks: 'all',
                     enforce: true
@@ -72,6 +71,9 @@ module.exports = {
                 { from: "./src/media/", to: "./media/" }
             ],
         }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+        }),
         new CompressionPlugin({
             filename: "[path][base].br",
             algorithm: "brotliCompress",
@@ -85,9 +87,7 @@ module.exports = {
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-        }),
+        
         new CssMinimizerPlugin({
             minimizerOptions: {
                 preset: [
@@ -98,9 +98,6 @@ module.exports = {
                 ],
             },
         }),
-        new PurgeCSSPlugin({
-            paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true})
-        })
     ],
     module: {
         rules: [

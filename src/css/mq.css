@@ -177,7 +177,6 @@ Extra large devices (large desktops, 1200px and up)
         display: block;
         max-height: unset !important;
         height: 100%;
-        width: max-content;
         flex-wrap: unset !important;
         overflow-y: auto;
         overflow-x: hidden;
@@ -208,9 +207,11 @@ Extra large devices (large desktops, 1200px and up)
         height: auto;
     } 
 
-    .bot-header-nav .navbar-collapse.collapsing .nav-item .btn-resume,
-    .bot-header-nav .navbar-collapse.show .nav-item .btn-resume {
-        margin-left: 0 !important;
+    .bot-header-nav .navbar-collapse.collapsing .nav-item .btn-resume.nav-link,
+    .bot-header-nav .navbar-collapse.show .nav-item .btn-resume.nav-link {
+        margin-left: -0.5rem !important;
+        margin-right: 0 !important;
+        width: auto !important;
     }
 
     .bot-header-nav .dropdown-menu {
@@ -220,7 +221,7 @@ Extra large devices (large desktops, 1200px and up)
         border: none;
         border-radius: 6px;
         overflow: hidden !important;
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out !important;
         color: var(--theme-colour-1) !important;
         background-color: var(--theme-colour-1) !important;
     }  
@@ -367,7 +368,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .nav-container .top-header-nav {
-        transition: all 0.6s ease-in-out;
+        transition: all 0.5s ease-in-out !important;
     }
 
     .nav-container.nav-container-sticky {
@@ -399,8 +400,9 @@ Extra large devices (large desktops, 1200px and up)
         margin-bottom: 0.5rem;
     }
 
+    .navbar-collapse.show,
     .navbar-collapse.collapsing {
-        transition: all 0.6s ease-in-out !important;
+        transition: all 0.5s ease-in-out !important;
     }
 
     .navbar-toggler.collapsed {
@@ -628,6 +630,11 @@ Extra large devices (large desktops, 1200px and up)
         box-shadow: rgba(0, 0, 0, 0.75) 0px 0.5rem 1rem !important;
         background: var(--theme-colour-3);
         transition: width 0.3s ease-in-out !important;
+    }
+
+    #bot-header-nav.collapsing > ul,
+    #bot-header-nav.collapsing {
+        background: red !important;
     }
 
     #bot-header-nav > ul > li.nav-item.dropdown {

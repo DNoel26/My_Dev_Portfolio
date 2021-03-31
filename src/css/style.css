@@ -320,6 +320,16 @@ header .btn-anim .circle::after {
     background: var(--theme-colour-2);
 }
 
+.show-header {
+    opacity: unset !important;
+    visibility: unset !important;
+}
+
+.hide-header {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
 .logo {
     height: 100%;
 }
@@ -343,7 +353,7 @@ header .btn-anim .circle::after {
 }
 
 .google-audit .audit-results {
-    width: 25vw;
+    width: 35vw;
 }
 
 .google-audit .devices {
@@ -1179,6 +1189,11 @@ a.nav-link,
     font-weight: bold;
 }
 
+.collapsing {
+    overflow: hidden !important;
+    transition: none 0.15s ease-in-out !important;
+}
+
 /* HTML */ 
 
 html {
@@ -1498,7 +1513,6 @@ section {
     will-change: transform;
     position: relative;
     transition: all 0.3s ease-in-out;
-    -webkit-backface-visibility: hidden;
 }
 
 .dev-project-gallery .btn:hover, 

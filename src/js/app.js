@@ -8,8 +8,16 @@ function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
+import("../css/style.css")
+.then(() => {
+    import("../css/mq.css")
+})
+.catch(err => console.log("Failed to import CSS files: ", err));
+
+//require("../css/style.css");
+//require("../css/mq.css");
 //importAll(require.context('./js/', true, /\.js$/));
-importAll(require.context('../css/', true, /\.css$/));
+//importAll(require.context('../css/', true, /\.css$/));
 //importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
 //importAll(require.context('./html/', true, /\.html$/));
 importAll(require.context('../assets/', true, /\.pdf$/));
@@ -236,11 +244,12 @@ const App = {
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
             const header_timer = function() {
-                return (scroll_timer = setTimeout(() => {                            
+                
+                return (scroll_timer = window.setTimeout(() => {                            
                     //is_scrolling = false;
                     if (!show_header) {
-                        UI.header.style.opacity = "0";
-                        UI.header.style.visibility = "hidden";
+                        UI.header.classList.add("hide-header");
+                        UI.header.classList.remove("show-header");
                     };
                 }, 800));
             };
@@ -329,9 +338,12 @@ const App = {
                     header_transform();
                 }, 100);
 
+                
                 // Adjusts header to match screen size if resized
                 window.addEventListener("resize", debounce(() => {
                     header_transform();
+                    show_header = true;
+                    clearTimeout(scroll_timer);
                 }, 200));
 
                 // Stops the header timer when mouse hovers over the header
@@ -361,7 +373,7 @@ const App = {
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener("mouseout", () => {
                     if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && !UI.bot_nav_collapse.classList.contains("show")) {
-                        show_header = false;
+                        //show_header = false;
                         header_timer();
                     };    
                 });
@@ -387,24 +399,21 @@ const App = {
                     if (document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) show_header = false;
                     else show_header = true;
 
+                    // Clear previous timer and reset
+                    clearTimeout(scroll_timer);
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if (!show_header) {
                         if (UI.bot_nav_collapse.classList.contains("show")) {
-                            clearTimeout(scroll_timer);
                             show_header = true;
                             return;
                         };
 
-                        // Clear previous timer and reset
-                        clearTimeout(scroll_timer);
-                        UI.header.style.opacity = "unset";
-                        UI.header.style.visibility = "unset";
+                        UI.header.classList.remove("hide-header");
+                        UI.header.classList.add("show-header");
                         header_timer();
                     } else {
-                        clearTimeout(scroll_timer);
-                        UI.header.style.opacity = "unset";
-                        UI.header.style.visibility = "unset";
-                        return;
+                        UI.header.classList.remove("hide-header");
+                        UI.header.classList.add("show-header");
                     };
                 }, 100), {passive: true});                        
 
@@ -642,7 +651,7 @@ const App = {
                         tagcloud_loader();
                     }, 500)); 
                 })
-                .catch((err) => console.error(err));
+                .catch((err) => console.error("Failed to import TagCloud module: ", err));
             })();
             
             // Display star rating for each tool / technology based on skill level 
@@ -1112,7 +1121,7 @@ const App = {
                                 .catch(err => console.error("Error: ", err))
                                 .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection    
                             })
-                            
+                            .catch(err => console.log("Failed to import API module: ", err));
                         };
                     });
                 }, options);
@@ -1194,7 +1203,7 @@ const App = {
                                     });
                                 };
                             })
-                            .catch(err => console.error("Failed to import module: ", err))
+                            .catch(err => console.error("Failed to import Formspree module: ", err))
                         }, false);
                     });
                 };
