@@ -71,10 +71,10 @@ module.exports = {
                 { from: "./src/media/", to: "./media/" }
             ],
         }),
-        new MiniCssExtractPlugin({
+        /*new MiniCssExtractPlugin({
             filename: "[name].css",
         }),
-        /*new CompressionPlugin({
+        new CompressionPlugin({
             filename: "[path][base].br",
             algorithm: "brotliCompress",
             test: /\.(js|css|html|svg|pdf)$/,
