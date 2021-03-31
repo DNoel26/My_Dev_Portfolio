@@ -51,7 +51,7 @@ const App = {
                 const init_grecaptchas = [].slice.call(UI.grecaptchas);
                 const options = {
                     root: null,
-                    rootMargin: '100px',
+                    rootMargin: '250px',
                     threshold: 0
                 }
 
@@ -200,21 +200,6 @@ const App = {
                 });
             })();
 
-            const options = {
-                rootMargin: "10px",
-                threshold: 0
-            };
-
-            let observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.intersectionRect.height > 0) {
-                        console.log(entry)
-                    } else {
-                        console.log("else entry", entry)
-                    }
-                });
-            }, options);
-
             let show_header = true;
             let scroll_limit = 0;
             let scroll_moved = false;
@@ -236,7 +221,7 @@ const App = {
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
             const header_timer = function() {
-                return (scroll_timer = setTimeout(() => {                            
+                return (scroll_timer = window.setTimeout(() => {                            
                     //is_scrolling = false;
                     if (!show_header) {
                         UI.header.style.opacity = "0";
@@ -332,6 +317,8 @@ const App = {
                 // Adjusts header to match screen size if resized
                 window.addEventListener("resize", debounce(() => {
                     header_transform();
+                    show_header = true;
+                    clearTimeout(scroll_timer);
                 }, 200));
 
                 // Stops the header timer when mouse hovers over the header
@@ -361,7 +348,7 @@ const App = {
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener("mouseout", () => {
                     if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && !UI.bot_nav_collapse.classList.contains("show")) {
-                        show_header = false;
+                        //show_header = false;
                         header_timer();
                     };    
                 });
@@ -404,7 +391,6 @@ const App = {
                         clearTimeout(scroll_timer);
                         UI.header.style.opacity = "unset";
                         UI.header.style.visibility = "unset";
-                        return;
                     };
                 }, 100), {passive: true});                        
 
