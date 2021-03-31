@@ -8,11 +8,11 @@ function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
-import("../css/style.css")
+/*import("../css/style.css")
 .then(() => {
     import("../css/mq.css")
 })
-.catch(err => console.log("Failed to import CSS files: ", err));
+.catch(err => console.log("Failed to import CSS files: ", err));*/
 
 //require("../css/style.css");
 //require("../css/mq.css");
@@ -59,7 +59,7 @@ const App = {
                 const init_grecaptchas = [].slice.call(UI.grecaptchas);
                 const options = {
                     root: null,
-                    rootMargin: '100px',
+                    rootMargin: '250px',
                     threshold: 0
                 }
 
