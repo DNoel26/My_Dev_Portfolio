@@ -99,7 +99,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.js$/,
                 include: [path.resolve(__dirname, "src")],
                 exclude: /(node_modules|bower_components)/,
                 use: {
