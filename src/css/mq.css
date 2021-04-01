@@ -632,10 +632,10 @@ Extra large devices (large desktops, 1200px and up)
         transition: width 0.3s ease-in-out !important;
     }
 
-    #bot-header-nav.collapsing > ul,
+    /*#bot-header-nav.collapsing > ul,
     #bot-header-nav.collapsing {
         background: red !important;
-    }
+    }*/
 
     #bot-header-nav > ul > li.nav-item.dropdown {
         width: 100%;

@@ -6,7 +6,6 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
 const path = require("path");
 const zlib = require("zlib");
-const glob = require('glob')
 
 module.exports = {
     mode: "production",
@@ -37,7 +36,6 @@ module.exports = {
     output: {
         chunkFilename: "[id].bundle.[contenthash].js",
         filename: "[name].bundle.[contenthash].js",
-        //filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/",
         sourceMapFilename: "[name].map",
@@ -140,14 +138,6 @@ module.exports = {
                 },
                 type: "javascript/auto"
             },
-            /*{
-                test: /\.(pdf)$/i,
-                use: [
-                    {
-                        loader: 'file-loader?name=[name].[ext]',
-                    },    
-                ],
-            },*/
             {
                 test: /\.html$/i,
                 use: {
