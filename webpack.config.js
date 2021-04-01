@@ -23,7 +23,7 @@ module.exports = {
     optimization: {
         usedExports: true,
         minimize: true,
-        /*minimizer: [new CssMinimizerPlugin(), "..."],
+        minimizer: [new CssMinimizerPlugin(), "..."],
         splitChunks: {
             cacheGroups: {
                 styles: {
@@ -32,11 +32,11 @@ module.exports = {
                     enforce: true
                 }
             }
-        }*/
+        }
     },
     output: {
-        chunkFilename: "[id]-bundle-[contenthash].js",
-        filename: "[name]-bundle-[contenthash].js",
+        chunkFilename: "[id].bundle.[contenthash].js",
+        filename: "[name].bundle.[contenthash].js",
         //filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/",
@@ -71,8 +71,8 @@ module.exports = {
                 { from: "./src/media/", to: "./media/" }
             ],
         }),
-        /*new MiniCssExtractPlugin({
-            filename: "[name].css",
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].[contenthash].css",
         }),
         new CompressionPlugin({
             filename: "[path][base].br",
@@ -87,7 +87,6 @@ module.exports = {
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
-        
         new CssMinimizerPlugin({
             minimizerOptions: {
                 preset: [
@@ -97,7 +96,7 @@ module.exports = {
                     },
                 ],
             },
-        }),*/
+        })
     ],
     module: {
         rules: [
@@ -120,7 +119,7 @@ module.exports = {
             },          
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'] // ,MiniCssExtractPlugin.loader 
+                use: [MiniCssExtractPlugin.loader, 'css-loader'] // ,'style-loader' 
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp|mp4)$/i,

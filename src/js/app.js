@@ -8,14 +8,14 @@ function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
-/*import("../css/style.css")
+import("../css/style.css")
 .then(() => {
     import("../css/mq.css")
 })
-.catch(err => console.log("Failed to import CSS files: ", err));*/
+.catch(err => console.log("Failed to import CSS files: ", err));
 
-require("../css/style.css");
-require("../css/mq.css");
+//require("../css/style.css");
+//require("../css/mq.css");
 //importAll(require.context('./js/', true, /\.js$/));
 //importAll(require.context('../css/', true, /\.css$/));
 //importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
