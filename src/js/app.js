@@ -29,6 +29,7 @@ import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttl
     generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
+import TagCloud from "./Business_Logic/TagCloud.js";
 //import Formspree from "./Business_Logic/Formspree.js";
 //import API from "./Business_Logic/API.js";
 
@@ -566,7 +567,7 @@ const App = {
                 tagcloud_resizer();
                 let tagCloud;
 
-                const tagcloud_loader = function() {                   
+                const tagcloud_loader = function(TagClouds) {                   
                     // Define tags in js array
                     let myTags = [
                         'OOP', 'SOC / MVC', 'REST-APIs',
@@ -580,7 +581,7 @@ const App = {
                     // let tagCloud = TagCloud('.tag-cloud-content', myTags);
                     // Config tag cloud by overriding default parameters below
 
-                    tagCloud = TagCloud('.tag-cloud-content', myTags, {
+                    tagCloud = TagClouds('.tag-cloud-content', myTags, {
                         // radius in px
                         radius: tagcloud_radius ?? 340,
                         // animation speed
@@ -640,16 +641,16 @@ const App = {
                 new Promise((resolve, reject) => {
                     return setTimeout(resolve, 3100);
                 })
-                .then(() => import("./Business_Logic/TagCloud.min.js"))
+                .then(() => import("./Business_Logic/TagCloud.js"))
                 .then(module => module.default)
                 .then(() => {
                     
-                    tagcloud_loader();
+                    tagcloud_loader(TagCloud);
                     // Resets and resizes tag cloud for different screen sizes
                     window.addEventListener("resize", debounce(function() {
                         tagcloud_resizer();
                         if (document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
-                        tagcloud_loader();
+                        tagcloud_loader(TagCloud);
                     }, 500)); 
                 })
                 .catch((err) => console.error("Failed to import TagCloud module: ", err));
