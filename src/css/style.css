@@ -837,35 +837,35 @@ lottie-player {
 
 .tagcloud {
     font-size: 1.2rem;
-    width: 100% !important;
-    max-width: 100% !important;
+    /*width: 100% !important;
+    max-width: 100% !important;*/
     min-height: 100%;
     height: fit-content !important; /*31.25rem;*/
     margin-left: auto;
     margin-right: auto;
-    transition: all 0.2s ease-in-out;
+    /*transition: all 0.2s ease-in-out;*/
 }
     
 .tagcloud--item {
     padding: 2px 4px;
-    color: var(--theme-colour-4);
+    /*color: var(--theme-colour-4);
     background-color: transparent;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 5px;*/
     font-weight: 600;
     cursor: pointer;
     user-select: none;
-    transition: all 0.2s ease-in-out;
+    /*transition: all 0.2s ease-in-out;*/
 }
     
 .tagcloud--item:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.3);
     border: 1px solid var(--theme-colour-1);
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
     opacity: 1 !important;
-    z-index: 100 !important;
+    /*z-index: 100 !important;*/
 }
     
 .light .tagcloud--item {
@@ -873,7 +873,7 @@ lottie-player {
 }
     
 .light .tagcloud--item:hover {
-    background-color: rgba(255,255,255,.1);
+    background-color: rgba(255,255,255,0.25);
     border: 1px solid #fff;
 }
     

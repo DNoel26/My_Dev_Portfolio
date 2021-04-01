@@ -63,6 +63,9 @@ const UI = {
 
     /*** TOOLS & TECHNOLOGIES SECTION ***/ 
 
+    tagcloud_content: document.querySelector(".tag-cloud-content"),
+    tagcloud: document.querySelector(".tagcloud"),
+    tagcloud_items: document.querySelectorAll(".tagcloud--item"),
     skill_ratings: document.querySelectorAll(".skill-rating"),
     skill_ratings_beginner: document.querySelectorAll(".skill-rating-beginner"),
     skill_ratings_novice: document.querySelectorAll(".skill-rating-novice"),

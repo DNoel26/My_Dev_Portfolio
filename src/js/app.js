@@ -2,17 +2,20 @@
 
 console.log("App.js Loaded Successfully");
 
+require("../css/style.css");
+require("../css/mq.css");
+
 const cache = {};
 
 function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
-import("../css/style.css")
+/*import("../css/style.css")
 .then(() => {
     import("../css/mq.css")
 })
-.catch(err => console.log("Failed to import CSS files: ", err));
+.catch(err => console.log("Failed to import CSS files: ", err));*/
 
 //import ("../css/style.css");
 //import ("../css/mq.css");
@@ -602,11 +605,12 @@ const App = {
                     // myTags = myTags.concat([]);
                     // tagCloud.update(myTags);
 
-                    const tagcloud = document.querySelector(".tagcloud");
-                    const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+                    UI.tagcloud_content = document.querySelector(".tag-cloud-content");
+                    UI.tagcloud = document.querySelector(".tagcloud");
+                    UI.tagcloud_items = document.querySelectorAll(".tagcloud--item");
 
                     // Randomizes tag word colours and adds effects on click
-                    tagcloud_items.forEach(item => {
+                    UI.tagcloud_items.forEach(item => {
                         item.style.color = generate_dark_color_hex(); 
                         let clicked_once = false;
                         let clicked_twice = false;
@@ -623,13 +627,10 @@ const App = {
                                 }, 5000);
                             } else if (clicked_once && !clicked_twice) {
                                 item.style.color = "var(--theme-colour-4)"; 
-                                //item.style.fontSize = "1.5rem";
                                 item.style.fontSize = "140%";
                                 clicked_twice = true;
                             } else {
                                 item.style.color = "var(--theme-colour-1)"; 
-                                //item.style.fontSize = "1.3rem";
-                                //item.style.fontWeight = "900";
                                 item.style.fontSize = "120%";
                                 clicked_once = true;
                             } 
@@ -637,23 +638,33 @@ const App = {
                     });
                 };
 
-                // Delay loading of tag cloud
-                new Promise((resolve, reject) => {
-                    return setTimeout(resolve, 3100);
-                })
-                .then(() => import("./Business_Logic/TagCloud.js"))
-                .then(module => module.default)
-                .then(() => {
-                    
-                    tagcloud_loader(TagCloud);
-                    // Resets and resizes tag cloud for different screen sizes
-                    window.addEventListener("resize", debounce(function() {
-                        tagcloud_resizer();
-                        if (document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
-                        tagcloud_loader(TagCloud);
-                    }, 500)); 
-                })
-                .catch((err) => console.error("Failed to import TagCloud module: ", err));
+                // Delay loading of tag cloud until almost within view
+                const options = {
+                    root: null,
+                    rootMargin: '300px',
+                    threshold: 0
+                }
+                const tagcloud_observer = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            import("./Business_Logic/TagCloud.js")
+                            .then(module => module.default)
+                            .then(() => {
+                                
+                                tagcloud_loader(TagCloud);
+                                // Resets and resizes tag cloud for different screen sizes
+                                window.addEventListener("resize", debounce(function() {
+                                    tagcloud_resizer();
+                                    if (UI.tagcloud) UI.tagcloud.remove();
+                                    tagcloud_loader(TagCloud);
+                                }, 500)); 
+                            })
+                            .catch((err) => console.error("Failed to import TagCloud module: ", err));
+                        };
+                    });
+                }, options);
+
+                tagcloud_observer.observe(UI.tagcloud_content);
             })();
             
             // Display star rating for each tool / technology based on skill level 
