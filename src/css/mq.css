@@ -488,19 +488,19 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     footer.lazy-bg.load-now {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/webp/laptop-showing-code-650.webp") no-repeat fixed 50% 10%;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/laptop-showing-code-650.webp") no-repeat fixed 50% 10%;
     }
 
     .placeholder-div-reveal-start {
-        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/webp/robot-arm-650.webp") no-repeat fixed 50% 0%;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm-650.webp") no-repeat fixed 50% 0%;
     }
     
     .placeholder-div-reveal-end {
-        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/webp/robot-arm-650.webp") no-repeat fixed 50% 12%;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm-650.webp") no-repeat fixed 50% 12%;
     }
 
     .welcome-section {
-        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/webp/cool-bg-white-650.webp") no-repeat fixed center center;
+        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white-650.webp") no-repeat fixed center center;
     }
 
     .about-section.lazy-bg,
@@ -512,7 +512,7 @@ Extra large devices (large desktops, 1200px and up)
     .about-section.lazy-bg.load-now,
     .tools-tech-section.lazy-bg.load-now,
     .contact-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/webp/cool-bg-white-650.webp") no-repeat fixed center center;
+        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white-650.webp") no-repeat fixed center center;
     }
 
     .services-section > div:first-child.lazy-bg {
@@ -520,7 +520,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .services-section > div:first-child.lazy-bg.load-now {
-        background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/webp/white-laptop-cellphone-650.webp") no-repeat fixed center 40%;
+        background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/white-laptop-cellphone-650.webp") no-repeat fixed center 40%;
     }
 
     .projects-section.lazy-bg {
@@ -528,7 +528,7 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .projects-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/webp/cool-bg-white-650.webp") no-repeat fixed center 50%;
+        background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/cool-bg-white-650.webp") no-repeat fixed center 50%;
     }
 }
 

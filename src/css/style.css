@@ -709,6 +709,11 @@ img.lazy {
     height: fit-content; 
 }
 
+.my-carousel-item .icon-disp-img-lg {
+    min-width: 64px;
+    min-height: 64px;
+}
+
 /* API / CDN / Other Imported Classes */
 
     /*** Scrollbar styling ***/
@@ -1335,7 +1340,7 @@ footer.lazy-bg {
 }
 
 footer.lazy-bg.load-now {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/webp/laptop-showing-code.webp") no-repeat fixed;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/laptop-showing-code.webp") no-repeat fixed;
 }
 
     /*** General ***/
@@ -1367,11 +1372,11 @@ section {
 }
 
 .placeholder-div-reveal-start {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/webp/robot-arm.webp") no-repeat fixed 50% 0%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm.webp") no-repeat fixed 50% 0%;
 }
 
 .placeholder-div-reveal-end {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/webp/robot-arm.webp") no-repeat fixed 50% 12%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm.webp") no-repeat fixed 50% 12%;
 }
 
 .placeholder-div .fs-1 {
@@ -1384,7 +1389,7 @@ section {
 }
 
 .welcome-section {
-    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/webp/cool-bg-white.webp") no-repeat fixed center center;
+    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white.webp") no-repeat fixed center center;
     position: relative;
     padding-top: 0 !important;
     z-index: 0;
@@ -1393,7 +1398,7 @@ section {
 .about-section,
 .tools-tech-section,
 .contact-section {
-    /*background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/webp/cool-bg-white.webp") no-repeat fixed center center;*/
+    /*background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white.webp") no-repeat fixed center center;*/
     z-index: 0;
 }
 
@@ -1406,7 +1411,7 @@ section {
 .about-section.lazy-bg.load-now,
 .tools-tech-section.lazy-bg.load-now,
 .contact-section.lazy-bg.load-now {
-    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/webp/cool-bg-white.webp") no-repeat fixed center center;
+    background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white.webp") no-repeat fixed center center;
 }
 
 .ml13 {
@@ -1451,7 +1456,7 @@ section {
     /*** Section (Services) ***/
 
 .services-section > div:first-child {
-    /*background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/webp/white-laptop-cellphone.webp") no-repeat fixed center 40%; var(--theme-colour-2) !important;*/
+    /*background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/white-laptop-cellphone.webp") no-repeat fixed center 40%; var(--theme-colour-2) !important;*/
     position: relative;
 }
 
@@ -1460,7 +1465,7 @@ section {
 }
 
 .services-section > div:first-child.lazy-bg.load-now {
-    background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/webp/white-laptop-cellphone.webp") no-repeat fixed center 40%;
+    background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/white-laptop-cellphone.webp") no-repeat fixed center 40%;
 }
 
 .services-section,
@@ -1491,7 +1496,7 @@ section {
     /*** Section (Projects) ***/
 
 .projects-section {
-    /*background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/webp/cool-bg-white.webp") no-repeat fixed center 50%; var(--theme-colour-2) !important;*/
+    /*background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/cool-bg-white.webp") no-repeat fixed center 50%; var(--theme-colour-2) !important;*/
     position: relative;
 }
 
@@ -1500,7 +1505,7 @@ section {
 }
 
 .projects-section.lazy-bg.load-now {
-    background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/webp/cool-bg-white.webp") no-repeat fixed center 50%;
+    background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/cool-bg-white.webp") no-repeat fixed center 50%;
 }
 
 /*.dev-project-gallery {

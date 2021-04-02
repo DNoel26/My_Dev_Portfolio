@@ -856,7 +856,7 @@ const App = {
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
                 const alien_m_carousel_img_ids = [];
-                const alien_m_carousel_img_srcs = ["./img/projects/webp/min/alien-mathvasion-1-min.webp", "./img/projects/webp/min/alien-mathvasion-2-min.webp", "./img/projects/webp/min/alien-mathvasion-3-min.webp"];
+                const alien_m_carousel_img_srcs = ["./img/projects/min/alien-mathvasion-1-min.webp", "./img/projects/min/alien-mathvasion-2-min.webp", "./img/projects/min/alien-mathvasion-3-min.webp"];
                 const alien_m_carousel_img_alts = [];
                 const alien_m_tool_img_ids = [];
                 const alien_m_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
@@ -876,7 +876,7 @@ const App = {
                 Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact.`);
                 Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
                 const wix_c_carousel_img_ids = [];
-                const wix_c_carousel_img_srcs = ["./img/projects/webp/min/wix-clone-1-min.webp", "./img/projects/webp/min/wix-clone-2-min.webp", "./img/projects/webp/min/wix-clone-3-min.webp"];
+                const wix_c_carousel_img_srcs = ["./img/projects/min/wix-clone-1-min.webp", "./img/projects/min/wix-clone-2-min.webp", "./img/projects/min/wix-clone-3-min.webp"];
                 const wix_c_carousel_img_alts = [];
                 const wix_c_tool_img_ids = [];
                 const wix_c_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
@@ -897,8 +897,8 @@ const App = {
                 Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
                 Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
                 const cyberdise_carousel_img_ids = [];
-                const cyberdise_carousel_img_srcs = ["./img/projects/webp/min/cyberdise-online-store-1-min.webp", "./img/projects/webp/min/cyberdise-online-store-2-min.webp", "./img/projects/webp/min/cyberdise-online-store-3-min.webp", 
-                    "./img/projects/webp/min/cyberdise-online-store-4-min.webp", "./img/projects/webp/min/cyberdise-online-store-5-min.webp"
+                const cyberdise_carousel_img_srcs = ["./img/projects/min/cyberdise-online-store-1-min.webp", "./img/projects/min/cyberdise-online-store-2-min.webp", "./img/projects/min/cyberdise-online-store-3-min.webp", 
+                    "./img/projects/min/cyberdise-online-store-4-min.webp", "./img/projects/min/cyberdise-online-store-5-min.webp"
                 ];
                 const cyberdise_carousel_img_alts = [];
                 const cyberdise_tool_img_ids = [];
@@ -919,7 +919,7 @@ const App = {
                 Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
                 Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
                 const movie_db_carousel_img_ids = [];
-                const movie_db_carousel_img_srcs = ["./img/projects/webp/min/movie-db-1-min.webp", "./img/projects/webp/min/movie-db-2-min.webp", "./img/projects/webp/min/movie-db-3-min.webp"];
+                const movie_db_carousel_img_srcs = ["./img/projects/min/movie-db-1-min.webp", "./img/projects/min/movie-db-2-min.webp", "./img/projects/min/movie-db-3-min.webp"];
                 const movie_db_carousel_img_alts = [];
                 const movie_db_tools_img_ids = [];
                 const movie_db_tools_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
@@ -940,8 +940,8 @@ const App = {
                 Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
                 const amazon_c_carousel_img_ids = [];
                 const amazon_c_carousel_img_srcs = [
-                    "./img/projects/webp/min/amazon-clone-1-min.webp", "./img/projects/webp/min/amazon-clone-2-min.webp", "./img/projects/webp/min/amazon-clone-3-min.webp",
-                    "./img/projects/webp/min/amazon-clone-4-min.webp"
+                    "./img/projects/min/amazon-clone-1-min.webp", "./img/projects/min/amazon-clone-2-min.webp", "./img/projects/min/amazon-clone-3-min.webp",
+                    "./img/projects/min/amazon-clone-4-min.webp"
                 ];
                 const amazon_c_carousel_img_alts = [];
                 const amazon_c_tool_img_ids = [];
@@ -964,7 +964,7 @@ const App = {
                 Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
                 Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
                 const real_estate_carousel_img_ids = [];
-                const real_estate_carousel_img_srcs = ["./img/projects/webp/min/real-estate-1-min.webp", "./img/projects/webp/min/real-estate-2-min.webp", "./img/projects/webp/min/real-estate-3-min.webp"];
+                const real_estate_carousel_img_srcs = ["./img/projects/min/real-estate-1-min.webp", "./img/projects/min/real-estate-2-min.webp", "./img/projects/min/real-estate-3-min.webp"];
                 const real_estate_carousel_img_alts = [];
                 const real_estate_tool_img_ids = [];
                 const real_estate_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
