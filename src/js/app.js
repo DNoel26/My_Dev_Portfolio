@@ -2,14 +2,26 @@
 
 console.log("App.js Loaded Successfully");
 
+require("../css/style.css");
+require("../css/mq.css");
+
 const cache = {};
 
 function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
+/*import("../css/style.css")
+.then(() => {
+    import("../css/mq.css")
+})
+.catch(err => console.log("Failed to import CSS files: ", err));*/
+
+//import ("../css/style.css");
+//import ("../css/mq.css");
+
 //importAll(require.context('./js/', true, /\.js$/));
-importAll(require.context('../css/', true, /\.css$/));
+//importAll(require.context('../css/', true, /\.css$/));
 //importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
 //importAll(require.context('./html/', true, /\.html$/));
 importAll(require.context('../assets/', true, /\.pdf$/));
@@ -20,6 +32,7 @@ import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttl
     generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
+import TagCloud from "./Business_Logic/TagCloud.js";
 //import Formspree from "./Business_Logic/Formspree.js";
 //import API from "./Business_Logic/API.js";
 
@@ -221,11 +234,12 @@ const App = {
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
             const header_timer = function() {
+                
                 return (scroll_timer = window.setTimeout(() => {                            
                     //is_scrolling = false;
                     if (!show_header) {
-                        UI.header.style.opacity = "0";
-                        UI.header.style.visibility = "hidden";
+                        UI.header.classList.add("hide-header");
+                        UI.header.classList.remove("show-header");
                     };
                 }, 800));
             };
@@ -314,6 +328,7 @@ const App = {
                     header_transform();
                 }, 100);
 
+                
                 // Adjusts header to match screen size if resized
                 window.addEventListener("resize", debounce(() => {
                     header_transform();
@@ -374,23 +389,21 @@ const App = {
                     if (document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) show_header = false;
                     else show_header = true;
 
+                    // Clear previous timer and reset
+                    clearTimeout(scroll_timer);
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if (!show_header) {
                         if (UI.bot_nav_collapse.classList.contains("show")) {
-                            clearTimeout(scroll_timer);
                             show_header = true;
                             return;
                         };
 
-                        // Clear previous timer and reset
-                        clearTimeout(scroll_timer);
-                        UI.header.style.opacity = "unset";
-                        UI.header.style.visibility = "unset";
+                        UI.header.classList.remove("hide-header");
+                        UI.header.classList.add("show-header");
                         header_timer();
                     } else {
-                        clearTimeout(scroll_timer);
-                        UI.header.style.opacity = "unset";
-                        UI.header.style.visibility = "unset";
+                        UI.header.classList.remove("hide-header");
+                        UI.header.classList.add("show-header");
                     };
                 }, 100), {passive: true});                        
 
@@ -542,7 +555,7 @@ const App = {
                 tagcloud_resizer();
                 let tagCloud;
 
-                const tagcloud_loader = function() {                   
+                const tagcloud_loader = function(TagClouds) {                   
                     // Define tags in js array
                     let myTags = [
                         'OOP', 'SOC / MVC', 'REST-APIs',
@@ -556,7 +569,7 @@ const App = {
                     // let tagCloud = TagCloud('.tag-cloud-content', myTags);
                     // Config tag cloud by overriding default parameters below
 
-                    tagCloud = TagCloud('.tag-cloud-content', myTags, {
+                    tagCloud = TagClouds('.tag-cloud-content', myTags, {
                         // radius in px
                         radius: tagcloud_radius ?? 340,
                         // animation speed
@@ -577,11 +590,12 @@ const App = {
                     // myTags = myTags.concat([]);
                     // tagCloud.update(myTags);
 
-                    const tagcloud = document.querySelector(".tagcloud");
-                    const tagcloud_items = document.querySelectorAll(".tagcloud--item");
+                    UI.tagcloud_content = document.querySelector(".tag-cloud-content");
+                    UI.tagcloud = document.querySelector(".tagcloud");
+                    UI.tagcloud_items = document.querySelectorAll(".tagcloud--item");
 
                     // Randomizes tag word colours and adds effects on click
-                    tagcloud_items.forEach(item => {
+                    UI.tagcloud_items.forEach(item => {
                         item.style.color = generate_dark_color_hex(); 
                         let clicked_once = false;
                         let clicked_twice = false;
@@ -598,13 +612,10 @@ const App = {
                                 }, 5000);
                             } else if (clicked_once && !clicked_twice) {
                                 item.style.color = "var(--theme-colour-4)"; 
-                                //item.style.fontSize = "1.5rem";
                                 item.style.fontSize = "140%";
                                 clicked_twice = true;
                             } else {
                                 item.style.color = "var(--theme-colour-1)"; 
-                                //item.style.fontSize = "1.3rem";
-                                //item.style.fontWeight = "900";
                                 item.style.fontSize = "120%";
                                 clicked_once = true;
                             } 
@@ -612,23 +623,33 @@ const App = {
                     });
                 };
 
-                // Delay loading of tag cloud
-                new Promise((resolve, reject) => {
-                    return setTimeout(resolve, 3100);
-                })
-                .then(() => import("./Business_Logic/TagCloud.min.js"))
-                .then(module => module.default)
-                .then(() => {
-                    
-                    tagcloud_loader();
-                    // Resets and resizes tag cloud for different screen sizes
-                    window.addEventListener("resize", debounce(function() {
-                        tagcloud_resizer();
-                        if (document.querySelector(".tagcloud")) document.querySelector(".tagcloud").remove();
-                        tagcloud_loader();
-                    }, 500)); 
-                })
-                .catch((err) => console.error(err));
+                // Delay loading of tag cloud until almost within view
+                const options = {
+                    root: null,
+                    rootMargin: '300px',
+                    threshold: 0
+                }
+                const tagcloud_observer = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            import("./Business_Logic/TagCloud.js")
+                            .then(module => module.default)
+                            .then(() => {
+                                
+                                tagcloud_loader(TagCloud);
+                                // Resets and resizes tag cloud for different screen sizes
+                                window.addEventListener("resize", debounce(function() {
+                                    tagcloud_resizer();
+                                    if (UI.tagcloud) UI.tagcloud.remove();
+                                    tagcloud_loader(TagCloud);
+                                }, 500)); 
+                            })
+                            .catch((err) => console.error("Failed to import TagCloud module: ", err));
+                        };
+                    });
+                }, options);
+
+                tagcloud_observer.observe(UI.tagcloud_content);
             })();
             
             // Display star rating for each tool / technology based on skill level 
@@ -820,7 +841,7 @@ const App = {
                 Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
                 Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
                 const alien_m_carousel_img_ids = [];
-                const alien_m_carousel_img_srcs = ["./img/projects/webp/min/alien-mathvasion-1-min.webp", "./img/projects/webp/min/alien-mathvasion-2-min.webp", "./img/projects/webp/min/alien-mathvasion-3-min.webp"];
+                const alien_m_carousel_img_srcs = ["./img/projects/min/alien-mathvasion-1-min.webp", "./img/projects/min/alien-mathvasion-2-min.webp", "./img/projects/min/alien-mathvasion-3-min.webp"];
                 const alien_m_carousel_img_alts = [];
                 const alien_m_tool_img_ids = [];
                 const alien_m_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
@@ -840,7 +861,7 @@ const App = {
                 Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact.`);
                 Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
                 const wix_c_carousel_img_ids = [];
-                const wix_c_carousel_img_srcs = ["./img/projects/webp/min/wix-clone-1-min.webp", "./img/projects/webp/min/wix-clone-2-min.webp", "./img/projects/webp/min/wix-clone-3-min.webp"];
+                const wix_c_carousel_img_srcs = ["./img/projects/min/wix-clone-1-min.webp", "./img/projects/min/wix-clone-2-min.webp", "./img/projects/min/wix-clone-3-min.webp"];
                 const wix_c_carousel_img_alts = [];
                 const wix_c_tool_img_ids = [];
                 const wix_c_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
@@ -861,8 +882,8 @@ const App = {
                 Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
                 Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
                 const cyberdise_carousel_img_ids = [];
-                const cyberdise_carousel_img_srcs = ["./img/projects/webp/min/cyberdise-online-store-1-min.webp", "./img/projects/webp/min/cyberdise-online-store-2-min.webp", "./img/projects/webp/min/cyberdise-online-store-3-min.webp", 
-                    "./img/projects/webp/min/cyberdise-online-store-4-min.webp", "./img/projects/webp/min/cyberdise-online-store-5-min.webp"
+                const cyberdise_carousel_img_srcs = ["./img/projects/min/cyberdise-online-store-1-min.webp", "./img/projects/min/cyberdise-online-store-2-min.webp", "./img/projects/min/cyberdise-online-store-3-min.webp", 
+                    "./img/projects/min/cyberdise-online-store-4-min.webp", "./img/projects/min/cyberdise-online-store-5-min.webp"
                 ];
                 const cyberdise_carousel_img_alts = [];
                 const cyberdise_tool_img_ids = [];
@@ -883,7 +904,7 @@ const App = {
                 Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
                 Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
                 const movie_db_carousel_img_ids = [];
-                const movie_db_carousel_img_srcs = ["./img/projects/webp/min/movie-db-1-min.webp", "./img/projects/webp/min/movie-db-2-min.webp", "./img/projects/webp/min/movie-db-3-min.webp"];
+                const movie_db_carousel_img_srcs = ["./img/projects/min/movie-db-1-min.webp", "./img/projects/min/movie-db-2-min.webp", "./img/projects/min/movie-db-3-min.webp"];
                 const movie_db_carousel_img_alts = [];
                 const movie_db_tools_img_ids = [];
                 const movie_db_tools_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
@@ -904,8 +925,8 @@ const App = {
                 Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
                 const amazon_c_carousel_img_ids = [];
                 const amazon_c_carousel_img_srcs = [
-                    "./img/projects/webp/min/amazon-clone-1-min.webp", "./img/projects/webp/min/amazon-clone-2-min.webp", "./img/projects/webp/min/amazon-clone-3-min.webp",
-                    "./img/projects/webp/min/amazon-clone-4-min.webp"
+                    "./img/projects/min/amazon-clone-1-min.webp", "./img/projects/min/amazon-clone-2-min.webp", "./img/projects/min/amazon-clone-3-min.webp",
+                    "./img/projects/min/amazon-clone-4-min.webp"
                 ];
                 const amazon_c_carousel_img_alts = [];
                 const amazon_c_tool_img_ids = [];
@@ -928,7 +949,7 @@ const App = {
                 Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
                 Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
                 const real_estate_carousel_img_ids = [];
-                const real_estate_carousel_img_srcs = ["./img/projects/webp/min/real-estate-1-min.webp", "./img/projects/webp/min/real-estate-2-min.webp", "./img/projects/webp/min/real-estate-3-min.webp"];
+                const real_estate_carousel_img_srcs = ["./img/projects/min/real-estate-1-min.webp", "./img/projects/min/real-estate-2-min.webp", "./img/projects/min/real-estate-3-min.webp"];
                 const real_estate_carousel_img_alts = [];
                 const real_estate_tool_img_ids = [];
                 const real_estate_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
@@ -1098,7 +1119,7 @@ const App = {
                                 .catch(err => console.error("Error: ", err))
                                 .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection    
                             })
-                            
+                            .catch(err => console.log("Failed to import API module: ", err));
                         };
                     });
                 }, options);
@@ -1180,7 +1201,7 @@ const App = {
                                     });
                                 };
                             })
-                            .catch(err => console.error("Failed to import module: ", err))
+                            .catch(err => console.error("Failed to import Formspree module: ", err))
                         }, false);
                     });
                 };

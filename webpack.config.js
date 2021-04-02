@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
@@ -15,15 +16,26 @@ module.exports = {
     devServer: {
         publicPath: "/",
         contentBase: './dist',
+        compress: true,
         port: 8080
     },
     optimization: {
-        usedExports: true
+        usedExports: true,
+        minimize: true,
+        minimizer: [new CssMinimizerPlugin(), "..."],
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     },
     output: {
-        //chunkFilename: "[id]-bundle-[contenthash].js",
-        //filename: "[name]-bundle-[contenthash].js",
-        filename: "[name]-bundle.js",
+        chunkFilename: "[id].bundle.[contenthash].js",
+        filename: "[name].bundle.[contenthash].js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/",
         sourceMapFilename: "[name].map",
@@ -57,6 +69,9 @@ module.exports = {
                 { from: "./src/media/", to: "./media/" }
             ],
         }),
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].[contenthash].css",
+        }),
         new CompressionPlugin({
             filename: "[path][base].br",
             algorithm: "brotliCompress",
@@ -70,12 +85,21 @@ module.exports = {
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
-        new MiniCssExtractPlugin()
+        new CssMinimizerPlugin({
+            minimizerOptions: {
+                preset: [
+                    'default',
+                    {
+                        discardComments: { removeAll: true },
+                    },
+                ],
+            },
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.js$/,
                 include: [path.resolve(__dirname, "src")],
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -93,7 +117,7 @@ module.exports = {
             },          
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'] // 'style-loader', 
+                use: [MiniCssExtractPlugin.loader, 'css-loader'] // ,'style-loader' 
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp|mp4)$/i,
@@ -111,21 +135,15 @@ module.exports = {
                         name: '[name].[ext]',
                         outputPath: './assets/'
                     }
-                }
+                },
+                type: "javascript/auto"
             },
-            /*{
-                test: /\.(pdf)$/i,
-                use: [
-                    {
-                        loader: 'file-loader?name=[name].[ext]',
-                    },    
-                ],
-            },*/
             {
                 test: /\.html$/i,
                 use: {
                     loader: 'html-loader'
-                }
+                },
+                type: "javascript/auto"
             }
         ],
     }

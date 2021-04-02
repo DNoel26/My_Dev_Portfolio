@@ -63,6 +63,9 @@ const UI = {
 
     /*** TOOLS & TECHNOLOGIES SECTION ***/ 
 
+    tagcloud_content: document.querySelector(".tag-cloud-content"),
+    tagcloud: document.querySelector(".tagcloud"),
+    tagcloud_items: document.querySelectorAll(".tagcloud--item"),
     skill_ratings: document.querySelectorAll(".skill-rating"),
     skill_ratings_beginner: document.querySelectorAll(".skill-rating-beginner"),
     skill_ratings_novice: document.querySelectorAll(".skill-rating-novice"),
@@ -153,7 +156,7 @@ const UI = {
         const mq_limit = window.matchMedia("(max-width: 767.98px)");
 
         media_queries(mq_limit, () => { 
-            this.header_vid.setAttribute("poster", "./img/base/webp/think-different-700.webp");
+            this.header_vid.setAttribute("poster", "./img/base/think-different-700.webp");
         }, null);
     },
 
@@ -251,7 +254,7 @@ const UI = {
 
     replace_vid_bg() {
         // To replace the header video bg when it ends
-        this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('./img/base/webp/laptop-keyboard.webp') no-repeat fixed 20% 20%";
+        this.header.style.background = "linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url('./img/base/laptop-keyboard.webp') no-repeat fixed 20% 20%";
         this.header.style.backgroundSize = "cover";
     },
 
