@@ -1,5 +1,4 @@
-import { debounce, media_queries } from "../Business_Logic/Functions.js";
-import Skill_Rating from "../Business_Logic/SkillRating.js";
+import { media_queries } from "../Business_Logic/Functions.js";
 
 const UI = {
 
@@ -224,8 +223,9 @@ const UI = {
         // Returns header and body to initial states when scrolled to the top
         this.body.classList.add("will-change-height");
         this.nav_container.classList.remove("nav-container-sticky");
+        this.header.style.height = "70vh";  
 
-        const mq_limits = [
+        /*const mq_limits = [
             window.matchMedia("(min-width: 992px)"),
             window.matchMedia("(max-width: 991.98px)"),
         ];
@@ -236,7 +236,7 @@ const UI = {
 
         media_queries(mq_limits[1], () => {
             this.header.style.height = "70vh";  
-        }, null);
+        }, null);*/
 
         this.header.style.boxShadow = "unset";
         this.header_vid.classList.remove("d-none");

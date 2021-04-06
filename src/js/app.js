@@ -11,19 +11,6 @@ function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
 
-/*import("../css/style.css")
-.then(() => {
-    import("../css/mq.css")
-})
-.catch(err => console.log("Failed to import CSS files: ", err));*/
-
-//import ("../css/style.css");
-//import ("../css/mq.css");
-
-//importAll(require.context('./js/', true, /\.js$/));
-//importAll(require.context('../css/', true, /\.css$/));
-//importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
-//importAll(require.context('./html/', true, /\.html$/));
 importAll(require.context('../assets/', true, /\.pdf$/));
 importAll(require.context('../media/', true, /\.mp4$/));
 
@@ -51,7 +38,6 @@ const App = {
         document.addEventListener("DOMContentLoaded", ()=>{
             
             console.log("DOMContentLoaded Successfully");    
-
             //UI.toggler_menu_icon_switch();
 
             (function() {
@@ -64,7 +50,7 @@ const App = {
                 const init_grecaptchas = [].slice.call(UI.grecaptchas);
                 const options = {
                     root: null,
-                    rootMargin: '250px',
+                    rootMargin: '500px',
                     threshold: 0
                 }
 
@@ -212,21 +198,6 @@ const App = {
                     };
                 });
             })();
-
-            const options = {
-                rootMargin: "10px",
-                threshold: 0
-            };
-
-            let observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.intersectionRect.height > 0) {
-                        console.log(entry)
-                    } else {
-                        console.log("else entry", entry)
-                    }
-                });
-            }, options);
 
             let show_header = true;
             let scroll_limit = 0;
@@ -1075,7 +1046,7 @@ const App = {
                 // Observes if form is in view and then makes country API request if true
                 const options = {
                     root: null,
-                    rootMargin: '200px',
+                    rootMargin: '300px',
                     threshold: 0
                 }
                 let select_change;
