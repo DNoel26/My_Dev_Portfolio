@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
 const path = require("path");
 const zlib = require("zlib");
@@ -105,7 +105,7 @@ module.exports = {
                 ],
             },
         }),
-        new BundleAnalyzerPlugin()
+        //new BundleAnalyzerPlugin()
     ],
     module: {
         rules: [
@@ -115,8 +115,7 @@ module.exports = {
                 exclude: [
                     /node_modules[\\\/]core-js/,
                     /node_modules[\\\/]webpack[\\\/]buildin/,
-                    /(node_modules|bower_components)/,
-                    /lib/
+                    /(node_modules|bower_components)/
                 ],
                 use: {
                     loader: 'babel-loader',
