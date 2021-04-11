@@ -19,7 +19,6 @@
 */
 
 class Skill_Rating {
-
     classification = ""; // Represented by star icons in UI
     filled_icon = `   
                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -38,7 +37,6 @@ class Skill_Rating {
                 `;
 
     getRating(rank) {
-
         if (rank === "beginner") {
             rank = 1;
         } else if (rank === "novice") {
@@ -50,18 +48,6 @@ class Skill_Rating {
         } else if (rank === "expert") {
             rank = 5;
         };
-
-        /*for(let i=0; i<5; i++) {
-
-            if (rank > i) {
-
-                this.classification += this.filled_icon;
-            } else {
-
-                this.classification += this.empty_icon;
-            };
-        };*/
-
         this.classification = this.filled_icon.repeat(rank) + this.empty_icon.repeat(5 - rank);
         return this.classification;
     };

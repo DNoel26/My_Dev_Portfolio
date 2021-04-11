@@ -1,5 +1,4 @@
 class API {
-
     endpoint;
     method;
     headers = {};

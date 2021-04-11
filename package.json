@@ -9,7 +9,8 @@
     "start": "webpack serve --open --config webpack.config.js --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "analyze": "webpack --profile --json > stats.json"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,16 @@
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/runtime": "^7.13.10",
+    "braces": "^3.0.2",
+    "core-js": "^3.10.0",
     "html-webpack-plugin": "^5.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-arrow-functions": "^7.13.0",
     "@babel/preset-env": "^7.13.12",
     "@gfx/zopfli": "^1.0.15",
     "babel-loader": "^8.2.2",

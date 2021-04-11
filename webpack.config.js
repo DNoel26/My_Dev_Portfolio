@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
 const path = require("path");
 const zlib = require("zlib");
@@ -12,7 +13,7 @@ module.exports = {
     entry: {
         index: "./src/js/app.js"
     },
-    devtool: "inline-source-map",
+    //devtool: "inline-source-map",
     devServer: {
         publicPath: "/",
         contentBase: './dist',
@@ -24,6 +25,11 @@ module.exports = {
         minimize: true,
         minimizer: [new CssMinimizerPlugin(), "..."],
         splitChunks: {
+            chunks: 'all',
+            minChunks: 1,
+            minSize: 10000,
+            maxSize: 200000,
+            enforceSizeThreshold: 256000,
             cacheGroups: {
                 styles: {
                     test: /\.css$/,
@@ -32,6 +38,10 @@ module.exports = {
                 }
             }
         }
+    },
+    performance: {
+        maxEntrypointSize: 256000,
+        maxAssetSize: 256000
     },
     output: {
         chunkFilename: "[id].bundle.[contenthash].js",
@@ -94,26 +104,47 @@ module.exports = {
                     },
                 ],
             },
-        })
+        }),
+        new BundleAnalyzerPlugin()
     ],
     module: {
         rules: [
             {
                 test: /\.js$/,
                 include: [path.resolve(__dirname, "src")],
-                exclude: /(node_modules|bower_components)/,
+                exclude: [
+                    /node_modules[\\\/]core-js/,
+                    /node_modules[\\\/]webpack[\\\/]buildin/,
+                    /(node_modules|bower_components)/,
+                    /lib/
+                ],
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        cacheDirectory: true 
+                    }
+                }
+                /*exclude: [
+                    // \\ for Windows, \/ for Mac OS and Linux
+                    /node_modules[\\\/]core-js/,
+                    /node_modules[\\\/]webpack[\\\/]buildin/,
+                    /(node_modules|bower_components)/
+                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env'
+                        ],
                         plugins: [
                             '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-transform-runtime',
-                            '@babel/plugin-proposal-class-properties'
+                            '@babel/plugin-proposal-class-properties',
+                            '@babel/plugin-syntax-class-properties'
                         ],
-                        cacheDirectory: true
+                        //
                     }
-                },
+                },*/
             },          
             {
                 test: /\.css$/i,

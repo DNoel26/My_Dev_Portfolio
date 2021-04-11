@@ -1,8 +1,6 @@
 class Tools_Tech {
-
     name;
     icon = {
-
         id: null,
         src,
         alt,

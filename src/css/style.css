@@ -1246,7 +1246,7 @@ header {
     height: 70vh;
     /*background-color: var(--theme-colour-1);*/
     background: linear-gradient(rgba(31,111,139,0.8), rgba(0,0,0,0.6)), url("../img/transparent-png-w10.png") no-repeat fixed 100% 100%; /*/img/laptop.jpg*/
-    background-size: cover;
+    background-size: cover !important;
     position: relative;
     visibility: visible;
     opacity: 1;
@@ -1329,8 +1329,7 @@ header video {
 
 footer {
     /*background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/webp/laptop-showing-code.webp") no-repeat fixed;*/
-    background-size: cover;
-    background-position: center 60%;
+    background-size: cover !important;
     height: 450px;
     position: relative;
 }
@@ -1340,7 +1339,7 @@ footer.lazy-bg {
 }
 
 footer.lazy-bg.load-now {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/laptop-showing-code.webp") no-repeat fixed;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/laptop-showing-code.webp") no-repeat fixed center 60%;
 }
 
     /*** General ***/
@@ -1388,13 +1387,14 @@ section {
     text-shadow: 0 1px 0 black;
 }
 
-.welcome-section {
+/*.welcome-section {
     background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white.webp") no-repeat fixed center center;
     position: relative;
     padding-top: 0 !important;
     z-index: 0;
-}
+}*/
 
+.welcome-section,
 .about-section,
 .tools-tech-section,
 .contact-section {
@@ -1402,12 +1402,14 @@ section {
     z-index: 0;
 }
 
+.welcome-section.lazy-bg,
 .about-section.lazy-bg,
 .tools-tech-section.lazy-bg,
 .contact-section.lazy-bg {
     background: url("../img/transparent-png-w10.png");
 }
 
+.welcome-section.lazy-bg.load-now,
 .about-section.lazy-bg.load-now,
 .tools-tech-section.lazy-bg.load-now,
 .contact-section.lazy-bg.load-now {
@@ -1457,6 +1459,7 @@ section {
 
 .services-section > div:first-child {
     /*background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/white-laptop-cellphone.webp") no-repeat fixed center 40%; var(--theme-colour-2) !important;*/
+    background-size: cover !important;
     position: relative;
 }
 

@@ -4,6 +4,7 @@
  */
 
 class TagCloud {
+    
     /* constructor */
     constructor(container = document.body, texts, options) {
         const self = this;

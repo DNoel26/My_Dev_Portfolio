@@ -1,45 +1,23 @@
 'use strict';
 
 console.log("App.js Loaded Successfully");
-
 require("../css/style.css");
 require("../css/mq.css");
 
 const cache = {};
-
 function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
 };
-
-/*import("../css/style.css")
-.then(() => {
-    import("../css/mq.css")
-})
-.catch(err => console.log("Failed to import CSS files: ", err));*/
-
-//import ("../css/style.css");
-//import ("../css/mq.css");
-
-//importAll(require.context('./js/', true, /\.js$/));
-//importAll(require.context('../css/', true, /\.css$/));
-//importAll(require.context('./img/', true, /\.(png|svg|jpg|jpeg|gif|webp)$/));
-//importAll(require.context('./html/', true, /\.html$/));
 importAll(require.context('../assets/', true, /\.pdf$/));
 importAll(require.context('../media/', true, /\.mp4$/));
-
 import UI from "./UI_Logic/UI.js";
 import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
     generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
 import Skill_Rating from "./Business_Logic/SkillRating.js";
 import Project from "./Business_Logic/Project.js";
-import TagCloud from "./Business_Logic/TagCloud.js";
-//import Formspree from "./Business_Logic/Formspree.js";
-//import API from "./Business_Logic/API.js";
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
 function recaptchaCallback(func) {
-                
-    //console.log("In recaptcha");
     return func();
 };
 
@@ -47,28 +25,26 @@ const App = {
     init() {
 
         /*** Main Document ***/
-
         document.addEventListener("DOMContentLoaded", ()=>{
-            
             console.log("DOMContentLoaded Successfully");    
-
-            //UI.toggler_menu_icon_switch();
-
             (function() {
+
                 // Lazy load images
                 const init_lazy_imgs = [].slice.call(UI.lazy_imgs);
+
                 // Lazy load image sources (picture tag)
                 const init_lazy_sources = [].slice.call(UI.lazy_sources);
+
                 // Lazy load background images in CSS
                 const init_lazy_bgs = [].slice.call(UI.lazy_bgs);
                 const init_grecaptchas = [].slice.call(UI.grecaptchas);
                 const options = {
                     root: null,
-                    rootMargin: '250px',
+                    rootMargin: '800px',
                     threshold: 0
-                }
-
+                };
                 if ("IntersectionObserver" in window) {
+
                     // Lazy Images
                     const lazy_img_observer = new IntersectionObserver(function(entries, observer) {
                         entries.forEach(function(entry) {
@@ -92,7 +68,6 @@ const App = {
                             };
                         });
                     }, options);
-
                     init_lazy_imgs.forEach(function(lazy_img) {
                         lazy_img_observer.observe(lazy_img);
                     });
@@ -113,7 +88,6 @@ const App = {
                             };
                         });
                     }, options);
-
                     init_lazy_sources.forEach(function(lazy_source) {
                         lazy_source_observer.observe(lazy_source);
                     });
@@ -127,11 +101,9 @@ const App = {
                             };
                         });
                     }, options);
-
                     init_lazy_bgs.forEach(function(lazy_bg) {
                         lazy_bg_observer.observe(lazy_bg);
                     });
-
                     const grecaptcha_observer = new IntersectionObserver(function(entries, observer) {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
@@ -140,13 +112,13 @@ const App = {
                                     setTimeout(resolve, 2000);
                                 })
                                 .then(() => {
+
                                     // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
                                     recaptchaCallback(() => {
                                         const grecaptcha_check = function() {
                                             if (UI.grecaptchas.length > 0) {
                                                 UI.my_form_button.removeAttribute("disabled");
                                                 grecaptcha_observer.unobserve(entry.target); 
-                                                //console.log(grecaptcha);
                                                 grecaptcha.render("recaptcha", {
                                                     sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
                                                     callback: () => {
@@ -159,7 +131,6 @@ const App = {
                                                 }, 15000);
                                             };
                                         };
-
                                         grecaptcha_check();   
                                     });
                                 })
@@ -167,7 +138,6 @@ const App = {
                             };
                         });
                     }, options);
-
                     init_grecaptchas.forEach(element => {
                         grecaptcha_observer.observe(element);
                     });
@@ -175,7 +145,6 @@ const App = {
             })();    
 
             /*** GENERAL ***/
-
             UI.body.classList.add("will-change-height");
             UI.header.classList.add("will-change-height");
             UI.my_form_button.setAttribute("disabled", "disabled");
@@ -195,12 +164,9 @@ const App = {
                     return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
                 }, () => {return})
             }, 2000);
-
             setTimeout(() => {        
                 return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
             }, 10000);
-
-            //const script_delay = 
             
             // Loads Google Preview on click only
             let google_preview_btn_is_clicked = false;
@@ -212,7 +178,6 @@ const App = {
                     };
                 });
             })();
-
             let show_header = true;
             let scroll_limit = 0;
             let scroll_moved = false;
@@ -236,7 +201,6 @@ const App = {
             const header_timer = function() {
                 
                 return (scroll_timer = window.setTimeout(() => {                            
-                    //is_scrolling = false;
                     if (!show_header) {
                         UI.header.classList.add("hide-header");
                         UI.header.classList.remove("show-header");
@@ -253,7 +217,6 @@ const App = {
                         UI.side_menu_hide();
                     };
                 };
-
                 const mobile_menu_toggler = () => {
                     if (!UI.toggler_btn.classList.contains("collapsed")) {                      
                         UI.mobile_menu_reveal();
@@ -261,7 +224,6 @@ const App = {
                         UI.mobile_menu_hide();
                     };
                 };
-
                 const mq_menu_toggler = () => {
                     const mq_limits = [
                         window.matchMedia("(max-width: 767.98px)"),
@@ -270,7 +232,6 @@ const App = {
                     media_queries(mq_limits[0], mobile_menu_toggler, null);
                     media_queries(mq_limits[1], side_menu_toggler, null);
                 };
-
                 UI.toggler_btn.addEventListener("click", mq_menu_toggler);
                 window.addEventListener("resize", debounce(function() {                    
                     UI.no_menu();
@@ -296,6 +257,7 @@ const App = {
             // Controls the Scroll Events
             (function() {
                 const header_transform = function() {
+
                     // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
                     if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === false) {                    
                         UI.shrink_header();
@@ -308,7 +270,6 @@ const App = {
                         if (scroll_moved && header_vid_ended) {    
                             UI.replace_vid_bg();
                         };
-
                         scroll_moved = false;
                         scroll_top_reset = true;
                     } else if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === true) {
@@ -319,16 +280,13 @@ const App = {
                 // Checks scroll position on load or refresh and executes 
                 if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) scroll_top_reset = false;
                 header_transform();
-
                 const scroll_moved_debounce_wrapper = debounce(function() {                    
                     scroll_moved = false;
                 }, 800);
-
                 const sticky_header_throttle_wrapper = throttle(function() {
                     header_transform();
                 }, 100);
 
-                
                 // Adjusts header to match screen size if resized
                 window.addEventListener("resize", debounce(() => {
                     header_transform();
@@ -363,7 +321,6 @@ const App = {
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener("mouseout", () => {
                     if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && !UI.bot_nav_collapse.classList.contains("show")) {
-                        //show_header = false;
                         header_timer();
                     };    
                 });
@@ -391,13 +348,13 @@ const App = {
 
                     // Clear previous timer and reset
                     clearTimeout(scroll_timer);
+
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if (!show_header) {
                         if (UI.bot_nav_collapse.classList.contains("show")) {
                             show_header = true;
                             return;
                         };
-
                         UI.header.classList.remove("hide-header");
                         UI.header.classList.add("show-header");
                         header_timer();
@@ -406,39 +363,22 @@ const App = {
                         UI.header.classList.add("show-header");
                     };
                 }, 100), {passive: true});                        
-
                 document.addEventListener("scroll", debounce(() => {
                     scroll_progress(UI.scroll_indicator);
                 }, 200), {passive: true});
-
                 document.addEventListener("scroll", scroll_moved_debounce_wrapper,  {passive: true});
                 document.addEventListener("touchmove", scroll_moved_debounce_wrapper,  {passive: true});
                 document.addEventListener("touchstart", scroll_moved_debounce_wrapper,  {passive: true});
-
                 document.addEventListener("scroll", sticky_header_throttle_wrapper,  {passive: true});
                 document.addEventListener("touchmove", sticky_header_throttle_wrapper,  {passive: true});
                 document.addEventListener("touchstart", sticky_header_throttle_wrapper,  {passive: true});
             })();
 
-            //Add active-list class to active link to work with CSS ::before and ::after settings (does not work well with animations for dropdown when active is set to the link itself)
-            /*UI.active_lists.forEach(li => {
-                    
-                if(li.children[0].classList.contains("active")) {
-
-                    li.classList.add("active-list");
-                } else {
-
-                    li.classList.remove("active-list"); 
-                };
-            });*/
-
             /*** HOME SECTION ***/
-
             // Animate "Developer Portfolio"
             UI.animate_letters();
 
             /*** ABOUT ME SECTION ***/
-
             // Automatically adjust my age in bio based on date
             UI.my_age.innerHTML = calculate_age(); 
 
@@ -448,7 +388,6 @@ const App = {
             });
 
             /*** MY SERVICES SECTION ***/
-
             let my_carousel_btn_click = false;
 
             // Changes carousel horizontal scroll amount depending on the screen size
@@ -463,52 +402,40 @@ const App = {
                     window.matchMedia("(min-width: 1200px) and (max-width: 1399.98px)"),
                     window.matchMedia("(min-width: 1400px)")
                 ];
-
                 const scroll_amt_modifier = function() {
                     media_queries(mq_limits[0], () => {
                         return scroll_amt = 274;
                     }, null);
-
                     media_queries(mq_limits[1], () => {
                         return scroll_amt = 296;
                     }, null);
-    
                     media_queries(mq_limits[2], () => {
                         return scroll_amt = 360;
                     }, null);
-
                     media_queries(mq_limits[3], () => {
                         return scroll_amt = 656/2;
                     }, null);
-
                     media_queries(mq_limits[4], () => {
                         return scroll_amt = 720/2;
                     }, null);
-
                     media_queries(mq_limits[5], () => {
                         return scroll_amt = 980/3;
                     }, null);
-
                     media_queries(mq_limits[6], () => {
                         return scroll_amt = 1080/3;
                     }, null);
                 };
-
                 scroll_amt_modifier();
                 window.addEventListener("resize", debounce(() => {
                     scroll_amt_modifier();
                     UI.my_carousel_content.scrollLeft = 0;
                 }, 500));
-
                 UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
-                    //logger(scroll_amt);
                     UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
                     UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
                     UI.scroll_end(UI.my_carousel_content, 20);
                 }, 700));
-    
                 UI.my_carousel_next_btn.addEventListener("click", throttle(function() {
-                    //logger(scroll_amt);
                     UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
                     UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
                     UI.scroll_start(UI.my_carousel_content, 20);
@@ -516,12 +443,9 @@ const App = {
             })();
 
             /*** TOOLS & TECHNOLOGIES SECTION ***/
-
             /** Tag Cloud **/
-            
             (function() {
                 let tagcloud_radius;
-
                 const mq_limits = [
                     window.matchMedia("(max-width: 320.98px)"),
                     window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
@@ -529,24 +453,19 @@ const App = {
                     window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
                     window.matchMedia("(min-width: 992px)")
                 ];
-
                 const tagcloud_resizer = function() {
                     media_queries(mq_limits[0], () => {
                         return tagcloud_radius = 140;
                     }, null); 
-
                     media_queries(mq_limits[1], () => {
                         return tagcloud_radius = 150;
                     }, null); 
-
                     media_queries(mq_limits[2], () => {
                         return tagcloud_radius = 250;
                     }, null); 
-
                     media_queries(mq_limits[3], () => {
                         return tagcloud_radius = 300;
                     }, null); 
-
                     media_queries(mq_limits[4], () => {
                         return tagcloud_radius = undefined;
                     }, null); 
@@ -554,8 +473,8 @@ const App = {
 
                 tagcloud_resizer();
                 let tagCloud;
+                const tagcloud_loader = function(TagClouds) {  
 
-                const tagcloud_loader = function(TagClouds) {                   
                     // Define tags in js array
                     let myTags = [
                         'OOP', 'SOC / MVC', 'REST-APIs',
@@ -568,28 +487,28 @@ const App = {
                     // Render a default tag cloud
                     // let tagCloud = TagCloud('.tag-cloud-content', myTags);
                     // Config tag cloud by overriding default parameters below
-
                     tagCloud = TagClouds('.tag-cloud-content', myTags, {
+
                         // radius in px
                         radius: tagcloud_radius ?? 340,
+
                         // animation speed
                         // slow, normal, fast
                         maxSpeed: 'fast',
                         initSpeed: 'slow',
+
                         // 0 = top
                         // 90 = left
                         // 135 = right-bottom
-                        direction: 135,                        
+                        direction: 135,   
+
                         // interact with cursor move on mouse out
                         keep: false,
                     });
 
-                    //console.log(tagCloud)
-
                     // Add more tags to existing tag cloud
                     // myTags = myTags.concat([]);
                     // tagCloud.update(myTags);
-
                     UI.tagcloud_content = document.querySelector(".tag-cloud-content");
                     UI.tagcloud = document.querySelector(".tagcloud");
                     UI.tagcloud_items = document.querySelectorAll(".tagcloud--item");
@@ -599,7 +518,6 @@ const App = {
                         item.style.color = generate_dark_color_hex(); 
                         let clicked_once = false;
                         let clicked_twice = false;
-
                         item.addEventListener("click", ()=>{                            
                             if (clicked_once && clicked_twice) {
                                 item.style.fontSize = "0"; 
@@ -618,7 +536,7 @@ const App = {
                                 item.style.color = "var(--theme-colour-1)"; 
                                 item.style.fontSize = "120%";
                                 clicked_once = true;
-                            } 
+                            };
                         }); 
                     });
                 };
@@ -635,8 +553,8 @@ const App = {
                             import("./Business_Logic/TagCloud.js")
                             .then(module => module.default)
                             .then(() => {
-                                
                                 tagcloud_loader(TagCloud);
+
                                 // Resets and resizes tag cloud for different screen sizes
                                 window.addEventListener("resize", debounce(function() {
                                     tagcloud_resizer();
@@ -648,7 +566,6 @@ const App = {
                         };
                     });
                 }, options);
-
                 tagcloud_observer.observe(UI.tagcloud_content);
             })();
             
@@ -736,7 +653,6 @@ const App = {
                         else if (proj_type === "client".toLowerCase()) UI.client_project_carousel_icon_section.appendChild(img);
                     });
                 };
-
                 const change_project = function() {
                     new_inner_html = `
                         <div class="flex-row row justify-content-between align-items-center">
@@ -811,8 +727,8 @@ const App = {
                         </div>
                     `
                 };
-
                 const reinitialize_el = function() {
+
                     // Re-declare (update) document IDs on new inner html
                     UI.return_to_dev_gallery_btns = document.querySelectorAll("[data-id='dev-project-gallery']");
                     UI.dev_project_carousel = document.getElementById("dev-project-carousel");
@@ -824,8 +740,6 @@ const App = {
                     populate_carousel_indicators("dev");
                     populate_project_notes("dev");
                     populate_project_tool_icons("dev");
-                    //console.log("new indicators", UI.dev_project_carousel_indicator_section, "new inner", UI.dev_project_carousel_inner_section);
-                    //dev_project_carousel;
                     dispatchEvent(new Event('load'));
                 };
 
@@ -964,40 +878,29 @@ const App = {
                     UI.dev_project_overview.innerHTML = new_inner_html;    
                     reinitialize_el();
                 };
-
                 UI.dev_project_gallery_btns.forEach(btn => {                    
                     btn.addEventListener("click", () => {
-                        //logger(btn, btn.getAttribute("data-dev-project"), btn.dataset.devProject);
-
                         if (btn.dataset.devProject === "Alien Mathvasion Game") {
-
                             current_project = Alien_Mathvasion;
                         } else if (btn.dataset.devProject === "Wix Site Clone") {
-
                             current_project = Wix_Clone;
                         } else if (btn.dataset.devProject === "Cyberdise Online Store") {
-
                             current_project = Cyberdise;
                         } else if (btn.dataset.devProject === "Movie Database") {
-
                             current_project = Movie_Database;
                         } else if (btn.dataset.devProject === "Amazon Clone") {
-
                             current_project = Amazon_Clone;
                         } else if (btn.dataset.devProject === "Real Estate Site") {
-
                             current_project = Real_Estate_Site;
                         } else {
-
                             return logger("PROJECT NOT LOADED CORRECTLY");
                         }
 
                         // Adds new project to carousel container
-                        //logger(current_project);
                         change_project();
+
                         // Store current project in session storage
                         sessionStorage.setItem("current_project", JSON.stringify(current_project));
-                        //console.log("old indicators", UI.dev_project_carousel_indicator_section, "old inner", UI.dev_project_carousel_inner_section);
                         UI.dev_project_overview.innerHTML = new_inner_html;
                         reinitialize_el();
                         UI.dev_project_overview.scrollIntoView();
@@ -1006,6 +909,11 @@ const App = {
                                 UI.dev_project_gallery.scrollIntoView();
                             });
                         });
+                    });
+                });
+                UI.return_to_dev_gallery_btns.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        UI.dev_project_gallery.scrollIntoView();
                     });
                 });
 
@@ -1035,32 +943,25 @@ const App = {
                     };
 
                     // Create an observer instance linked to the callback function
-                    const observer = new MutationObserver(callback);
+                    //const observer = new MutationObserver(callback);
 
                     // Start observing the target node for configured mutations
-                    observer.observe(target_node, config);
+                    //observer.observe(target_node, config);
 
                     // Later, you can stop observing
                     // observer.disconnect();
                 })();
-
-                UI.return_to_dev_gallery_btns.forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        UI.dev_project_gallery.scrollIntoView();
-                    });
-                });
             })();
 
             /*** CONTACT SECTION ***/
-
             /** Formspree validation **/
-
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function() {   
+
                 // Observes if form is in view and then makes country API request if true
                 const options = {
                     root: null,
-                    rootMargin: '200px',
+                    rootMargin: '300px',
                     threshold: 0
                 }
                 let select_change;
@@ -1070,11 +971,13 @@ const App = {
                             import("./Business_Logic/API.js")
                             .then(module => module.default) // uses the default export
                             .then((API) => {
+
                                 // Populates form countries using API
                                 const Country_API = new API("https://restcountries.eu/rest/v2/all");
                                 let user_typed = false;
                                 select_change = function() {
                                     const selected_options = document.querySelectorAll("option");
+
                                     // Adds country flag and phone calling code on country select
                                     selected_options.forEach(option => {                       
                                         if ((option.value && option.selected) && option.value !== "") {
@@ -1085,19 +988,17 @@ const App = {
                                             img.setAttribute("alt", `Country flag for ${option.value}`);
                                             img.setAttribute("width", "40px");
                                             img.setAttribute("height", "auto"); 
-
                                             if (!user_typed) UI.phone.value = `+${calling_codes}-`;
                                             if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-
                                             UI.country_select.labels[0].appendChild(img);
                                         } else if (option.selected && !option.value) {
                                             if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
                                         };
                                     });
                                 };
-
                                 Country_API.fetch_api()
                                 .then((data) => {
+
                                     // Populates with API data
                                     data.forEach(datum => {         
                                         const new_option = document.createElement("option");
@@ -1107,11 +1008,9 @@ const App = {
                                         new_option.innerHTML = new_option.value;
                                         UI.country_select.appendChild(new_option);
                                     });
-
                                     UI.phone.addEventListener("keyup", debounce(() => {
                                         user_typed = true;
                                     }, 500));
-
                                     UI.country_select.addEventListener("change", debounce(() => {
                                         select_change();
                                     }, 300));
@@ -1123,10 +1022,9 @@ const App = {
                         };
                     });
                 }, options);
-
                 form_api_observer.observe(UI.my_form);
-                
                 const formspree = function() {
+
                     // Contact form validation responses on fail (for each form)
                     const validation_msgs = [
                         (function() {
@@ -1139,13 +1037,12 @@ const App = {
                     Array.prototype.slice.call(UI.forms_need_validation)
                     .forEach(function(form, index) {                      
                         (function() {
+
                             // Cycle through each form input/select/text area tags and store or populate with sessionStorage
                             form.querySelectorAll(".form-data").forEach(data => {
                                 if (data.tagName === "INPUT") data.value = sessionStorage.getItem(data.name);
                                 if (data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);  
                                 if (data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name) || "";           
-                                
-                                //console.log(data, data.tagName, data.name, data.value);
                                 select_change();
                                 
                                 // Save contact form info in cookies
@@ -1158,18 +1055,21 @@ const App = {
                         // Heavily modified Bootstrap validation and Formspree functions (Ajax method - prevents redirection on form submit)
                         form.addEventListener("submit", (event) => {                        
                             event.preventDefault();
+
                             // Stop multiple submits from occurring 
                             event.stopImmediatePropagation();
                             import('./Business_Logic/Formspree.js')
                             .then(module => module.default) // uses the default export
                             .then((Formspree) => {
                                 if (!form.checkValidity()) {
-                                    return new Promise((resolve,reject)=>{                                       
+                                    return new Promise((resolve,reject)=>{ 
+
                                         // Checks validation on submit
                                         form.classList.add('was-validated');
                                         resolve();
                                     })
                                     .then(() => {   
+
                                         // Displays validation messages if failed to enter info correctly
                                         validation_msgs[index]();
                                     })
@@ -1183,15 +1083,13 @@ const App = {
                                     My_Form.data = new FormData(My_Form.form);
                                     My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
                                     My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
-    
                                     const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
                                     const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
-  
-                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error, (status) => {                                       
+                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error, (status) => {     
+
                                         // Callback executed onreadystatechange
                                         if (status === 200) {
                                             recaptchaCallback(() => {                                     
-                                                //console.log("in grecaptcha callback", grecaptcha);
                                                 form.classList.remove('was-validated');
                                                 sessionStorage.clear();
                                                 if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
@@ -1205,10 +1103,7 @@ const App = {
                         }, false);
                     });
                 };
-
-                
             })();
-
         }); // end of DOMContentLoaded event listener
     }, // end of init()
 }; // end of App

@@ -1,5 +1,4 @@
 class Formspree {
-
     form;
     method;
     url;
