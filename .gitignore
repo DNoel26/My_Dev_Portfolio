@@ -1,3 +1,4 @@
-git_ignore/
-.history/
+**/git_ignore/
+**/.vscode/
+**/.history/
 node_modules

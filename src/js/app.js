@@ -552,7 +552,7 @@ const App = {
                         if (entry.isIntersecting) {
                             import("./Business_Logic/TagCloud.js")
                             .then(module => module.default)
-                            .then(() => {
+                            .then((TagCloud) => {
                                 tagcloud_loader(TagCloud);
 
                                 // Resets and resizes tag cloud for different screen sizes

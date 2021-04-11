@@ -270,12 +270,14 @@
 }
 
 .circle .fa-info-circle,
-.circle .fa-file {
+.circle .fa-file,
+.circle .fa-envelope-open-text {
     position: relative;
     bottom: 1px;
 }
 
-.circle .fa-info-circle {
+.circle .fa-info-circle,
+.circle .fa-envelope-open-text {
     left: 2px;
 }
 .circle .fa-file {
