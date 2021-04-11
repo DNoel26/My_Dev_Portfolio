@@ -1,9 +1,7 @@
 class Project {
-
     name;
     description; 
     status = {
-
         msg: null, // Completed, Work in Progress, On Hold
         class_code: null,
     };
@@ -14,19 +12,16 @@ class Project {
     github_readme; // boolean
     notes = []; // displayed as an unordered list
     thumbnail = {
-        
         btn_id: null,
         src: null,
         alt: null,
     }; // main button image displayed in gallery above project overview
     carousel_img_list = {
-
         ids: [],
         srcs: [],
         alts: [],
     }; // images to be displayed in the carousel
     tool_icon_list = {
-
         ids: [],
         srcs: [],
         alts: [],
@@ -44,13 +39,11 @@ class Project {
             status_msg = "On Hold";
             this.status.class_code = "status-hold";
         };
-        
         if (github_readme === true) {
             github_readme = "(GitHub - readme available)";
         } else {
             github_readme = "(GitHub)";
         };
-        
         this.name = name;
         this.status.msg = status_msg;
         this.link = link;
@@ -64,7 +57,6 @@ class Project {
         this.carousel_img_list.srcs.push(...srcs);
         this.carousel_img_list.alts.push(...alts);
     };
-
     add_tool_icons(ids, srcs, alts) {
         this.tool_icon_list.ids.push(...ids);
         this.tool_icon_list.srcs.push(...srcs);

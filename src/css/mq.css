@@ -505,16 +505,18 @@ Extra large devices (large desktops, 1200px and up)
         background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm-650.webp") no-repeat fixed 50% 0%;
     }
 
-    .welcome-section {
+    /*.welcome-section {
         background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white-650.webp");
-    }
+    }*/
 
+    .welcome-section.lazy-bg,
     .about-section.lazy-bg,
     .tools-tech-section.lazy-bg,
     .contact-section.lazy-bg {
         background: url("../img/transparent-png-w10.png");
     }
 
+    .welcome-section.lazy-bg.load-now,
     .about-section.lazy-bg.load-now,
     .tools-tech-section.lazy-bg.load-now,
     .contact-section.lazy-bg.load-now {
