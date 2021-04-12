@@ -173,7 +173,7 @@ const App = {
             (function() {
                 UI.google_preview_modal_btn.addEventListener("click", () => {
                     if (!google_preview_btn_is_clicked) {
-                        UI.google_preview_modal.setAttribute("src", "https://drive.google.com/file/d/1dJLAdbOlVNz-btYv6Zl1IhrlHQKYNQlT/preview");
+                        UI.google_preview_modal.setAttribute("src", "https://drive.google.com/file/d/1xZArsqDMpjgQ6NLlHpaTBkOqLrOWSHwV/preview");
                         google_preview_btn_is_clicked = true;
                     };
                 });
