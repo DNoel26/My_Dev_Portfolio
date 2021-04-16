@@ -226,7 +226,9 @@
 
 .btn-anim .btn-text {
     color: var(--theme-colour-1);
-    transition: all 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out,
+                color 0.6s ease-in-out,
+                background 0.6s ease-in-out;
 }
 
 .btn-anim:hover .btn-text,
@@ -252,7 +254,9 @@
     background: var(--theme-colour-1);
     height: 100%;
     width: 100%;
-    transition: all 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out,  
+                color 0.6s ease-in-out,
+                background 0.6s ease-in-out;
 }
 
 .btn-anim:hover .circle::after,
@@ -264,7 +268,9 @@
 
 .circle .fas {
     color: var(--theme-colour-3);
-    transition: all 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out,
+                color 0.6s ease-in-out,
+                background 0.6 ease-in-out;
     width: 1rem;
     height: 1rem;
 }
