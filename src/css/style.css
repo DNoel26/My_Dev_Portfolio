@@ -195,7 +195,11 @@
     font-weight: 500;
     transform: scale(1);
     transform-origin: initial;
-    transition: all 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out,
+                width 0.3s ease-in-out,
+                transform 0.3s ease-in-out,
+                color 0.3s ease-in-out,
+                background 0.3s ease-in-out;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     will-change: transform;
