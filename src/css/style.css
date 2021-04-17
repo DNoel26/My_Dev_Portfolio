@@ -192,14 +192,15 @@
 .btn-custom-1,
 .btn-custom-2,
 .btn-custom-3 {
-    font-weight: 500;
+    font-weight: 500 !important;
     transform: scale(1);
     transform-origin: initial;
     transition: height 0.3s ease-in-out,
                 width 0.3s ease-in-out,
                 transform 0.3s ease-in-out,
                 color 0.3s ease-in-out,
-                background 0.3s ease-in-out;
+                background 0.3s ease-in-out,
+                font-weight 0s;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     will-change: transform;
