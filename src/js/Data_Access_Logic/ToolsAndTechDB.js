@@ -6,4 +6,4 @@ const Tools_Tech_DB = {
     },
 };
 
-export default Tools_Tech_DB; 
+export default Tools_Tech_DB;

@@ -16,11 +16,11 @@ Extra large devices (large desktops, 1200px and up)
     --theme-colour-1: #1f6f8b;
     --theme-colour-2: #e8f0f3;
     --theme-colour-3: #fff;
-    --theme-colour-4: #8C3A1E;
+    --theme-colour-4: #8c3a1e;
 }
 
 /* X-Large devices (large desktops, less than 1400px) */
-@media (max-width: 1399.98px) {  
+@media (max-width: 1399.98px) {
     .welcome-section {
         padding-top: 2rem !important;
     }
@@ -65,7 +65,7 @@ Extra large devices (large desktops, 1200px and up)
 }
 
 /* Large devices (desktops, less than 1200px) */
-@media (max-width: 1199.98px) {  
+@media (max-width: 1199.98px) {
     .welcome-section {
         padding-top: 0 !important;
     }
@@ -110,7 +110,7 @@ Extra large devices (large desktops, 1200px and up)
 }
 
 /* Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {  
+@media (max-width: 991.98px) {
     /*h1, h2, h3, h4, h5, h6, p, a, button, li>button {
         font-size: 80% !important;
     }*/
@@ -123,26 +123,26 @@ Extra large devices (large desktops, 1200px and up)
         margin-top: 0;
         margin-bottom: 0;
     }
-    
+
     header .btn-anim .btn-text {
         color: var(--theme-colour-1) !important;
     }
-    
+
     header .btn-anim:hover .btn-text,
     header .btn-anim:focus .btn-text {
         color: var(--theme-colour-3) !important;
     }
-    
+
     header .btn-anim:hover .circle::after,
     header .btn-anim:focus .circle::after {
         background: var(--theme-colour-4) !important;
         width: 10.5rem !important;
     }
-    
+
     header .circle .fas {
         color: var(--theme-colour-3) !important;
     }
-    
+
     header .btn-anim .circle::after {
         background: var(--theme-colour-1) !important;
     }
@@ -164,7 +164,7 @@ Extra large devices (large desktops, 1200px and up)
     .nav-item .nav-link.btn {
         display: inline-block;
     }
-    
+
     .bot-header-nav .dropdown-toggle {
         margin-left: auto;
         margin-right: 0;
@@ -202,10 +202,10 @@ Extra large devices (large desktops, 1200px and up)
 
     .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll::-webkit-scrollbar-thumb,
     .bot-header-nav .navbar-collapse.show .navbar-nav-scroll::-webkit-scrollbar-thumb {
-        background: var(--theme-colour-4) !important; 
+        background: var(--theme-colour-4) !important;
         border-radius: 12px;
         height: auto;
-    } 
+    }
 
     .bot-header-nav .navbar-collapse.collapsing .nav-item .btn-resume.nav-link,
     .bot-header-nav .navbar-collapse.show .nav-item .btn-resume.nav-link {
@@ -224,14 +224,14 @@ Extra large devices (large desktops, 1200px and up)
         transition: all 0.3s ease-in-out !important;
         color: var(--theme-colour-1) !important;
         background-color: var(--theme-colour-1) !important;
-    }  
-    
+    }
+
     .bot-header-nav .dropdown-menu.show {
         display: block !important;
         height: 136px !important;
         padding: 0.5rem 1rem !important;
         background-color: var(--theme-colour-1) !important;
-    }    
+    }
 
     .bot-header-nav .dropdown-item.nav-link {
         display: block;
@@ -254,7 +254,7 @@ Extra large devices (large desktops, 1200px and up)
 
     #resume > div > div > div.modal-header,
     #resume > div > div > div.modal-footer {
-        padding: 0 !important;  
+        padding: 0 !important;
     }
 
     #resume > div > div > div.modal-body {
@@ -288,7 +288,7 @@ Extra large devices (large desktops, 1200px and up)
 
     .my-carousel-item .card-body p {
         padding: 0 0.75rem;
-    } 
+    }
 
     .my-carousel-btn-next {
         right: 0;
@@ -301,7 +301,7 @@ Extra large devices (large desktops, 1200px and up)
     .google-audit .audit-results {
         width: 50vw;
     }
-    
+
     .google-audit .devices {
         width: 30vw;
     }
@@ -344,7 +344,7 @@ Extra large devices (large desktops, 1200px and up)
         height: 90px;
         top: unset;
         bottom: -15px !important;
-    }    
+    }
 
     .tagcloud {
         font-size: 1rem;
@@ -352,8 +352,8 @@ Extra large devices (large desktops, 1200px and up)
 }
 
 /* Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) { 
-    header, 
+@media (max-width: 767.98px) {
+    header,
     section {
         background-size: unset !important;
     }
@@ -367,7 +367,7 @@ Extra large devices (large desktops, 1200px and up)
     header.mobile-menu-reveal {
         height: 80vh !important;
     }
-    
+
     .nav-container.nav-container-sticky .logo-img {
         max-width: 100%;
     }
@@ -394,7 +394,7 @@ Extra large devices (large desktops, 1200px and up)
 
     .bot-header-nav .navbar-collapse.show .nav-item .nav-link,
     .bot-header-nav .navbar-collapse.collapsing .nav-item .nav-link,
-    .bot-header-nav .navbar-collapse.show .nav-item .btn-link, 
+    .bot-header-nav .navbar-collapse.show .nav-item .btn-link,
     .bot-header-nav .navbar-collapse.collapsing .nav-item .btn-link {
         width: 100% !important;
         text-align: center !important;
@@ -430,11 +430,11 @@ Extra large devices (large desktops, 1200px and up)
         padding-bottom: 7rem !important;
         border-bottom: 2px solid var(--theme-colour-2);
         border-radius: 3px;
-    }   
+    }
 
     .bot-header-nav .dropdown-menu {
         background-color: var(--theme-colour-1) !important;
-    }  
+    }
 
     .dropdown-item.nav-link {
         color: var(--theme-colour-3) !important;
@@ -443,7 +443,7 @@ Extra large devices (large desktops, 1200px and up)
     .dropdown-menu li {
         text-align: center;
     }
-    
+
     .bot-header-nav .dropdown-toggle {
         text-align: center;
     }
@@ -453,7 +453,15 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .welcome-section h2 {
-        font-size: calc(1rem + .6vw)!important;;
+        font-size: calc(1rem + 0.6vw) !important;
+    }
+
+    #home p.small.h2 {
+        font-size: 90% !important;
+    }
+
+    h3 {
+        font-size: 100% !important;
     }
 
     .profile {
@@ -475,7 +483,7 @@ Extra large devices (large desktops, 1200px and up)
     .google-audit .audit-results {
         width: 70vw;
     }
-    
+
     .google-audit .devices {
         width: 40vw;
     }
@@ -489,20 +497,23 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     footer.lazy-bg {
-        background: url("../img/transparent-png-w10.png");
+        background: url('../img/transparent-png-w10.png');
     }
 
     footer.lazy-bg.load-now {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.67)), url("../img/base/laptop-showing-code-650.webp") no-repeat fixed center center;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.67)),
+            url('../img/base/laptop-showing-code-650.webp') no-repeat fixed center center;
         background-size: cover !important;
     }
 
     .placeholder-div-reveal-start {
-        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm-650.webp") no-repeat fixed 50% 0%;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url('../img/base/robot-arm-650.webp') no-repeat fixed 50% 0%;
     }
-    
+
     .placeholder-div-reveal-end {
-        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../img/base/robot-arm-650.webp") no-repeat fixed 50% 0%;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url('../img/base/robot-arm-650.webp') no-repeat fixed 50% 0%;
     }
 
     /*.welcome-section {
@@ -513,35 +524,38 @@ Extra large devices (large desktops, 1200px and up)
     .about-section.lazy-bg,
     .tools-tech-section.lazy-bg,
     .contact-section.lazy-bg {
-        background: url("../img/transparent-png-w10.png");
+        background: url('../img/transparent-png-w10.png');
     }
 
     .welcome-section.lazy-bg.load-now,
     .about-section.lazy-bg.load-now,
     .tools-tech-section.lazy-bg.load-now,
     .contact-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(255,255,255,0.67), rgba(255,255,255,0.3)), url("../img/base/cool-bg-white-650.webp");
+        background: linear-gradient(rgba(255, 255, 255, 0.67), rgba(255, 255, 255, 0.3)),
+            url('../img/base/cool-bg-white-650.webp');
     }
 
     .services-section > div:first-child.lazy-bg {
-        background: url("../img/transparent-png-w10.png");
+        background: url('../img/transparent-png-w10.png');
     }
 
     .services-section > div:first-child.lazy-bg.load-now {
-        background: linear-gradient(rgba(232,240,243,0.9), rgba(31,111,139,0.45)), url("../img/base/white-laptop-cellphone-650.webp") no-repeat fixed center 40%;
+        background: linear-gradient(rgba(232, 240, 243, 0.9), rgba(31, 111, 139, 0.45)),
+            url('../img/base/white-laptop-cellphone-650.webp') no-repeat fixed center 40%;
     }
 
     .projects-section.lazy-bg {
-        background: url("../img/transparent-png-w10.png");
+        background: url('../img/transparent-png-w10.png');
     }
 
     .projects-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(232,240,243,0.5), rgba(31,111,139,0.5)), url("../img/base/cool-bg-white-650.webp") no-repeat fixed center 50%;
+        background: linear-gradient(rgba(232, 240, 243, 0.5), rgba(31, 111, 139, 0.5)),
+            url('../img/base/cool-bg-white-650.webp') no-repeat fixed center 50%;
     }
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {  
+@media (max-width: 575.98px) {
     .ml13 {
         font-size: 1.6rem;
     }
@@ -566,7 +580,7 @@ Extra large devices (large desktops, 1200px and up)
     .google-audit .audit-results {
         width: 80vw;
     }
-    
+
     .google-audit .devices {
         width: 50vw;
     }
@@ -578,7 +592,7 @@ Extra large devices (large desktops, 1200px and up)
 
 /* Other / Specific MQ */
 
-@media (max-width: 320.98px) {  
+@media (max-width: 320.98px) {
     .container {
         padding-left: 4px;
         padding-right: 2px;
@@ -661,12 +675,3 @@ Extra large devices (large desktops, 1200px and up)
         width: 0;
     }
 }
-
-
-
-
-
-
-
-
-

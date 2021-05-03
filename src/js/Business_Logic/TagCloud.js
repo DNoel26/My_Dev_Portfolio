@@ -4,7 +4,6 @@
  */
 
 class TagCloud {
-    
     /* constructor */
     constructor(container = document.body, texts, options) {
         const self = this;
@@ -13,7 +12,7 @@ class TagCloud {
         // params
         self.$container = container;
         self.texts = texts || [];
-        self.config = { ...TagCloud._defaultConfig, ...options || {} };
+        self.config = { ...TagCloud._defaultConfig, ...(options || {}) };
 
         // calculate config
         self.radius = self.config.radius; // rolling radius
@@ -47,13 +46,13 @@ class TagCloud {
         useContainerInlineStyles: true,
         useItemInlineStyles: true,
         containerClass: 'tagcloud',
-        itemClass: 'tagcloud--item'
+        itemClass: 'tagcloud--item',
     };
 
     // speed value
-    static _getMaxSpeed = (name) => ({ slow: 0.5, normal: 1, fast: 2 })[name] || 1;
+    static _getMaxSpeed = (name) => ({ slow: 0.5, normal: 1, fast: 2 }[name] || 1);
 
-    static _getInitSpeed = (name) => ({ slow: 16, normal: 32, fast: 80 })[name] || 32;
+    static _getInitSpeed = (name) => ({ slow: 16, normal: 32, fast: 80 }[name] || 32);
 
     // event listener
     static _on(el, ev, handler, cap) {
@@ -138,9 +137,12 @@ class TagCloud {
     }
 
     _requestInterval(fn, delay) {
-        const requestAnimFrame = ((() => window.requestAnimationFrame) || ((callback, element) => {
-            window.setTimeout(callback, 1000 / 60);
-        }))();
+        const requestAnimFrame = (
+            (() => window.requestAnimationFrame) ||
+            ((callback, element) => {
+                window.setTimeout(callback, 1000 / 60);
+            })
+        )();
         let start = new Date().getTime();
         const handle = {};
         function loop() {
@@ -169,9 +171,13 @@ class TagCloud {
         self.mouseY = self.mouseY0; // current distance between the mouse and rolling center y axis
 
         // mouseover
-        TagCloud._on(self.$el, 'mouseover', () => { self.active = true; });
+        TagCloud._on(self.$el, 'mouseover', () => {
+            self.active = true;
+        });
         // mouseout
-        TagCloud._on(self.$el, 'mouseout', () => { self.active = false; });
+        TagCloud._on(self.$el, 'mouseout', () => {
+            self.active = false;
+        });
         // mousemove
         TagCloud._on(self.keep ? window : self.$el, 'mousemove', (ev) => {
             ev = ev || window.event;
@@ -197,31 +203,31 @@ class TagCloud {
 
         // if keep `false`, pause rolling after moving mouse out area
         if (!self.keep && !self.active) {
-            self.mouseX = Math.abs(self.mouseX - self.mouseX0) < 1
-                ? self.mouseX0 : (self.mouseX + self.mouseX0) / 2; // reset distance between the mouse and rolling center x axis
-            self.mouseY = Math.abs(self.mouseY - self.mouseY0) < 1
-                ? self.mouseY0 : (self.mouseY + self.mouseY0) / 2; // reset distance between the mouse and rolling center y axis
+            self.mouseX =
+                Math.abs(self.mouseX - self.mouseX0) < 1
+                    ? self.mouseX0
+                    : (self.mouseX + self.mouseX0) / 2; // reset distance between the mouse and rolling center x axis
+            self.mouseY =
+                Math.abs(self.mouseY - self.mouseY0) < 1
+                    ? self.mouseY0
+                    : (self.mouseY + self.mouseY0) / 2; // reset distance between the mouse and rolling center y axis
         }
 
-        const a = -(Math.min(Math.max(-self.mouseY, -self.size), self.size) / self.radius)
-            * self.maxSpeed;
-        const b = (Math.min(Math.max(-self.mouseX, -self.size), self.size) / self.radius)
-            * self.maxSpeed;
+        const a =
+            -(Math.min(Math.max(-self.mouseY, -self.size), self.size) / self.radius) *
+            self.maxSpeed;
+        const b =
+            (Math.min(Math.max(-self.mouseX, -self.size), self.size) / self.radius) * self.maxSpeed;
 
         if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) return; // pause
 
         // calculate offset
         const l = Math.PI / 180;
-        const sc = [
-            Math.sin(a * l),
-            Math.cos(a * l),
-            Math.sin(b * l),
-            Math.cos(b * l)
-        ];
+        const sc = [Math.sin(a * l), Math.cos(a * l), Math.sin(b * l), Math.cos(b * l)];
 
-        self.items.forEach(item => {
+        self.items.forEach((item) => {
             const rx1 = item.x;
-            const ry1 = item.y * sc[1] + item.z * (-sc[0]);
+            const ry1 = item.y * sc[1] + item.z * -sc[0];
             const rz1 = item.y * sc[0] + item.z * sc[1];
 
             const rx2 = rx1 * sc[3] + rz1 * sc[2];
@@ -259,7 +265,8 @@ class TagCloud {
         // judging and processing items based on texts
         self.texts.forEach((text, index) => {
             let item = self.items[index];
-            if (!item) { // if not had, then create
+            if (!item) {
+                // if not had, then create
                 item = self._createTextItem(text, index);
                 Object.assign(item, self._computePosition(index, true)); // random place
                 self.$el.appendChild(item.el);
@@ -273,7 +280,7 @@ class TagCloud {
         const itemsLength = self.items.length;
         if (textsLength < itemsLength) {
             const removeList = self.items.splice(textsLength, itemsLength - textsLength);
-            removeList.forEach(item => {
+            removeList.forEach((item) => {
                 self.$el.removeChild(item.el);
             });
         }
@@ -284,7 +291,7 @@ class TagCloud {
         const self = this;
         self.interval = null;
         // clear in TagCloud.list
-        const index = TagCloud.list.findIndex(e => e.el === self.$el);
+        const index = TagCloud.list.findIndex((e) => e.el === self.$el);
         if (index !== -1) TagCloud.list.splice(index, 1);
         // clear element
         if (self.$container && self.$el) {
@@ -309,7 +316,7 @@ export default (els, texts, options) => {
     if (typeof els === 'string') els = document.querySelectorAll(els);
     if (!els.forEach) els = [els];
     const instances = [];
-    els.forEach(el => {
+    els.forEach((el) => {
         if (el) {
             instances.push(new TagCloud(el, texts, options));
         }

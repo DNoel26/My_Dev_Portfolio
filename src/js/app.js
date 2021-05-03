@@ -1,34 +1,44 @@
 'use strict';
 
-console.log("App.js Loaded Successfully");
-require("../css/style.css");
-require("../css/mq.css");
+console.log('App.js Loaded Successfully');
+require('../css/style.css');
+require('../css/mq.css');
 
 const cache = {};
 function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
-};
+}
 importAll(require.context('../assets/', true, /\.pdf$/));
 importAll(require.context('../media/', true, /\.mp4$/));
-import UI from "./UI_Logic/UI.js";
-import { logger, calculate_age, wrapper_exec, wrapper_no_exec, debounce, throttle, scroll_progress,
-    generate_dark_color_hex, form_submit_success, form_submit_error, ajax, media_queries} from "./Business_Logic/Functions.js";
-import Skill_Rating from "./Business_Logic/SkillRating.js";
-import Project from "./Business_Logic/Project.js";
+import UI from './UI_Logic/UI.js';
+import {
+    logger,
+    calculate_age,
+    wrapper_exec,
+    wrapper_no_exec,
+    debounce,
+    throttle,
+    scroll_progress,
+    generate_dark_color_hex,
+    form_submit_success,
+    form_submit_error,
+    ajax,
+    media_queries,
+} from './Business_Logic/Functions.js';
+import Skill_Rating from './Business_Logic/SkillRating.js';
+import Project from './Business_Logic/Project.js';
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
 function recaptchaCallback(func) {
     return func();
-};
+}
 
 const App = {
     init() {
-
         /*** Main Document ***/
-        document.addEventListener("DOMContentLoaded", ()=>{
-            console.log("DOMContentLoaded Successfully");    
-            (function() {
-
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded Successfully');
+            (function () {
                 // Lazy load images
                 const init_lazy_imgs = [].slice.call(UI.lazy_imgs);
 
@@ -41,141 +51,173 @@ const App = {
                 const options = {
                     root: null,
                     rootMargin: '800px',
-                    threshold: 0
+                    threshold: 0,
                 };
-                if ("IntersectionObserver" in window) {
-
+                if ('IntersectionObserver' in window) {
                     // Lazy Images
-                    const lazy_img_observer = new IntersectionObserver(function(entries, observer) {
-                        entries.forEach(function(entry) {
+                    const lazy_img_observer = new IntersectionObserver(function (
+                        entries,
+                        observer,
+                    ) {
+                        entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
                                 const lazy_image = entry.target;
-                                const lazy_data_src = lazy_image.getAttribute("data-src");
-                                const lazy_data_srcset = lazy_image.getAttribute("data-srcset");
+                                const lazy_data_src = lazy_image.getAttribute('data-src');
+                                const lazy_data_srcset = lazy_image.getAttribute('data-srcset');
 
-                                if (lazy_image.hasAttribute("data-src")) {
-                                    lazy_image.setAttribute("src", lazy_data_src);
-                                    lazy_image.removeAttribute("data-src");
-                                };
+                                if (lazy_image.hasAttribute('data-src')) {
+                                    lazy_image.setAttribute('src', lazy_data_src);
+                                    lazy_image.removeAttribute('data-src');
+                                }
 
-                                if (lazy_image.hasAttribute("data-srcset")) {
-                                    lazy_image.setAttribute("srcset", lazy_data_srcset);
-                                    lazy_image.removeAttribute("data-srcset");
-                                };
-                                
-                                lazy_image.classList.remove("lazy");
+                                if (lazy_image.hasAttribute('data-srcset')) {
+                                    lazy_image.setAttribute('srcset', lazy_data_srcset);
+                                    lazy_image.removeAttribute('data-srcset');
+                                }
+
+                                lazy_image.classList.remove('lazy');
                                 lazy_img_observer.unobserve(entry.target);
-                            };
+                            }
                         });
-                    }, options);
-                    init_lazy_imgs.forEach(function(lazy_img) {
+                    },
+                    options);
+                    init_lazy_imgs.forEach(function (lazy_img) {
                         lazy_img_observer.observe(lazy_img);
                     });
 
-                     // Lazy Image Sources
-                    const lazy_source_observer = new IntersectionObserver(function(entries, observer) {
-                        entries.forEach(function(entry) {
+                    // Lazy Image Sources
+                    const lazy_source_observer = new IntersectionObserver(function (
+                        entries,
+                        observer,
+                    ) {
+                        entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
                                 const lazy_source = entry.target;
-                                const lazy_data_srcset = lazy_source.getAttribute("data-srcset");
+                                const lazy_data_srcset = lazy_source.getAttribute('data-srcset');
 
-                                if (lazy_source.hasAttribute("data-srcset")) {
-                                    lazy_source.setAttribute("srcset", lazy_data_srcset);
-                                    lazy_source.removeAttribute("data-srcset");
-                                };
-                                
+                                if (lazy_source.hasAttribute('data-srcset')) {
+                                    lazy_source.setAttribute('srcset', lazy_data_srcset);
+                                    lazy_source.removeAttribute('data-srcset');
+                                }
+
                                 lazy_source_observer.unobserve(entry.target);
-                            };
+                            }
                         });
-                    }, options);
-                    init_lazy_sources.forEach(function(lazy_source) {
+                    },
+                    options);
+                    init_lazy_sources.forEach(function (lazy_source) {
                         lazy_source_observer.observe(lazy_source);
                     });
 
                     // Lazy Bg
-                    const lazy_bg_observer = new IntersectionObserver(function(entries, observer) {
-                        entries.forEach(function(entry) {
+                    const lazy_bg_observer = new IntersectionObserver(function (entries, observer) {
+                        entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
-                                entry.target.classList.add("load-now");
+                                entry.target.classList.add('load-now');
                                 lazy_bg_observer.unobserve(entry.target);
-                            };
+                            }
                         });
                     }, options);
-                    init_lazy_bgs.forEach(function(lazy_bg) {
+                    init_lazy_bgs.forEach(function (lazy_bg) {
                         lazy_bg_observer.observe(lazy_bg);
                     });
-                    const grecaptcha_observer = new IntersectionObserver(function(entries, observer) {
-                        entries.forEach(entry => {
+                    const grecaptcha_observer = new IntersectionObserver(function (
+                        entries,
+                        observer,
+                    ) {
+                        entries.forEach((entry) => {
                             if (entry.isIntersecting) {
                                 new Promise((resolve, reject) => {
-                                    UI.create_scripts("https://www.google.com/recaptcha/api.js?render=explicit");                                          
+                                    UI.create_scripts(
+                                        'https://www.google.com/recaptcha/api.js?render=explicit',
+                                    );
                                     setTimeout(resolve, 2000);
                                 })
-                                .then(() => {
-
-                                    // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
-                                    recaptchaCallback(() => {
-                                        const grecaptcha_check = function() {
-                                            if (UI.grecaptchas.length > 0) {
-                                                UI.my_form_button.removeAttribute("disabled");
-                                                grecaptcha_observer.unobserve(entry.target); 
-                                                grecaptcha.render("recaptcha", {
-                                                    sitekey: "6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3",
-                                                    callback: () => {
-                                                        return;
-                                                    },
-                                                });
-                                            } else {
-                                                setTimeout(() => {                              
-                                                    grecaptcha_check();
-                                                }, 15000);
+                                    .then(() => {
+                                        // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
+                                        recaptchaCallback(() => {
+                                            const grecaptcha_check = function () {
+                                                if (UI.grecaptchas.length > 0) {
+                                                    UI.my_form_button.removeAttribute('disabled');
+                                                    grecaptcha_observer.unobserve(entry.target);
+                                                    grecaptcha.render('recaptcha', {
+                                                        sitekey:
+                                                            '6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3',
+                                                        callback: () => {
+                                                            return;
+                                                        },
+                                                    });
+                                                } else {
+                                                    setTimeout(() => {
+                                                        grecaptcha_check();
+                                                    }, 15000);
+                                                }
                                             };
-                                        };
-                                        grecaptcha_check();   
-                                    });
-                                })
-                                .catch(err => console.log("Error in script delay promise: ", err));
-                            };
+                                            grecaptcha_check();
+                                        });
+                                    })
+                                    .catch((err) =>
+                                        console.log('Error in script delay promise: ', err),
+                                    );
+                            }
                         });
-                    }, options);
-                    init_grecaptchas.forEach(element => {
+                    },
+                    options);
+                    init_grecaptchas.forEach((element) => {
                         grecaptcha_observer.observe(element);
                     });
-                };
-            })();    
+                }
+            })();
 
             /*** GENERAL ***/
-            UI.body.classList.add("will-change-height");
-            UI.header.classList.add("will-change-height");
-            UI.my_form_button.setAttribute("disabled", "disabled");
+            UI.body.classList.add('will-change-height');
+            UI.header.classList.add('will-change-height');
+            UI.my_form_button.setAttribute('disabled', 'disabled');
 
             // Set new poster image if on mobile device
             // Load BG video from selection
             UI.add_poster_img_sm();
             UI.load_bg_vid();
-            window.addEventListener("resize", debounce(function() {
-                UI.add_poster_img_sm();
-                UI.load_bg_vid();
-            }, 500));
-            
+            window.addEventListener(
+                'resize',
+                debounce(function () {
+                    UI.add_poster_img_sm();
+                    UI.load_bg_vid();
+                }, 500),
+            );
+
             // Delay load of non-essential scripts
             setTimeout(() => {
-                media_queries(window.matchMedia("(min-width: 768px)"), () => {
-                    return UI.create_scripts("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js");
-                }, () => {return})
+                media_queries(
+                    window.matchMedia('(min-width: 768px)'),
+                    () => {
+                        return UI.create_scripts(
+                            'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
+                        );
+                    },
+                    () => {
+                        return;
+                    },
+                );
             }, 2000);
-            setTimeout(() => {        
-                return UI.create_scripts("https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js", "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js");
+            setTimeout(() => {
+                return UI.create_scripts(
+                    'https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js',
+                    'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
+                );
             }, 10000);
-            
+
             // Loads Google Preview on click only
             let google_preview_btn_is_clicked = false;
-            (function() {
-                UI.google_preview_modal_btn.addEventListener("click", () => {
+            (function () {
+                UI.google_preview_modal_btn.addEventListener('click', () => {
                     if (!google_preview_btn_is_clicked) {
-                        UI.google_preview_modal.setAttribute("src", "https://drive.google.com/file/d/1xZArsqDMpjgQ6NLlHpaTBkOqLrOWSHwV/preview");
+                        UI.google_preview_modal.setAttribute(
+                            'src',
+                            'https://drive.google.com/file/d/1xZArsqDMpjgQ6NLlHpaTBkOqLrOWSHwV/preview',
+                        );
                         google_preview_btn_is_clicked = true;
-                    };
+                    }
                 });
             })();
             let show_header = true;
@@ -185,193 +227,252 @@ const App = {
             let header_vid_ended = false;
             let scroll_timer;
 
-            // Simulates another click event after first if scrolled to top 
+            // Simulates another click event after first if scrolled to top
             // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
-            UI.anchor_links.forEach(link => {
-                link.addEventListener("click", () => {
-                    if (document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) {
+            UI.anchor_links.forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (
+                        document.documentElement.scrollTop <= scroll_limit ||
+                        window.pageYOffset <= scroll_limit
+                    ) {
                         setTimeout(() => {
                             link.click();
                         }, 750);
-                    };
+                    }
                 });
             });
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
-            const header_timer = function() {
-                
-                return (scroll_timer = window.setTimeout(() => {                            
+            const header_timer = function () {
+                return (scroll_timer = window.setTimeout(() => {
                     if (!show_header) {
-                        UI.header.classList.add("hide-header");
-                        UI.header.classList.remove("show-header");
-                    };
+                        UI.header.classList.add('hide-header');
+                        UI.header.classList.remove('show-header');
+                    }
                 }, 800));
             };
 
-            // Controls the side menu (tablet) and mobile menu functions 
-            (function() {
+            // Controls the side menu (tablet) and mobile menu functions
+            (function () {
                 const side_menu_toggler = () => {
-                    if (!UI.toggler_btn.classList.contains("collapsed")) {                    
+                    if (!UI.toggler_btn.classList.contains('collapsed')) {
                         UI.side_menu_reveal();
-                    } else {                       
+                    } else {
                         UI.side_menu_hide();
-                    };
+                    }
                 };
                 const mobile_menu_toggler = () => {
-                    if (!UI.toggler_btn.classList.contains("collapsed")) {                      
+                    if (!UI.toggler_btn.classList.contains('collapsed')) {
                         UI.mobile_menu_reveal();
-                    } else {                        
+                    } else {
                         UI.mobile_menu_hide();
-                    };
+                    }
                 };
                 const mq_menu_toggler = () => {
                     const mq_limits = [
-                        window.matchMedia("(max-width: 767.98px)"),
-                        window.matchMedia("(min-width: 768px) and (max-width: 991.98px)")
+                        window.matchMedia('(max-width: 767.98px)'),
+                        window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
                     ];
                     media_queries(mq_limits[0], mobile_menu_toggler, null);
                     media_queries(mq_limits[1], side_menu_toggler, null);
                 };
-                UI.toggler_btn.addEventListener("click", mq_menu_toggler);
-                window.addEventListener("resize", debounce(function() {                    
-                    UI.no_menu();
-                }, 500));
-            }());
+                UI.toggler_btn.addEventListener('click', mq_menu_toggler);
+                window.addEventListener(
+                    'resize',
+                    debounce(function () {
+                        UI.no_menu();
+                    }, 500),
+                );
+            })();
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
-            UI.header_vid.addEventListener("ended", ()=>{
+            UI.header_vid.addEventListener('ended', () => {
                 UI.replace_vid_bg();
                 UI.header_vid.remove();
                 header_vid_ended = true;
-            }); 
-                        
+            });
+
             // Removes poster or bg if video fails to load and then adds a static background image
-            UI.header_vid.addEventListener("animationend", ()=>{
+            UI.header_vid.addEventListener('animationend', () => {
                 setTimeout(() => {
                     UI.replace_vid_bg();
                     UI.header_vid.remove();
                     header_vid_ended = true;
                 }, 3000);
-            }); 
+            });
 
             // Controls the Scroll Events
-            (function() {
-                const header_transform = function() {
-
+            (function () {
+                const header_transform = function () {
                     // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
-                    if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === false) {                    
+                    if (
+                        (document.documentElement.scrollTop > scroll_limit ||
+                            window.pageYOffset > scroll_limit) &&
+                        scroll_moved === false
+                    ) {
                         UI.shrink_header();
                         UI.expand_placeholder_div();
                         scroll_moved = true;
-                    } else if ((document.documentElement.scrollTop <= scroll_limit || window.pageYOffset <= scroll_limit) && scroll_moved === true) {                        
+                    } else if (
+                        (document.documentElement.scrollTop <= scroll_limit ||
+                            window.pageYOffset <= scroll_limit) &&
+                        scroll_moved === true
+                    ) {
                         UI.expand_header();
                         UI.shrink_placeholder_div();
 
-                        if (scroll_moved && header_vid_ended) {    
+                        if (scroll_moved && header_vid_ended) {
                             UI.replace_vid_bg();
-                        };
+                        }
                         scroll_moved = false;
                         scroll_top_reset = true;
-                    } else if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && scroll_moved === true) {
+                    } else if (
+                        (document.documentElement.scrollTop > scroll_limit ||
+                            window.pageYOffset > scroll_limit) &&
+                        scroll_moved === true
+                    ) {
                         return;
-                    };
+                    }
                 };
 
-                // Checks scroll position on load or refresh and executes 
-                if(document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) scroll_top_reset = false;
+                // Checks scroll position on load or refresh and executes
+                if (
+                    document.documentElement.scrollTop > scroll_limit ||
+                    window.pageYOffset > scroll_limit
+                )
+                    scroll_top_reset = false;
                 header_transform();
-                const scroll_moved_debounce_wrapper = debounce(function() {                    
+                const scroll_moved_debounce_wrapper = debounce(function () {
                     scroll_moved = false;
                 }, 800);
-                const sticky_header_throttle_wrapper = throttle(function() {
+                const sticky_header_throttle_wrapper = throttle(function () {
                     header_transform();
                 }, 100);
 
                 // Adjusts header to match screen size if resized
-                window.addEventListener("resize", debounce(() => {
-                    header_transform();
-                    show_header = true;
-                    clearTimeout(scroll_timer);
-                }, 200));
+                window.addEventListener(
+                    'resize',
+                    debounce(() => {
+                        header_transform();
+                        show_header = true;
+                        clearTimeout(scroll_timer);
+                    }, 200),
+                );
 
                 // Stops the header timer when mouse hovers over the header
-                UI.header.addEventListener("mouseover", () => {
+                UI.header.addEventListener('mouseover', () => {
                     show_header = true;
                     clearTimeout(scroll_timer);
                 });
 
                 // Stops the header timer when mouse moves over the header
-                UI.header.addEventListener("mousemove", () => {
+                UI.header.addEventListener('mousemove', () => {
                     show_header = true;
                     clearTimeout(scroll_timer);
                 });
 
                 // Stops the header timer when screen is touched on the header
-                UI.header.addEventListener("touchstart", () => {
-                    show_header = true;
-                    clearTimeout(scroll_timer);
-                }, {passive: true});
+                UI.header.addEventListener(
+                    'touchstart',
+                    () => {
+                        show_header = true;
+                        clearTimeout(scroll_timer);
+                    },
+                    { passive: true },
+                );
 
                 // Stops the header timer when screen is moved on the header
-                UI.header.addEventListener("touchmove", () => {
-                    show_header = true;
-                    clearTimeout(scroll_timer);
-                }, {passive: true});
+                UI.header.addEventListener(
+                    'touchmove',
+                    () => {
+                        show_header = true;
+                        clearTimeout(scroll_timer);
+                    },
+                    { passive: true },
+                );
 
                 // Resumes header timer to hide header when mouse leaves the element
-                UI.header.addEventListener("mouseout", () => {
-                    if ((document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) && !UI.bot_nav_collapse.classList.contains("show")) {
+                UI.header.addEventListener('mouseout', () => {
+                    if (
+                        (document.documentElement.scrollTop > scroll_limit ||
+                            window.pageYOffset > scroll_limit) &&
+                        !UI.bot_nav_collapse.classList.contains('show')
+                    ) {
                         header_timer();
-                    };    
+                    }
                 });
 
                 // Stops the header timer when when header buttons are focused
-                UI.header_btns.forEach(btn => {                 
-                    btn.addEventListener("focus", () => {
+                UI.header_btns.forEach((btn) => {
+                    btn.addEventListener('focus', () => {
                         show_header = true;
                         clearTimeout(scroll_timer);
                     });
                 });
 
                 // Stops the header timer when header links are focused
-                UI.header_links.forEach(link => {                                                                                           
-                    link.addEventListener("focus", () => {
+                UI.header_links.forEach((link) => {
+                    link.addEventListener('focus', () => {
                         show_header = true;
                         clearTimeout(scroll_timer);
                     });
                 });
 
                 //Hides header on scroll and returns to normal position when stopped after a few seconds
-                document.addEventListener("scroll", throttle(() => {
-                    if (document.documentElement.scrollTop > scroll_limit || window.pageYOffset > scroll_limit) show_header = false;
-                    else show_header = true;
+                document.addEventListener(
+                    'scroll',
+                    throttle(() => {
+                        if (
+                            document.documentElement.scrollTop > scroll_limit ||
+                            window.pageYOffset > scroll_limit
+                        )
+                            show_header = false;
+                        else show_header = true;
 
-                    // Clear previous timer and reset
-                    clearTimeout(scroll_timer);
+                        // Clear previous timer and reset
+                        clearTimeout(scroll_timer);
 
-                    // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
-                    if (!show_header) {
-                        if (UI.bot_nav_collapse.classList.contains("show")) {
-                            show_header = true;
-                            return;
-                        };
-                        UI.header.classList.remove("hide-header");
-                        UI.header.classList.add("show-header");
-                        header_timer();
-                    } else {
-                        UI.header.classList.remove("hide-header");
-                        UI.header.classList.add("show-header");
-                    };
-                }, 100), {passive: true});                        
-                document.addEventListener("scroll", debounce(() => {
-                    scroll_progress(UI.scroll_indicator);
-                }, 200), {passive: true});
-                document.addEventListener("scroll", scroll_moved_debounce_wrapper,  {passive: true});
-                document.addEventListener("touchmove", scroll_moved_debounce_wrapper,  {passive: true});
-                document.addEventListener("touchstart", scroll_moved_debounce_wrapper,  {passive: true});
-                document.addEventListener("scroll", sticky_header_throttle_wrapper,  {passive: true});
-                document.addEventListener("touchmove", sticky_header_throttle_wrapper,  {passive: true});
-                document.addEventListener("touchstart", sticky_header_throttle_wrapper,  {passive: true});
+                        // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
+                        if (!show_header) {
+                            if (UI.bot_nav_collapse.classList.contains('show')) {
+                                show_header = true;
+                                return;
+                            }
+                            UI.header.classList.remove('hide-header');
+                            UI.header.classList.add('show-header');
+                            header_timer();
+                        } else {
+                            UI.header.classList.remove('hide-header');
+                            UI.header.classList.add('show-header');
+                        }
+                    }, 100),
+                    { passive: true },
+                );
+                document.addEventListener(
+                    'scroll',
+                    debounce(() => {
+                        scroll_progress(UI.scroll_indicator);
+                    }, 200),
+                    { passive: true },
+                );
+                document.addEventListener('scroll', scroll_moved_debounce_wrapper, {
+                    passive: true,
+                });
+                document.addEventListener('touchmove', scroll_moved_debounce_wrapper, {
+                    passive: true,
+                });
+                document.addEventListener('touchstart', scroll_moved_debounce_wrapper, {
+                    passive: true,
+                });
+                document.addEventListener('scroll', sticky_header_throttle_wrapper, {
+                    passive: true,
+                });
+                document.addEventListener('touchmove', sticky_header_throttle_wrapper, {
+                    passive: true,
+                });
+                document.addEventListener('touchstart', sticky_header_throttle_wrapper, {
+                    passive: true,
+                });
             })();
 
             /*** HOME SECTION ***/
@@ -380,10 +481,10 @@ const App = {
 
             /*** ABOUT ME SECTION ***/
             // Automatically adjust my age in bio based on date
-            UI.my_age.innerHTML = calculate_age(); 
+            UI.my_age.innerHTML = calculate_age();
 
             // Adds a fade in and out effect when clicking the button in my bio
-            UI.summary_btn.addEventListener("click", ()=>{
+            UI.summary_btn.addEventListener('click', () => {
                 UI.change_about_info();
             });
 
@@ -391,104 +492,169 @@ const App = {
             let my_carousel_btn_click = false;
 
             // Changes carousel horizontal scroll amount depending on the screen size
-            (function() {               
+            (function () {
                 let scroll_amt = 360;
                 const mq_limits = [
-                    window.matchMedia("(max-width: 320.98px)"),
-                    window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
-                    window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
-                    window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
-                    window.matchMedia("(min-width: 992px) and (max-width: 1199.98px)"),
-                    window.matchMedia("(min-width: 1200px) and (max-width: 1399.98px)"),
-                    window.matchMedia("(min-width: 1400px)")
+                    window.matchMedia('(max-width: 320.98px)'),
+                    window.matchMedia('(min-width: 321px) and (max-width: 575.98px)'),
+                    window.matchMedia('(min-width: 576px) and (max-width: 767.98px)'),
+                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
+                    window.matchMedia('(min-width: 992px) and (max-width: 1199.98px)'),
+                    window.matchMedia('(min-width: 1200px) and (max-width: 1399.98px)'),
+                    window.matchMedia('(min-width: 1400px)'),
                 ];
-                const scroll_amt_modifier = function() {
-                    media_queries(mq_limits[0], () => {
-                        return scroll_amt = 274;
-                    }, null);
-                    media_queries(mq_limits[1], () => {
-                        return scroll_amt = 296;
-                    }, null);
-                    media_queries(mq_limits[2], () => {
-                        return scroll_amt = 360;
-                    }, null);
-                    media_queries(mq_limits[3], () => {
-                        return scroll_amt = 656/2;
-                    }, null);
-                    media_queries(mq_limits[4], () => {
-                        return scroll_amt = 720/2;
-                    }, null);
-                    media_queries(mq_limits[5], () => {
-                        return scroll_amt = 980/3;
-                    }, null);
-                    media_queries(mq_limits[6], () => {
-                        return scroll_amt = 1080/3;
-                    }, null);
+                const scroll_amt_modifier = function () {
+                    media_queries(
+                        mq_limits[0],
+                        () => {
+                            return (scroll_amt = 274);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[1],
+                        () => {
+                            return (scroll_amt = 296);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[2],
+                        () => {
+                            return (scroll_amt = 360);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[3],
+                        () => {
+                            return (scroll_amt = 656 / 2);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[4],
+                        () => {
+                            return (scroll_amt = 720 / 2);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[5],
+                        () => {
+                            return (scroll_amt = 980 / 3);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[6],
+                        () => {
+                            return (scroll_amt = 1080 / 3);
+                        },
+                        null,
+                    );
                 };
                 scroll_amt_modifier();
-                window.addEventListener("resize", debounce(() => {
-                    scroll_amt_modifier();
-                    UI.my_carousel_content.scrollLeft = 0;
-                }, 500));
-                UI.my_carousel_prev_btn.addEventListener("click", throttle(function() {
-                    UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
-                    UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
-                    UI.scroll_end(UI.my_carousel_content, 20);
-                }, 700));
-                UI.my_carousel_next_btn.addEventListener("click", throttle(function() {
-                    UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
-                    UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
-                    UI.scroll_start(UI.my_carousel_content, 20);
-                }, 700));
+                window.addEventListener(
+                    'resize',
+                    debounce(() => {
+                        scroll_amt_modifier();
+                        UI.my_carousel_content.scrollLeft = 0;
+                    }, 500),
+                );
+                UI.my_carousel_prev_btn.addEventListener(
+                    'click',
+                    throttle(function () {
+                        UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
+                        UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
+                        UI.scroll_end(UI.my_carousel_content, 20);
+                    }, 700),
+                );
+                UI.my_carousel_next_btn.addEventListener(
+                    'click',
+                    throttle(function () {
+                        UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
+                        UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
+                        UI.scroll_start(UI.my_carousel_content, 20);
+                    }, 700),
+                );
             })();
 
             /*** TOOLS & TECHNOLOGIES SECTION ***/
             /** Tag Cloud **/
-            (function() {
+            (function () {
                 let tagcloud_radius;
                 const mq_limits = [
-                    window.matchMedia("(max-width: 320.98px)"),
-                    window.matchMedia("(min-width: 321px) and (max-width: 575.98px)"),
-                    window.matchMedia("(min-width: 576px) and (max-width: 767.98px)"),
-                    window.matchMedia("(min-width: 768px) and (max-width: 991.98px)"),
-                    window.matchMedia("(min-width: 992px)")
+                    window.matchMedia('(max-width: 320.98px)'),
+                    window.matchMedia('(min-width: 321px) and (max-width: 575.98px)'),
+                    window.matchMedia('(min-width: 576px) and (max-width: 767.98px)'),
+                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
+                    window.matchMedia('(min-width: 992px)'),
                 ];
-                const tagcloud_resizer = function() {
-                    media_queries(mq_limits[0], () => {
-                        return tagcloud_radius = 140;
-                    }, null); 
-                    media_queries(mq_limits[1], () => {
-                        return tagcloud_radius = 150;
-                    }, null); 
-                    media_queries(mq_limits[2], () => {
-                        return tagcloud_radius = 250;
-                    }, null); 
-                    media_queries(mq_limits[3], () => {
-                        return tagcloud_radius = 300;
-                    }, null); 
-                    media_queries(mq_limits[4], () => {
-                        return tagcloud_radius = undefined;
-                    }, null); 
+                const tagcloud_resizer = function () {
+                    media_queries(
+                        mq_limits[0],
+                        () => {
+                            return (tagcloud_radius = 140);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[1],
+                        () => {
+                            return (tagcloud_radius = 150);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[2],
+                        () => {
+                            return (tagcloud_radius = 250);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[3],
+                        () => {
+                            return (tagcloud_radius = 300);
+                        },
+                        null,
+                    );
+                    media_queries(
+                        mq_limits[4],
+                        () => {
+                            return (tagcloud_radius = undefined);
+                        },
+                        null,
+                    );
                 };
 
                 tagcloud_resizer();
                 let tagCloud;
-                const tagcloud_loader = function(TagClouds) {  
-
+                const tagcloud_loader = function (TagClouds) {
                     // Define tags in js array
                     let myTags = [
-                        'OOP', 'SOC / MVC', 'REST-APIs',
-                        'Data-Structures', 'Continuous-Integration', 'UI / UX',
-                        'Testing', 'Version-Control', 'Debugging',
-                        'Algorithms', 'App-Development', 'Responsive-Design', 
-                        'Security', 'Optimization', 'Customer-Service',
+                        'OOP',
+                        'SOC / MVC',
+                        'REST-APIs',
+                        'Data-Structures',
+                        'Continuous-Integration',
+                        'UI / UX',
+                        'Testing',
+                        'Version-Control',
+                        'Debugging',
+                        'Algorithms',
+                        'App-Development',
+                        'Responsive-Design',
+                        'Security',
+                        'Optimization',
+                        'Customer-Service',
                     ];
 
                     // Render a default tag cloud
                     // let tagCloud = TagCloud('.tag-cloud-content', myTags);
                     // Config tag cloud by overriding default parameters below
                     tagCloud = TagClouds('.tag-cloud-content', myTags, {
-
                         // radius in px
                         radius: tagcloud_radius ?? 340,
 
@@ -500,7 +666,7 @@ const App = {
                         // 0 = top
                         // 90 = left
                         // 135 = right-bottom
-                        direction: 135,   
+                        direction: 135,
 
                         // interact with cursor move on mouse out
                         keep: false,
@@ -509,35 +675,35 @@ const App = {
                     // Add more tags to existing tag cloud
                     // myTags = myTags.concat([]);
                     // tagCloud.update(myTags);
-                    UI.tagcloud_content = document.querySelector(".tag-cloud-content");
-                    UI.tagcloud = document.querySelector(".tagcloud");
-                    UI.tagcloud_items = document.querySelectorAll(".tagcloud--item");
+                    UI.tagcloud_content = document.querySelector('.tag-cloud-content');
+                    UI.tagcloud = document.querySelector('.tagcloud');
+                    UI.tagcloud_items = document.querySelectorAll('.tagcloud--item');
 
                     // Randomizes tag word colours and adds effects on click
-                    UI.tagcloud_items.forEach(item => {
-                        item.style.color = generate_dark_color_hex(); 
+                    UI.tagcloud_items.forEach((item) => {
+                        item.style.color = generate_dark_color_hex();
                         let clicked_once = false;
                         let clicked_twice = false;
-                        item.addEventListener("click", ()=>{                            
+                        item.addEventListener('click', () => {
                             if (clicked_once && clicked_twice) {
-                                item.style.fontSize = "0"; 
-                                setTimeout(() => {                          
-                                    item.style.color = generate_dark_color_hex(); 
-                                    item.style.fontSize = "initial";
-                                    item.style.fontWeight = "400";
-                                    clicked_once = false; 
+                                item.style.fontSize = '0';
+                                setTimeout(() => {
+                                    item.style.color = generate_dark_color_hex();
+                                    item.style.fontSize = 'initial';
+                                    item.style.fontWeight = '400';
+                                    clicked_once = false;
                                     clicked_twice = false;
                                 }, 5000);
                             } else if (clicked_once && !clicked_twice) {
-                                item.style.color = "var(--theme-colour-4)"; 
-                                item.style.fontSize = "140%";
+                                item.style.color = 'var(--theme-colour-4)';
+                                item.style.fontSize = '140%';
                                 clicked_twice = true;
                             } else {
-                                item.style.color = "var(--theme-colour-1)"; 
-                                item.style.fontSize = "120%";
+                                item.style.color = 'var(--theme-colour-1)';
+                                item.style.fontSize = '120%';
                                 clicked_once = true;
-                            };
-                        }); 
+                            }
+                        });
                     });
                 };
 
@@ -545,115 +711,139 @@ const App = {
                 const options = {
                     root: null,
                     rootMargin: '300px',
-                    threshold: 0
-                }
-                const tagcloud_observer = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(entry => {
+                    threshold: 0,
+                };
+                const tagcloud_observer = new IntersectionObserver(function (entries, observer) {
+                    entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            import("./Business_Logic/TagCloud.js")
-                            .then(module => module.default)
-                            .then((TagCloud) => {
-                                tagcloud_loader(TagCloud);
-
-                                // Resets and resizes tag cloud for different screen sizes
-                                window.addEventListener("resize", debounce(function() {
-                                    tagcloud_resizer();
-                                    if (UI.tagcloud) UI.tagcloud.remove();
+                            import('./Business_Logic/TagCloud.js')
+                                .then((module) => module.default)
+                                .then((TagCloud) => {
                                     tagcloud_loader(TagCloud);
-                                }, 500)); 
-                            })
-                            .catch((err) => console.error("Failed to import TagCloud module: ", err));
-                        };
+
+                                    // Resets and resizes tag cloud for different screen sizes
+                                    window.addEventListener(
+                                        'resize',
+                                        debounce(function () {
+                                            tagcloud_resizer();
+                                            if (UI.tagcloud) UI.tagcloud.remove();
+                                            tagcloud_loader(TagCloud);
+                                        }, 500),
+                                    );
+                                })
+                                .catch((err) =>
+                                    console.error('Failed to import TagCloud module: ', err),
+                                );
+                        }
                     });
                 }, options);
                 tagcloud_observer.observe(UI.tagcloud_content);
             })();
-            
-            // Display star rating for each tool / technology based on skill level 
-            UI.populate_skill_rating((new Skill_Rating));
+
+            // Display star rating for each tool / technology based on skill level
+            UI.populate_skill_rating(new Skill_Rating());
 
             /*** PROJECTS SECTION ***/
 
             // Create Projects
-            (function() {
+            (function () {
                 let current_project = {};
                 let new_inner_html = ``;
-                const dev_project_carousel = new bootstrap.Carousel(UI.dev_project_carousel, {                    
+                const dev_project_carousel = new bootstrap.Carousel(UI.dev_project_carousel, {
                     interval: 5000,
                 });
 
                 // Adds an indicator button, along with attributes per image and sets active class to first slide
                 // Accepts a single parameter with values "dev" or "client"
-                const populate_carousel_indicators = function(proj_type) {
-                    current_project.carousel_img_list.srcs.forEach((indicator, index) => {                       
-                        const btn = document.createElement("button");
-                        btn.setAttribute("type", "button");
-                        btn.setAttribute("data-bs-target", "#dev-project-carousel");
-                        if (index === 0) btn.classList.add("active", "btn"), btn.setAttribute("aria-current", "true");
-                        else btn.classList.add("btn");
-                        btn.setAttribute("aria-label", `Slide ${index+1}`);
+                const populate_carousel_indicators = function (proj_type) {
+                    current_project.carousel_img_list.srcs.forEach((indicator, index) => {
+                        const btn = document.createElement('button');
+                        btn.setAttribute('type', 'button');
+                        btn.setAttribute('data-bs-target', '#dev-project-carousel');
+                        if (index === 0)
+                            btn.classList.add('active', 'btn'),
+                                btn.setAttribute('aria-current', 'true');
+                        else btn.classList.add('btn');
+                        btn.setAttribute('aria-label', `Slide ${index + 1}`);
 
                         // Append to dev or client project depending on parameter set
-                        if (proj_type === "dev".toLowerCase()) UI.dev_project_carousel_indicator_section.appendChild(btn);
-                        else if (proj_type === "client".toLowerCase()) UI.dev_project_carousel_indicator_section.appendChild(btn);
+                        if (proj_type === 'dev'.toLowerCase())
+                            UI.dev_project_carousel_indicator_section.appendChild(btn);
+                        else if (proj_type === 'client'.toLowerCase())
+                            UI.dev_project_carousel_indicator_section.appendChild(btn);
                     });
                 };
 
                 // Adds each image along with attributes, to the carousel slideshow
                 // Accepts a single parameter with values "dev" or "client"
-                const populate_carousel_img_data = function(proj_type) {
-                    current_project.carousel_img_list.srcs.forEach((src, index) => {                        
-                        const div = document.createElement("div");
-                        if (index === 0) div.classList.add("carousel-item", "active");
-                        else div.classList.add("carousel-item");
-                        const img = document.createElement("img");
-                        img.setAttribute("loading", "lazy");
-                        img.classList.add("d-block", "w-100", "p-3");
-                        img.setAttribute("src", src);
-                        img.setAttribute("alt", (current_project.carousel_img_list.alts[index] || "My project carousel image"));
-                        img.setAttribute("width", "625");
-                        img.setAttribute("height", "500");
+                const populate_carousel_img_data = function (proj_type) {
+                    current_project.carousel_img_list.srcs.forEach((src, index) => {
+                        const div = document.createElement('div');
+                        if (index === 0) div.classList.add('carousel-item', 'active');
+                        else div.classList.add('carousel-item');
+                        const img = document.createElement('img');
+                        img.setAttribute('loading', 'lazy');
+                        img.classList.add('d-block', 'w-100', 'p-3');
+                        img.setAttribute('src', src);
+                        img.setAttribute(
+                            'alt',
+                            current_project.carousel_img_list.alts[index] ||
+                                'My project carousel image',
+                        );
+                        img.setAttribute('width', '625');
+                        img.setAttribute('height', '500');
                         div.appendChild(img);
 
                         // Append to dev or client project depending on parameter set
-                        if (proj_type === "dev".toLowerCase()) UI.dev_project_carousel_inner_section.appendChild(div);
-                        else if (proj_type === "client".toLowerCase()) UI.client_project_carousel_inner_section.appendChild(div);
+                        if (proj_type === 'dev'.toLowerCase())
+                            UI.dev_project_carousel_inner_section.appendChild(div);
+                        else if (proj_type === 'client'.toLowerCase())
+                            UI.client_project_carousel_inner_section.appendChild(div);
                     });
                 };
 
                 // Adds notes to project overview
                 // Accepts a single parameter with values "dev" or "client"
-                const populate_project_notes = function(proj_type) {
-                    current_project.notes.forEach((note, index) => {                       
-                        const list = document.createElement("li");
+                const populate_project_notes = function (proj_type) {
+                    current_project.notes.forEach((note, index) => {
+                        const list = document.createElement('li');
                         list.innerHTML = note;
-                        if (index === current_project.notes.length - 1) list.classList.add("fw-bold");
+                        if (index === current_project.notes.length - 1)
+                            list.classList.add('fw-bold');
 
                         // Append to dev or client project depending on parameter set
-                        if (proj_type === "dev".toLowerCase()) UI.dev_project_carousel_note_section.appendChild(list);
-                        else if (proj_type === "client".toLowerCase()) UI.client_project_carousel_note_section.appendChild(list);
+                        if (proj_type === 'dev'.toLowerCase())
+                            UI.dev_project_carousel_note_section.appendChild(list);
+                        else if (proj_type === 'client'.toLowerCase())
+                            UI.client_project_carousel_note_section.appendChild(list);
                     });
                 };
 
                 // Adds each tool / technology icon to the end of the project overview
                 // Accepts a single parameter with values "dev" or "client"
-                const populate_project_tool_icons = function(proj_type) {
-                    current_project.tool_icon_list.srcs.forEach((src, index) => {                        
-                        const img = document.createElement("img");
-                        img.setAttribute("loading", "lazy");
-                        img.classList.add("img-fluid", "icon-disp-img-lg", "m-3");
+                const populate_project_tool_icons = function (proj_type) {
+                    current_project.tool_icon_list.srcs.forEach((src, index) => {
+                        const img = document.createElement('img');
+                        img.setAttribute('loading', 'lazy');
+                        img.classList.add('img-fluid', 'icon-disp-img-lg', 'm-3');
                         img.id = current_project.tool_icon_list.ids[index] || null;
-                        img.setAttribute("src", src);
-                        img.setAttribute("alt", (current_project.tool_icon_list.alts[index] || "Tool and Technology Icon Badge"));
-                        img.setAttribute("width", "85");
-                        img.setAttribute("height", "64");
+                        img.setAttribute('src', src);
+                        img.setAttribute(
+                            'alt',
+                            current_project.tool_icon_list.alts[index] ||
+                                'Tool and Technology Icon Badge',
+                        );
+                        img.setAttribute('width', '85');
+                        img.setAttribute('height', '64');
 
                         // Append to dev or client project depending on parameter set
-                        if (proj_type === "dev".toLowerCase()) UI.dev_project_carousel_icon_section.appendChild(img);
-                        else if (proj_type === "client".toLowerCase()) UI.client_project_carousel_icon_section.appendChild(img);
+                        if (proj_type === 'dev'.toLowerCase())
+                            UI.dev_project_carousel_icon_section.appendChild(img);
+                        else if (proj_type === 'client'.toLowerCase())
+                            UI.client_project_carousel_icon_section.appendChild(img);
                     });
                 };
-                const change_project = function() {
+                const change_project = function () {
                     new_inner_html = `
                         <div class="flex-row row justify-content-between align-items-center">
                             <div class="col-12 col-xl-6">
@@ -725,201 +915,359 @@ const App = {
                                 </button>
                             </div>
                         </div>
-                    `
+                    `;
                 };
-                const reinitialize_el = function() {
-
+                const reinitialize_el = function () {
                     // Re-declare (update) document IDs on new inner html
-                    UI.return_to_dev_gallery_btns = document.querySelectorAll("[data-id='dev-project-gallery']");
-                    UI.dev_project_carousel = document.getElementById("dev-project-carousel");
-                    UI.dev_project_carousel_indicator_section = document.getElementById("dev-project-carousel-indicators");
-                    UI.dev_project_carousel_inner_section = document.getElementById("dev-project-carousel-inner");
-                    UI.dev_project_carousel_note_section = document.getElementById("dev-project-carousel-notes");
-                    UI.dev_project_carousel_icon_section = document.getElementById("dev-project-carousel-icon-section");
-                    populate_carousel_img_data("dev");
-                    populate_carousel_indicators("dev");
-                    populate_project_notes("dev");
-                    populate_project_tool_icons("dev");
+                    UI.return_to_dev_gallery_btns = document.querySelectorAll(
+                        "[data-id='dev-project-gallery']",
+                    );
+                    UI.dev_project_carousel = document.getElementById('dev-project-carousel');
+                    UI.dev_project_carousel_indicator_section = document.getElementById(
+                        'dev-project-carousel-indicators',
+                    );
+                    UI.dev_project_carousel_inner_section = document.getElementById(
+                        'dev-project-carousel-inner',
+                    );
+                    UI.dev_project_carousel_note_section = document.getElementById(
+                        'dev-project-carousel-notes',
+                    );
+                    UI.dev_project_carousel_icon_section = document.getElementById(
+                        'dev-project-carousel-icon-section',
+                    );
+                    populate_carousel_img_data('dev');
+                    populate_carousel_indicators('dev');
+                    populate_project_notes('dev');
+                    populate_project_tool_icons('dev');
                     dispatchEvent(new Event('load'));
                 };
 
                 // Alien Mathvasion Project
-                const Alien_Mathvasion = new Project("Alien Mathvasion Game", 2, "https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html", "Play", 
-                    "https://github.com/DNoel26/Alien_Mathvasion", true);
+                const Alien_Mathvasion = new Project(
+                    'Alien Mathvasion Game',
+                    2,
+                    'https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html',
+                    'Play',
+                    'https://github.com/DNoel26/Alien_Mathvasion',
+                    true,
+                );
                 Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
                     Good luck surviving the hardest difficulty!
                 `;
-                Alien_Mathvasion.link_note = "(expect audio - desktop version only!)";
-                Alien_Mathvasion.notes.push(`Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`);
-                Alien_Mathvasion.notes.push(`Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`);
-                Alien_Mathvasion.notes.push(`Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`);
+                Alien_Mathvasion.link_note = '(expect audio - desktop version only!)';
+                Alien_Mathvasion.notes.push(
+                    `Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`,
+                );
+                Alien_Mathvasion.notes.push(
+                    `Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`,
+                );
+                Alien_Mathvasion.notes.push(
+                    `Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`,
+                );
                 const alien_m_carousel_img_ids = [];
-                const alien_m_carousel_img_srcs = ["./img/projects/min/alien-mathvasion-1-min.webp", "./img/projects/min/alien-mathvasion-2-min.webp", "./img/projects/min/alien-mathvasion-3-min.webp"];
+                const alien_m_carousel_img_srcs = [
+                    './img/projects/min/alien-mathvasion-1-min.webp',
+                    './img/projects/min/alien-mathvasion-2-min.webp',
+                    './img/projects/min/alien-mathvasion-3-min.webp',
+                ];
                 const alien_m_carousel_img_alts = [];
                 const alien_m_tool_img_ids = [];
-                const alien_m_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
+                const alien_m_tool_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                    './img/logos/javascript-badge.webp',
+                ];
                 const alien_m_tool_img_alts = [];
-                Alien_Mathvasion.add_imgs(alien_m_carousel_img_ids, alien_m_carousel_img_srcs, alien_m_carousel_img_alts);
-                Alien_Mathvasion.add_tool_icons(alien_m_tool_img_ids, alien_m_tool_img_srcs, alien_m_tool_img_alts);
+                Alien_Mathvasion.add_imgs(
+                    alien_m_carousel_img_ids,
+                    alien_m_carousel_img_srcs,
+                    alien_m_carousel_img_alts,
+                );
+                Alien_Mathvasion.add_tool_icons(
+                    alien_m_tool_img_ids,
+                    alien_m_tool_img_srcs,
+                    alien_m_tool_img_alts,
+                );
 
                 // Wix Clone Project
-                const Wix_Clone = new Project("Wix Site Clone", 1, "https://dnoelmotorcyclewixclone.netlify.app/", "View", 
-                    "https://github.com/DNoel26/Wix_Motorcycle_Trial", true);
+                const Wix_Clone = new Project(
+                    'Wix Site Clone',
+                    1,
+                    'https://dnoelmotorcyclewixclone.netlify.app/',
+                    'View',
+                    'https://github.com/DNoel26/Wix_Motorcycle_Trial',
+                    true,
+                );
                 Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
                     <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected, original Wix site</a>. 
                     It was built using HTML, CSS and without any JavaScript. 
                     Showcases the ability to take a design and convert it into a functional webpage or website.
                 `;
-                Wix_Clone.link_note = "(see link to cloned Wix site above)";
-                Wix_Clone.notes.push(`Only 3 pages were cloned for this project: Home, About and Contact.`);
+                Wix_Clone.link_note = '(see link to cloned Wix site above)';
+                Wix_Clone.notes.push(
+                    `Only 3 pages were cloned for this project: Home, About and Contact.`,
+                );
                 Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
                 const wix_c_carousel_img_ids = [];
-                const wix_c_carousel_img_srcs = ["./img/projects/min/wix-clone-1-min.webp", "./img/projects/min/wix-clone-2-min.webp", "./img/projects/min/wix-clone-3-min.webp"];
+                const wix_c_carousel_img_srcs = [
+                    './img/projects/min/wix-clone-1-min.webp',
+                    './img/projects/min/wix-clone-2-min.webp',
+                    './img/projects/min/wix-clone-3-min.webp',
+                ];
                 const wix_c_carousel_img_alts = [];
                 const wix_c_tool_img_ids = [];
-                const wix_c_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
+                const wix_c_tool_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                ];
                 const wix_c_tool_img_alts = [];
-                Wix_Clone.add_imgs(wix_c_carousel_img_ids, wix_c_carousel_img_srcs, wix_c_carousel_img_alts);
-                Wix_Clone.add_tool_icons(wix_c_tool_img_ids, wix_c_tool_img_srcs, wix_c_tool_img_alts);
+                Wix_Clone.add_imgs(
+                    wix_c_carousel_img_ids,
+                    wix_c_carousel_img_srcs,
+                    wix_c_carousel_img_alts,
+                );
+                Wix_Clone.add_tool_icons(
+                    wix_c_tool_img_ids,
+                    wix_c_tool_img_srcs,
+                    wix_c_tool_img_alts,
+                );
 
                 // Cyberdise Online Store Project
-                const Cyberdise = new Project("Cyberdise Online Store", 2, "https://dnoelcyberdise.herokuapp.com/", "Interact", 
-                    "https://github.com/DNoel26/Cyberdise-Dynamic-", true);
+                const Cyberdise = new Project(
+                    'Cyberdise Online Store',
+                    2,
+                    'https://dnoelcyberdise.herokuapp.com/',
+                    'Interact',
+                    'https://github.com/DNoel26/Cyberdise-Dynamic-',
+                    true,
+                );
                 Cyberdise.description = `This project was my first official Full Stack development project and end-to-end C.R.U.D. application, and was designed to test everything I had learned (and more). This online store was built from scratch using MVC principles for the Back End code.
                     The database was designed, normalized and created in MySQL. There are both customer and employee functionalities to experiment with. Features such as 
                     authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site.
                     Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc. 
                 `;
-                Cyberdise.link_note = "(fake credentials only - desktop version only!)";
-                Cyberdise.notes.push(`Most other major features are working as expected. Search functionality not implemented just yet.`);
+                Cyberdise.link_note = '(fake credentials only - desktop version only!)';
+                Cyberdise.notes.push(
+                    `Most other major features are working as expected. Search functionality not implemented just yet.`,
+                );
                 Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
                 Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
                 const cyberdise_carousel_img_ids = [];
-                const cyberdise_carousel_img_srcs = ["./img/projects/min/cyberdise-online-store-1-min.webp", "./img/projects/min/cyberdise-online-store-2-min.webp", "./img/projects/min/cyberdise-online-store-3-min.webp", 
-                    "./img/projects/min/cyberdise-online-store-4-min.webp", "./img/projects/min/cyberdise-online-store-5-min.webp"
+                const cyberdise_carousel_img_srcs = [
+                    './img/projects/min/cyberdise-online-store-1-min.webp',
+                    './img/projects/min/cyberdise-online-store-2-min.webp',
+                    './img/projects/min/cyberdise-online-store-3-min.webp',
+                    './img/projects/min/cyberdise-online-store-4-min.webp',
+                    './img/projects/min/cyberdise-online-store-5-min.webp',
                 ];
                 const cyberdise_carousel_img_alts = [];
                 const cyberdise_tool_img_ids = [];
-                const cyberdise_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp", "./img/logos/handlebars-badge.webp",
-                    "/img/logos/mysql-badge.webp", "./img/logos/nodejs-badge.webp", "./img/logos/express-logo.webp", "./img/logos/postman-badge.webp"];
+                const cyberdise_tool_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                    './img/logos/javascript-badge.webp',
+                    './img/logos/handlebars-badge.webp',
+                    '/img/logos/mysql-badge.webp',
+                    './img/logos/nodejs-badge.webp',
+                    './img/logos/express-logo.webp',
+                    './img/logos/postman-badge.webp',
+                ];
                 const cyberdise_tool_img_alts = [];
-                Cyberdise.add_imgs(cyberdise_carousel_img_ids, cyberdise_carousel_img_srcs, cyberdise_carousel_img_alts);
-                Cyberdise.add_tool_icons(cyberdise_tool_img_ids, cyberdise_tool_img_srcs, cyberdise_tool_img_alts);
+                Cyberdise.add_imgs(
+                    cyberdise_carousel_img_ids,
+                    cyberdise_carousel_img_srcs,
+                    cyberdise_carousel_img_alts,
+                );
+                Cyberdise.add_tool_icons(
+                    cyberdise_tool_img_ids,
+                    cyberdise_tool_img_srcs,
+                    cyberdise_tool_img_alts,
+                );
 
                 // Movie Database Project
-                const Movie_Database = new Project("Movie Database", 2, "https://dnoelmovieapidatabase.netlify.app/", "View", 
-                    "https://github.com/DNoel26/Movie_Database", true);
+                const Movie_Database = new Project(
+                    'Movie Database',
+                    2,
+                    'https://dnoelmovieapidatabase.netlify.app/',
+                    'View',
+                    'https://github.com/DNoel26/Movie_Database',
+                    true,
+                );
                 Movie_Database.description = `
                     This project was built from scratch to dynamically display "Now Showing" movie details and trailers via consuming multiple APIs; meaning all data shown on my website is requested
                     and pulled from another server, and manipulated on my website using JavaScript. Design is based on retro theatres. Click the link and take a look at all the trending movies now!
                 `;
-                Movie_Database.link_note = "(desktop version only!)";
-                Movie_Database.notes.push(`All major features are working as expected. Pagination to be implemented.`);
+                Movie_Database.link_note = '(desktop version only!)';
+                Movie_Database.notes.push(
+                    `All major features are working as expected. Pagination to be implemented.`,
+                );
                 Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
                 const movie_db_carousel_img_ids = [];
-                const movie_db_carousel_img_srcs = ["./img/projects/min/movie-db-1-min.webp", "./img/projects/min/movie-db-2-min.webp", "./img/projects/min/movie-db-3-min.webp"];
+                const movie_db_carousel_img_srcs = [
+                    './img/projects/min/movie-db-1-min.webp',
+                    './img/projects/min/movie-db-2-min.webp',
+                    './img/projects/min/movie-db-3-min.webp',
+                ];
                 const movie_db_carousel_img_alts = [];
                 const movie_db_tools_img_ids = [];
-                const movie_db_tools_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp"];
+                const movie_db_tools_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                    './img/logos/javascript-badge.webp',
+                ];
                 const movie_db_tools_img_alts = [];
-                Movie_Database.add_imgs(movie_db_carousel_img_ids, movie_db_carousel_img_srcs, movie_db_carousel_img_alts);
-                Movie_Database.add_tool_icons(movie_db_tools_img_ids, movie_db_tools_img_srcs, movie_db_tools_img_alts);
+                Movie_Database.add_imgs(
+                    movie_db_carousel_img_ids,
+                    movie_db_carousel_img_srcs,
+                    movie_db_carousel_img_alts,
+                );
+                Movie_Database.add_tool_icons(
+                    movie_db_tools_img_ids,
+                    movie_db_tools_img_srcs,
+                    movie_db_tools_img_alts,
+                );
 
                 // Amazon Clone Project
-                const Amazon_Clone = new Project("Amazon Clone", 2, "https://clone-905a7.web.app/", "Interact", 
-                    "https://github.com/DNoel26/Amazon_React_Clone", true);
+                const Amazon_Clone = new Project(
+                    'Amazon Clone',
+                    2,
+                    'https://clone-905a7.web.app/',
+                    'Interact',
+                    'https://github.com/DNoel26/Amazon_React_Clone',
+                    true,
+                );
                 Amazon_Clone.description = `
                     This project was done as my hands on introduction to React.js and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch.
                     The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, 
                     login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
                 `;
-                Amazon_Clone.link_note = "(fake credentials only - desktop version only!)";
+                Amazon_Clone.link_note = '(fake credentials only - desktop version only!)';
                 Amazon_Clone.notes.push(`All major features are working as expected.`);
                 Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
                 const amazon_c_carousel_img_ids = [];
                 const amazon_c_carousel_img_srcs = [
-                    "./img/projects/min/amazon-clone-1-min.webp", "./img/projects/min/amazon-clone-2-min.webp", "./img/projects/min/amazon-clone-3-min.webp",
-                    "./img/projects/min/amazon-clone-4-min.webp"
+                    './img/projects/min/amazon-clone-1-min.webp',
+                    './img/projects/min/amazon-clone-2-min.webp',
+                    './img/projects/min/amazon-clone-3-min.webp',
+                    './img/projects/min/amazon-clone-4-min.webp',
                 ];
                 const amazon_c_carousel_img_alts = [];
                 const amazon_c_tool_img_ids = [];
-                const amazon_c_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp", "./img/logos/javascript-badge.webp", "./img/logos/react-badge.webp",
-                    "./img/logos/firebase-badge.webp", "./img/logos/nodejs-badge.webp", "./img/logos/express-logo.webp"
+                const amazon_c_tool_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                    './img/logos/javascript-badge.webp',
+                    './img/logos/react-badge.webp',
+                    './img/logos/firebase-badge.webp',
+                    './img/logos/nodejs-badge.webp',
+                    './img/logos/express-logo.webp',
                 ];
                 const amazon_c_tool_img_alts = [];
-                Amazon_Clone.add_imgs(amazon_c_carousel_img_ids, amazon_c_carousel_img_srcs, amazon_c_carousel_img_alts);
-                Amazon_Clone.add_tool_icons(amazon_c_tool_img_ids, amazon_c_tool_img_srcs, amazon_c_tool_img_alts);
+                Amazon_Clone.add_imgs(
+                    amazon_c_carousel_img_ids,
+                    amazon_c_carousel_img_srcs,
+                    amazon_c_carousel_img_alts,
+                );
+                Amazon_Clone.add_tool_icons(
+                    amazon_c_tool_img_ids,
+                    amazon_c_tool_img_srcs,
+                    amazon_c_tool_img_alts,
+                );
 
                 // Real Estate Website Project
-                const Real_Estate_Site = new Project("Real Estate Site", 3, "https://presidentialrealtors-dev-static.netlify.app/", "View", 
-                    "https://github.com/DNoel26/Presidential-Realtors-Static", true);
+                const Real_Estate_Site = new Project(
+                    'Real Estate Site',
+                    3,
+                    'https://presidentialrealtors-dev-static.netlify.app/',
+                    'View',
+                    'https://github.com/DNoel26/Presidential-Realtors-Static',
+                    true,
+                );
                 Real_Estate_Site.description = `
                     The focus of this project was for me to learn and implement modern design, user interface (UI) and user experience (UX) elements. It was built from scratch and will eventually be converted
                     to a fully functional single page application (SPA) using React.js, MongoDB, Node.js and Express.js. Let me know what you think!
                 `;
-                Real_Estate_Site.link_note = "(desktop version only!)";
-                Real_Estate_Site.notes.push(`Most client side features work as expected. Focus of this project was on design elements rather than functionality.`);
-                Real_Estate_Site.notes.push(`Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`);
+                Real_Estate_Site.link_note = '(desktop version only!)';
+                Real_Estate_Site.notes.push(
+                    `Most client side features work as expected. Focus of this project was on design elements rather than functionality.`,
+                );
+                Real_Estate_Site.notes.push(
+                    `Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`,
+                );
                 Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
                 const real_estate_carousel_img_ids = [];
-                const real_estate_carousel_img_srcs = ["./img/projects/min/real-estate-1-min.webp", "./img/projects/min/real-estate-2-min.webp", "./img/projects/min/real-estate-3-min.webp"];
+                const real_estate_carousel_img_srcs = [
+                    './img/projects/min/real-estate-1-min.webp',
+                    './img/projects/min/real-estate-2-min.webp',
+                    './img/projects/min/real-estate-3-min.webp',
+                ];
                 const real_estate_carousel_img_alts = [];
                 const real_estate_tool_img_ids = [];
-                const real_estate_tool_img_srcs = ["./img/logos/html5-badge.webp", "./img/logos/css3-badge.webp"];
+                const real_estate_tool_img_srcs = [
+                    './img/logos/html5-badge.webp',
+                    './img/logos/css3-badge.webp',
+                ];
                 const real_estate_tool_img_alts = [];
-                Real_Estate_Site.add_imgs(real_estate_carousel_img_ids, real_estate_carousel_img_srcs, real_estate_carousel_img_alts);
-                Real_Estate_Site.add_tool_icons(real_estate_tool_img_ids, real_estate_tool_img_srcs, real_estate_tool_img_alts);
+                Real_Estate_Site.add_imgs(
+                    real_estate_carousel_img_ids,
+                    real_estate_carousel_img_srcs,
+                    real_estate_carousel_img_alts,
+                );
+                Real_Estate_Site.add_tool_icons(
+                    real_estate_tool_img_ids,
+                    real_estate_tool_img_srcs,
+                    real_estate_tool_img_alts,
+                );
 
                 // Retrieve last project stored in session and execute change project if current project is not empty
-                current_project = JSON.parse(sessionStorage.getItem("current_project"));
+                current_project = JSON.parse(sessionStorage.getItem('current_project'));
                 if (current_project) {
                     change_project();
-                    UI.dev_project_overview.innerHTML = new_inner_html;    
+                    UI.dev_project_overview.innerHTML = new_inner_html;
                     reinitialize_el();
-                };
-                UI.dev_project_gallery_btns.forEach(btn => {                    
-                    btn.addEventListener("click", () => {
-                        if (btn.dataset.devProject === "Alien Mathvasion Game") {
+                }
+                UI.dev_project_gallery_btns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        if (btn.dataset.devProject === 'Alien Mathvasion Game') {
                             current_project = Alien_Mathvasion;
-                        } else if (btn.dataset.devProject === "Wix Site Clone") {
+                        } else if (btn.dataset.devProject === 'Wix Site Clone') {
                             current_project = Wix_Clone;
-                        } else if (btn.dataset.devProject === "Cyberdise Online Store") {
+                        } else if (btn.dataset.devProject === 'Cyberdise Online Store') {
                             current_project = Cyberdise;
-                        } else if (btn.dataset.devProject === "Movie Database") {
+                        } else if (btn.dataset.devProject === 'Movie Database') {
                             current_project = Movie_Database;
-                        } else if (btn.dataset.devProject === "Amazon Clone") {
+                        } else if (btn.dataset.devProject === 'Amazon Clone') {
                             current_project = Amazon_Clone;
-                        } else if (btn.dataset.devProject === "Real Estate Site") {
+                        } else if (btn.dataset.devProject === 'Real Estate Site') {
                             current_project = Real_Estate_Site;
                         } else {
-                            return logger("PROJECT NOT LOADED CORRECTLY");
+                            return logger('PROJECT NOT LOADED CORRECTLY');
                         }
 
                         // Adds new project to carousel container
                         change_project();
 
                         // Store current project in session storage
-                        sessionStorage.setItem("current_project", JSON.stringify(current_project));
+                        sessionStorage.setItem('current_project', JSON.stringify(current_project));
                         UI.dev_project_overview.innerHTML = new_inner_html;
                         reinitialize_el();
                         UI.dev_project_overview.scrollIntoView();
-                        UI.return_to_dev_gallery_btns.forEach(btn => {
-                            btn.addEventListener("click", () => {
+                        UI.return_to_dev_gallery_btns.forEach((btn) => {
+                            btn.addEventListener('click', () => {
                                 UI.dev_project_gallery.scrollIntoView();
                             });
                         });
                     });
                 });
-                UI.return_to_dev_gallery_btns.forEach(btn => {
-                    btn.addEventListener("click", () => {
+                UI.return_to_dev_gallery_btns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
                         UI.dev_project_gallery.scrollIntoView();
                     });
                 });
 
                 // Executes function and provides closure for development projects
-                (function() {
-
+                (function () {
                     // Select the node that will be observed for mutations
                     const target_node = UI.dev_project_overview;
 
@@ -927,17 +1275,16 @@ const App = {
                     const config = { attributes: false, childList: true, subtree: true };
 
                     // Callback function to execute when mutations are observed
-                    const callback = function(mutationsList, observer) {
-
+                    const callback = function (mutationsList, observer) {
                         // Use traditional 'for loops' for IE 11
-                        for(const mutation of mutationsList) {
+                        for (const mutation of mutationsList) {
                             if (mutation.type === 'childList') {
                                 //console.log('A child node has been added or removed.');
                             } else if (mutation.type === 'attributes') {
                                 //console.log('The ' + mutation.attributeName + ' attribute was modified.');
                             } else if (mutation.type === 'subtree') {
                                 //console.log('The subtree attribute was modified.');
-                            };
+                            }
                             //console.log(mutation, "and ", observer);
                         }
                     };
@@ -956,152 +1303,227 @@ const App = {
             /*** CONTACT SECTION ***/
             /** Formspree validation **/
             // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {   
-
+            (function () {
                 // Observes if form is in view and then makes country API request if true
                 const options = {
                     root: null,
                     rootMargin: '300px',
-                    threshold: 0
-                }
+                    threshold: 0,
+                };
                 let select_change;
-                const form_api_observer = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(entry => {
+                const form_api_observer = new IntersectionObserver(function (entries, observer) {
+                    entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            import("./Business_Logic/API.js")
-                            .then(module => module.default) // uses the default export
-                            .then((API) => {
+                            import('./Business_Logic/API.js')
+                                .then((module) => module.default) // uses the default export
+                                .then((API) => {
+                                    // Populates form countries using API
+                                    const Country_API = new API(
+                                        'https://restcountries.eu/rest/v2/all',
+                                    );
+                                    let user_typed = false;
+                                    select_change = function () {
+                                        const selected_options = document.querySelectorAll(
+                                            'option',
+                                        );
 
-                                // Populates form countries using API
-                                const Country_API = new API("https://restcountries.eu/rest/v2/all");
-                                let user_typed = false;
-                                select_change = function() {
-                                    const selected_options = document.querySelectorAll("option");
-
-                                    // Adds country flag and phone calling code on country select
-                                    selected_options.forEach(option => {                       
-                                        if ((option.value && option.selected) && option.value !== "") {
-                                            const flag = option.getAttribute("data-flag");
-                                            const calling_codes = option.getAttribute("data-calling-codes");
-                                            const img = document.createElement("img");
-                                            img.setAttribute("src", flag);
-                                            img.setAttribute("alt", `Country flag for ${option.value}`);
-                                            img.setAttribute("width", "40px");
-                                            img.setAttribute("height", "auto"); 
-                                            if (!user_typed) UI.phone.value = `+${calling_codes}-`;
-                                            if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-                                            UI.country_select.labels[0].appendChild(img);
-                                        } else if (option.selected && !option.value) {
-                                            if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-                                        };
-                                    });
-                                };
-                                Country_API.fetch_api()
-                                .then((data) => {
-
-                                    // Populates with API data
-                                    data.forEach(datum => {         
-                                        const new_option = document.createElement("option");
-                                        new_option.setAttribute("value", datum.name);
-                                        new_option.setAttribute("data-flag", datum.flag);
-                                        new_option.setAttribute("data-calling-codes", datum.callingCodes);
-                                        new_option.innerHTML = new_option.value;
-                                        UI.country_select.appendChild(new_option);
-                                    });
-                                    UI.phone.addEventListener("keyup", debounce(() => {
-                                        user_typed = true;
-                                    }, 500));
-                                    UI.country_select.addEventListener("change", debounce(() => {
-                                        select_change();
-                                    }, 300));
+                                        // Adds country flag and phone calling code on country select
+                                        selected_options.forEach((option) => {
+                                            if (
+                                                option.value &&
+                                                option.selected &&
+                                                option.value !== ''
+                                            ) {
+                                                const flag = option.getAttribute('data-flag');
+                                                const calling_codes = option.getAttribute(
+                                                    'data-calling-codes',
+                                                );
+                                                const img = document.createElement('img');
+                                                img.setAttribute('src', flag);
+                                                img.setAttribute(
+                                                    'alt',
+                                                    `Country flag for ${option.value}`,
+                                                );
+                                                img.setAttribute('width', '40px');
+                                                img.setAttribute('height', 'auto');
+                                                if (!user_typed)
+                                                    UI.phone.value = `+${calling_codes}-`;
+                                                if (
+                                                    UI.country_select.labels[0].children[1] &&
+                                                    UI.country_select.labels[0].children[1]
+                                                        .tagName === 'IMG'
+                                                )
+                                                    UI.country_select.labels[0].children[1].remove();
+                                                UI.country_select.labels[0].appendChild(img);
+                                            } else if (option.selected && !option.value) {
+                                                if (
+                                                    UI.country_select.labels[0].children[1] &&
+                                                    UI.country_select.labels[0].children[1]
+                                                        .tagName === 'IMG'
+                                                )
+                                                    UI.country_select.labels[0].children[1].remove();
+                                            }
+                                        });
+                                    };
+                                    Country_API.fetch_api()
+                                        .then((data) => {
+                                            // Populates with API data
+                                            data.forEach((datum) => {
+                                                const new_option = document.createElement('option');
+                                                new_option.setAttribute('value', datum.name);
+                                                new_option.setAttribute('data-flag', datum.flag);
+                                                new_option.setAttribute(
+                                                    'data-calling-codes',
+                                                    datum.callingCodes,
+                                                );
+                                                new_option.innerHTML = new_option.value;
+                                                UI.country_select.appendChild(new_option);
+                                            });
+                                            UI.phone.addEventListener(
+                                                'keyup',
+                                                debounce(() => {
+                                                    user_typed = true;
+                                                }, 500),
+                                            );
+                                            UI.country_select.addEventListener(
+                                                'change',
+                                                debounce(() => {
+                                                    select_change();
+                                                }, 300),
+                                            );
+                                        })
+                                        .catch((err) => console.error('Error: ', err))
+                                        .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection
                                 })
-                                .catch(err => console.error("Error: ", err))
-                                .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection    
-                            })
-                            .catch(err => console.log("Failed to import API module: ", err));
-                        };
+                                .catch((err) => console.log('Failed to import API module: ', err));
+                        }
                     });
                 }, options);
                 form_api_observer.observe(UI.my_form);
-                const formspree = function() {
-
+                const formspree = function () {
                     // Contact form validation responses on fail (for each form)
                     const validation_msgs = [
-                        (function() {
+                        function () {
                             return UI.display_form_validation_msg();
-                        })
+                        },
                     ];
-                    
+
                     // Fetch all the forms we want to apply custom Bootstrap validation styles to using document.querySelectorAll('.needs-validation')
                     // Loop over them and prevent submission
-                    Array.prototype.slice.call(UI.forms_need_validation)
-                    .forEach(function(form, index) {                      
-                        (function() {
+                    Array.prototype.slice
+                        .call(UI.forms_need_validation)
+                        .forEach(function (form, index) {
+                            (function () {
+                                // Cycle through each form input/select/text area tags and store or populate with sessionStorage
+                                form.querySelectorAll('.form-data').forEach((data) => {
+                                    if (data.tagName === 'INPUT')
+                                        data.value = sessionStorage.getItem(data.name);
+                                    if (data.tagName === 'TEXTAREA')
+                                        data.value = sessionStorage.getItem(data.name);
+                                    if (data.tagName === 'SELECT')
+                                        data.value = sessionStorage.getItem(data.name) || '';
+                                    select_change();
 
-                            // Cycle through each form input/select/text area tags and store or populate with sessionStorage
-                            form.querySelectorAll(".form-data").forEach(data => {
-                                if (data.tagName === "INPUT") data.value = sessionStorage.getItem(data.name);
-                                if (data.tagName === "TEXTAREA") data.value = sessionStorage.getItem(data.name);  
-                                if (data.tagName === "SELECT") data.value = sessionStorage.getItem(data.name) || "";           
-                                select_change();
-                                
-                                // Save contact form info in cookies
-                                data.addEventListener("input", debounce(() => {
-                                    sessionStorage.setItem(data.name, (data.value));
-                                }, 500));
-                            });
-                        })();
-                        
-                        // Heavily modified Bootstrap validation and Formspree functions (Ajax method - prevents redirection on form submit)
-                        form.addEventListener("submit", (event) => {                        
-                            event.preventDefault();
+                                    // Save contact form info in cookies
+                                    data.addEventListener(
+                                        'input',
+                                        debounce(() => {
+                                            sessionStorage.setItem(data.name, data.value);
+                                        }, 500),
+                                    );
+                                });
+                            })();
 
-                            // Stop multiple submits from occurring 
-                            event.stopImmediatePropagation();
-                            import('./Business_Logic/Formspree.js')
-                            .then(module => module.default) // uses the default export
-                            .then((Formspree) => {
-                                if (!form.checkValidity()) {
-                                    return new Promise((resolve,reject)=>{ 
+                            // Heavily modified Bootstrap validation and Formspree functions (Ajax method - prevents redirection on form submit)
+                            form.addEventListener(
+                                'submit',
+                                (event) => {
+                                    event.preventDefault();
 
-                                        // Checks validation on submit
-                                        form.classList.add('was-validated');
-                                        resolve();
-                                    })
-                                    .then(() => {   
-
-                                        // Displays validation messages if failed to enter info correctly
-                                        validation_msgs[index]();
-                                    })
-                                    .catch((err) => {                                        
-                                        console.error(`Failed to add "was-validated" class to Bootstrap form: ${err}`);
-                                    });
-                                } else {   
-                                    const My_Form = new Formspree(UI.my_form);
-                                    My_Form.method = UI.my_form.method;
-                                    My_Form.url = UI.my_form.action;
-                                    My_Form.data = new FormData(My_Form.form);
-                                    My_Form.success_msg = `Hi ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.success_msg;
-                                    My_Form.error_msg = `Sorry ${My_Form.get_form_data("first_name").trim()}! ` + My_Form.error_msg;
-                                    const success = wrapper_no_exec(form_submit_success, My_Form.form, UI.my_form_button, UI.my_form_status, My_Form.success_msg);
-                                    const error = wrapper_no_exec(form_submit_error, UI.my_form_status, My_Form.error_msg);
-                                    ajax(My_Form.method, My_Form.url, My_Form.data, success, error, (status) => {     
-
-                                        // Callback executed onreadystatechange
-                                        if (status === 200) {
-                                            recaptchaCallback(() => {                                     
-                                                form.classList.remove('was-validated');
-                                                sessionStorage.clear();
-                                                if (UI.country_select.labels[0].children[1] && UI.country_select.labels[0].children[1].tagName === "IMG") UI.country_select.labels[0].children[1].remove();
-                                            });
-                                        } else return;
-                                        return;
-                                    });
-                                };
-                            })
-                            .catch(err => console.error("Failed to import Formspree module: ", err))
-                        }, false);
-                    });
+                                    // Stop multiple submits from occurring
+                                    event.stopImmediatePropagation();
+                                    import('./Business_Logic/Formspree.js')
+                                        .then((module) => module.default) // uses the default export
+                                        .then((Formspree) => {
+                                            if (!form.checkValidity()) {
+                                                return new Promise((resolve, reject) => {
+                                                    // Checks validation on submit
+                                                    form.classList.add('was-validated');
+                                                    resolve();
+                                                })
+                                                    .then(() => {
+                                                        // Displays validation messages if failed to enter info correctly
+                                                        validation_msgs[index]();
+                                                    })
+                                                    .catch((err) => {
+                                                        console.error(
+                                                            `Failed to add "was-validated" class to Bootstrap form: ${err}`,
+                                                        );
+                                                    });
+                                            } else {
+                                                const My_Form = new Formspree(UI.my_form);
+                                                My_Form.method = UI.my_form.method;
+                                                My_Form.url = UI.my_form.action;
+                                                My_Form.data = new FormData(My_Form.form);
+                                                My_Form.success_msg =
+                                                    `Hi ${My_Form.get_form_data(
+                                                        'first_name',
+                                                    ).trim()}! ` + My_Form.success_msg;
+                                                My_Form.error_msg =
+                                                    `Sorry ${My_Form.get_form_data(
+                                                        'first_name',
+                                                    ).trim()}! ` + My_Form.error_msg;
+                                                const success = wrapper_no_exec(
+                                                    form_submit_success,
+                                                    My_Form.form,
+                                                    UI.my_form_button,
+                                                    UI.my_form_status,
+                                                    My_Form.success_msg,
+                                                );
+                                                const error = wrapper_no_exec(
+                                                    form_submit_error,
+                                                    UI.my_form_status,
+                                                    My_Form.error_msg,
+                                                );
+                                                ajax(
+                                                    My_Form.method,
+                                                    My_Form.url,
+                                                    My_Form.data,
+                                                    success,
+                                                    error,
+                                                    (status) => {
+                                                        // Callback executed onreadystatechange
+                                                        if (status === 200) {
+                                                            recaptchaCallback(() => {
+                                                                form.classList.remove(
+                                                                    'was-validated',
+                                                                );
+                                                                sessionStorage.clear();
+                                                                if (
+                                                                    UI.country_select.labels[0]
+                                                                        .children[1] &&
+                                                                    UI.country_select.labels[0]
+                                                                        .children[1].tagName ===
+                                                                        'IMG'
+                                                                )
+                                                                    UI.country_select.labels[0].children[1].remove();
+                                                            });
+                                                        } else return;
+                                                        return;
+                                                    },
+                                                );
+                                            }
+                                        })
+                                        .catch((err) =>
+                                            console.error(
+                                                'Failed to import Formspree module: ',
+                                                err,
+                                            ),
+                                        );
+                                },
+                                false,
+                            );
+                        });
                 };
             })();
         }); // end of DOMContentLoaded event listener
@@ -1109,6 +1531,3 @@ const App = {
 }; // end of App
 
 App.init();
-
-
-

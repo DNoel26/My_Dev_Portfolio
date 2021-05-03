@@ -5,7 +5,7 @@
             {
                 "bugfixes": true,
                 "useBuiltIns": "usage",
-                "targets": "> 0.25%, not dead",
+                "targets": "> 0.02%, not dead",
                 "corejs": "3.10.0"
             }
         ]

@@ -13,25 +13,24 @@ class API {
         this.body = body;
     }
 
-    fetch_api()
-    {
-        return new Promise((resolve,reject)=>{
+    fetch_api() {
+        return new Promise((resolve, reject) => {
             fetch(this.endpoint, {
                 method: this.method,
                 headers: this.head,
                 body: this.body,
             })
-            .then((response) => {
-                this.response = response;
-                return response.json();
-            })
-            .then((data) => {
-                this.response_data = data;
-                resolve(data);
-            }) 
-            .catch(()=>console.log(`Failed to fetch API @ ${this.endpoint}`, reject()));   
-        });    
-    };
-};
+                .then((response) => {
+                    this.response = response;
+                    return response.json();
+                })
+                .then((data) => {
+                    this.response_data = data;
+                    resolve(data);
+                })
+                .catch(() => console.log(`Failed to fetch API @ ${this.endpoint}`, reject()));
+        });
+    }
+}
 
 export default API;
