@@ -62,16 +62,16 @@ module.exports = {
             filename: "./index.html"
         }),
         new HtmlWebpackPlugin({
-            template: "./src/html/my-google-desktop-audit.html",
+            template: "./src/html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html",
             inject: true,
             hash: true,
-            filename: "./html/my-google-desktop-audit.html"
+            filename: "./html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html"
         }),
         new HtmlWebpackPlugin({
-            template: "./src/html/my-google-mobile-audit.html",
+            template: "./src/html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html",
             inject: true,
             hash: true,
-            filename: "./html/my-google-mobile-audit.html"
+            filename: "./html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html"
         }),
         new CopyWebpackPlugin({
             patterns: [
