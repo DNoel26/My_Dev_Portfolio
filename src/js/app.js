@@ -226,17 +226,16 @@ const App = {
             let scroll_top_reset = true;
             let header_vid_ended = false;
             let scroll_timer;
+            let anchor_is_scrolled = false;
 
             // Simulates another click event after first if scrolled to top
             // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
             UI.anchor_links.forEach((link) => {
                 link.addEventListener('click', () => {
-                    if (
-                        document.documentElement.scrollTop <= scroll_limit ||
-                        window.pageYOffset <= scroll_limit
-                    ) {
+                    if (!anchor_is_scrolled) {
                         setTimeout(() => {
                             link.click();
+                            anchor_is_scrolled = true;
                         }, 750);
                     }
                 });
