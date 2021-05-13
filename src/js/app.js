@@ -226,7 +226,9 @@ const App = {
             let scroll_top_reset = true;
             let header_vid_ended = false;
             let scroll_timer;
+            let is_scrolling = false;
             let anchor_is_scrolled = false;
+            const header_timer_delay = 800;
 
             // Simulates another click event after first if scrolled to top
             // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
@@ -247,42 +249,41 @@ const App = {
                     if (!show_header) {
                         UI.header.classList.add('hide-header');
                         UI.header.classList.remove('show-header');
+                        is_scrolling = false;
                     }
-                }, 800));
+                }, header_timer_delay));
             };
 
             // Controls the side menu (tablet) and mobile menu functions
-            (function () {
-                const side_menu_toggler = () => {
-                    if (!UI.toggler_btn.classList.contains('collapsed')) {
-                        UI.side_menu_reveal();
-                    } else {
-                        UI.side_menu_hide();
-                    }
-                };
-                const mobile_menu_toggler = () => {
-                    if (!UI.toggler_btn.classList.contains('collapsed')) {
-                        UI.mobile_menu_reveal();
-                    } else {
-                        UI.mobile_menu_hide();
-                    }
-                };
-                const mq_menu_toggler = () => {
-                    const mq_limits = [
-                        window.matchMedia('(max-width: 767.98px)'),
-                        window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
-                    ];
-                    media_queries(mq_limits[0], mobile_menu_toggler, null);
-                    media_queries(mq_limits[1], side_menu_toggler, null);
-                };
-                UI.toggler_btn.addEventListener('click', mq_menu_toggler);
-                window.addEventListener(
-                    'resize',
-                    debounce(function () {
-                        UI.no_menu();
-                    }, 500),
-                );
-            })();
+            const side_menu_toggler = () => {
+                if (!UI.toggler_btn.classList.contains('collapsed')) {
+                    UI.side_menu_reveal();
+                } else {
+                    UI.side_menu_hide();
+                }
+            };
+            const mobile_menu_toggler = () => {
+                if (!UI.toggler_btn.classList.contains('collapsed')) {
+                    UI.mobile_menu_reveal();
+                } else {
+                    UI.mobile_menu_hide();
+                }
+            };
+            const mq_menu_toggler = () => {
+                const mq_limits = [
+                    window.matchMedia('(max-width: 767.98px)'),
+                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
+                ];
+                media_queries(mq_limits[0], mobile_menu_toggler, null);
+                media_queries(mq_limits[1], side_menu_toggler, null);
+            };
+            UI.toggler_btn.addEventListener('click', mq_menu_toggler);
+            window.addEventListener(
+                'resize',
+                debounce(function () {
+                    UI.no_menu();
+                }, 500),
+            );
 
             // Removes video after playing once and then adds a static background image (refresh to play video again)
             UI.header_vid.addEventListener('ended', () => {
@@ -410,10 +411,30 @@ const App = {
                 });
 
                 // Stops the header timer when header links are focused
+                // UI.header_links.forEach((link) => {
+                //     link.addEventListener('focus', () => {
+                //         show_header = true;
+                //         clearTimeout(scroll_timer);
+                //     });
+                // });
+
+                // Hides the header timer when header links are clicked
                 UI.header_links.forEach((link) => {
-                    link.addEventListener('focus', () => {
-                        show_header = true;
-                        clearTimeout(scroll_timer);
+                    link.addEventListener('click', (e) => {
+                        let scroll_check;
+                        let href_hash = link.getAttribute('href');
+                        if (href_hash.includes('#')) {
+                            e.preventDefault();
+                            document.querySelector(`${href_hash}`).scrollIntoView();
+                            scroll_check = setInterval(() => {
+                                console.log('scroll checking on header link click!', is_scrolling);
+                                if (!is_scrolling) {
+                                    if (!UI.toggler_btn.classList.contains('collapsed'))
+                                        UI.toggler_btn.click();
+                                    clearInterval(scroll_check);
+                                }
+                            }, header_timer_delay + 100);
+                        }
                     });
                 });
 
@@ -421,12 +442,21 @@ const App = {
                 document.addEventListener(
                     'scroll',
                     throttle(() => {
+                        is_scrolling = true;
+                        let is_scrolling_timer;
+                        clearTimeout(is_scrolling_timer);
+                        is_scrolling_timer = setTimeout(() => {
+                            is_scrolling = false;
+                        }, 300);
                         if (
                             document.documentElement.scrollTop > scroll_limit ||
                             window.pageYOffset > scroll_limit
                         )
                             show_header = false;
-                        else show_header = true;
+                        else {
+                            show_header = true;
+                            anchor_is_scrolled = false;
+                        }
 
                         // Clear previous timer and reset
                         clearTimeout(scroll_timer);
@@ -1322,9 +1352,8 @@ const App = {
                                     );
                                     let user_typed = false;
                                     select_change = function () {
-                                        const selected_options = document.querySelectorAll(
-                                            'option',
-                                        );
+                                        const selected_options =
+                                            document.querySelectorAll('option');
 
                                         // Adds country flag and phone calling code on country select
                                         selected_options.forEach((option) => {
@@ -1334,9 +1363,8 @@ const App = {
                                                 option.value !== ''
                                             ) {
                                                 const flag = option.getAttribute('data-flag');
-                                                const calling_codes = option.getAttribute(
-                                                    'data-calling-codes',
-                                                );
+                                                const calling_codes =
+                                                    option.getAttribute('data-calling-codes');
                                                 const img = document.createElement('img');
                                                 img.setAttribute('src', flag);
                                                 img.setAttribute(
