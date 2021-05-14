@@ -11,7 +11,13 @@
   force = true
 
 [[redirects]]
-  from = "*darnellnoeldev.netlify.app/*"
+  from = "https://www.darnellnoeldev.netlify.app/*"
+  to = "https://www.darnellnoel.dev/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
