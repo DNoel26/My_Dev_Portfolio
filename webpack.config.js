@@ -78,7 +78,7 @@ module.exports = {
                 { from: './src/img/', to: './img/' },
                 { from: './src/media/', to: './media/' },
                 { from: './_redirects.txt', to: './_redirects.txt' },
-                { from: './sitemap.xml', to: './sitemap.xml' },
+                { from: './sitemap.xml', to: './sitemap_index.xml' },
             ],
         }),
         new MiniCssExtractPlugin({
