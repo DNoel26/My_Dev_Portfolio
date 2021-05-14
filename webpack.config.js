@@ -2,28 +2,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
-const path = require("path");
-const zlib = require("zlib");
+const path = require('path');
+const zlib = require('zlib');
 
 module.exports = {
-    mode: "production",
+    mode: 'production',
     entry: {
-        index: "./src/js/app.js"
+        index: './src/js/app.js',
     },
     //devtool: "inline-source-map",
     devServer: {
-        publicPath: "/",
+        publicPath: '/',
         contentBase: './dist',
         compress: true,
-        port: 8080
+        port: 8080,
     },
     optimization: {
         usedExports: true,
         minimize: true,
-        minimizer: [new CssMinimizerPlugin(), "..."],
+        minimizer: [new CssMinimizerPlugin(), '...'],
         splitChunks: {
             chunks: 'all',
             minChunks: 1,
@@ -34,57 +34,59 @@ module.exports = {
                 styles: {
                     test: /\.css$/,
                     chunks: 'all',
-                    enforce: true
-                }
-            }
-        }
+                    enforce: true,
+                },
+            },
+        },
     },
     performance: {
         maxEntrypointSize: 256000,
-        maxAssetSize: 256000
+        maxAssetSize: 256000,
     },
     output: {
-        chunkFilename: "[id].bundle.[contenthash].js",
-        filename: "[name].bundle.[contenthash].js",
-        path: path.resolve(__dirname, "dist"),
-        publicPath: "/",
-        sourceMapFilename: "[name].map",
+        chunkFilename: '[id].bundle.[contenthash].js',
+        filename: '[name].bundle.[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
+        sourceMapFilename: '[name].map',
         assetModuleFilename: './assets/[hash][ext][query]',
-        clean: true
+        clean: true,
     },
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
+            template: './src/index.html',
             inject: true,
             hash: true,
-            chunks: "all",
-            filename: "./index.html"
+            chunks: 'all',
+            filename: './index.html',
         }),
         new HtmlWebpackPlugin({
-            template: "./src/html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html",
+            template: './src/html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
             inject: true,
-            hash: true,
-            filename: "./html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html"
+            hash: false,
+            filename: './html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
         }),
         new HtmlWebpackPlugin({
-            template: "./src/html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html",
+            template: './src/html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
             inject: true,
-            hash: true,
-            filename: "./html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html"
+            hash: false,
+            filename: './html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: "./src/img/", to: "./img/" },
-                { from: "./src/media/", to: "./media/" }
+                { from: './src/img/', to: './img/' },
+                { from: './src/media/', to: './media/' },
+                { from: './_redirects.txt', to: './_redirects.txt' },
+                { from: './sitemap.xml', to: './sitemap.xml' },
             ],
         }),
         new MiniCssExtractPlugin({
-            filename: "styles/[name].[contenthash].css",
+            filename: 'styles/[name].[contenthash].css',
         }),
         new CompressionPlugin({
-            filename: "[path][base].br",
-            algorithm: "brotliCompress",
+            filename: '[path][base].br',
+            algorithm: 'brotliCompress',
             test: /\.(js|css|html|svg|pdf)$/,
             compressionOptions: {
                 params: {
@@ -111,18 +113,18 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                include: [path.resolve(__dirname, "src")],
+                include: [path.resolve(__dirname, 'src')],
                 exclude: [
                     /node_modules[\\\/]core-js/,
                     /node_modules[\\\/]webpack[\\\/]buildin/,
-                    /(node_modules|bower_components)/
+                    /(node_modules|bower_components)/,
                 ],
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        cacheDirectory: true 
-                    }
-                }
+                        cacheDirectory: true,
+                    },
+                },
                 /*exclude: [
                     // \\ for Windows, \/ for Mac OS and Linux
                     /node_modules[\\\/]core-js/,
@@ -144,18 +146,18 @@ module.exports = {
                         //
                     }
                 },*/
-            },          
+            },
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'] // ,'style-loader' 
+                use: [MiniCssExtractPlugin.loader, 'css-loader'], // ,'style-loader'
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp|mp4)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
             },
             {
                 test: /\.(pdf)$/i,
@@ -163,18 +165,18 @@ module.exports = {
                     loader: 'file-loader?name=[name].[ext]',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: './assets/'
-                    }
+                        outputPath: './assets/',
+                    },
                 },
-                type: "javascript/auto"
+                type: 'javascript/auto',
             },
             {
                 test: /\.html$/i,
                 use: {
-                    loader: 'html-loader'
+                    loader: 'html-loader',
                 },
-                type: "javascript/auto"
-            }
+                type: 'javascript/auto',
+            },
         ],
-    }
+    },
 };
