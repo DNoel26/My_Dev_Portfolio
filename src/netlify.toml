@@ -1,5 +1,11 @@
 [[redirects]]
-  from = "https://darnellnoeldev.netlify.app/"
+  from = "https://darnellnoeldev.netlify.app/*"
+  to = "https://www.darnellnoel.dev/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
