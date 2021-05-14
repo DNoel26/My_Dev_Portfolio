@@ -77,7 +77,8 @@ module.exports = {
             patterns: [
                 { from: './src/img/', to: './img/' },
                 { from: './src/media/', to: './media/' },
-                { from: './src/_redirects', to: './_redirects' },
+                //{ from: './src/_redirects', to: './_redirects' },
+                { from: './src/netlify.toml', to: './netlify.toml' },
                 { from: './sitemap.xml', to: './sitemap_index.xml' },
             ],
         }),
