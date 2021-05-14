@@ -77,7 +77,7 @@ module.exports = {
             patterns: [
                 { from: './src/img/', to: './img/' },
                 { from: './src/media/', to: './media/' },
-                { from: './_redirects.txt', to: './_redirects.txt' },
+                { from: './src/_redirects.txt', to: './_redirects.txt' },
                 { from: './sitemap.xml', to: './sitemap_index.xml' },
             ],
         }),
