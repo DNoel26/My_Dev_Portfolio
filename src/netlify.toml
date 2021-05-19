@@ -1,23 +1,23 @@
 [[redirects]]
-  from = "https://darnellnoel.netlify.app/*"
+  from = "https://darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://darnellnoel.netlify.app/*"
+  from = "http://darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://www.darnellnoel.netlify.app/*"
+  from = "https://www.darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://www.darnellnoel.netlify.app/*"
+  from = "http://www.darnellnoeldev.netlify.app/*"
   to = "https://www.darnellnoel.dev/"
   status = 301
   force = true
