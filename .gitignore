@@ -1,4 +1,19 @@
-**/git_ignore
-**/.vscode
-**/.history
+# Ignore the node_modules directory
 node_modules/
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+dist/
+
+# The file containing environment variables 
+*.env
+
+# Ignore IDE specific files
+.vscode/
+.history/
+
+# Others 
+**/git_ignore/
