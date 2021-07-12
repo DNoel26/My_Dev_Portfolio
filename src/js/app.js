@@ -1,6 +1,5 @@
 'use strict';
-
-console.log('App.js Loaded Successfully');
+console.time('App Loaded Successfully in');
 require('../css/style.css');
 require('../css/mq.css');
 
@@ -37,7 +36,9 @@ const App = {
     init() {
         /*** Main Document ***/
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOMContentLoaded Successfully');
+            ///log console.log('App Loaded Successfully');
+            console.timeEnd('App Loaded Successfully in');
+            ///log console.log('DOMContentLoaded Successfully');
             (function () {
                 // Lazy load images
                 const init_lazy_imgs = [].slice.call(UI.lazy_imgs);
@@ -427,7 +428,7 @@ const App = {
                             e.preventDefault();
                             document.querySelector(`${href_hash}`).scrollIntoView();
                             scroll_check = setInterval(() => {
-                                console.log('scroll checking on header link click!', is_scrolling);
+                                ///log console.log('scroll checking on header link click!', is_scrolling);
                                 if (!is_scrolling) {
                                     if (!UI.toggler_btn.classList.contains('collapsed'))
                                         UI.toggler_btn.click();
@@ -1308,13 +1309,13 @@ const App = {
                         // Use traditional 'for loops' for IE 11
                         for (const mutation of mutationsList) {
                             if (mutation.type === 'childList') {
-                                //console.log('A child node has been added or removed.');
+                                ///log console.log('A child node has been added or removed.');
                             } else if (mutation.type === 'attributes') {
-                                //console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                                ///log console.log('The ' + mutation.attributeName + ' attribute was modified.');
                             } else if (mutation.type === 'subtree') {
-                                //console.log('The subtree attribute was modified.');
+                                ///log console.log('The subtree attribute was modified.');
                             }
-                            //console.log(mutation, "and ", observer);
+                            ///log console.log(mutation, "and ", observer);
                         }
                     };
 
@@ -1373,6 +1374,7 @@ const App = {
                                                 );
                                                 img.setAttribute('width', '40px');
                                                 img.setAttribute('height', 'auto');
+                                                img.style.marginLeft = '10px';
                                                 if (!user_typed)
                                                     UI.phone.value = `+${calling_codes}-`;
                                                 if (
@@ -1461,11 +1463,19 @@ const App = {
                                 });
                             })();
 
+                            form.addEventListener('input', () => {
+                                UI.text_area.value = UI.text_area.value.trimStart();
+                                if (UI.text_area.value.includes('    ')) {
+                                    UI.text_area.value = UI.text_area.value.trim();
+                                }
+                            });
+
                             // Heavily modified Bootstrap validation and Formspree functions (Ajax method - prevents redirection on form submit)
                             form.addEventListener(
                                 'submit',
                                 (event) => {
                                     event.preventDefault();
+                                    //UI.text_area.value = UI.text_area.value.trim();
 
                                     // Stop multiple submits from occurring
                                     event.stopImmediatePropagation();

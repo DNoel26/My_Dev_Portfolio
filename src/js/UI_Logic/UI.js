@@ -108,6 +108,7 @@ const UI = {
     form_data: document.querySelectorAll('.form-data'),
     country_select: document.getElementById('country'),
     phone: document.getElementById('phone'),
+    text_area: document.getElementById('message-body'),
 
     /* Formspree */
     valid_feedback_fname: document.querySelector('.valid-feedback.valid-feedback-fname'),
