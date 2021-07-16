@@ -1,3 +1,5 @@
+/** @format */
+
 'use strict';
 console.time('App Loaded Successfully in');
 require('../css/style.css');
@@ -56,114 +58,152 @@ const App = {
                 };
                 if ('IntersectionObserver' in window) {
                     // Lazy Images
-                    const lazy_img_observer = new IntersectionObserver(function (
-                        entries,
-                        observer,
-                    ) {
-                        entries.forEach(function (entry) {
-                            if (entry.isIntersecting) {
-                                const lazy_image = entry.target;
-                                const lazy_data_src = lazy_image.getAttribute('data-src');
-                                const lazy_data_srcset = lazy_image.getAttribute('data-srcset');
+                    const lazy_img_observer = new IntersectionObserver(
+                        function (entries, observer) {
+                            entries.forEach(function (entry) {
+                                if (entry.isIntersecting) {
+                                    const lazy_image = entry.target;
+                                    const lazy_data_src =
+                                        lazy_image.getAttribute('data-src');
+                                    const lazy_data_srcset =
+                                        lazy_image.getAttribute('data-srcset');
 
-                                if (lazy_image.hasAttribute('data-src')) {
-                                    lazy_image.setAttribute('src', lazy_data_src);
-                                    lazy_image.removeAttribute('data-src');
+                                    if (lazy_image.hasAttribute('data-src')) {
+                                        lazy_image.setAttribute(
+                                            'src',
+                                            lazy_data_src,
+                                        );
+                                        lazy_image.removeAttribute('data-src');
+                                    }
+
+                                    if (
+                                        lazy_image.hasAttribute('data-srcset')
+                                    ) {
+                                        lazy_image.setAttribute(
+                                            'srcset',
+                                            lazy_data_srcset,
+                                        );
+                                        lazy_image.removeAttribute(
+                                            'data-srcset',
+                                        );
+                                    }
+
+                                    lazy_image.classList.remove('lazy');
+                                    lazy_img_observer.unobserve(entry.target);
                                 }
-
-                                if (lazy_image.hasAttribute('data-srcset')) {
-                                    lazy_image.setAttribute('srcset', lazy_data_srcset);
-                                    lazy_image.removeAttribute('data-srcset');
-                                }
-
-                                lazy_image.classList.remove('lazy');
-                                lazy_img_observer.unobserve(entry.target);
-                            }
-                        });
-                    },
-                    options);
+                            });
+                        },
+                        options,
+                    );
                     init_lazy_imgs.forEach(function (lazy_img) {
                         lazy_img_observer.observe(lazy_img);
                     });
 
                     // Lazy Image Sources
-                    const lazy_source_observer = new IntersectionObserver(function (
-                        entries,
-                        observer,
-                    ) {
-                        entries.forEach(function (entry) {
-                            if (entry.isIntersecting) {
-                                const lazy_source = entry.target;
-                                const lazy_data_srcset = lazy_source.getAttribute('data-srcset');
+                    const lazy_source_observer = new IntersectionObserver(
+                        function (entries, observer) {
+                            entries.forEach(function (entry) {
+                                if (entry.isIntersecting) {
+                                    const lazy_source = entry.target;
+                                    const lazy_data_srcset =
+                                        lazy_source.getAttribute('data-srcset');
 
-                                if (lazy_source.hasAttribute('data-srcset')) {
-                                    lazy_source.setAttribute('srcset', lazy_data_srcset);
-                                    lazy_source.removeAttribute('data-srcset');
+                                    if (
+                                        lazy_source.hasAttribute('data-srcset')
+                                    ) {
+                                        lazy_source.setAttribute(
+                                            'srcset',
+                                            lazy_data_srcset,
+                                        );
+                                        lazy_source.removeAttribute(
+                                            'data-srcset',
+                                        );
+                                    }
+
+                                    lazy_source_observer.unobserve(
+                                        entry.target,
+                                    );
                                 }
-
-                                lazy_source_observer.unobserve(entry.target);
-                            }
-                        });
-                    },
-                    options);
+                            });
+                        },
+                        options,
+                    );
                     init_lazy_sources.forEach(function (lazy_source) {
                         lazy_source_observer.observe(lazy_source);
                     });
 
                     // Lazy Bg
-                    const lazy_bg_observer = new IntersectionObserver(function (entries, observer) {
+                    const lazy_bg_observer = new IntersectionObserver(function (
+                        entries,
+                        observer,
+                    ) {
                         entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
                                 entry.target.classList.add('load-now');
                                 lazy_bg_observer.unobserve(entry.target);
                             }
                         });
-                    }, options);
+                    },
+                    options);
                     init_lazy_bgs.forEach(function (lazy_bg) {
                         lazy_bg_observer.observe(lazy_bg);
                     });
-                    const grecaptcha_observer = new IntersectionObserver(function (
-                        entries,
-                        observer,
-                    ) {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                new Promise((resolve, reject) => {
-                                    UI.create_scripts(
-                                        'https://www.google.com/recaptcha/api.js?render=explicit',
-                                    );
-                                    setTimeout(resolve, 2000);
-                                })
-                                    .then(() => {
-                                        // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
-                                        recaptchaCallback(() => {
-                                            const grecaptcha_check = function () {
-                                                if (UI.grecaptchas.length > 0) {
-                                                    UI.my_form_button.removeAttribute('disabled');
-                                                    grecaptcha_observer.unobserve(entry.target);
-                                                    grecaptcha.render('recaptcha', {
-                                                        sitekey:
-                                                            '6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3',
-                                                        callback: () => {
-                                                            return;
-                                                        },
-                                                    });
-                                                } else {
-                                                    setTimeout(() => {
-                                                        grecaptcha_check();
-                                                    }, 15000);
-                                                }
-                                            };
-                                            grecaptcha_check();
-                                        });
+                    const grecaptcha_observer = new IntersectionObserver(
+                        function (entries, observer) {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting) {
+                                    new Promise((resolve, reject) => {
+                                        UI.create_scripts(
+                                            'https://www.google.com/recaptcha/api.js?render=explicit',
+                                        );
+                                        setTimeout(resolve, 2000);
                                     })
-                                    .catch((err) =>
-                                        console.log('Error in script delay promise: ', err),
-                                    );
-                            }
-                        });
-                    },
-                    options);
+                                        .then(() => {
+                                            // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
+                                            recaptchaCallback(() => {
+                                                const grecaptcha_check =
+                                                    function () {
+                                                        if (
+                                                            UI.grecaptchas
+                                                                .length > 0
+                                                        ) {
+                                                            UI.my_form_button.removeAttribute(
+                                                                'disabled',
+                                                            );
+                                                            grecaptcha_observer.unobserve(
+                                                                entry.target,
+                                                            );
+                                                            grecaptcha.render(
+                                                                'recaptcha',
+                                                                {
+                                                                    sitekey:
+                                                                        '6LfWHkgaAAAAAIKEcuqTQiy82YSpeWTdjebsfWZ3',
+                                                                    callback:
+                                                                        () => {
+                                                                            return;
+                                                                        },
+                                                                },
+                                                            );
+                                                        } else {
+                                                            setTimeout(() => {
+                                                                grecaptcha_check();
+                                                            }, 15000);
+                                                        }
+                                                    };
+                                                grecaptcha_check();
+                                            });
+                                        })
+                                        .catch((err) =>
+                                            console.log(
+                                                'Error in script delay promise: ',
+                                                err,
+                                            ),
+                                        );
+                                }
+                            });
+                        },
+                        options,
+                    );
                     init_grecaptchas.forEach((element) => {
                         grecaptcha_observer.observe(element);
                     });
@@ -208,14 +248,14 @@ const App = {
                 );
             }, 10000);
 
-            // Loads Google Preview on click only
+            // Loads Resume via Google Preview on click only
             let google_preview_btn_is_clicked = false;
             (function () {
                 UI.google_preview_modal_btn.addEventListener('click', () => {
                     if (!google_preview_btn_is_clicked) {
                         UI.google_preview_modal.setAttribute(
                             'src',
-                            'https://drive.google.com/file/d/1xZArsqDMpjgQ6NLlHpaTBkOqLrOWSHwV/preview',
+                            'https://drive.google.com/file/d/1fHBSLAaqd7pVWZ7lZr7jAOXBCZB0yXmT/preview',
                         );
                         google_preview_btn_is_clicked = true;
                     }
@@ -273,7 +313,9 @@ const App = {
             const mq_menu_toggler = () => {
                 const mq_limits = [
                     window.matchMedia('(max-width: 767.98px)'),
-                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
+                    window.matchMedia(
+                        '(min-width: 768px) and (max-width: 991.98px)',
+                    ),
                 ];
                 media_queries(mq_limits[0], mobile_menu_toggler, null);
                 media_queries(mq_limits[1], side_menu_toggler, null);
@@ -426,11 +468,17 @@ const App = {
                         let href_hash = link.getAttribute('href');
                         if (href_hash.includes('#')) {
                             e.preventDefault();
-                            document.querySelector(`${href_hash}`).scrollIntoView();
+                            document
+                                .querySelector(`${href_hash}`)
+                                .scrollIntoView();
                             scroll_check = setInterval(() => {
                                 ///log console.log('scroll checking on header link click!', is_scrolling);
                                 if (!is_scrolling) {
-                                    if (!UI.toggler_btn.classList.contains('collapsed'))
+                                    if (
+                                        !UI.toggler_btn.classList.contains(
+                                            'collapsed',
+                                        )
+                                    )
                                         UI.toggler_btn.click();
                                     clearInterval(scroll_check);
                                 }
@@ -464,7 +512,9 @@ const App = {
 
                         // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                         if (!show_header) {
-                            if (UI.bot_nav_collapse.classList.contains('show')) {
+                            if (
+                                UI.bot_nav_collapse.classList.contains('show')
+                            ) {
                                 show_header = true;
                                 return;
                             }
@@ -485,24 +535,48 @@ const App = {
                     }, 200),
                     { passive: true },
                 );
-                document.addEventListener('scroll', scroll_moved_debounce_wrapper, {
-                    passive: true,
-                });
-                document.addEventListener('touchmove', scroll_moved_debounce_wrapper, {
-                    passive: true,
-                });
-                document.addEventListener('touchstart', scroll_moved_debounce_wrapper, {
-                    passive: true,
-                });
-                document.addEventListener('scroll', sticky_header_throttle_wrapper, {
-                    passive: true,
-                });
-                document.addEventListener('touchmove', sticky_header_throttle_wrapper, {
-                    passive: true,
-                });
-                document.addEventListener('touchstart', sticky_header_throttle_wrapper, {
-                    passive: true,
-                });
+                document.addEventListener(
+                    'scroll',
+                    scroll_moved_debounce_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
+                document.addEventListener(
+                    'touchmove',
+                    scroll_moved_debounce_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
+                document.addEventListener(
+                    'touchstart',
+                    scroll_moved_debounce_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
+                document.addEventListener(
+                    'scroll',
+                    sticky_header_throttle_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
+                document.addEventListener(
+                    'touchmove',
+                    sticky_header_throttle_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
+                document.addEventListener(
+                    'touchstart',
+                    sticky_header_throttle_wrapper,
+                    {
+                        passive: true,
+                    },
+                );
             })();
 
             /*** HOME SECTION ***/
@@ -526,11 +600,21 @@ const App = {
                 let scroll_amt = 360;
                 const mq_limits = [
                     window.matchMedia('(max-width: 320.98px)'),
-                    window.matchMedia('(min-width: 321px) and (max-width: 575.98px)'),
-                    window.matchMedia('(min-width: 576px) and (max-width: 767.98px)'),
-                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
-                    window.matchMedia('(min-width: 992px) and (max-width: 1199.98px)'),
-                    window.matchMedia('(min-width: 1200px) and (max-width: 1399.98px)'),
+                    window.matchMedia(
+                        '(min-width: 321px) and (max-width: 575.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 576px) and (max-width: 767.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 768px) and (max-width: 991.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 992px) and (max-width: 1199.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 1200px) and (max-width: 1399.98px)',
+                    ),
                     window.matchMedia('(min-width: 1400px)'),
                 ];
                 const scroll_amt_modifier = function () {
@@ -596,7 +680,10 @@ const App = {
                     'click',
                     throttle(function () {
                         UI.grow_btn_onclick(UI.my_carousel_prev_btn, 1.25, 250);
-                        UI.scroll_horizontally(UI.my_carousel_content, -scroll_amt);
+                        UI.scroll_horizontally(
+                            UI.my_carousel_content,
+                            -scroll_amt,
+                        );
                         UI.scroll_end(UI.my_carousel_content, 20);
                     }, 700),
                 );
@@ -604,7 +691,10 @@ const App = {
                     'click',
                     throttle(function () {
                         UI.grow_btn_onclick(UI.my_carousel_next_btn, 1.25, 250);
-                        UI.scroll_horizontally(UI.my_carousel_content, scroll_amt);
+                        UI.scroll_horizontally(
+                            UI.my_carousel_content,
+                            scroll_amt,
+                        );
                         UI.scroll_start(UI.my_carousel_content, 20);
                     }, 700),
                 );
@@ -616,9 +706,15 @@ const App = {
                 let tagcloud_radius;
                 const mq_limits = [
                     window.matchMedia('(max-width: 320.98px)'),
-                    window.matchMedia('(min-width: 321px) and (max-width: 575.98px)'),
-                    window.matchMedia('(min-width: 576px) and (max-width: 767.98px)'),
-                    window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
+                    window.matchMedia(
+                        '(min-width: 321px) and (max-width: 575.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 576px) and (max-width: 767.98px)',
+                    ),
+                    window.matchMedia(
+                        '(min-width: 768px) and (max-width: 991.98px)',
+                    ),
                     window.matchMedia('(min-width: 992px)'),
                 ];
                 const tagcloud_resizer = function () {
@@ -705,9 +801,11 @@ const App = {
                     // Add more tags to existing tag cloud
                     // myTags = myTags.concat([]);
                     // tagCloud.update(myTags);
-                    UI.tagcloud_content = document.querySelector('.tag-cloud-content');
+                    UI.tagcloud_content =
+                        document.querySelector('.tag-cloud-content');
                     UI.tagcloud = document.querySelector('.tagcloud');
-                    UI.tagcloud_items = document.querySelectorAll('.tagcloud--item');
+                    UI.tagcloud_items =
+                        document.querySelectorAll('.tagcloud--item');
 
                     // Randomizes tag word colours and adds effects on click
                     UI.tagcloud_items.forEach((item) => {
@@ -718,7 +816,8 @@ const App = {
                             if (clicked_once && clicked_twice) {
                                 item.style.fontSize = '0';
                                 setTimeout(() => {
-                                    item.style.color = generate_dark_color_hex();
+                                    item.style.color =
+                                        generate_dark_color_hex();
                                     item.style.fontSize = 'initial';
                                     item.style.fontWeight = '400';
                                     clicked_once = false;
@@ -743,7 +842,10 @@ const App = {
                     rootMargin: '300px',
                     threshold: 0,
                 };
-                const tagcloud_observer = new IntersectionObserver(function (entries, observer) {
+                const tagcloud_observer = new IntersectionObserver(function (
+                    entries,
+                    observer,
+                ) {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             import('./Business_Logic/TagCloud.js')
@@ -756,17 +858,22 @@ const App = {
                                         'resize',
                                         debounce(function () {
                                             tagcloud_resizer();
-                                            if (UI.tagcloud) UI.tagcloud.remove();
+                                            if (UI.tagcloud)
+                                                UI.tagcloud.remove();
                                             tagcloud_loader(TagCloud);
                                         }, 500),
                                     );
                                 })
                                 .catch((err) =>
-                                    console.error('Failed to import TagCloud module: ', err),
+                                    console.error(
+                                        'Failed to import TagCloud module: ',
+                                        err,
+                                    ),
                                 );
                         }
                     });
-                }, options);
+                },
+                options);
                 tagcloud_observer.observe(UI.tagcloud_content);
             })();
 
@@ -779,57 +886,79 @@ const App = {
             (function () {
                 let current_project = {};
                 let new_inner_html = ``;
-                const dev_project_carousel = new bootstrap.Carousel(UI.dev_project_carousel, {
-                    interval: 5000,
-                });
+                const dev_project_carousel = new bootstrap.Carousel(
+                    UI.dev_project_carousel,
+                    {
+                        interval: 5000,
+                    },
+                );
 
                 // Adds an indicator button, along with attributes per image and sets active class to first slide
                 // Accepts a single parameter with values "dev" or "client"
                 const populate_carousel_indicators = function (proj_type) {
-                    current_project.carousel_img_list.srcs.forEach((indicator, index) => {
-                        const btn = document.createElement('button');
-                        btn.setAttribute('type', 'button');
-                        btn.setAttribute('data-bs-target', '#dev-project-carousel');
-                        if (index === 0)
-                            btn.classList.add('active', 'btn'),
-                                btn.setAttribute('aria-current', 'true');
-                        else btn.classList.add('btn');
-                        btn.setAttribute('aria-label', `Slide ${index + 1}`);
+                    current_project.carousel_img_list.srcs.forEach(
+                        (indicator, index) => {
+                            const btn = document.createElement('button');
+                            btn.setAttribute('type', 'button');
+                            btn.setAttribute(
+                                'data-bs-target',
+                                '#dev-project-carousel',
+                            );
+                            if (index === 0)
+                                btn.classList.add('active', 'btn'),
+                                    btn.setAttribute('aria-current', 'true');
+                            else btn.classList.add('btn');
+                            btn.setAttribute(
+                                'aria-label',
+                                `Slide ${index + 1}`,
+                            );
 
-                        // Append to dev or client project depending on parameter set
-                        if (proj_type === 'dev'.toLowerCase())
-                            UI.dev_project_carousel_indicator_section.appendChild(btn);
-                        else if (proj_type === 'client'.toLowerCase())
-                            UI.dev_project_carousel_indicator_section.appendChild(btn);
-                    });
+                            // Append to dev or client project depending on parameter set
+                            if (proj_type === 'dev'.toLowerCase())
+                                UI.dev_project_carousel_indicator_section.appendChild(
+                                    btn,
+                                );
+                            else if (proj_type === 'client'.toLowerCase())
+                                UI.dev_project_carousel_indicator_section.appendChild(
+                                    btn,
+                                );
+                        },
+                    );
                 };
 
                 // Adds each image along with attributes, to the carousel slideshow
                 // Accepts a single parameter with values "dev" or "client"
                 const populate_carousel_img_data = function (proj_type) {
-                    current_project.carousel_img_list.srcs.forEach((src, index) => {
-                        const div = document.createElement('div');
-                        if (index === 0) div.classList.add('carousel-item', 'active');
-                        else div.classList.add('carousel-item');
-                        const img = document.createElement('img');
-                        img.setAttribute('loading', 'lazy');
-                        img.classList.add('d-block', 'w-100', 'p-3');
-                        img.setAttribute('src', src);
-                        img.setAttribute(
-                            'alt',
-                            current_project.carousel_img_list.alts[index] ||
-                                'My project carousel image',
-                        );
-                        img.setAttribute('width', '625');
-                        img.setAttribute('height', '500');
-                        div.appendChild(img);
+                    current_project.carousel_img_list.srcs.forEach(
+                        (src, index) => {
+                            const div = document.createElement('div');
+                            if (index === 0)
+                                div.classList.add('carousel-item', 'active');
+                            else div.classList.add('carousel-item');
+                            const img = document.createElement('img');
+                            img.setAttribute('loading', 'lazy');
+                            img.classList.add('d-block', 'w-100', 'p-3');
+                            img.setAttribute('src', src);
+                            img.setAttribute(
+                                'alt',
+                                current_project.carousel_img_list.alts[index] ||
+                                    'My project carousel image',
+                            );
+                            img.setAttribute('width', '625');
+                            img.setAttribute('height', '500');
+                            div.appendChild(img);
 
-                        // Append to dev or client project depending on parameter set
-                        if (proj_type === 'dev'.toLowerCase())
-                            UI.dev_project_carousel_inner_section.appendChild(div);
-                        else if (proj_type === 'client'.toLowerCase())
-                            UI.client_project_carousel_inner_section.appendChild(div);
-                    });
+                            // Append to dev or client project depending on parameter set
+                            if (proj_type === 'dev'.toLowerCase())
+                                UI.dev_project_carousel_inner_section.appendChild(
+                                    div,
+                                );
+                            else if (proj_type === 'client'.toLowerCase())
+                                UI.client_project_carousel_inner_section.appendChild(
+                                    div,
+                                );
+                        },
+                    );
                 };
 
                 // Adds notes to project overview
@@ -843,35 +972,51 @@ const App = {
 
                         // Append to dev or client project depending on parameter set
                         if (proj_type === 'dev'.toLowerCase())
-                            UI.dev_project_carousel_note_section.appendChild(list);
+                            UI.dev_project_carousel_note_section.appendChild(
+                                list,
+                            );
                         else if (proj_type === 'client'.toLowerCase())
-                            UI.client_project_carousel_note_section.appendChild(list);
+                            UI.client_project_carousel_note_section.appendChild(
+                                list,
+                            );
                     });
                 };
 
                 // Adds each tool / technology icon to the end of the project overview
                 // Accepts a single parameter with values "dev" or "client"
                 const populate_project_tool_icons = function (proj_type) {
-                    current_project.tool_icon_list.srcs.forEach((src, index) => {
-                        const img = document.createElement('img');
-                        img.setAttribute('loading', 'lazy');
-                        img.classList.add('img-fluid', 'icon-disp-img-lg', 'm-3');
-                        img.id = current_project.tool_icon_list.ids[index] || null;
-                        img.setAttribute('src', src);
-                        img.setAttribute(
-                            'alt',
-                            current_project.tool_icon_list.alts[index] ||
-                                'Tool and Technology Icon Badge',
-                        );
-                        img.setAttribute('width', '85');
-                        img.setAttribute('height', '64');
+                    current_project.tool_icon_list.srcs.forEach(
+                        (src, index) => {
+                            const img = document.createElement('img');
+                            img.setAttribute('loading', 'lazy');
+                            img.classList.add(
+                                'img-fluid',
+                                'icon-disp-img-lg',
+                                'm-3',
+                            );
+                            img.id =
+                                current_project.tool_icon_list.ids[index] ||
+                                null;
+                            img.setAttribute('src', src);
+                            img.setAttribute(
+                                'alt',
+                                current_project.tool_icon_list.alts[index] ||
+                                    'Tool and Technology Icon Badge',
+                            );
+                            img.setAttribute('width', '85');
+                            img.setAttribute('height', '64');
 
-                        // Append to dev or client project depending on parameter set
-                        if (proj_type === 'dev'.toLowerCase())
-                            UI.dev_project_carousel_icon_section.appendChild(img);
-                        else if (proj_type === 'client'.toLowerCase())
-                            UI.client_project_carousel_icon_section.appendChild(img);
-                    });
+                            // Append to dev or client project depending on parameter set
+                            if (proj_type === 'dev'.toLowerCase())
+                                UI.dev_project_carousel_icon_section.appendChild(
+                                    img,
+                                );
+                            else if (proj_type === 'client'.toLowerCase())
+                                UI.client_project_carousel_icon_section.appendChild(
+                                    img,
+                                );
+                        },
+                    );
                 };
                 const change_project = function () {
                     new_inner_html = `
@@ -952,19 +1097,21 @@ const App = {
                     UI.return_to_dev_gallery_btns = document.querySelectorAll(
                         "[data-id='dev-project-gallery']",
                     );
-                    UI.dev_project_carousel = document.getElementById('dev-project-carousel');
-                    UI.dev_project_carousel_indicator_section = document.getElementById(
-                        'dev-project-carousel-indicators',
+                    UI.dev_project_carousel = document.getElementById(
+                        'dev-project-carousel',
                     );
-                    UI.dev_project_carousel_inner_section = document.getElementById(
-                        'dev-project-carousel-inner',
-                    );
-                    UI.dev_project_carousel_note_section = document.getElementById(
-                        'dev-project-carousel-notes',
-                    );
-                    UI.dev_project_carousel_icon_section = document.getElementById(
-                        'dev-project-carousel-icon-section',
-                    );
+                    UI.dev_project_carousel_indicator_section =
+                        document.getElementById(
+                            'dev-project-carousel-indicators',
+                        );
+                    UI.dev_project_carousel_inner_section =
+                        document.getElementById('dev-project-carousel-inner');
+                    UI.dev_project_carousel_note_section =
+                        document.getElementById('dev-project-carousel-notes');
+                    UI.dev_project_carousel_icon_section =
+                        document.getElementById(
+                            'dev-project-carousel-icon-section',
+                        );
                     populate_carousel_img_data('dev');
                     populate_carousel_indicators('dev');
                     populate_project_notes('dev');
@@ -985,7 +1132,8 @@ const App = {
                     intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
                     Good luck surviving the hardest difficulty!
                 `;
-                Alien_Mathvasion.link_note = '(expect audio - desktop version only!)';
+                Alien_Mathvasion.link_note =
+                    '(expect audio - desktop version only!)';
                 Alien_Mathvasion.notes.push(
                     `Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`,
                 );
@@ -1038,7 +1186,9 @@ const App = {
                 Wix_Clone.notes.push(
                     `Only 3 pages were cloned for this project: Home, About and Contact.`,
                 );
-                Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
+                Wix_Clone.notes.push(
+                    `Website is fully responsive for all devices!`,
+                );
                 const wix_c_carousel_img_ids = [];
                 const wix_c_carousel_img_srcs = [
                     './img/projects/min/wix-clone-1-min.webp',
@@ -1077,12 +1227,17 @@ const App = {
                     authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site.
                     Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc. 
                 `;
-                Cyberdise.link_note = '(fake credentials only - desktop version only!)';
+                Cyberdise.link_note =
+                    '(fake credentials only - desktop version only!)';
                 Cyberdise.notes.push(
                     `Most other major features are working as expected. Search functionality not implemented just yet.`,
                 );
-                Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
-                Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
+                Cyberdise.notes.push(
+                    `Some UI elements are incomplete/missing.`,
+                );
+                Cyberdise.notes.push(
+                    `Not yet fully responsive on smaller devices!`,
+                );
                 const cyberdise_carousel_img_ids = [];
                 const cyberdise_carousel_img_srcs = [
                     './img/projects/min/cyberdise-online-store-1-min.webp',
@@ -1132,7 +1287,9 @@ const App = {
                 Movie_Database.notes.push(
                     `All major features are working as expected. Pagination to be implemented.`,
                 );
-                Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
+                Movie_Database.notes.push(
+                    `Not yet fully responsive on smaller devices!`,
+                );
                 const movie_db_carousel_img_ids = [];
                 const movie_db_carousel_img_srcs = [
                     './img/projects/min/movie-db-1-min.webp',
@@ -1172,9 +1329,14 @@ const App = {
                     The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, 
                     login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
                 `;
-                Amazon_Clone.link_note = '(fake credentials only - desktop version only!)';
-                Amazon_Clone.notes.push(`All major features are working as expected.`);
-                Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
+                Amazon_Clone.link_note =
+                    '(fake credentials only - desktop version only!)';
+                Amazon_Clone.notes.push(
+                    `All major features are working as expected.`,
+                );
+                Amazon_Clone.notes.push(
+                    `Not yet fully responsive on smaller devices!`,
+                );
                 const amazon_c_carousel_img_ids = [];
                 const amazon_c_carousel_img_srcs = [
                     './img/projects/min/amazon-clone-1-min.webp',
@@ -1225,7 +1387,9 @@ const App = {
                 Real_Estate_Site.notes.push(
                     `Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`,
                 );
-                Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
+                Real_Estate_Site.notes.push(
+                    `Not yet fully responsive on smaller devices!`,
+                );
                 const real_estate_carousel_img_ids = [];
                 const real_estate_carousel_img_srcs = [
                     './img/projects/min/real-estate-1-min.webp',
@@ -1251,7 +1415,9 @@ const App = {
                 );
 
                 // Retrieve last project stored in session and execute change project if current project is not empty
-                current_project = JSON.parse(sessionStorage.getItem('current_project'));
+                current_project = JSON.parse(
+                    sessionStorage.getItem('current_project'),
+                );
                 if (current_project) {
                     change_project();
                     UI.dev_project_overview.innerHTML = new_inner_html;
@@ -1259,17 +1425,27 @@ const App = {
                 }
                 UI.dev_project_gallery_btns.forEach((btn) => {
                     btn.addEventListener('click', () => {
-                        if (btn.dataset.devProject === 'Alien Mathvasion Game') {
+                        if (
+                            btn.dataset.devProject === 'Alien Mathvasion Game'
+                        ) {
                             current_project = Alien_Mathvasion;
-                        } else if (btn.dataset.devProject === 'Wix Site Clone') {
+                        } else if (
+                            btn.dataset.devProject === 'Wix Site Clone'
+                        ) {
                             current_project = Wix_Clone;
-                        } else if (btn.dataset.devProject === 'Cyberdise Online Store') {
+                        } else if (
+                            btn.dataset.devProject === 'Cyberdise Online Store'
+                        ) {
                             current_project = Cyberdise;
-                        } else if (btn.dataset.devProject === 'Movie Database') {
+                        } else if (
+                            btn.dataset.devProject === 'Movie Database'
+                        ) {
                             current_project = Movie_Database;
                         } else if (btn.dataset.devProject === 'Amazon Clone') {
                             current_project = Amazon_Clone;
-                        } else if (btn.dataset.devProject === 'Real Estate Site') {
+                        } else if (
+                            btn.dataset.devProject === 'Real Estate Site'
+                        ) {
                             current_project = Real_Estate_Site;
                         } else {
                             return logger('PROJECT NOT LOADED CORRECTLY');
@@ -1279,7 +1455,10 @@ const App = {
                         change_project();
 
                         // Store current project in session storage
-                        sessionStorage.setItem('current_project', JSON.stringify(current_project));
+                        sessionStorage.setItem(
+                            'current_project',
+                            JSON.stringify(current_project),
+                        );
                         UI.dev_project_overview.innerHTML = new_inner_html;
                         reinitialize_el();
                         UI.dev_project_overview.scrollIntoView();
@@ -1302,7 +1481,11 @@ const App = {
                     const target_node = UI.dev_project_overview;
 
                     // Options for the observer (which mutations to observe)
-                    const config = { attributes: false, childList: true, subtree: true };
+                    const config = {
+                        attributes: false,
+                        childList: true,
+                        subtree: true,
+                    };
 
                     // Callback function to execute when mutations are observed
                     const callback = function (mutationsList, observer) {
@@ -1341,7 +1524,10 @@ const App = {
                     threshold: 0,
                 };
                 let select_change;
-                const form_api_observer = new IntersectionObserver(function (entries, observer) {
+                const form_api_observer = new IntersectionObserver(function (
+                    entries,
+                    observer,
+                ) {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             import('./Business_Logic/API.js')
@@ -1363,32 +1549,55 @@ const App = {
                                                 option.selected &&
                                                 option.value !== ''
                                             ) {
-                                                const flag = option.getAttribute('data-flag');
+                                                const flag =
+                                                    option.getAttribute(
+                                                        'data-flag',
+                                                    );
                                                 const calling_codes =
-                                                    option.getAttribute('data-calling-codes');
-                                                const img = document.createElement('img');
+                                                    option.getAttribute(
+                                                        'data-calling-codes',
+                                                    );
+                                                const img =
+                                                    document.createElement(
+                                                        'img',
+                                                    );
                                                 img.setAttribute('src', flag);
                                                 img.setAttribute(
                                                     'alt',
                                                     `Country flag for ${option.value}`,
                                                 );
-                                                img.setAttribute('width', '40px');
-                                                img.setAttribute('height', 'auto');
+                                                img.setAttribute(
+                                                    'width',
+                                                    '40px',
+                                                );
+                                                img.setAttribute(
+                                                    'height',
+                                                    'auto',
+                                                );
                                                 img.style.marginLeft = '10px';
                                                 if (!user_typed)
                                                     UI.phone.value = `+${calling_codes}-`;
                                                 if (
-                                                    UI.country_select.labels[0].children[1] &&
-                                                    UI.country_select.labels[0].children[1]
-                                                        .tagName === 'IMG'
+                                                    UI.country_select.labels[0]
+                                                        .children[1] &&
+                                                    UI.country_select.labels[0]
+                                                        .children[1].tagName ===
+                                                        'IMG'
                                                 )
                                                     UI.country_select.labels[0].children[1].remove();
-                                                UI.country_select.labels[0].appendChild(img);
-                                            } else if (option.selected && !option.value) {
+                                                UI.country_select.labels[0].appendChild(
+                                                    img,
+                                                );
+                                            } else if (
+                                                option.selected &&
+                                                !option.value
+                                            ) {
                                                 if (
-                                                    UI.country_select.labels[0].children[1] &&
-                                                    UI.country_select.labels[0].children[1]
-                                                        .tagName === 'IMG'
+                                                    UI.country_select.labels[0]
+                                                        .children[1] &&
+                                                    UI.country_select.labels[0]
+                                                        .children[1].tagName ===
+                                                        'IMG'
                                                 )
                                                     UI.country_select.labels[0].children[1].remove();
                                             }
@@ -1398,15 +1607,27 @@ const App = {
                                         .then((data) => {
                                             // Populates with API data
                                             data.forEach((datum) => {
-                                                const new_option = document.createElement('option');
-                                                new_option.setAttribute('value', datum.name);
-                                                new_option.setAttribute('data-flag', datum.flag);
+                                                const new_option =
+                                                    document.createElement(
+                                                        'option',
+                                                    );
+                                                new_option.setAttribute(
+                                                    'value',
+                                                    datum.name,
+                                                );
+                                                new_option.setAttribute(
+                                                    'data-flag',
+                                                    datum.flag,
+                                                );
                                                 new_option.setAttribute(
                                                     'data-calling-codes',
                                                     datum.callingCodes,
                                                 );
-                                                new_option.innerHTML = new_option.value;
-                                                UI.country_select.appendChild(new_option);
+                                                new_option.innerHTML =
+                                                    new_option.value;
+                                                UI.country_select.appendChild(
+                                                    new_option,
+                                                );
                                             });
                                             UI.phone.addEventListener(
                                                 'keyup',
@@ -1421,13 +1642,21 @@ const App = {
                                                 }, 300),
                                             );
                                         })
-                                        .catch((err) => console.error('Error: ', err))
+                                        .catch((err) =>
+                                            console.error('Error: ', err),
+                                        )
                                         .then(() => formspree()); // Executes formspree function regardless of promise fulfillment or rejection
                                 })
-                                .catch((err) => console.log('Failed to import API module: ', err));
+                                .catch((err) =>
+                                    console.log(
+                                        'Failed to import API module: ',
+                                        err,
+                                    ),
+                                );
                         }
                     });
-                }, options);
+                },
+                options);
                 form_api_observer.observe(UI.my_form);
                 const formspree = function () {
                     // Contact form validation responses on fail (for each form)
@@ -1444,29 +1673,43 @@ const App = {
                         .forEach(function (form, index) {
                             (function () {
                                 // Cycle through each form input/select/text area tags and store or populate with sessionStorage
-                                form.querySelectorAll('.form-data').forEach((data) => {
-                                    if (data.tagName === 'INPUT')
-                                        data.value = sessionStorage.getItem(data.name);
-                                    if (data.tagName === 'TEXTAREA')
-                                        data.value = sessionStorage.getItem(data.name);
-                                    if (data.tagName === 'SELECT')
-                                        data.value = sessionStorage.getItem(data.name) || '';
-                                    select_change();
+                                form.querySelectorAll('.form-data').forEach(
+                                    (data) => {
+                                        if (data.tagName === 'INPUT')
+                                            data.value = sessionStorage.getItem(
+                                                data.name,
+                                            );
+                                        if (data.tagName === 'TEXTAREA')
+                                            data.value = sessionStorage.getItem(
+                                                data.name,
+                                            );
+                                        if (data.tagName === 'SELECT')
+                                            data.value =
+                                                sessionStorage.getItem(
+                                                    data.name,
+                                                ) || '';
+                                        select_change();
 
-                                    // Save contact form info in cookies
-                                    data.addEventListener(
-                                        'input',
-                                        debounce(() => {
-                                            sessionStorage.setItem(data.name, data.value);
-                                        }, 500),
-                                    );
-                                });
+                                        // Save contact form info in cookies
+                                        data.addEventListener(
+                                            'input',
+                                            debounce(() => {
+                                                sessionStorage.setItem(
+                                                    data.name,
+                                                    data.value,
+                                                );
+                                            }, 500),
+                                        );
+                                    },
+                                );
                             })();
 
                             form.addEventListener('input', () => {
-                                UI.text_area.value = UI.text_area.value.trimStart();
+                                UI.text_area.value =
+                                    UI.text_area.value.trimStart();
                                 if (UI.text_area.value.includes('    ')) {
-                                    UI.text_area.value = UI.text_area.value.trim();
+                                    UI.text_area.value =
+                                        UI.text_area.value.trim();
                                 }
                             });
 
@@ -1483,14 +1726,20 @@ const App = {
                                         .then((module) => module.default) // uses the default export
                                         .then((Formspree) => {
                                             if (!form.checkValidity()) {
-                                                return new Promise((resolve, reject) => {
-                                                    // Checks validation on submit
-                                                    form.classList.add('was-validated');
-                                                    resolve();
-                                                })
+                                                return new Promise(
+                                                    (resolve, reject) => {
+                                                        // Checks validation on submit
+                                                        form.classList.add(
+                                                            'was-validated',
+                                                        );
+                                                        resolve();
+                                                    },
+                                                )
                                                     .then(() => {
                                                         // Displays validation messages if failed to enter info correctly
-                                                        validation_msgs[index]();
+                                                        validation_msgs[
+                                                            index
+                                                        ]();
                                                     })
                                                     .catch((err) => {
                                                         console.error(
@@ -1498,18 +1747,25 @@ const App = {
                                                         );
                                                     });
                                             } else {
-                                                const My_Form = new Formspree(UI.my_form);
-                                                My_Form.method = UI.my_form.method;
+                                                const My_Form = new Formspree(
+                                                    UI.my_form,
+                                                );
+                                                My_Form.method =
+                                                    UI.my_form.method;
                                                 My_Form.url = UI.my_form.action;
-                                                My_Form.data = new FormData(My_Form.form);
+                                                My_Form.data = new FormData(
+                                                    My_Form.form,
+                                                );
                                                 My_Form.success_msg =
                                                     `Hi ${My_Form.get_form_data(
                                                         'first_name',
-                                                    ).trim()}! ` + My_Form.success_msg;
+                                                    ).trim()}! ` +
+                                                    My_Form.success_msg;
                                                 My_Form.error_msg =
                                                     `Sorry ${My_Form.get_form_data(
                                                         'first_name',
-                                                    ).trim()}! ` + My_Form.error_msg;
+                                                    ).trim()}! ` +
+                                                    My_Form.error_msg;
                                                 const success = wrapper_no_exec(
                                                     form_submit_success,
                                                     My_Form.form,
@@ -1531,20 +1787,27 @@ const App = {
                                                     (status) => {
                                                         // Callback executed onreadystatechange
                                                         if (status === 200) {
-                                                            recaptchaCallback(() => {
-                                                                form.classList.remove(
-                                                                    'was-validated',
-                                                                );
-                                                                sessionStorage.clear();
-                                                                if (
-                                                                    UI.country_select.labels[0]
-                                                                        .children[1] &&
-                                                                    UI.country_select.labels[0]
-                                                                        .children[1].tagName ===
-                                                                        'IMG'
-                                                                )
-                                                                    UI.country_select.labels[0].children[1].remove();
-                                                            });
+                                                            recaptchaCallback(
+                                                                () => {
+                                                                    form.classList.remove(
+                                                                        'was-validated',
+                                                                    );
+                                                                    sessionStorage.clear();
+                                                                    if (
+                                                                        UI
+                                                                            .country_select
+                                                                            .labels[0]
+                                                                            .children[1] &&
+                                                                        UI
+                                                                            .country_select
+                                                                            .labels[0]
+                                                                            .children[1]
+                                                                            .tagName ===
+                                                                            'IMG'
+                                                                    )
+                                                                        UI.country_select.labels[0].children[1].remove();
+                                                                },
+                                                            );
                                                         } else return;
                                                         return;
                                                     },
