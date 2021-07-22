@@ -401,7 +401,7 @@ const UI = {
             window.getComputedStyle(this.invalid_feedback_message).display != 'none'
         ) {
             this.valid_feedback_message.innerHTML =
-                "How did you forget the most important part? Oh well, at least it's fine now...";
+                "Thank you, much better...";
         }
         return;
     },

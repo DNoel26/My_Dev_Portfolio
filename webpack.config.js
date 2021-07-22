@@ -1,3 +1,5 @@
+/** @format */
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -62,16 +64,20 @@ module.exports = {
             filename: './index.html',
         }),
         new HtmlWebpackPlugin({
-            template: './src/html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
+            template:
+                './src/html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
             inject: true,
             hash: false,
-            filename: './html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
+            filename:
+                './html/my-google-desktop-audit-www.darnellnoel.dev-20210502T232147.html',
         }),
         new HtmlWebpackPlugin({
-            template: './src/html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
+            template:
+                './src/html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
             inject: true,
             hash: false,
-            filename: './html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
+            filename:
+                './html/my-google-mobile-audit-www.darnellnoel.dev-20210502T231910.html',
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -80,6 +86,7 @@ module.exports = {
                 //{ from: './src/_redirects', to: './_redirects' },
                 { from: './src/netlify.toml', to: './netlify.toml' },
                 { from: './sitemap.xml', to: './sitemap_index.xml' },
+                { from: './src/dev_projects.json', to: './dev_projects.json' },
             ],
         }),
         new MiniCssExtractPlugin({

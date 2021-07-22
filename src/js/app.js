@@ -41,6 +41,19 @@ const App = {
             ///log console.log('App Loaded Successfully');
             console.timeEnd('App Loaded Successfully in');
             ///log console.log('DOMContentLoaded Successfully');
+
+            //TODO Convert dev and prod projects to json files and use in project section
+            (function () {
+                fetch('/dev_projects.json')
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        return console.log(data);
+                    })
+                    .catch((err) => {
+                        return console.log(err);
+                    });
+            })();
+
             (function () {
                 // Lazy load images
                 const init_lazy_imgs = [].slice.call(UI.lazy_imgs);
@@ -764,9 +777,9 @@ const App = {
                         'SOC / MVC',
                         'REST-APIs',
                         'Data-Structures',
-                        'Continuous-Integration',
+                        'CI / CD',
                         'UI / UX',
-                        'Testing',
+                        'Automated-Testing',
                         'Version-Control',
                         'Debugging',
                         'Algorithms',

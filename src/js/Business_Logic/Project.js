@@ -3,8 +3,9 @@ class Project {
     description;
     status = {
         msg: null, // Completed, Work in Progress, On Hold
-        class_code: null,
+        class_code: null, // For CSS style setting
     };
+    //TODO Convert link and github etc to objects
     link; // href to project hosted site
     link_header; // e.g. "Play" or "View" Now
     link_note; // e.g. (expect audio)
@@ -27,15 +28,15 @@ class Project {
         alts: [],
     }; // i.e. to be added to the "- Built Using -" icon section
 
-    constructor(name, status_msg, link, link_header, github_link, github_readme) {
-        if (status_msg === 1) {
-            status_msg = 'Completed';
+    constructor(name, _status, link, link_header, github_link, github_readme) {
+        if (_status === 1) {
+            _status = 'Completed';
             this.status.class_code = 'status-complete';
-        } else if (status_msg === 2) {
-            status_msg = 'Work in Progress';
+        } else if (_status === 2) {
+            _status = 'Work in Progress';
             this.status.class_code = 'status-in-progress';
-        } else if (status_msg === 3) {
-            status_msg = 'On Hold';
+        } else if (_status === 3) {
+            _status = 'On Hold';
             this.status.class_code = 'status-hold';
         }
         if (github_readme === true) {
@@ -44,7 +45,7 @@ class Project {
             github_readme = '(GitHub)';
         }
         this.name = name;
-        this.status.msg = status_msg;
+        this.status.msg = _status;
         this.link = link;
         this.link_header = link_header;
         this.github_link = github_link;
