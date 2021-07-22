@@ -1278,7 +1278,7 @@ a.nav-link,
 /* HTML */
 
 html {
-    scroll-behavior: smooth !important;
+    scroll-behavior: smooth ;
     height: 100% !important;
     height: -webkit-fill-available !important;
 }

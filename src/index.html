@@ -42,6 +42,7 @@
                 <nav class="navbar navbar-expand-md top-header-nav col-12 col-md-4 col-lg-2 col-xl-auto">
                     <!--Logo-->
                     <div class="logo">
+                        <!-- <a class="skip-main" href="#main">Skip to main content</a> -->
                         <a href="./" class="navbar-brand logo-link">
                             <img src="./img/logos/min/darnell-noel-logo-white-nobg-min.png"
                                 alt="Darnell Noel's Full Stack Web Development Logo for his web portfolio"
@@ -129,7 +130,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
         <!-- Modal -->
         <div class="modal fade" id="resume" tabindex="-1" aria-labelledby="resume-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
@@ -157,20 +158,21 @@
         <!--Home Section-->
         <section class="welcome-section" id="home">
             <!--Fixes sticky header resize bug-->
-            <div
+            <div tabindex="0" id="above-placeholder-div"></div>
+            <div 
                 class="placeholder-div invisible placeholder-div-reveal placeholder-div-reveal-start d-grid align-items-center text-center text-white">
                 <p class="h1 fs-1 pt-5 px-2 align-self-end">Hi there, I'd love to help <strong>you</strong></p>
-                <h1 class="pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive
+                <p class="pt-5 px-2 fs-3 align-self-start">I build fast, modern and responsive
                     <strong>websites</strong> and <strong> web applications</strong>
-                </h1>
+                </p>
                 <a href="#services" class="anchor-link fs-5 align-self-start text-white text-decoration-none cta">View
                     Services
                     Now</a>
             </div>
 
             <div class="intro mb-5 mt-5">
-                <h2 class="text-center fs-3 h2">Ready to take your business <strong
-                        class="text-custom-1">online?</strong></h2>
+                <p class="text-center fs-3 h2">Ready to take your business <strong
+                        class="text-custom-1">online?</strong></p>
             </div>
 
             <div class="container pt-custom-1 welcome">
@@ -178,9 +180,9 @@
                     <div class="col-lg-6 col-auto py-5 pb-xl-0">
                         <div>
                             <p class="text-center h2">Welcome officially to my</p>
-                            <h2 class="text-center">
+                            <h1 class="text-center">
                                 <strong class="ml13 text-custom-1">Developer Portfolio</strong>
-                            </h2>
+                            </h1>
                             <p class="small text-center h2 pt-3">- Designed and built from scratch using -</p>
                             <div class="pt-3 icon-row-sm">
                                 <div class="d-flex-custom-2 ">
@@ -675,7 +677,7 @@
                             <small class="d-block mt-2">React.js</small>
                             <div class="skill-rating skill-rating-intermediate"></div>
                         </div>
-                        
+
                         <!-- <div class="icon-disp col-6 col-md-3 pt-5 pt-sm-5 text-center">
                             <img loading="lazy" src="./img/transparent-png-w10.png"
                                 data-src="./img/logos/gatsby-badge.webp" alt="Icon"

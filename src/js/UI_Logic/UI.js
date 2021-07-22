@@ -18,6 +18,7 @@ const UI = {
     nav_container: document.querySelector('.nav-container'),
     top_nav: document.querySelector('.top-header-nav'),
     bot_nav: document.querySelector('.bot-header-nav'),
+    above_placeholder: document.querySelector('#above-placeholder-div'),
     body_placeholder: document.querySelector('body .placeholder-div'),
     header_empty_div: document.querySelector('header .empty-div'),
     scroll_indicator: document.querySelector('#my-bar'),

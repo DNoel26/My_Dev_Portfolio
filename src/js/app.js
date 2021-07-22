@@ -276,6 +276,7 @@ const App = {
             })();
             let show_header = true;
             let scroll_limit = 0;
+            let hide_header_limit = 200;
             let scroll_moved = false;
             let scroll_top_reset = true;
             let header_vid_ended = false;
@@ -284,17 +285,10 @@ const App = {
             let anchor_is_scrolled = false;
             const header_timer_delay = 800;
 
-            // Simulates another click event after first if scrolled to top
-            // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
-            UI.anchor_links.forEach((link) => {
-                link.addEventListener('click', () => {
-                    if (!anchor_is_scrolled) {
-                        setTimeout(() => {
-                            link.click();
-                            anchor_is_scrolled = true;
-                        }, 750);
-                    }
-                });
+            // Allows the reveal of the hidden section below header for keyboard users
+            UI.above_placeholder.addEventListener('focus', () => {
+                // Set y-scroll to height > than what header would change to (shrink) after scrolling from top
+                window.scrollBy(0, 170);
             });
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
@@ -369,6 +363,7 @@ const App = {
                         UI.shrink_header();
                         UI.expand_placeholder_div();
                         scroll_moved = true;
+                        anchor_is_scrolled = true;
                     } else if (
                         (document.documentElement.scrollTop <= scroll_limit ||
                             window.pageYOffset <= scroll_limit) &&
@@ -388,6 +383,35 @@ const App = {
                         scroll_moved === true
                     ) {
                         return;
+                    } else if (
+                        (document.documentElement.scrollTop <= scroll_limit ||
+                            window.pageYOffset <= scroll_limit) &&
+                        scroll_moved === false
+                    ) {
+                        // Simulates another click event after first if scrolled to top
+                        // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
+                        UI.anchor_links.forEach((link) => {
+                            link.addEventListener('click', (e) => {
+                                if (!anchor_is_scrolled) {
+                                    // console.log('IM AT SCROLL TOP ON CLICK');
+                                    e.preventDefault();
+                                    e.stopImmediatePropagation();
+                                    window.scrollBy(0, 170);
+                                    anchor_is_scrolled = true;
+                                    setTimeout(() => {
+                                        // allows 'jump' to anchor if clicked
+                                        // header
+                                        document.documentElement.style.scrollBehavior =
+                                            'auto';
+                                        link.click();
+
+                                        // returns to smooth scroll after
+                                        document.documentElement.style.scrollBehavior =
+                                            'smooth';
+                                    }, 2000);
+                                }
+                            });
+                        });
                     }
                 };
 
@@ -450,8 +474,8 @@ const App = {
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener('mouseout', () => {
                     if (
-                        (document.documentElement.scrollTop > scroll_limit ||
-                            window.pageYOffset > scroll_limit) &&
+                        (document.documentElement.scrollTop > hide_header_limit ||
+                            window.pageYOffset > hide_header_limit) &&
                         !UI.bot_nav_collapse.classList.contains('show')
                     ) {
                         header_timer();
@@ -474,7 +498,8 @@ const App = {
                 //     });
                 // });
 
-                // Hides the header timer when header links are clicked
+                // Hides the header timer when header links are clicked and
+                // prevents header from disappearing while scrolling
                 UI.header_links.forEach((link) => {
                     link.addEventListener('click', (e) => {
                         let scroll_check;
@@ -524,7 +549,11 @@ const App = {
                         clearTimeout(scroll_timer);
 
                         // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
-                        if (!show_header) {
+                        if (
+                            !show_header &&
+                            (document.documentElement.scrollTop > hide_header_limit ||
+                                window.pageYOffset > hide_header_limit)
+                        ) {
                             if (
                                 UI.bot_nav_collapse.classList.contains('show')
                             ) {
@@ -545,7 +574,7 @@ const App = {
                     'scroll',
                     debounce(() => {
                         scroll_progress(UI.scroll_indicator);
-                    }, 200),
+                    }, 300),
                     { passive: true },
                 );
                 document.addEventListener(
