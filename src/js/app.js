@@ -408,7 +408,7 @@ const App = {
                                         // returns to smooth scroll after
                                         document.documentElement.style.scrollBehavior =
                                             'smooth';
-                                    }, 2000);
+                                    }, 1500);
                                 }
                             });
                         });
