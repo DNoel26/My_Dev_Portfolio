@@ -1278,17 +1278,17 @@ a.nav-link,
 /* HTML */
 
 html {
-    scroll-behavior: smooth ;
-    height: 100% !important;
-    height: -webkit-fill-available !important;
+    scroll-behavior: initial ;
+    height: 100%;
+    height: -webkit-fill-available;
 }
 
 body {
     /*font-family: 'Roboto', sans-serif !important; */
     position: relative !important;
-    min-height: 100% !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
+    min-height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     padding: 0;
 }
 

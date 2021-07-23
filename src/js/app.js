@@ -66,7 +66,7 @@ const App = {
                 const init_grecaptchas = [].slice.call(UI.grecaptchas);
                 const options = {
                     root: null,
-                    rootMargin: '800px',
+                    rootMargin: '2000px',
                     threshold: 0,
                 };
                 if ('IntersectionObserver' in window) {
@@ -227,6 +227,7 @@ const App = {
             UI.body.classList.add('will-change-height');
             UI.header.classList.add('will-change-height');
             UI.my_form_button.setAttribute('disabled', 'disabled');
+            document.documentElement.style.scrollBehavior = 'auto'
 
             // Set new poster image if on mobile device
             // Load BG video from selection
@@ -283,12 +284,27 @@ const App = {
             let scroll_timer;
             let is_scrolling = false;
             let anchor_is_scrolled = false;
-            const header_timer_delay = 800;
+            const header_timer_delay = 3000;
 
             // Allows the reveal of the hidden section below header for keyboard users
             UI.above_placeholder.addEventListener('focus', () => {
                 // Set y-scroll to height > than what header would change to (shrink) after scrolling from top
                 window.scrollBy(0, 170);
+            });
+
+            UI.anchor_links.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    if (!anchor_is_scrolled) {
+                        e.preventDefault();
+                        window.scrollBy(0, 170);
+                        anchor_is_scrolled = true;
+                        setTimeout(() => {
+                            // allows 'jump' to anchor if clicked
+                            // header
+                            link.click();
+                        }, 1500);
+                    }
+                });
             });
 
             // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
@@ -377,41 +393,6 @@ const App = {
                         }
                         scroll_moved = false;
                         scroll_top_reset = true;
-                    } else if (
-                        (document.documentElement.scrollTop > scroll_limit ||
-                            window.pageYOffset > scroll_limit) &&
-                        scroll_moved === true
-                    ) {
-                        return;
-                    } else if (
-                        (document.documentElement.scrollTop <= scroll_limit ||
-                            window.pageYOffset <= scroll_limit) &&
-                        scroll_moved === false
-                    ) {
-                        // Simulates another click event after first if scrolled to top
-                        // Due to dynamic height changes in body anchors can sometimes not scroll to accurate positions
-                        UI.anchor_links.forEach((link) => {
-                            link.addEventListener('click', (e) => {
-                                if (!anchor_is_scrolled) {
-                                    // console.log('IM AT SCROLL TOP ON CLICK');
-                                    e.preventDefault();
-                                    e.stopImmediatePropagation();
-                                    window.scrollBy(0, 170);
-                                    anchor_is_scrolled = true;
-                                    setTimeout(() => {
-                                        // allows 'jump' to anchor if clicked
-                                        // header
-                                        document.documentElement.style.scrollBehavior =
-                                            'auto';
-                                        link.click();
-
-                                        // returns to smooth scroll after
-                                        document.documentElement.style.scrollBehavior =
-                                            'smooth';
-                                    }, 1500);
-                                }
-                            });
-                        });
                     }
                 };
 
@@ -419,9 +400,11 @@ const App = {
                 if (
                     document.documentElement.scrollTop > scroll_limit ||
                     window.pageYOffset > scroll_limit
-                )
+                ) {
                     scroll_top_reset = false;
-                header_transform();
+                    header_transform();
+                }
+                    
                 const scroll_moved_debounce_wrapper = debounce(function () {
                     scroll_moved = false;
                 }, 800);
@@ -474,7 +457,8 @@ const App = {
                 // Resumes header timer to hide header when mouse leaves the element
                 UI.header.addEventListener('mouseout', () => {
                     if (
-                        (document.documentElement.scrollTop > hide_header_limit ||
+                        (document.documentElement.scrollTop >
+                            hide_header_limit ||
                             window.pageYOffset > hide_header_limit) &&
                         !UI.bot_nav_collapse.classList.contains('show')
                     ) {
@@ -505,10 +489,11 @@ const App = {
                         let scroll_check;
                         let href_hash = link.getAttribute('href');
                         if (href_hash.includes('#')) {
-                            e.preventDefault();
-                            document
-                                .querySelector(`${href_hash}`)
-                                .scrollIntoView();
+                            ///log console.log('header link clicked');
+                            // e.preventDefault();
+                            // document
+                            //     .getElementById(`${href_hash.slice(1)}`)
+                            //     .scrollIntoView();
                             scroll_check = setInterval(() => {
                                 ///log console.log('scroll checking on header link click!', is_scrolling);
                                 if (!is_scrolling) {
@@ -520,7 +505,7 @@ const App = {
                                         UI.toggler_btn.click();
                                     clearInterval(scroll_check);
                                 }
-                            }, header_timer_delay + 100);
+                            }, 500);
                         }
                     });
                 });
@@ -551,7 +536,8 @@ const App = {
                         // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                         if (
                             !show_header &&
-                            (document.documentElement.scrollTop > hide_header_limit ||
+                            (document.documentElement.scrollTop >
+                                hide_header_limit ||
                                 window.pageYOffset > hide_header_limit)
                         ) {
                             if (
@@ -881,7 +867,7 @@ const App = {
                 // Delay loading of tag cloud until almost within view
                 const options = {
                     root: null,
-                    rootMargin: '300px',
+                    rootMargin: '1000px',
                     threshold: 0,
                 };
                 const tagcloud_observer = new IntersectionObserver(function (
@@ -1503,17 +1489,17 @@ const App = {
                         );
                         UI.dev_project_overview.innerHTML = new_inner_html;
                         reinitialize_el();
-                        UI.dev_project_overview.scrollIntoView();
+                        UI.dev_project_overview.scrollIntoView({behavior: 'smooth'});
                         UI.return_to_dev_gallery_btns.forEach((btn) => {
                             btn.addEventListener('click', () => {
-                                UI.dev_project_gallery.scrollIntoView();
+                                UI.dev_project_gallery.scrollIntoView({behavior: 'smooth'});
                             });
                         });
                     });
                 });
                 UI.return_to_dev_gallery_btns.forEach((btn) => {
                     btn.addEventListener('click', () => {
-                        UI.dev_project_gallery.scrollIntoView();
+                        UI.dev_project_gallery.scrollIntoView({behavior: 'smooth'});
                     });
                 });
 
@@ -1562,7 +1548,7 @@ const App = {
                 // Observes if form is in view and then makes country API request if true
                 const options = {
                     root: null,
-                    rootMargin: '300px',
+                    rootMargin: '500px',
                     threshold: 0,
                 };
                 let select_change;
