@@ -1,3 +1,5 @@
+/** @format */
+
 'use strict';
 
 export function logger(...data) {
@@ -89,7 +91,9 @@ export function media_queries(mq, func_true, func_false) {
 }
 export function scroll_progress(indicator) {
     const win_scroll = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
     const scrolled = (win_scroll / height) * 100;
     return (indicator.style.width = scrolled + '%');
 }
@@ -101,7 +105,9 @@ export function calculate_age() {
 export function generate_dark_color_hex() {
     let color = '#';
     for (let i = 0; i < 3; i++) {
-        color += ('0' + Math.floor((Math.random() * Math.pow(16, 2)) / 2).toString(16)).slice(-2);
+        color += (
+            '0' + Math.floor((Math.random() * Math.pow(16, 2)) / 2).toString(16)
+        ).slice(-2);
     }
     return color;
 }

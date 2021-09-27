@@ -1,3 +1,5 @@
+/** @format */
+
 //Generates skill rating divs and icons based on class name
 
 /* SVG path for filled star icon
@@ -48,7 +50,8 @@ class Skill_Rating {
         } else if (rank === 'expert') {
             rank = 5;
         }
-        this.classification = this.filled_icon.repeat(rank) + this.empty_icon.repeat(5 - rank);
+        this.classification =
+            this.filled_icon.repeat(rank) + this.empty_icon.repeat(5 - rank);
         return this.classification;
     }
 }

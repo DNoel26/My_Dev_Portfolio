@@ -1,3 +1,5 @@
+/** @format */
+
 class API {
     endpoint;
     method;
@@ -28,7 +30,12 @@ class API {
                     this.response_data = data;
                     resolve(data);
                 })
-                .catch(() => console.log(`Failed to fetch API @ ${this.endpoint}`, reject()));
+                .catch(() =>
+                    console.log(
+                        `Failed to fetch API @ ${this.endpoint}`,
+                        reject(),
+                    ),
+                );
         });
     }
 }

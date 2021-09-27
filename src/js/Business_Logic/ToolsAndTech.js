@@ -1,3 +1,5 @@
+/** @format */
+
 class Tools_Tech {
     name;
     icon = {

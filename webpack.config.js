@@ -12,6 +12,7 @@ const zlib = require('zlib');
 
 module.exports = {
     mode: 'production',
+    //mode: 'development',
     entry: {
         index: './src/js/app.js',
     },

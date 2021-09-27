@@ -1,3 +1,5 @@
+/** @format */
+
 class Project {
     name;
     description;

@@ -1,16 +1,20 @@
-/* @media (max-width: 575.98px) 
-
-Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) { ... }
-
-Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) { ... }
-
-Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) { ... }
-
-Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... } */
+/**
+ * /* @media (max-width: 575.98px) 
+ * 
+ * Small devices (landscape phones, 576px and up)
+ * 
+ * Medium devices (tablets, 768px and up)
+ * 
+ * Large devices (desktops, 992px and up)
+ * 
+ * Extra large devices (large desktops, 1200px and up)
+ *
+ * @format
+ * @media (min-width: 576px) and (max-width: 767.98px) { ... }
+ * @media (min-width: 768px) and (max-width: 991.98px) { ... }
+ * @media (min-width: 992px) and (max-width: 1199.98px) { ... }
+ * @media (min-width: 1200px) { ... }
+ */
 
 :root {
     --theme-colour-1: #1f6f8b;
@@ -172,7 +176,10 @@ Extra large devices (large desktops, 1200px and up)
         width: auto !important;
     }
 
-    .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
+    .nav-container
+        .bot-header-nav
+        .navbar-collapse.collapsing
+        .navbar-nav-scroll,
     .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
         display: block;
         max-height: unset !important;
@@ -195,13 +202,21 @@ Extra large devices (large desktops, 1200px and up)
         color: var(--theme-colour-3) !important;
     }
 
-    .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll::-webkit-scrollbar,
-    .bot-header-nav .navbar-collapse.show .navbar-nav-scroll::-webkit-scrollbar {
+    .bot-header-nav
+        .navbar-collapse.collapsing
+        .navbar-nav-scroll::-webkit-scrollbar,
+    .bot-header-nav
+        .navbar-collapse.show
+        .navbar-nav-scroll::-webkit-scrollbar {
         width: 4px !important;
     }
 
-    .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll::-webkit-scrollbar-thumb,
-    .bot-header-nav .navbar-collapse.show .navbar-nav-scroll::-webkit-scrollbar-thumb {
+    .bot-header-nav
+        .navbar-collapse.collapsing
+        .navbar-nav-scroll::-webkit-scrollbar-thumb,
+    .bot-header-nav
+        .navbar-collapse.show
+        .navbar-nav-scroll::-webkit-scrollbar-thumb {
         background: var(--theme-colour-4) !important;
         border-radius: 12px;
         height: auto;
@@ -419,7 +434,10 @@ Extra large devices (large desktops, 1200px and up)
         margin-right: auto !important;
     }
 
-    .nav-container .bot-header-nav .navbar-collapse.collapsing .navbar-nav-scroll,
+    .nav-container
+        .bot-header-nav
+        .navbar-collapse.collapsing
+        .navbar-nav-scroll,
     .nav-container .bot-header-nav .navbar-collapse.show .navbar-nav-scroll {
         max-width: unset !important;
         max-height: 60vh !important;
@@ -502,7 +520,8 @@ Extra large devices (large desktops, 1200px and up)
 
     footer.lazy-bg.load-now {
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.67)),
-            url('../img/base/laptop-showing-code-650.webp') no-repeat fixed center center;
+            url('../img/base/laptop-showing-code-650.webp') no-repeat fixed
+                center center;
         background-size: cover !important;
     }
 
@@ -531,7 +550,10 @@ Extra large devices (large desktops, 1200px and up)
     .about-section.lazy-bg.load-now,
     .tools-tech-section.lazy-bg.load-now,
     .contact-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(255, 255, 255, 0.67), rgba(255, 255, 255, 0.3)),
+        background: linear-gradient(
+                rgba(255, 255, 255, 0.67),
+                rgba(255, 255, 255, 0.3)
+            ),
             url('../img/base/cool-bg-white-650.webp');
     }
 
@@ -540,8 +562,12 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .services-section > div:first-child.lazy-bg.load-now {
-        background: linear-gradient(rgba(232, 240, 243, 0.9), rgba(31, 111, 139, 0.45)),
-            url('../img/base/white-laptop-cellphone-650.webp') no-repeat fixed center 40%;
+        background: linear-gradient(
+                rgba(232, 240, 243, 0.9),
+                rgba(31, 111, 139, 0.45)
+            ),
+            url('../img/base/white-laptop-cellphone-650.webp') no-repeat fixed
+                center 40%;
     }
 
     .projects-section.lazy-bg {
@@ -549,7 +575,10 @@ Extra large devices (large desktops, 1200px and up)
     }
 
     .projects-section.lazy-bg.load-now {
-        background: linear-gradient(rgba(232, 240, 243, 0.5), rgba(31, 111, 139, 0.5)),
+        background: linear-gradient(
+                rgba(232, 240, 243, 0.5),
+                rgba(31, 111, 139, 0.5)
+            ),
             url('../img/base/cool-bg-white-650.webp') no-repeat fixed center 50%;
     }
 }

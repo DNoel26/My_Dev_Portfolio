@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
     --theme-colour-1: #1f6f8b;
     --theme-colour-2: #e8f0f3;
@@ -273,8 +275,9 @@
     font-weight: 500 !important;
     transform: scale(1);
     transform-origin: initial;
-    transition: height 0.3s ease-in-out, width 0.3s ease-in-out, transform 0.3s ease-in-out,
-        color 0.3s ease-in-out, background 0.3s ease-in-out, font-weight 0s;
+    transition: height 0.3s ease-in-out, width 0.3s ease-in-out,
+        transform 0.3s ease-in-out, color 0.3s ease-in-out,
+        background 0.3s ease-in-out, font-weight 0s;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     will-change: transform;
@@ -305,7 +308,8 @@ nav .btn-custom-1 {
 
 .btn-anim .btn-text {
     color: var(--theme-colour-1);
-    transition: width 0.6s ease-in-out, color 0.6s ease-in-out, background 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out, color 0.6s ease-in-out,
+        background 0.6s ease-in-out;
 }
 
 .btn-anim:hover .btn-text,
@@ -331,7 +335,8 @@ nav .btn-custom-1 {
     background: var(--theme-colour-1);
     height: 100%;
     width: 100%;
-    transition: width 0.6s ease-in-out, color 0.6s ease-in-out, background 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out, color 0.6s ease-in-out,
+        background 0.6s ease-in-out;
 }
 
 .btn-anim:hover .circle::after,
@@ -343,7 +348,8 @@ nav .btn-custom-1 {
 
 .circle .fas {
     color: var(--theme-colour-3);
-    transition: width 0.6s ease-in-out, color 0.6s ease-in-out, background 0.6 ease-in-out;
+    transition: width 0.6s ease-in-out, color 0.6s ease-in-out,
+        background 0.6 ease-in-out;
     width: 1rem;
     height: 1rem;
 }
@@ -519,7 +525,8 @@ header .btn-anim .circle::after {
     top: 0;
     border-right: 0px var(--theme-colour-3) solid;
     border-top: 0px var(--theme-colour-3) solid;
-    transition: width 0.25s ease-in-out, height 0.25s ease-in-out, border 0.25s ease-in-out;
+    transition: width 0.25s ease-in-out, height 0.25s ease-in-out,
+        border 0.25s ease-in-out;
     /*left: 50%;
     top: 0;
     border-top: 2px var(--theme-colour-3) solid;
@@ -531,7 +538,8 @@ header .btn-anim .circle::after {
     bottom: 0;
     border-left: 0 var(--theme-colour-3) solid;
     border-bottom: 0 var(--theme-colour-3) solid;
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out,
+        border 0.2s ease-in-out;
     /*left: 15%;
     bottom: 0;
     border-bottom: 2px var(--theme-colour-3) solid;
@@ -761,7 +769,10 @@ img.lazy {
     overflow: unset;
     margin-left: 12px;
     margin-right: 12px;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.95)
+    );
     transition: all 0.3s ease-in-out;
     will-change: transform;
     position: relative;
@@ -1278,7 +1289,7 @@ a.nav-link,
 /* HTML */
 
 html {
-    scroll-behavior: initial ;
+    scroll-behavior: initial;
     height: 100%;
     height: -webkit-fill-available;
 }
@@ -1331,8 +1342,8 @@ header {
     position: relative;
     visibility: visible;
     opacity: 1;
-    transition: height 0.5s ease-in-out, background 3s ease-in-out, opacity 0.5s ease-in-out,
-        visibility 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out, background 3s ease-in-out,
+        opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 header,
@@ -1495,7 +1506,10 @@ section {
 .about-section.lazy-bg.load-now,
 .tools-tech-section.lazy-bg.load-now,
 .contact-section.lazy-bg.load-now {
-    background: linear-gradient(rgba(255, 255, 255, 0.67), rgba(255, 255, 255, 0.3)),
+    background: linear-gradient(
+            rgba(255, 255, 255, 0.67),
+            rgba(255, 255, 255, 0.3)
+        ),
         url('../img/base/cool-bg-white.webp') no-repeat fixed center center;
 }
 
@@ -1551,8 +1565,12 @@ section {
 }
 
 .services-section > div:first-child.lazy-bg.load-now {
-    background: linear-gradient(rgba(232, 240, 243, 0.9), rgba(31, 111, 139, 0.45)),
-        url('../img/base/white-laptop-cellphone.webp') no-repeat fixed center 40%;
+    background: linear-gradient(
+            rgba(232, 240, 243, 0.9),
+            rgba(31, 111, 139, 0.45)
+        ),
+        url('../img/base/white-laptop-cellphone.webp') no-repeat fixed center
+            40%;
 }
 
 .services-section,
@@ -1592,7 +1610,10 @@ section {
 }
 
 .projects-section.lazy-bg.load-now {
-    background: linear-gradient(rgba(232, 240, 243, 0.5), rgba(31, 111, 139, 0.5)),
+    background: linear-gradient(
+            rgba(232, 240, 243, 0.5),
+            rgba(31, 111, 139, 0.5)
+        ),
         url('../img/base/cool-bg-white.webp') no-repeat fixed center 50%;
 }
 

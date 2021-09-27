@@ -1,13 +1,16 @@
 /**
  * TagCloud.js (c) 2016-2019 @ Cong Min
  * MIT License - https://github.com/mcc108/TagCloud
+ *
+ * @format
  */
 
 class TagCloud {
     /* constructor */
     constructor(container = document.body, texts, options) {
         const self = this;
-        if (!container || container.nodeType !== 1) return new Error('Incorrect element type');
+        if (!container || container.nodeType !== 1)
+            return new Error('Incorrect element type');
 
         // params
         self.$container = container;
@@ -50,9 +53,11 @@ class TagCloud {
     };
 
     // speed value
-    static _getMaxSpeed = (name) => ({ slow: 0.5, normal: 1, fast: 2 }[name] || 1);
+    static _getMaxSpeed = (name) =>
+        ({ slow: 0.5, normal: 1, fast: 2 }[name] || 1);
 
-    static _getInitSpeed = (name) => ({ slow: 16, normal: 32, fast: 80 }[name] || 32);
+    static _getInitSpeed = (name) =>
+        ({ slow: 16, normal: 32, fast: 80 }[name] || 32);
 
     // event listener
     static _on(el, ev, handler, cap) {
@@ -164,8 +169,10 @@ class TagCloud {
 
         self.active = false; // whether the mouse is activated
 
-        self.mouseX0 = self.initSpeed * Math.sin(self.direction * (Math.PI / 180)); // init distance between the mouse and rolling center x axis
-        self.mouseY0 = -self.initSpeed * Math.cos(self.direction * (Math.PI / 180)); // init distance between the mouse and rolling center y axis
+        self.mouseX0 =
+            self.initSpeed * Math.sin(self.direction * (Math.PI / 180)); // init distance between the mouse and rolling center x axis
+        self.mouseY0 =
+            -self.initSpeed * Math.cos(self.direction * (Math.PI / 180)); // init distance between the mouse and rolling center y axis
 
         self.mouseX = self.mouseX0; // current distance between the mouse and rolling center x axis
         self.mouseY = self.mouseY0; // current distance between the mouse and rolling center y axis
@@ -214,16 +221,25 @@ class TagCloud {
         }
 
         const a =
-            -(Math.min(Math.max(-self.mouseY, -self.size), self.size) / self.radius) *
-            self.maxSpeed;
+            -(
+                Math.min(Math.max(-self.mouseY, -self.size), self.size) /
+                self.radius
+            ) * self.maxSpeed;
         const b =
-            (Math.min(Math.max(-self.mouseX, -self.size), self.size) / self.radius) * self.maxSpeed;
+            (Math.min(Math.max(-self.mouseX, -self.size), self.size) /
+                self.radius) *
+            self.maxSpeed;
 
         if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) return; // pause
 
         // calculate offset
         const l = Math.PI / 180;
-        const sc = [Math.sin(a * l), Math.cos(a * l), Math.sin(b * l), Math.cos(b * l)];
+        const sc = [
+            Math.sin(a * l),
+            Math.cos(a * l),
+            Math.sin(b * l),
+            Math.cos(b * l),
+        ];
 
         self.items.forEach((item) => {
             const rx1 = item.x;
@@ -279,7 +295,10 @@ class TagCloud {
         const textsLength = self.texts.length;
         const itemsLength = self.items.length;
         if (textsLength < itemsLength) {
-            const removeList = self.items.splice(textsLength, itemsLength - textsLength);
+            const removeList = self.items.splice(
+                textsLength,
+                itemsLength - textsLength,
+            );
             removeList.forEach((item) => {
                 self.$el.removeChild(item.el);
             });
