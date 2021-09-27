@@ -86,8 +86,9 @@ module.exports = {
                 { from: './src/media/', to: './media/' },
                 //{ from: './src/_redirects', to: './_redirects' },
                 { from: './src/netlify.toml', to: './netlify.toml' },
-                { from: './sitemap.xml', to: './sitemap_index.xml' },
-                { from: './src/dev_projects.json', to: './dev_projects.json' },
+                { from: './sitemap.xml', to: './sitemap-index.xml' },
+                { from: './src/dev-projects.json', to: './dev-projects.json' },
+                { from: './src/client-projects.json', to: './client-projects.json' },
             ],
         }),
         new MiniCssExtractPlugin({

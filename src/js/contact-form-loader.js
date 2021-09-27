@@ -6,7 +6,7 @@ import {
     formSubmitError,
     formSubmitSuccess,
     wrapperNoExec,
-} from './Business_Logic/Functions.js';
+} from './Business_Logic/functions.js';
 import UI from './UI_Logic/UI.js';
 
 export const contactFormLoader = (recaptchaCallback) => {
@@ -23,7 +23,7 @@ export const contactFormLoader = (recaptchaCallback) => {
     ) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                import('./Business_Logic/API.js')
+                import('./Business_Logic/Api.js')
                     .then((module) => module.default) // uses the default export
                     .then((Api) => {
                         // Populates form countries using API

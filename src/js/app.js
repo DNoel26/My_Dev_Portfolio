@@ -19,13 +19,13 @@ import {
     scrollProgress,
     generateDarkColorHex,
     mediaQueries,
-} from './Business_Logic/Functions.js';
+} from './Business_Logic/functions.js';
 import SkillRating from './Business_Logic/SkillRating.js';
-import { lazyElementsLoader } from './lazyElementsLoader.js';
-import { myServicesCarouselLoader } from './myServicesCarouselLoader.js';
-import { tagCloudLoader } from './tagCloudLoader.js';
-import { devProjectsLoader } from './devProjectsLoader.js';
-import { contactFormLoader } from './contactFormLoader.js';
+import { lazyElementsLoader } from './lazy-elements-loader.js';
+import { myServicesCarouselLoader } from './my-services-carousel-loader.js';
+import { tagCloudLoader } from './tag-cloud-loader.js';
+import { devProjectsLoader } from './dev-projects-loader.js';
+import { contactFormLoader } from './contact-form-loader.js';
 import { hotjar } from './hotjar.js';
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
@@ -43,7 +43,7 @@ App.init = () => {
 
         //TODO Convert dev and prod projects to json files and use in project section
         (function () {
-            fetch('/dev_projects.json')
+            fetch('/dev-projects.json')
                 .then((resp) => resp.json())
                 .then((data) => {
                     return console.log(data);

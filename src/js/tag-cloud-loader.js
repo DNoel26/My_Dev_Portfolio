@@ -4,7 +4,7 @@ import {
     debounce,
     generateDarkColorHex,
     mediaQueries,
-} from './Business_Logic/Functions.js';
+} from './Business_Logic/functions.js';
 import UI from './UI_Logic/UI.js';
 
 export const tagCloudLoader = () => {

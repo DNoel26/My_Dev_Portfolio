@@ -1,0 +1,231 @@
+[
+    {
+        "name": "Alien Mathvasion Game",
+        "status": 2,
+        "link": {
+            "url": "https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html",
+            "header": "Play",
+            "note": "(expect audio - desktop version only!)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Alien_Mathvasion",
+            "readme": true
+        },
+        "description": "This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games. Good luck surviving the hardest difficulty!",
+        "notes": [
+            "Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.",
+            "Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.",
+            "Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/alien-mathvasion-1-min.webp",
+                "./img/projects/min/alien-mathvasion-2-min.webp",
+                "./img/projects/min/alien-mathvasion-3-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp",
+                "./img/logos/javascript-badge.webp"
+            ],
+            "alts": []
+        }
+    },
+    {
+        "name": "Wix Site Clone",
+        "status": 1,
+        "link": {
+            "url": "https://dnoelmotorcyclewixclone.netlify.app",
+            "header": "View",
+            "note": "(see link to cloned Wix site above)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Wix_Motorcycle_Trial",
+            "readme": true
+        },
+        "description": "This was my first official development project and was intended to be a pixel for pixel clone of <a target='_blank' class='text-reset text-decoration-none anim-link-3' rel='noopener' href='https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button'>a selected, original Wix site</a>. It was built using HTML, CSS and without any JavaScript. Showcases the ability to take a design and convert it into a functional webpage or website.",
+        "notes": [
+            "Only 3 pages were cloned for this project: Home, About and Contact.",
+            "Website is fully responsive for all devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/wix-clone-1-min.webp",
+                "./img/projects/min/wix-clone-2-min.webp",
+                "./img/projects/min/wix-clone-3-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp"
+            ],
+            "alts": []
+        }
+    },
+    {
+        "name": "Cyberdise Online Store",
+        "status": 2,
+        "link": {
+            "url": "https://dnoelcyberdise.herokuapp.com",
+            "header": "Interact",
+            "note": "(fake credentials only - desktop version only!)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Cyberdise-Dynamic-",
+            "readme": true
+        },
+        "description": "This project was my first official Full Stack development project and end-to-end C.R.U.D. application, and was designed to test everything I had learned (and more). This online store was built from scratch using MVC principles for the Back End code. The database was designed, normalized and created in MySQL. There are both customer and employee functionalities to experiment with. Features such as authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site. Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc.",
+        "notes": [
+            "Most other major features are working as expected. Search functionality not implemented just yet.",
+            "Some UI elements are incomplete/missing.",
+            "Not yet fully responsive on smaller devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/cyberdise-online-store-1-min.webp",
+                "./img/projects/min/cyberdise-online-store-2-min.webp",
+                "./img/projects/min/cyberdise-online-store-3-min.webp",
+                "./img/projects/min/cyberdise-online-store-4-min.webp",
+                "./img/projects/min/cyberdise-online-store-5-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp",
+                "./img/logos/javascript-badge.webp",
+                "./img/logos/handlebars-badge.webp",
+                "/img/logos/mysql-badge.webp",
+                "./img/logos/nodejs-badge.webp",
+                "./img/logos/express-logo.webp",
+                "./img/logos/postman-badge.webp"
+            ],
+            "alts": []
+        }
+    },
+    {
+        "name": "Movie Database",
+        "status": 2,
+        "link": {
+            "url": "https://dnoelmovieapidatabase.netlify.app",
+            "header": "View",
+            "note": "(desktop version only!)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Movie_Database",
+            "readme": true
+        },
+        "description": "This project was built from scratch to dynamically display 'Now Showing' movie details and trailers via consuming multiple APIs; meaning all data shown on my website is requested and pulled from another server, and manipulated on my website using JavaScript. Design is based on retro theatres. Click the link and take a look at all the trending movies now!",
+        "notes": [
+            "All major features are working as expected. Pagination to be implemented.",
+            "Not yet fully responsive on smaller devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/movie-db-1-min.webp",
+                "./img/projects/min/movie-db-2-min.webp",
+                "./img/projects/min/movie-db-3-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp",
+                "./img/logos/javascript-badge.webp"
+            ],
+            "alts": []
+        }
+    },
+    {
+        "name": "Amazon Clone",
+        "status": 2,
+        "link": {
+            "url": "https://clone-905a7.web.app",
+            "header": "Interact",
+            "note": "(fake credentials only - desktop version only!)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Amazon_React_Clone",
+            "readme": true
+        },
+        "description": "This project was done as my hands on introduction to React.js and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch. The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions.",
+        "notes": [
+            "All major features are working as expected.",
+            "Not yet fully responsive on smaller devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/amazon-clone-1-min.webp",
+                "./img/projects/min/amazon-clone-2-min.webp",
+                "./img/projects/min/amazon-clone-3-min.webp",
+                "./img/projects/min/amazon-clone-4-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp",
+                "./img/logos/javascript-badge.webp",
+                "./img/logos/react-badge.webp",
+                "./img/logos/firebase-badge.webp",
+                "./img/logos/nodejs-badge.webp",
+                "./img/logos/express-logo.webp"
+            ],
+            "alts": []
+        }
+    },
+    {
+        "name": "Real Estate Site",
+        "status": 3,
+        "link": {
+            "url": "https://presidentialrealtors-dev-static.netlify.app",
+            "header": "View",
+            "note": "(desktop version only!)"
+        },
+        "github": {
+            "url": "https://github.com/DNoel26/Presidential-Realtors-Static",
+            "readme": true
+        },
+        "description": "This project was done as my hands on introduction to React.js and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch. The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions.",
+        "notes": [
+            "Most client side features work as expected. Focus of this project was on design elements rather than functionality.",
+            "Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.",
+            "Not yet fully responsive on smaller devices!"
+        ],
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/real-estate-1-min.webp",
+                "./img/projects/min/real-estate-2-min.webp",
+                "./img/projects/min/real-estate-3-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp"
+            ],
+            "alts": []
+        }
+    }
+]
