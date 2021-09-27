@@ -7,12 +7,9 @@ export const devProjectsLoader = () => {
     /**@type {Project} */
     let currentProject = {};
     let newInnerHtml = ``;
-    const devProjectCarousel = new bootstrap.Carousel(
-        UI.devProjectCarousel,
-        {
-            interval: 5000,
-        },
-    );
+    const devProjectCarousel = new bootstrap.Carousel(UI.devProjectCarousel, {
+        interval: 5000,
+    });
 
     // Adds an indicator button, along with attributes per image and sets active class to first slide
     // Accepts a single parameter with values "dev" or "client"
@@ -150,8 +147,8 @@ export const devProjectsLoader = () => {
                                     <br><strong>Status: ${currentProject.status.msg} <span class="${currentProject.status.classCode} status-circle"></span></strong>
                                 </p>
                                 
-                                <a href=${currentProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${currentProject.link_header}</strong> Now ${currentProject.link_note}</a>
-                                <br><a href=${currentProject.githubLink} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${currentProject.github_readme}</a>
+                                <a href=${currentProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${currentProject.linkHeader}</strong> Now ${currentProject.linkNote}</a>
+                                <br><a href=${currentProject.githubLink} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${currentProject.githubReadme}</a>
 
                                 <h4 class="small text-left mt-3">Notes:</h4>
                                 <ul class="text-wrap" id="dev-project-carousel-notes">
@@ -183,9 +180,7 @@ export const devProjectsLoader = () => {
         UI.returnToDevGalleryBtns = document.querySelectorAll(
             "[data-id='dev-project-gallery']",
         );
-        UI.devProjectCarousel = document.getElementById(
-            'dev-project-carousel',
-        );
+        UI.devProjectCarousel = document.getElementById('dev-project-carousel');
         UI.devProjectCarouselIndicatorSection = document.getElementById(
             'dev-project-carousel-indicators',
         );
