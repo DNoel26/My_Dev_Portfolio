@@ -1,6 +1,6 @@
 /** @format */
 
-import { mediaQueries } from '../Business_Logic/functions.js';
+import { mediaQueries } from '../Business_Logic/custom-functions.js';
 const UI = {
     /*** GENERAL ***/
     body: document.body,

@@ -6,7 +6,7 @@ import {
     formSubmitError,
     formSubmitSuccess,
     wrapperNoExec,
-} from './Business_Logic/functions.js';
+} from './Business_Logic/custom-functions.js';
 import UI from './UI_Logic/UI.js';
 
 export const contactFormLoader = (recaptchaCallback) => {

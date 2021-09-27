@@ -17,9 +17,8 @@ import {
     debounce,
     throttle,
     scrollProgress,
-    generateDarkColorHex,
     mediaQueries,
-} from './Business_Logic/functions.js';
+} from './Business_Logic/custom-functions.js';
 import SkillRating from './Business_Logic/SkillRating.js';
 import { lazyElementsLoader } from './lazy-elements-loader.js';
 import { myServicesCarouselLoader } from './my-services-carousel-loader.js';
