@@ -26,6 +26,7 @@ import { myServicesCarouselLoader } from './myServicesCarouselLoader.js';
 import { tagCloudLoader } from './tagCloudLoader.js';
 import { devProjectsLoader } from './devProjectsLoader.js';
 import { contactFormLoader } from './contactFormLoader.js';
+import { hotjar } from './hotjar.js';
 
 // Google recaptcha data function (function name must be same as data-callback attribute value)
 const recaptchaCallback = function recaptchaCallback(func) {
@@ -74,6 +75,12 @@ App.init = () => {
 
         // Delay load of non-essential scripts
         setTimeout(() => {
+            hotjar(
+                window,
+                document,
+                'https://static.hotjar.com/c/hotjar-',
+                '.js?sv=',
+            );
             media_queries(
                 window.matchMedia('(min-width: 768px)'),
                 () => {

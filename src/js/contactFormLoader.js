@@ -80,6 +80,7 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                         };
                         Country_API.fetch_api()
                             .then((data) => {
+                                console.log(data);
                                 // Populates with API data
                                 data.forEach((datum) => {
                                     const new_option =
@@ -90,7 +91,7 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                     );
                                     new_option.setAttribute(
                                         'data-flag',
-                                        datum.flag,
+                                        datum.flags[0],
                                     );
                                     new_option.setAttribute(
                                         'data-calling-codes',
