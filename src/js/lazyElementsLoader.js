@@ -101,9 +101,9 @@ export const lazyElementsLoader = (UI, recaptchaCallback) => {
                         );
                         setTimeout(resolve, 2000);
                     })
-                        .then(() => {
+                        .then(async () => {
                             // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
-                            recaptchaCallback(() => {
+                            await recaptchaCallback(() => {
                                 const grecaptcha_check = function () {
                                     if (UI.grecaptchas.length > 0) {
                                         UI.my_form_button.removeAttribute(
