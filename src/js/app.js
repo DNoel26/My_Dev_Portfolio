@@ -13,14 +13,14 @@ importAll(require.context('../assets/', true, /\.pdf$/));
 importAll(require.context('../media/', true, /\.mp4$/));
 import UI from './UI_Logic/UI.js';
 import {
-    calculate_age,
+    calculateAge,
     debounce,
     throttle,
-    scroll_progress,
-    generate_dark_color_hex,
-    media_queries,
+    scrollProgress,
+    generateDarkColorHex,
+    mediaQueries,
 } from './Business_Logic/Functions.js';
-import Skill_Rating from './Business_Logic/SkillRating.js';
+import SkillRating from './Business_Logic/SkillRating.js';
 import { lazyElementsLoader } from './lazyElementsLoader.js';
 import { myServicesCarouselLoader } from './myServicesCarouselLoader.js';
 import { tagCloudLoader } from './tagCloudLoader.js';
@@ -53,32 +53,32 @@ App.init = () => {
                 });
         })();
 
-        lazyElementsLoader(UI, recaptchaCallback);
+        lazyElementsLoader(recaptchaCallback);
 
         /*** GENERAL ***/
         UI.body.classList.add('will-change-height');
         UI.header.classList.add('will-change-height');
-        UI.my_form_button.setAttribute('disabled', 'disabled');
+        UI.myFormBtn.setAttribute('disabled', 'disabled');
         document.documentElement.style.scrollBehavior = 'auto';
 
         // Set new poster image if on mobile device
         // Load BG video from selection
-        UI.add_poster_img_sm();
-        UI.load_bg_vid();
+        UI.addPosterImgSm();
+        UI.loadBgVid();
         window.addEventListener(
             'resize',
             debounce(function () {
-                UI.add_poster_img_sm();
-                UI.load_bg_vid();
+                UI.addPosterImgSm();
+                UI.loadBgVid();
             }, 500),
         );
 
         // Delay load of non-essential scripts
         setTimeout(() => {
-            media_queries(
+            mediaQueries(
                 window.matchMedia('(min-width: 768px)'),
                 () => {
-                    return UI.create_scripts(
+                    return UI.createScripts(
                         'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
                     );
                 },
@@ -94,48 +94,48 @@ App.init = () => {
                 'https://static.hotjar.com/c/hotjar-',
                 '.js?sv=',
             );
-            return UI.create_scripts(
+            return UI.createScripts(
                 'https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js',
                 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
             );
         }, 10000);
 
         // Loads Resume via Google Preview on click only
-        let google_preview_btn_is_clicked = false;
+        let googlePreviewBtnIsClicked = false;
         (function () {
-            UI.google_preview_modal_btn.addEventListener('click', () => {
-                if (!google_preview_btn_is_clicked) {
-                    UI.google_preview_modal.setAttribute(
+            UI.googlePreviewModalBtn.addEventListener('click', () => {
+                if (!googlePreviewBtnIsClicked) {
+                    UI.googlePreviewModal.setAttribute(
                         'src',
                         'https://drive.google.com/file/d/1fHBSLAaqd7pVWZ7lZr7jAOXBCZB0yXmT/preview',
                     );
-                    google_preview_btn_is_clicked = true;
+                    googlePreviewBtnIsClicked = true;
                 }
             });
         })();
-        let show_header = true;
-        let scroll_limit = 0;
-        let hide_header_limit = 200;
-        let scroll_moved = false;
-        let scroll_top_reset = true;
-        let header_vid_ended = false;
-        let scroll_timer;
-        let is_scrolling = false;
-        let anchor_is_scrolled = false;
-        const header_timer_delay = 3000;
+        let showHeader = true;
+        let scrollLimit = 0;
+        let hideHeaderLimit = 200;
+        let scrollMoved = false;
+        let scrollTopReset = true;
+        let headerVidEnded = false;
+        let scrollTimer;
+        let isScrolling = false;
+        let anchorIsScrolled = false;
+        const headerTimerDelay = 3000;
 
         // Allows the reveal of the hidden section below header for keyboard users
-        UI.above_placeholder.addEventListener('focus', () => {
+        UI.abovePlaceholder.addEventListener('focus', () => {
             // Set y-scroll to height > than what header would change to (shrink) after scrolling from top
             window.scrollBy(0, 170);
         });
 
-        UI.anchor_links.forEach((link) => {
+        UI.anchorLinks.forEach((link) => {
             link.addEventListener('click', (e) => {
-                if (!anchor_is_scrolled) {
+                if (!anchorIsScrolled) {
                     e.preventDefault();
                     window.scrollBy(0, 170);
-                    anchor_is_scrolled = true;
+                    anchorIsScrolled = true;
                     setTimeout(() => {
                         // allows 'jump' to anchor if clicked
                         // header
@@ -146,138 +146,138 @@ App.init = () => {
         });
 
         // Sets the timer for the header hide/show function (timer to be cleared on window scroll or element hover)
-        const header_timer = function () {
-            return (scroll_timer = window.setTimeout(() => {
-                if (!show_header) {
+        const headerTimer = function () {
+            return (scrollTimer = window.setTimeout(() => {
+                if (!showHeader) {
                     UI.header.classList.add('hide-header');
                     UI.header.classList.remove('show-header');
-                    is_scrolling = false;
+                    isScrolling = false;
                 }
-            }, header_timer_delay));
+            }, headerTimerDelay));
         };
 
         // Controls the side menu (tablet) and mobile menu functions
-        const side_menu_toggler = () => {
-            if (!UI.toggler_btn.classList.contains('collapsed')) {
-                UI.side_menu_reveal();
+        const sideMenuToggler = () => {
+            if (!UI.togglerBtn.classList.contains('collapsed')) {
+                UI.sideMenuReveal();
             } else {
-                UI.side_menu_hide();
+                UI.sideMenuHide();
             }
         };
-        const mobile_menu_toggler = () => {
-            if (!UI.toggler_btn.classList.contains('collapsed')) {
-                UI.mobile_menu_reveal();
+        const mobileMenuToggler = () => {
+            if (!UI.togglerBtn.classList.contains('collapsed')) {
+                UI.mobileMenuReveal();
             } else {
-                UI.mobile_menu_hide();
+                UI.mobileMenuHide();
             }
         };
-        const mq_menu_toggler = () => {
-            const mq_limits = [
+        const mqMenuToggler = () => {
+            const mqLimits = [
                 window.matchMedia('(max-width: 767.98px)'),
                 window.matchMedia(
                     '(min-width: 768px) and (max-width: 991.98px)',
                 ),
             ];
-            media_queries(mq_limits[0], mobile_menu_toggler, null);
-            media_queries(mq_limits[1], side_menu_toggler, null);
+            mediaQueries(mqLimits[0], mobileMenuToggler, null);
+            mediaQueries(mqLimits[1], sideMenuToggler, null);
         };
-        UI.toggler_btn.addEventListener('click', mq_menu_toggler);
+        UI.togglerBtn.addEventListener('click', mqMenuToggler);
         window.addEventListener(
             'resize',
             debounce(function () {
-                UI.no_menu();
+                UI.noMenu();
             }, 500),
         );
 
         // Removes video after playing once and then adds a static background image (refresh to play video again)
-        UI.header_vid.addEventListener('ended', () => {
-            UI.replace_vid_bg();
-            UI.header_vid.remove();
-            header_vid_ended = true;
+        UI.headerVid.addEventListener('ended', () => {
+            UI.replaceVidBg();
+            UI.headerVid.remove();
+            headerVidEnded = true;
         });
 
         // Removes poster or bg if video fails to load and then adds a static background image
-        UI.header_vid.addEventListener('animationend', () => {
+        UI.headerVid.addEventListener('animationend', () => {
             setTimeout(() => {
-                UI.replace_vid_bg();
-                UI.header_vid.remove();
-                header_vid_ended = true;
+                UI.replaceVidBg();
+                UI.headerVid.remove();
+                headerVidEnded = true;
             }, 3000);
         });
 
         // Controls the Scroll Events
         (function () {
-            const header_transform = function () {
+            const headerTransform = function () {
                 // Resize header when scrolling - adds artificial height to compensate for reduction in header height and aid in smooth transitioning
                 if (
-                    (document.documentElement.scrollTop > scroll_limit ||
-                        window.pageYOffset > scroll_limit) &&
-                    scroll_moved === false
+                    (document.documentElement.scrollTop > scrollLimit ||
+                        window.pageYOffset > scrollLimit) &&
+                    scrollMoved === false
                 ) {
-                    UI.shrink_header();
-                    UI.expand_placeholder_div();
-                    scroll_moved = true;
-                    anchor_is_scrolled = true;
+                    UI.shrinkHeader();
+                    UI.expandPlaceholderDiv();
+                    scrollMoved = true;
+                    anchorIsScrolled = true;
                 } else if (
-                    (document.documentElement.scrollTop <= scroll_limit ||
-                        window.pageYOffset <= scroll_limit) &&
-                    scroll_moved === true
+                    (document.documentElement.scrollTop <= scrollLimit ||
+                        window.pageYOffset <= scrollLimit) &&
+                    scrollMoved === true
                 ) {
-                    UI.expand_header();
-                    UI.shrink_placeholder_div();
+                    UI.expandHeader();
+                    UI.shrinkPlaceholderDiv();
 
-                    if (scroll_moved && header_vid_ended) {
-                        UI.replace_vid_bg();
+                    if (scrollMoved && headerVidEnded) {
+                        UI.replaceVidBg();
                     }
-                    scroll_moved = false;
-                    scroll_top_reset = true;
+                    scrollMoved = false;
+                    scrollTopReset = true;
                 }
             };
 
             // Checks scroll position on load or refresh and executes
             if (
-                document.documentElement.scrollTop > scroll_limit ||
-                window.pageYOffset > scroll_limit
+                document.documentElement.scrollTop > scrollLimit ||
+                window.pageYOffset > scrollLimit
             ) {
-                scroll_top_reset = false;
-                header_transform();
+                scrollTopReset = false;
+                headerTransform();
             }
 
-            const scroll_moved_debounce_wrapper = debounce(function () {
-                scroll_moved = false;
+            const scrollMovedDebounceWrapper = debounce(function () {
+                scrollMoved = false;
             }, 800);
-            const sticky_header_throttle_wrapper = throttle(function () {
-                header_transform();
+            const stickyHeaderThrottleWrapper = throttle(function () {
+                headerTransform();
             }, 100);
 
             // Adjusts header to match screen size if resized
             window.addEventListener(
                 'resize',
                 debounce(() => {
-                    header_transform();
-                    show_header = true;
-                    clearTimeout(scroll_timer);
+                    headerTransform();
+                    showHeader = true;
+                    clearTimeout(scrollTimer);
                 }, 200),
             );
 
             // Stops the header timer when mouse hovers over the header
             UI.header.addEventListener('mouseover', () => {
-                show_header = true;
-                clearTimeout(scroll_timer);
+                showHeader = true;
+                clearTimeout(scrollTimer);
             });
 
             // Stops the header timer when mouse moves over the header
             UI.header.addEventListener('mousemove', () => {
-                show_header = true;
-                clearTimeout(scroll_timer);
+                showHeader = true;
+                clearTimeout(scrollTimer);
             });
 
             // Stops the header timer when screen is touched on the header
             UI.header.addEventListener(
                 'touchstart',
                 () => {
-                    show_header = true;
-                    clearTimeout(scroll_timer);
+                    showHeader = true;
+                    clearTimeout(scrollTimer);
                 },
                 { passive: true },
             );
@@ -286,8 +286,8 @@ App.init = () => {
             UI.header.addEventListener(
                 'touchmove',
                 () => {
-                    show_header = true;
-                    clearTimeout(scroll_timer);
+                    showHeader = true;
+                    clearTimeout(scrollTimer);
                 },
                 { passive: true },
             );
@@ -295,19 +295,19 @@ App.init = () => {
             // Resumes header timer to hide header when mouse leaves the element
             UI.header.addEventListener('mouseout', () => {
                 if (
-                    (document.documentElement.scrollTop > hide_header_limit ||
-                        window.pageYOffset > hide_header_limit) &&
-                    !UI.bot_nav_collapse.classList.contains('show')
+                    (document.documentElement.scrollTop > hideHeaderLimit ||
+                        window.pageYOffset > hideHeaderLimit) &&
+                    !UI.botNavCollapse.classList.contains('show')
                 ) {
-                    header_timer();
+                    headerTimer();
                 }
             });
 
             // Stops the header timer when when header buttons are focused
-            UI.header_btns.forEach((btn) => {
+            UI.headerBtns.forEach((btn) => {
                 btn.addEventListener('focus', () => {
-                    show_header = true;
-                    clearTimeout(scroll_timer);
+                    showHeader = true;
+                    clearTimeout(scrollTimer);
                 });
             });
 
@@ -321,26 +321,26 @@ App.init = () => {
 
             // Hides the header timer when header links are clicked and
             // prevents header from disappearing while scrolling
-            UI.header_links.forEach((link) => {
+            UI.headerLinks.forEach((link) => {
                 link.addEventListener('click', (e) => {
-                    let scroll_check;
-                    let href_hash = link.getAttribute('href');
-                    if (href_hash.includes('#')) {
+                    let scrollCheck;
+                    let hrefHash = link.getAttribute('href');
+                    if (hrefHash.includes('#')) {
                         ///log console.log('header link clicked');
                         // e.preventDefault();
                         // document
                         //     .getElementById(`${href_hash.slice(1)}`)
                         //     .scrollIntoView();
-                        scroll_check = setInterval(() => {
+                        scrollCheck = setInterval(() => {
                             ///log console.log('scroll checking on header link click!', is_scrolling);
-                            if (!is_scrolling) {
+                            if (!isScrolling) {
                                 if (
-                                    !UI.toggler_btn.classList.contains(
+                                    !UI.togglerBtn.classList.contains(
                                         'collapsed',
                                     )
                                 )
-                                    UI.toggler_btn.click();
-                                clearInterval(scroll_check);
+                                    UI.togglerBtn.click();
+                                clearInterval(scrollCheck);
                             }
                         }, 500);
                     }
@@ -351,39 +351,39 @@ App.init = () => {
             document.addEventListener(
                 'scroll',
                 throttle(() => {
-                    is_scrolling = true;
-                    let is_scrolling_timer;
-                    clearTimeout(is_scrolling_timer);
-                    is_scrolling_timer = setTimeout(() => {
-                        is_scrolling = false;
+                    isScrolling = true;
+                    let isScrollingTimer;
+                    clearTimeout(isScrollingTimer);
+                    isScrollingTimer = setTimeout(() => {
+                        isScrolling = false;
                     }, 300);
                     if (
-                        document.documentElement.scrollTop > scroll_limit ||
-                        window.pageYOffset > scroll_limit
+                        document.documentElement.scrollTop > scrollLimit ||
+                        window.pageYOffset > scrollLimit
                     )
-                        show_header = false;
+                        showHeader = false;
                     else {
-                        show_header = true;
-                        anchor_is_scrolled = false;
+                        showHeader = true;
+                        anchorIsScrolled = false;
                     }
 
                     // Clear previous timer and reset
-                    clearTimeout(scroll_timer);
+                    clearTimeout(scrollTimer);
 
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if (
-                        !show_header &&
+                        !showHeader &&
                         (document.documentElement.scrollTop >
-                            hide_header_limit ||
-                            window.pageYOffset > hide_header_limit)
+                            hideHeaderLimit ||
+                            window.pageYOffset > hideHeaderLimit)
                     ) {
-                        if (UI.bot_nav_collapse.classList.contains('show')) {
-                            show_header = true;
+                        if (UI.botNavCollapse.classList.contains('show')) {
+                            showHeader = true;
                             return;
                         }
                         UI.header.classList.remove('hide-header');
                         UI.header.classList.add('show-header');
-                        header_timer();
+                        headerTimer();
                     } else {
                         UI.header.classList.remove('hide-header');
                         UI.header.classList.add('show-header');
@@ -394,44 +394,44 @@ App.init = () => {
             document.addEventListener(
                 'scroll',
                 debounce(() => {
-                    scroll_progress(UI.scroll_indicator);
+                    scrollProgress(UI.scrollIndicator);
                 }, 300),
                 { passive: true },
             );
-            document.addEventListener('scroll', scroll_moved_debounce_wrapper, {
+            document.addEventListener('scroll', scrollMovedDebounceWrapper, {
                 passive: true,
             });
             document.addEventListener(
                 'touchmove',
-                scroll_moved_debounce_wrapper,
+                scrollMovedDebounceWrapper,
                 {
                     passive: true,
                 },
             );
             document.addEventListener(
                 'touchstart',
-                scroll_moved_debounce_wrapper,
+                scrollMovedDebounceWrapper,
                 {
                     passive: true,
                 },
             );
             document.addEventListener(
                 'scroll',
-                sticky_header_throttle_wrapper,
+                stickyHeaderThrottleWrapper,
                 {
                     passive: true,
                 },
             );
             document.addEventListener(
                 'touchmove',
-                sticky_header_throttle_wrapper,
+                stickyHeaderThrottleWrapper,
                 {
                     passive: true,
                 },
             );
             document.addEventListener(
                 'touchstart',
-                sticky_header_throttle_wrapper,
+                stickyHeaderThrottleWrapper,
                 {
                     passive: true,
                 },
@@ -440,39 +440,39 @@ App.init = () => {
 
         /*** HOME SECTION ***/
         // Animate "Developer Portfolio"
-        UI.animate_letters();
+        UI.animateLetters();
 
         /*** ABOUT ME SECTION ***/
         // Automatically adjust my age in bio based on date
-        UI.my_age.innerHTML = calculate_age();
+        UI.myAge.innerHTML = calculateAge();
 
         // Adds a fade in and out effect when clicking the button in my bio
-        UI.summary_btn.addEventListener('click', () => {
-            UI.change_about_info();
+        UI.summaryBtn.addEventListener('click', () => {
+            UI.changeAboutInfo();
         });
 
         /*** MY SERVICES SECTION ***/
         let my_carousel_btn_click = false;
 
         // Changes carousel horizontal scroll amount depending on the screen size
-        myServicesCarouselLoader(UI, media_queries, debounce, throttle);
+        myServicesCarouselLoader();
 
         /*** TOOLS & TECHNOLOGIES SECTION ***/
         /** Tag Cloud **/
-        tagCloudLoader(UI, media_queries, generate_dark_color_hex, debounce);
+        tagCloudLoader();
 
         // Display star rating for each tool / technology based on skill level
-        UI.populate_skill_rating(new Skill_Rating());
+        UI.populateSkillRating(new SkillRating());
 
         /*** PROJECTS SECTION ***/
         // Create Projects
-        devProjectsLoader(UI);
+        devProjectsLoader();
 
         /*** CONTACT SECTION ***/
         /** Formspree validation **/
         // Example starter JavaScript for disabling form submissions if there
         // are invalid fields
-        contactFormLoader(UI, debounce, recaptchaCallback);
+        contactFormLoader(recaptchaCallback);
     }); // end of DOMContentLoaded event listener
 }; // end of init()
 // end of App

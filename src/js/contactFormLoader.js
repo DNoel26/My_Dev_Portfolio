@@ -2,20 +2,22 @@
 
 import {
     ajax,
-    form_submit_error,
-    form_submit_success,
-    wrapper_no_exec,
+    debounce,
+    formSubmitError,
+    formSubmitSuccess,
+    wrapperNoExec,
 } from './Business_Logic/Functions.js';
+import UI from './UI_Logic/UI.js';
 
-export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
+export const contactFormLoader = (recaptchaCallback) => {
     // Observes if form is in view and then makes country API request if true
     const options = {
         root: null,
         rootMargin: '500px',
         threshold: 0,
     };
-    let select_change;
-    const form_api_observer = new IntersectionObserver(function (
+    let selectChange;
+    const formApiObserver = new IntersectionObserver(function (
         entries,
         observer,
     ) {
@@ -23,18 +25,18 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
             if (entry.isIntersecting) {
                 import('./Business_Logic/API.js')
                     .then((module) => module.default) // uses the default export
-                    .then((API) => {
+                    .then((Api) => {
                         // Populates form countries using API
-                        const Country_API = new API(
+                        const CountryApi = new Api(
                             'https://restcountries.com/v2/all',
                         );
-                        let user_typed = false;
-                        select_change = function () {
-                            const selected_options =
+                        let userTyped = false;
+                        selectChange = function () {
+                            const selectedOptions =
                                 document.querySelectorAll('option');
 
                             // Adds country flag and phone calling code on country select
-                            selected_options.forEach((option) => {
+                            selectedOptions.forEach((option) => {
                                 if (
                                     option.value &&
                                     option.selected &&
@@ -42,7 +44,7 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                 ) {
                                     const flag =
                                         option.getAttribute('data-flag');
-                                    const calling_codes =
+                                    const callingCodes =
                                         option.getAttribute(
                                             'data-calling-codes',
                                         );
@@ -55,60 +57,60 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                     img.setAttribute('width', '40px');
                                     img.setAttribute('height', 'auto');
                                     img.style.marginLeft = '10px';
-                                    if (!user_typed)
-                                        UI.phone.value = `+${calling_codes}-`;
+                                    if (!userTyped)
+                                        UI.phone.value = `+${callingCodes}-`;
                                     if (
-                                        UI.country_select.labels[0]
+                                        UI.countrySelect.labels[0]
                                             .children[1] &&
-                                        UI.country_select.labels[0].children[1]
+                                        UI.countrySelect.labels[0].children[1]
                                             .tagName === 'IMG'
                                     )
-                                        UI.country_select.labels[0].children[1].remove();
-                                    UI.country_select.labels[0].appendChild(
+                                        UI.countrySelect.labels[0].children[1].remove();
+                                    UI.countrySelect.labels[0].appendChild(
                                         img,
                                     );
                                 } else if (option.selected && !option.value) {
                                     if (
-                                        UI.country_select.labels[0]
+                                        UI.countrySelect.labels[0]
                                             .children[1] &&
-                                        UI.country_select.labels[0].children[1]
+                                        UI.countrySelect.labels[0].children[1]
                                             .tagName === 'IMG'
                                     )
-                                        UI.country_select.labels[0].children[1].remove();
+                                        UI.countrySelect.labels[0].children[1].remove();
                                 }
                             });
                         };
-                        Country_API.fetch_api()
+                        CountryApi.fetchApi()
                             .then((data) => {
                                 // Populates with API data
                                 data.forEach((datum) => {
-                                    const new_option =
+                                    const newOption =
                                         document.createElement('option');
-                                    new_option.setAttribute(
+                                    newOption.setAttribute(
                                         'value',
                                         datum.name,
                                     );
-                                    new_option.setAttribute(
+                                    newOption.setAttribute(
                                         'data-flag',
                                         datum.flags[0],
                                     );
-                                    new_option.setAttribute(
+                                    newOption.setAttribute(
                                         'data-calling-codes',
                                         datum.callingCodes,
                                     );
-                                    new_option.innerHTML = new_option.value;
-                                    UI.country_select.appendChild(new_option);
+                                    newOption.innerHTML = newOption.value;
+                                    UI.countrySelect.appendChild(newOption);
                                 });
                                 UI.phone.addEventListener(
                                     'keyup',
                                     debounce(() => {
-                                        user_typed = true;
+                                        userTyped = true;
                                     }, 500),
                                 );
-                                UI.country_select.addEventListener(
+                                UI.countrySelect.addEventListener(
                                     'change',
                                     debounce(() => {
-                                        select_change();
+                                        selectChange();
                                     }, 300),
                                 );
                             })
@@ -122,19 +124,19 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
         });
     },
     options);
-    form_api_observer.observe(UI.my_form);
+    formApiObserver.observe(UI.myForm);
     const formspree = function () {
         // Contact form validation responses on fail (for each form)
-        const validation_msgs = [
+        const validationMsgs = [
             function () {
-                return UI.display_form_validation_msg();
+                return UI.displayFormValidationMsg();
             },
         ];
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to using document.querySelectorAll('.needs-validation')
         // Loop over them and prevent submission
         Array.prototype.slice
-            .call(UI.forms_need_validation)
+            .call(UI.formsNeedValidation)
             .forEach(function (form, index) {
                 (function () {
                     // Cycle through each form input/select/text area tags and store or populate with sessionStorage
@@ -146,7 +148,7 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                         if (data.tagName === 'SELECT')
                             data.value =
                                 sessionStorage.getItem(data.name) || '';
-                        select_change();
+                        selectChange();
 
                         // Save contact form info in cookies
                         data.addEventListener(
@@ -159,9 +161,9 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                 })();
 
                 form.addEventListener('input', () => {
-                    UI.text_area.value = UI.text_area.value.trimStart();
-                    if (UI.text_area.value.includes('    ')) {
-                        UI.text_area.value = UI.text_area.value.trim();
+                    UI.textArea.value = UI.textArea.value.trimStart();
+                    if (UI.textArea.value.includes('    ')) {
+                        UI.textArea.value = UI.textArea.value.trim();
                     }
                 });
 
@@ -185,7 +187,7 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                     })
                                         .then(() => {
                                             // Displays validation messages if failed to enter info correctly
-                                            validation_msgs[index]();
+                                            validationMsgs[index]();
                                         })
                                         .catch((err) => {
                                             console.error(
@@ -193,34 +195,34 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                             );
                                         });
                                 } else {
-                                    const My_Form = new Formspree(UI.my_form);
-                                    My_Form.method = UI.my_form.method;
-                                    My_Form.url = UI.my_form.action;
-                                    My_Form.data = new FormData(My_Form.form);
-                                    My_Form.success_msg =
-                                        `Hi ${My_Form.get_form_data(
+                                    const myForm = new Formspree(UI.myForm);
+                                    myForm.method = UI.myForm.method;
+                                    myForm.url = UI.myForm.action;
+                                    myForm.data = new FormData(myForm.form);
+                                    myForm.successMsg =
+                                        `Hi ${myForm.getFormData(
                                             'first_name',
-                                        ).trim()}! ` + My_Form.success_msg;
-                                    My_Form.error_msg =
-                                        `Sorry ${My_Form.get_form_data(
+                                        ).trim()}! ` + myForm.successMsg;
+                                    myForm.errorMsg =
+                                        `Sorry ${myForm.getFormData(
                                             'first_name',
-                                        ).trim()}! ` + My_Form.error_msg;
-                                    const success = wrapper_no_exec(
-                                        form_submit_success,
-                                        My_Form.form,
-                                        UI.my_form_button,
-                                        UI.my_form_status,
-                                        My_Form.success_msg,
+                                        ).trim()}! ` + myForm.errorMsg;
+                                    const success = wrapperNoExec(
+                                        formSubmitSuccess,
+                                        myForm.form,
+                                        UI.myFormBtn,
+                                        UI.myFormStatus,
+                                        myForm.successMsg,
                                     );
-                                    const error = wrapper_no_exec(
-                                        form_submit_error,
-                                        UI.my_form_status,
-                                        My_Form.error_msg,
+                                    const error = wrapperNoExec(
+                                        formSubmitError,
+                                        UI.myFormStatus,
+                                        myForm.errorMsg,
                                     );
                                     ajax(
-                                        My_Form.method,
-                                        My_Form.url,
-                                        My_Form.data,
+                                        myForm.method,
+                                        myForm.url,
+                                        myForm.data,
                                         success,
                                         error,
                                         (status) => {
@@ -232,15 +234,15 @@ export const contactFormLoader = (UI, debounce, recaptchaCallback) => {
                                                     );
                                                     sessionStorage.clear();
                                                     if (
-                                                        UI.country_select
+                                                        UI.countrySelect
                                                             .labels[0]
                                                             .children[1] &&
-                                                        UI.country_select
+                                                        UI.countrySelect
                                                             .labels[0]
                                                             .children[1]
                                                             .tagName === 'IMG'
                                                     )
-                                                        UI.country_select.labels[0].children[1].remove();
+                                                        UI.countrySelect.labels[0].children[1].remove();
                                                 });
                                             } else return;
                                             return;

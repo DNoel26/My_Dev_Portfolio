@@ -1,58 +1,60 @@
 /** @format */
 
-export const tagCloudLoader = (
-    UI,
-    media_queries,
-    generate_dark_color_hex,
+import {
     debounce,
-) => {
-    let tagcloud_radius;
-    const mq_limits = [
+    generateDarkColorHex,
+    mediaQueries,
+} from './Business_Logic/Functions.js';
+import UI from './UI_Logic/UI.js';
+
+export const tagCloudLoader = () => {
+    let tagcloudRadius;
+    const mqLimits = [
         window.matchMedia('(max-width: 320.98px)'),
         window.matchMedia('(min-width: 321px) and (max-width: 575.98px)'),
         window.matchMedia('(min-width: 576px) and (max-width: 767.98px)'),
         window.matchMedia('(min-width: 768px) and (max-width: 991.98px)'),
         window.matchMedia('(min-width: 992px)'),
     ];
-    const tagcloud_resizer = function () {
-        media_queries(
-            mq_limits[0],
+    const tagcloudResizer = function () {
+        mediaQueries(
+            mqLimits[0],
             () => {
-                return (tagcloud_radius = 140);
+                return (tagcloudRadius = 140);
             },
             null,
         );
-        media_queries(
-            mq_limits[1],
+        mediaQueries(
+            mqLimits[1],
             () => {
-                return (tagcloud_radius = 150);
+                return (tagcloudRadius = 150);
             },
             null,
         );
-        media_queries(
-            mq_limits[2],
+        mediaQueries(
+            mqLimits[2],
             () => {
-                return (tagcloud_radius = 250);
+                return (tagcloudRadius = 250);
             },
             null,
         );
-        media_queries(
-            mq_limits[3],
+        mediaQueries(
+            mqLimits[3],
             () => {
-                return (tagcloud_radius = 300);
+                return (tagcloudRadius = 300);
             },
             null,
         );
-        media_queries(
-            mq_limits[4],
+        mediaQueries(
+            mqLimits[4],
             () => {
-                return (tagcloud_radius = undefined);
+                return (tagcloudRadius = undefined);
             },
             null,
         );
     };
 
-    tagcloud_resizer();
+    tagcloudResizer();
     let tagCloud;
     const loadTagCloudOnObserve = function (TagClouds) {
         // Define tags in js array
@@ -79,7 +81,7 @@ export const tagCloudLoader = (
         // Config tag cloud by overriding default parameters below
         tagCloud = TagClouds('.tag-cloud-content', myTags, {
             // radius in px
-            radius: tagcloud_radius ?? 340,
+            radius: tagcloudRadius ?? 340,
 
             // animation speed
             // slow, normal, fast
@@ -98,20 +100,20 @@ export const tagCloudLoader = (
         // Add more tags to existing tag cloud
         // myTags = myTags.concat([]);
         // tagCloud.update(myTags);
-        UI.tagcloud_content = document.querySelector('.tag-cloud-content');
+        UI.tagcloudContent = document.querySelector('.tag-cloud-content');
         UI.tagcloud = document.querySelector('.tagcloud');
-        UI.tagcloud_items = document.querySelectorAll('.tagcloud--item');
+        UI.tagcloudItems = document.querySelectorAll('.tagcloud--item');
 
         // Randomizes tag word colours and adds effects on click
-        UI.tagcloud_items.forEach((item) => {
-            item.style.color = generate_dark_color_hex();
+        UI.tagcloudItems.forEach((item) => {
+            item.style.color = generateDarkColorHex();
             let clicked_once = false;
             let clicked_twice = false;
             item.addEventListener('click', () => {
                 if (clicked_once && clicked_twice) {
                     item.style.fontSize = '0';
                     setTimeout(() => {
-                        item.style.color = generate_dark_color_hex();
+                        item.style.color = generateDarkColorHex();
                         item.style.fontSize = 'initial';
                         item.style.fontWeight = '400';
                         clicked_once = false;
@@ -151,7 +153,7 @@ export const tagCloudLoader = (
                         window.addEventListener(
                             'resize',
                             debounce(function () {
-                                tagcloud_resizer();
+                                tagcloudResizer();
                                 if (UI.tagcloud) UI.tagcloud.remove();
                                 loadTagCloudOnObserve(TagCloud);
                             }, 500),
@@ -167,5 +169,5 @@ export const tagCloudLoader = (
         });
     },
     options);
-    tagcloud_observer.observe(UI.tagcloud_content);
+    tagcloud_observer.observe(UI.tagcloudContent);
 };

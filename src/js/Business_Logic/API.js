@@ -1,12 +1,12 @@
 /** @format */
 
-class API {
+class Api {
     endpoint;
     method;
     headers = {};
     body = {};
     response;
-    response_data;
+    responseData;
 
     constructor(endpoint, method, headers, body) {
         this.endpoint = endpoint;
@@ -15,7 +15,7 @@ class API {
         this.body = body;
     }
 
-    fetch_api() {
+    fetchApi() {
         return new Promise((resolve, reject) => {
             fetch(this.endpoint, {
                 method: this.method,
@@ -27,7 +27,7 @@ class API {
                     return response.json();
                 })
                 .then((data) => {
-                    this.response_data = data;
+                    this.responseData = data;
                     resolve(data);
                 })
                 .catch(() =>
@@ -40,4 +40,4 @@ class API {
     }
 }
 
-export default API;
+export default Api;

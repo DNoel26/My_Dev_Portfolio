@@ -1,12 +1,14 @@
 /** @format */
 
 import Project from './Business_Logic/Project.js';
+import UI from './UI_Logic/UI.js';
 
-export const devProjectsLoader = (UI) => {
-    let current_project = {};
-    let new_inner_html = ``;
-    const dev_project_carousel = new bootstrap.Carousel(
-        UI.dev_project_carousel,
+export const devProjectsLoader = () => {
+    /**@type {Project} */
+    let currentProject = {};
+    let newInnerHtml = ``;
+    const devProjectCarousel = new bootstrap.Carousel(
+        UI.devProjectCarousel,
         {
             interval: 5000,
         },
@@ -14,8 +16,8 @@ export const devProjectsLoader = (UI) => {
 
     // Adds an indicator button, along with attributes per image and sets active class to first slide
     // Accepts a single parameter with values "dev" or "client"
-    const populate_carousel_indicators = function (proj_type) {
-        current_project.carousel_img_list.srcs.forEach((indicator, index) => {
+    const populateCarouselIndicators = function (projType) {
+        currentProject.carouselImgList.srcs.forEach((indicator, index) => {
             const btn = document.createElement('button');
             btn.setAttribute('type', 'button');
             btn.setAttribute('data-bs-target', '#dev-project-carousel');
@@ -26,17 +28,17 @@ export const devProjectsLoader = (UI) => {
             btn.setAttribute('aria-label', `Slide ${index + 1}`);
 
             // Append to dev or client project depending on parameter set
-            if (proj_type === 'dev'.toLowerCase())
-                UI.dev_project_carousel_indicator_section.appendChild(btn);
-            else if (proj_type === 'client'.toLowerCase())
-                UI.dev_project_carousel_indicator_section.appendChild(btn);
+            if (projType === 'dev'.toLowerCase())
+                UI.devProjectCarouselIndicatorSection.appendChild(btn);
+            else if (projType === 'client'.toLowerCase())
+                UI.devProjectCarouselIndicatorSection.appendChild(btn);
         });
     };
 
     // Adds each image along with attributes, to the carousel slideshow
     // Accepts a single parameter with values "dev" or "client"
-    const populate_carousel_img_data = function (proj_type) {
-        current_project.carousel_img_list.srcs.forEach((src, index) => {
+    const populateCarouselImgData = function (projType) {
+        currentProject.carouselImgList.srcs.forEach((src, index) => {
             const div = document.createElement('div');
             if (index === 0) div.classList.add('carousel-item', 'active');
             else div.classList.add('carousel-item');
@@ -46,7 +48,7 @@ export const devProjectsLoader = (UI) => {
             img.setAttribute('src', src);
             img.setAttribute(
                 'alt',
-                current_project.carousel_img_list.alts[index] ||
+                currentProject.carouselImgList.alts[index] ||
                     'My project carousel image',
             );
             img.setAttribute('width', '625');
@@ -54,56 +56,56 @@ export const devProjectsLoader = (UI) => {
             div.appendChild(img);
 
             // Append to dev or client project depending on parameter set
-            if (proj_type === 'dev'.toLowerCase())
-                UI.dev_project_carousel_inner_section.appendChild(div);
-            else if (proj_type === 'client'.toLowerCase())
-                UI.client_project_carousel_inner_section.appendChild(div);
+            if (projType === 'dev'.toLowerCase())
+                UI.devProjectCarouselInnerSection.appendChild(div);
+            else if (projType === 'client'.toLowerCase())
+                UI.clientProjectCarouselInnerSection.appendChild(div);
         });
     };
 
     // Adds notes to project overview
     // Accepts a single parameter with values "dev" or "client"
-    const populate_project_notes = function (proj_type) {
-        current_project.notes.forEach((note, index) => {
+    const populateProjectNotes = function (projType) {
+        currentProject.notes.forEach((note, index) => {
             const list = document.createElement('li');
             list.innerHTML = note;
-            if (index === current_project.notes.length - 1)
+            if (index === currentProject.notes.length - 1)
                 list.classList.add('fw-bold');
 
             // Append to dev or client project depending on parameter set
-            if (proj_type === 'dev'.toLowerCase())
-                UI.dev_project_carousel_note_section.appendChild(list);
-            else if (proj_type === 'client'.toLowerCase())
-                UI.client_project_carousel_note_section.appendChild(list);
+            if (projType === 'dev'.toLowerCase())
+                UI.devProjectCarouselNoteSection.appendChild(list);
+            else if (projType === 'client'.toLowerCase())
+                UI.clientProjectCarouselNoteSection.appendChild(list);
         });
     };
 
     // Adds each tool / technology icon to the end of the project overview
     // Accepts a single parameter with values "dev" or "client"
-    const populate_project_tool_icons = function (proj_type) {
-        current_project.tool_icon_list.srcs.forEach((src, index) => {
+    const populateProjectToolIcons = function (projType) {
+        currentProject.toolIconList.srcs.forEach((src, index) => {
             const img = document.createElement('img');
             img.setAttribute('loading', 'lazy');
             img.classList.add('img-fluid', 'icon-disp-img-lg', 'm-3');
-            img.id = current_project.tool_icon_list.ids[index] || null;
+            img.id = currentProject.toolIconList.ids[index] || null;
             img.setAttribute('src', src);
             img.setAttribute(
                 'alt',
-                current_project.tool_icon_list.alts[index] ||
+                currentProject.toolIconList.alts[index] ||
                     'Tool and Technology Icon Badge',
             );
             img.setAttribute('width', '85');
             img.setAttribute('height', '64');
 
             // Append to dev or client project depending on parameter set
-            if (proj_type === 'dev'.toLowerCase())
-                UI.dev_project_carousel_icon_section.appendChild(img);
-            else if (proj_type === 'client'.toLowerCase())
-                UI.client_project_carousel_icon_section.appendChild(img);
+            if (projType === 'dev'.toLowerCase())
+                UI.devProjectCarouselIconSection.appendChild(img);
+            else if (projType === 'client'.toLowerCase())
+                UI.clientProjectCarouselIconSection.appendChild(img);
         });
     };
-    const change_project = function () {
-        new_inner_html = `
+    const changeProject = function () {
+        newInnerHtml = `
                     <div class="flex-row row justify-content-between align-items-center">
                         <div class="col-12 col-xl-6">
                             <div id="dev-project-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -141,15 +143,15 @@ export const devProjectsLoader = (UI) => {
 
                         <div class="col-12 col-xl-6">
                             <div class="card-body py-5">
-                                <h3 class="text-center">${current_project.name}</h3>
+                                <h3 class="text-center">${currentProject.name}</h3>
                                 
                                 <p>
-                                    ${current_project.description}
-                                    <br><strong>Status: ${current_project.status.msg} <span class="${current_project.status.class_code} status-circle"></span></strong>
+                                    ${currentProject.description}
+                                    <br><strong>Status: ${currentProject.status.msg} <span class="${currentProject.status.classCode} status-circle"></span></strong>
                                 </p>
                                 
-                                <a href=${current_project.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${current_project.link_header}</strong> Now ${current_project.link_note}</a>
-                                <br><a href=${current_project.github_link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${current_project.github_readme}</a>
+                                <a href=${currentProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${currentProject.link_header}</strong> Now ${currentProject.link_note}</a>
+                                <br><a href=${currentProject.githubLink} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${currentProject.github_readme}</a>
 
                                 <h4 class="small text-left mt-3">Notes:</h4>
                                 <ul class="text-wrap" id="dev-project-carousel-notes">
@@ -176,35 +178,35 @@ export const devProjectsLoader = (UI) => {
                     </div>
                 `;
     };
-    const reinitialize_el = function () {
+    const reinitializeEl = function () {
         // Re-declare (update) document IDs on new inner html
-        UI.return_to_dev_gallery_btns = document.querySelectorAll(
+        UI.returnToDevGalleryBtns = document.querySelectorAll(
             "[data-id='dev-project-gallery']",
         );
-        UI.dev_project_carousel = document.getElementById(
+        UI.devProjectCarousel = document.getElementById(
             'dev-project-carousel',
         );
-        UI.dev_project_carousel_indicator_section = document.getElementById(
+        UI.devProjectCarouselIndicatorSection = document.getElementById(
             'dev-project-carousel-indicators',
         );
-        UI.dev_project_carousel_inner_section = document.getElementById(
+        UI.devProjectCarouselInnerSection = document.getElementById(
             'dev-project-carousel-inner',
         );
-        UI.dev_project_carousel_note_section = document.getElementById(
+        UI.devProjectCarouselNoteSection = document.getElementById(
             'dev-project-carousel-notes',
         );
-        UI.dev_project_carousel_icon_section = document.getElementById(
+        UI.devProjectCarouselIconSection = document.getElementById(
             'dev-project-carousel-icon-section',
         );
-        populate_carousel_img_data('dev');
-        populate_carousel_indicators('dev');
-        populate_project_notes('dev');
-        populate_project_tool_icons('dev');
+        populateCarouselImgData('dev');
+        populateCarouselIndicators('dev');
+        populateProjectNotes('dev');
+        populateProjectToolIcons('dev');
         dispatchEvent(new Event('load'));
     };
 
     // Alien Mathvasion Project
-    const Alien_Mathvasion = new Project(
+    const AlienMathvasion = new Project(
         'Alien Mathvasion Game',
         2,
         'https://dnoelmathinvasiongame.netlify.app/html/gamescreen.html',
@@ -212,47 +214,47 @@ export const devProjectsLoader = (UI) => {
         'https://github.com/DNoel26/Alien_Mathvasion',
         true,
     );
-    Alien_Mathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
+    AlienMathvasion.description = `This project was designed for children ages 8+ with the goal of making math fun and engaging. It was built from scratch without any frameworks, libraries or dependencies using OOP and SOC principles, and with the 
                 intention of making code DRY and easier to maintain. Utilizes heavy JavaScript and DOM manipulation. Uses promises instead of while loops to track progress. Visual design is based on retro arcade Shoot-em Up games.
                 Good luck surviving the hardest difficulty!
             `;
-    Alien_Mathvasion.link_note = '(expect audio - desktop version only!)';
-    Alien_Mathvasion.notes.push(
+    AlienMathvasion.linkNote = '(expect audio - desktop version only!)';
+    AlienMathvasion.notes.push(
         `Gameplay works completely but there are some minor bugs to fix, mainly in the areas of UI/UX. Very rarely, game does not load when difficulty is selected. Simply refresh the browser and try again.`,
     );
-    Alien_Mathvasion.notes.push(
+    AlienMathvasion.notes.push(
         `Some features are missing such as player entered details, data persistence, settings; to be implemented at a later date.`,
     );
-    Alien_Mathvasion.notes.push(
+    AlienMathvasion.notes.push(
         `Use Google Chrome for the best experience. Not yet fully responsive on smaller devices!`,
     );
-    const alien_m_carousel_img_ids = [];
-    const alien_m_carousel_img_srcs = [
+    const alienMathCarouselImgIds = [];
+    const alienMathCarouselImgSrcs = [
         './img/projects/min/alien-mathvasion-1-min.webp',
         './img/projects/min/alien-mathvasion-2-min.webp',
         './img/projects/min/alien-mathvasion-3-min.webp',
     ];
-    const alien_m_carousel_img_alts = [];
-    const alien_m_tool_img_ids = [];
-    const alien_m_tool_img_srcs = [
+    const alienMathCarouselImgAlts = [];
+    const alienMathToolImgIds = [];
+    const alienMathToolImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
         './img/logos/javascript-badge.webp',
     ];
-    const alien_m_tool_img_alts = [];
-    Alien_Mathvasion.add_imgs(
-        alien_m_carousel_img_ids,
-        alien_m_carousel_img_srcs,
-        alien_m_carousel_img_alts,
+    const alienMathToolImgAlts = [];
+    AlienMathvasion.addImgs(
+        alienMathCarouselImgIds,
+        alienMathCarouselImgSrcs,
+        alienMathCarouselImgAlts,
     );
-    Alien_Mathvasion.add_tool_icons(
-        alien_m_tool_img_ids,
-        alien_m_tool_img_srcs,
-        alien_m_tool_img_alts,
+    AlienMathvasion.addToolIcons(
+        alienMathToolImgIds,
+        alienMathToolImgSrcs,
+        alienMathToolImgAlts,
     );
 
     // Wix Clone Project
-    const Wix_Clone = new Project(
+    const WixClone = new Project(
         'Wix Site Clone',
         1,
         'https://dnoelmotorcyclewixclone.netlify.app/',
@@ -260,38 +262,38 @@ export const devProjectsLoader = (UI) => {
         'https://github.com/DNoel26/Wix_Motorcycle_Trial',
         true,
     );
-    Wix_Clone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
+    WixClone.description = `This was my first official development project and was intended to be a pixel for pixel clone of
                 <a target="_blank" class="text-reset text-decoration-none anim-link-3" rel="noopener" href="https://www.wix.com/website-template/view/html/773?siteId=32647d89-1460-4326-b084-a958bf90765d&metaSiteId=129904ad-3051-8c87-f69f-31ce75166f9c&originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%3Fcriteria%3Dauto&tpClick=view_button">a selected, original Wix site</a>. 
                 It was built using HTML, CSS and without any JavaScript. 
                 Showcases the ability to take a design and convert it into a functional webpage or website.
             `;
-    Wix_Clone.link_note = '(see link to cloned Wix site above)';
-    Wix_Clone.notes.push(
+    WixClone.linkNote = '(see link to cloned Wix site above)';
+    WixClone.notes.push(
         `Only 3 pages were cloned for this project: Home, About and Contact.`,
     );
-    Wix_Clone.notes.push(`Website is fully responsive for all devices!`);
-    const wix_c_carousel_img_ids = [];
-    const wix_c_carousel_img_srcs = [
+    WixClone.notes.push(`Website is fully responsive for all devices!`);
+    const wixCloneCarouselImgIds = [];
+    const wixCloneCarouselImgSrcs = [
         './img/projects/min/wix-clone-1-min.webp',
         './img/projects/min/wix-clone-2-min.webp',
         './img/projects/min/wix-clone-3-min.webp',
     ];
-    const wix_c_carousel_img_alts = [];
-    const wix_c_tool_img_ids = [];
-    const wix_c_tool_img_srcs = [
+    const wixCloneCarouselImgAlts = [];
+    const wixCloneToolImgIds = [];
+    const wixCloneToolImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
     ];
-    const wix_c_tool_img_alts = [];
-    Wix_Clone.add_imgs(
-        wix_c_carousel_img_ids,
-        wix_c_carousel_img_srcs,
-        wix_c_carousel_img_alts,
+    const wixCloneToolImgAlts = [];
+    WixClone.addImgs(
+        wixCloneCarouselImgIds,
+        wixCloneCarouselImgSrcs,
+        wixCloneCarouselImgAlts,
     );
-    Wix_Clone.add_tool_icons(
-        wix_c_tool_img_ids,
-        wix_c_tool_img_srcs,
-        wix_c_tool_img_alts,
+    WixClone.addToolIcons(
+        wixCloneToolImgIds,
+        wixCloneToolImgSrcs,
+        wixCloneToolImgAlts,
     );
 
     // Cyberdise Online Store Project
@@ -308,23 +310,23 @@ export const devProjectsLoader = (UI) => {
                 authorization, authentication, page protection, session storage, pagination, multiple queries per database call, database transactions, product tracking, product restocking, add to cart, payment processing using a modified PayPal SDK, to name a few, were all built from the ground up and implemented in this site.
                 Check it out and let me know what you think! Please use only FAKE CREDENTIALS if creating a customer account to login. See my GitHub readme for instructions on how to log in as an employee to stock, re-stock and/or modify product data etc. 
             `;
-    Cyberdise.link_note = '(fake credentials only - desktop version only!)';
+    Cyberdise.linkNote = '(fake credentials only - desktop version only!)';
     Cyberdise.notes.push(
         `Most other major features are working as expected. Search functionality not implemented just yet.`,
     );
     Cyberdise.notes.push(`Some UI elements are incomplete/missing.`);
     Cyberdise.notes.push(`Not yet fully responsive on smaller devices!`);
-    const cyberdise_carousel_img_ids = [];
-    const cyberdise_carousel_img_srcs = [
+    const cyberdiseCarouselImgIds = [];
+    const cyberdiseCarouselImgSrcs = [
         './img/projects/min/cyberdise-online-store-1-min.webp',
         './img/projects/min/cyberdise-online-store-2-min.webp',
         './img/projects/min/cyberdise-online-store-3-min.webp',
         './img/projects/min/cyberdise-online-store-4-min.webp',
         './img/projects/min/cyberdise-online-store-5-min.webp',
     ];
-    const cyberdise_carousel_img_alts = [];
-    const cyberdise_tool_img_ids = [];
-    const cyberdise_tool_img_srcs = [
+    const cyberdiseCarouselImgAlts = [];
+    const cyberdiseToolImgIds = [];
+    const cyberdiseToolImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
         './img/logos/javascript-badge.webp',
@@ -334,20 +336,20 @@ export const devProjectsLoader = (UI) => {
         './img/logos/express-logo.webp',
         './img/logos/postman-badge.webp',
     ];
-    const cyberdise_tool_img_alts = [];
-    Cyberdise.add_imgs(
-        cyberdise_carousel_img_ids,
-        cyberdise_carousel_img_srcs,
-        cyberdise_carousel_img_alts,
+    const cyberdiseToolImgAlts = [];
+    Cyberdise.addImgs(
+        cyberdiseCarouselImgIds,
+        cyberdiseCarouselImgSrcs,
+        cyberdiseCarouselImgAlts,
     );
-    Cyberdise.add_tool_icons(
-        cyberdise_tool_img_ids,
-        cyberdise_tool_img_srcs,
-        cyberdise_tool_img_alts,
+    Cyberdise.addToolIcons(
+        cyberdiseToolImgIds,
+        cyberdiseToolImgSrcs,
+        cyberdiseToolImgAlts,
     );
 
     // Movie Database Project
-    const Movie_Database = new Project(
+    const MovieDatabase = new Project(
         'Movie Database',
         2,
         'https://dnoelmovieapidatabase.netlify.app/',
@@ -355,42 +357,42 @@ export const devProjectsLoader = (UI) => {
         'https://github.com/DNoel26/Movie_Database',
         true,
     );
-    Movie_Database.description = `
+    MovieDatabase.description = `
                 This project was built from scratch to dynamically display "Now Showing" movie details and trailers via consuming multiple APIs; meaning all data shown on my website is requested
                 and pulled from another server, and manipulated on my website using JavaScript. Design is based on retro theatres. Click the link and take a look at all the trending movies now!
             `;
-    Movie_Database.link_note = '(desktop version only!)';
-    Movie_Database.notes.push(
+    MovieDatabase.linkNote = '(desktop version only!)';
+    MovieDatabase.notes.push(
         `All major features are working as expected. Pagination to be implemented.`,
     );
-    Movie_Database.notes.push(`Not yet fully responsive on smaller devices!`);
-    const movie_db_carousel_img_ids = [];
-    const movie_db_carousel_img_srcs = [
+    MovieDatabase.notes.push(`Not yet fully responsive on smaller devices!`);
+    const movieDbCarouselImgIds = [];
+    const movieDbCarouselImgSrcs = [
         './img/projects/min/movie-db-1-min.webp',
         './img/projects/min/movie-db-2-min.webp',
         './img/projects/min/movie-db-3-min.webp',
     ];
-    const movie_db_carousel_img_alts = [];
-    const movie_db_tools_img_ids = [];
-    const movie_db_tools_img_srcs = [
+    const movieDbCarouselImgAlts = [];
+    const movieDbToolsImgIds = [];
+    const movieDbToolsImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
         './img/logos/javascript-badge.webp',
     ];
-    const movie_db_tools_img_alts = [];
-    Movie_Database.add_imgs(
-        movie_db_carousel_img_ids,
-        movie_db_carousel_img_srcs,
-        movie_db_carousel_img_alts,
+    const movieDbToolsImgAlts = [];
+    MovieDatabase.addImgs(
+        movieDbCarouselImgIds,
+        movieDbCarouselImgSrcs,
+        movieDbCarouselImgAlts,
     );
-    Movie_Database.add_tool_icons(
-        movie_db_tools_img_ids,
-        movie_db_tools_img_srcs,
-        movie_db_tools_img_alts,
+    MovieDatabase.addToolIcons(
+        movieDbToolsImgIds,
+        movieDbToolsImgSrcs,
+        movieDbToolsImgAlts,
     );
 
     // Amazon Clone Project
-    const Amazon_Clone = new Project(
+    const AmazonClone = new Project(
         'Amazon Clone',
         2,
         'https://clone-905a7.web.app/',
@@ -398,24 +400,24 @@ export const devProjectsLoader = (UI) => {
         'https://github.com/DNoel26/Amazon_React_Clone',
         true,
     );
-    Amazon_Clone.description = `
+    AmazonClone.description = `
                 This project was done as my hands on introduction to React.js and Firebase. In this particular case, I followed a tutorial and manipulated my code rather than building from scratch.
                 The main purpose was to understand the concepts behind the very popular React.js framework, as well as to learn new methods for coding. Main project features are account creation, 
                 login, add to cart, and payment processing using Stripe API. Please use only FAKE CREDENTIALS if creating an account to login. See my GitHub readme for further instructions. 
             `;
-    Amazon_Clone.link_note = '(fake credentials only - desktop version only!)';
-    Amazon_Clone.notes.push(`All major features are working as expected.`);
-    Amazon_Clone.notes.push(`Not yet fully responsive on smaller devices!`);
-    const amazon_c_carousel_img_ids = [];
-    const amazon_c_carousel_img_srcs = [
+    AmazonClone.linkNote = '(fake credentials only - desktop version only!)';
+    AmazonClone.notes.push(`All major features are working as expected.`);
+    AmazonClone.notes.push(`Not yet fully responsive on smaller devices!`);
+    const amazonCloneCarouselImgIds = [];
+    const amazonCloneCarouselImgSrcs = [
         './img/projects/min/amazon-clone-1-min.webp',
         './img/projects/min/amazon-clone-2-min.webp',
         './img/projects/min/amazon-clone-3-min.webp',
         './img/projects/min/amazon-clone-4-min.webp',
     ];
-    const amazon_c_carousel_img_alts = [];
-    const amazon_c_tool_img_ids = [];
-    const amazon_c_tool_img_srcs = [
+    const amazonCloneCarouselImgAlts = [];
+    const amazonCloneToolImgIds = [];
+    const amazonCloneToolImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
         './img/logos/javascript-badge.webp',
@@ -424,20 +426,20 @@ export const devProjectsLoader = (UI) => {
         './img/logos/nodejs-badge.webp',
         './img/logos/express-logo.webp',
     ];
-    const amazon_c_tool_img_alts = [];
-    Amazon_Clone.add_imgs(
-        amazon_c_carousel_img_ids,
-        amazon_c_carousel_img_srcs,
-        amazon_c_carousel_img_alts,
+    const amazonCloneToolImgAlts = [];
+    AmazonClone.addImgs(
+        amazonCloneCarouselImgIds,
+        amazonCloneCarouselImgSrcs,
+        amazonCloneCarouselImgAlts,
     );
-    Amazon_Clone.add_tool_icons(
-        amazon_c_tool_img_ids,
-        amazon_c_tool_img_srcs,
-        amazon_c_tool_img_alts,
+    AmazonClone.addToolIcons(
+        amazonCloneToolImgIds,
+        amazonCloneToolImgSrcs,
+        amazonCloneToolImgAlts,
     );
 
     // Real Estate Website Project
-    const Real_Estate_Site = new Project(
+    const RealEstateSite = new Project(
         'Real Estate Site',
         3,
         'https://presidentialrealtors-dev-static.netlify.app/',
@@ -445,92 +447,92 @@ export const devProjectsLoader = (UI) => {
         'https://github.com/DNoel26/Presidential-Realtors-Static',
         true,
     );
-    Real_Estate_Site.description = `
+    RealEstateSite.description = `
                 The focus of this project was for me to learn and implement modern design, user interface (UI) and user experience (UX) elements. It was built from scratch and will eventually be converted
                 to a fully functional single page application (SPA) using React.js, MongoDB, Node.js and Express.js. Let me know what you think!
             `;
-    Real_Estate_Site.link_note = '(desktop version only!)';
-    Real_Estate_Site.notes.push(
+    RealEstateSite.linkNote = '(desktop version only!)';
+    RealEstateSite.notes.push(
         `Most client side features work as expected. Focus of this project was on design elements rather than functionality.`,
     );
-    Real_Estate_Site.notes.push(
+    RealEstateSite.notes.push(
         `Project to be redone as an app (SPA) with the the functionalities expected of a real estate website.`,
     );
-    Real_Estate_Site.notes.push(`Not yet fully responsive on smaller devices!`);
-    const real_estate_carousel_img_ids = [];
-    const real_estate_carousel_img_srcs = [
+    RealEstateSite.notes.push(`Not yet fully responsive on smaller devices!`);
+    const realEstateCarouselImgIds = [];
+    const realEstateCarouselImgSrcs = [
         './img/projects/min/real-estate-1-min.webp',
         './img/projects/min/real-estate-2-min.webp',
         './img/projects/min/real-estate-3-min.webp',
     ];
-    const real_estate_carousel_img_alts = [];
-    const real_estate_tool_img_ids = [];
-    const real_estate_tool_img_srcs = [
+    const realEstateCarouselImgAlts = [];
+    const realEstateToolImgIds = [];
+    const realEstateToolImgSrcs = [
         './img/logos/html5-badge.webp',
         './img/logos/css3-badge.webp',
     ];
-    const real_estate_tool_img_alts = [];
-    Real_Estate_Site.add_imgs(
-        real_estate_carousel_img_ids,
-        real_estate_carousel_img_srcs,
-        real_estate_carousel_img_alts,
+    const realEstateToolImgAlts = [];
+    RealEstateSite.addImgs(
+        realEstateCarouselImgIds,
+        realEstateCarouselImgSrcs,
+        realEstateCarouselImgAlts,
     );
-    Real_Estate_Site.add_tool_icons(
-        real_estate_tool_img_ids,
-        real_estate_tool_img_srcs,
-        real_estate_tool_img_alts,
+    RealEstateSite.addToolIcons(
+        realEstateToolImgIds,
+        realEstateToolImgSrcs,
+        realEstateToolImgAlts,
     );
 
     // Retrieve last project stored in session and execute change project if current project is not empty
-    current_project = JSON.parse(sessionStorage.getItem('current_project'));
-    if (current_project) {
-        change_project();
-        UI.dev_project_overview.innerHTML = new_inner_html;
-        reinitialize_el();
+    currentProject = JSON.parse(sessionStorage.getItem('current_project'));
+    if (currentProject) {
+        changeProject();
+        UI.devProjectOverview.innerHTML = newInnerHtml;
+        reinitializeEl();
     }
-    UI.dev_project_gallery_btns.forEach((btn) => {
+    UI.devProjectGalleryBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             if (btn.dataset.devProject === 'Alien Mathvasion Game') {
-                current_project = Alien_Mathvasion;
+                currentProject = AlienMathvasion;
             } else if (btn.dataset.devProject === 'Wix Site Clone') {
-                current_project = Wix_Clone;
+                currentProject = WixClone;
             } else if (btn.dataset.devProject === 'Cyberdise Online Store') {
-                current_project = Cyberdise;
+                currentProject = Cyberdise;
             } else if (btn.dataset.devProject === 'Movie Database') {
-                current_project = Movie_Database;
+                currentProject = MovieDatabase;
             } else if (btn.dataset.devProject === 'Amazon Clone') {
-                current_project = Amazon_Clone;
+                currentProject = AmazonClone;
             } else if (btn.dataset.devProject === 'Real Estate Site') {
-                current_project = Real_Estate_Site;
+                currentProject = RealEstateSite;
             } else {
                 return logger('PROJECT NOT LOADED CORRECTLY');
             }
 
             // Adds new project to carousel container
-            change_project();
+            changeProject();
 
             // Store current project in session storage
             sessionStorage.setItem(
                 'current_project',
-                JSON.stringify(current_project),
+                JSON.stringify(currentProject),
             );
-            UI.dev_project_overview.innerHTML = new_inner_html;
-            reinitialize_el();
-            UI.dev_project_overview.scrollIntoView({
+            UI.devProjectOverview.innerHTML = newInnerHtml;
+            reinitializeEl();
+            UI.devProjectOverview.scrollIntoView({
                 behavior: 'smooth',
             });
-            UI.return_to_dev_gallery_btns.forEach((btn) => {
+            UI.returnToDevGalleryBtns.forEach((btn) => {
                 btn.addEventListener('click', () => {
-                    UI.dev_project_gallery.scrollIntoView({
+                    UI.devProjectGallery.scrollIntoView({
                         behavior: 'smooth',
                     });
                 });
             });
         });
     });
-    UI.return_to_dev_gallery_btns.forEach((btn) => {
+    UI.returnToDevGalleryBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-            UI.dev_project_gallery.scrollIntoView({
+            UI.devProjectGallery.scrollIntoView({
                 behavior: 'smooth',
             });
         });
@@ -539,7 +541,7 @@ export const devProjectsLoader = (UI) => {
     // Executes function and provides closure for development projects
     (function () {
         // Select the node that will be observed for mutations
-        const target_node = UI.dev_project_overview;
+        const target_node = UI.devProjectOverview;
 
         // Options for the observer (which mutations to observe)
         const config = {

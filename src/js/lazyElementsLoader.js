@@ -1,15 +1,17 @@
 /** @format */
 
-export const lazyElementsLoader = (UI, recaptchaCallback) => {
+import UI from "./UI_Logic/UI.js";
+
+export const lazyElementsLoader = (recaptchaCallback) => {
     // Lazy load images
-    const init_lazy_imgs = [].slice.call(UI.lazy_imgs);
+    const initLazyImgs = [].slice.call(UI.lazyImgs);
 
     // Lazy load image sources (picture tag)
-    const init_lazy_sources = [].slice.call(UI.lazy_sources);
+    const initLazySources = [].slice.call(UI.lazySources);
 
     // Lazy load background images in CSS
-    const init_lazy_bgs = [].slice.call(UI.lazy_bgs);
-    const init_grecaptchas = [].slice.call(UI.grecaptchas);
+    const initLazyBgs = [].slice.call(UI.lazyBgs);
+    const initGrecaptchas = [].slice.call(UI.grecaptchas);
     const options = {
         root: null,
         rootMargin: '2000px',
@@ -17,86 +19,86 @@ export const lazyElementsLoader = (UI, recaptchaCallback) => {
     };
     if ('IntersectionObserver' in window) {
         // Lazy Images
-        const lazy_img_observer = new IntersectionObserver(function (
+        const lazyImgObserver = new IntersectionObserver(function (
             entries,
             observer,
         ) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    const lazy_image = entry.target;
-                    const lazy_data_src = lazy_image.getAttribute('data-src');
-                    const lazy_data_srcset =
-                        lazy_image.getAttribute('data-srcset');
+                    const lazyImage = entry.target;
+                    const lazyDataSrc = lazyImage.getAttribute('data-src');
+                    const lazyDataSrcset =
+                        lazyImage.getAttribute('data-srcset');
 
-                    if (lazy_image.hasAttribute('data-src')) {
-                        lazy_image.setAttribute('src', lazy_data_src);
-                        lazy_image.removeAttribute('data-src');
+                    if (lazyImage.hasAttribute('data-src')) {
+                        lazyImage.setAttribute('src', lazyDataSrc);
+                        lazyImage.removeAttribute('data-src');
                     }
 
-                    if (lazy_image.hasAttribute('data-srcset')) {
-                        lazy_image.setAttribute('srcset', lazy_data_srcset);
-                        lazy_image.removeAttribute('data-srcset');
+                    if (lazyImage.hasAttribute('data-srcset')) {
+                        lazyImage.setAttribute('srcset', lazyDataSrcset);
+                        lazyImage.removeAttribute('data-srcset');
                     }
 
-                    lazy_image.classList.remove('lazy');
-                    lazy_img_observer.unobserve(entry.target);
+                    lazyImage.classList.remove('lazy');
+                    lazyImgObserver.unobserve(entry.target);
                 }
             });
         },
         options);
-        init_lazy_imgs.forEach(function (lazy_img) {
-            lazy_img_observer.observe(lazy_img);
+        initLazyImgs.forEach(function (lazyImg) {
+            lazyImgObserver.observe(lazyImg);
         });
 
         // Lazy Image Sources
-        const lazy_source_observer = new IntersectionObserver(function (
+        const lazySourceObserver = new IntersectionObserver(function (
             entries,
             observer,
         ) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    const lazy_source = entry.target;
-                    const lazy_data_srcset =
-                        lazy_source.getAttribute('data-srcset');
+                    const lazySource = entry.target;
+                    const lazyDataSrcset =
+                        lazySource.getAttribute('data-srcset');
 
-                    if (lazy_source.hasAttribute('data-srcset')) {
-                        lazy_source.setAttribute('srcset', lazy_data_srcset);
-                        lazy_source.removeAttribute('data-srcset');
+                    if (lazySource.hasAttribute('data-srcset')) {
+                        lazySource.setAttribute('srcset', lazyDataSrcset);
+                        lazySource.removeAttribute('data-srcset');
                     }
 
-                    lazy_source_observer.unobserve(entry.target);
+                    lazySourceObserver.unobserve(entry.target);
                 }
             });
         },
         options);
-        init_lazy_sources.forEach(function (lazy_source) {
-            lazy_source_observer.observe(lazy_source);
+        initLazySources.forEach(function (lazy_source) {
+            lazySourceObserver.observe(lazy_source);
         });
 
         // Lazy Bg
-        const lazy_bg_observer = new IntersectionObserver(function (
+        const lazyBgObserver = new IntersectionObserver(function (
             entries,
             observer,
         ) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('load-now');
-                    lazy_bg_observer.unobserve(entry.target);
+                    lazyBgObserver.unobserve(entry.target);
                 }
             });
         },
         options);
-        init_lazy_bgs.forEach(function (lazy_bg) {
-            lazy_bg_observer.observe(lazy_bg);
+        initLazyBgs.forEach(function (lazyBg) {
+            lazyBgObserver.observe(lazyBg);
         });
-        const grecaptcha_observer = new IntersectionObserver(function (
+        const grecaptchaObserver = new IntersectionObserver(function (
             entries,
             observer,
         ) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     new Promise((resolve, reject) => {
-                        UI.create_scripts(
+                        UI.createScripts(
                             'https://www.google.com/recaptcha/api.js?render=explicit',
                         );
                         setTimeout(resolve, 2000);
@@ -104,12 +106,12 @@ export const lazyElementsLoader = (UI, recaptchaCallback) => {
                         .then(async () => {
                             // Checks to see if recaptcha has loaded correctly and *if not, makes up to 10 attempts to reload*
                             await recaptchaCallback(() => {
-                                const grecaptcha_check = function () {
+                                const grecaptchaCheck = function () {
                                     if (UI.grecaptchas.length > 0) {
-                                        UI.my_form_button.removeAttribute(
+                                        UI.myFormBtn.removeAttribute(
                                             'disabled',
                                         );
-                                        grecaptcha_observer.unobserve(
+                                        grecaptchaObserver.unobserve(
                                             entry.target,
                                         );
                                         grecaptcha.render('recaptcha', {
@@ -121,11 +123,11 @@ export const lazyElementsLoader = (UI, recaptchaCallback) => {
                                         });
                                     } else {
                                         setTimeout(() => {
-                                            grecaptcha_check();
+                                            grecaptchaCheck();
                                         }, 15000);
                                     }
                                 };
-                                grecaptcha_check();
+                                grecaptchaCheck();
                             });
                         })
                         .catch((err) =>
@@ -135,8 +137,8 @@ export const lazyElementsLoader = (UI, recaptchaCallback) => {
             });
         },
         options);
-        init_grecaptchas.forEach((element) => {
-            grecaptcha_observer.observe(element);
+        initGrecaptchas.forEach((element) => {
+            grecaptchaObserver.observe(element);
         });
     }
 };

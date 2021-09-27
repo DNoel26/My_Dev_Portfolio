@@ -1,11 +1,11 @@
 /** @format */
 
-const Project_DB = {
+const ProjectDb = {
     db: [],
 
-    set_db(...projects) {
+    setDb(...projects) {
         this.db.push(...projects);
     },
 };
 
-export default Project_DB;
+export default ProjectDb;

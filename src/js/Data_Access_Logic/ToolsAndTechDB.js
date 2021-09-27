@@ -1,11 +1,11 @@
 /** @format */
 
-const Tools_Tech_DB = {
+const ToolsTechDb = {
     db: [],
 
-    set_db(...tools_tech) {
-        this.db.push(...tools_tech);
+    setDb(...toolsTech) {
+        this.db.push(...toolsTech);
     },
 };
 
-export default Tools_Tech_DB;
+export default ToolsTechDb;

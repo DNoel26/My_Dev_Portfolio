@@ -7,37 +7,37 @@ export function logger(...data) {
         return console.trace(`Logged Values[${index}]: `, datum);
     });
 }
-export function wrapper_no_exec(func, ...args) {
+export function wrapperNoExec(func, ...args) {
     return function () {
         return func(...args);
     };
 }
-export function wrapper_exec(func, ...args) {
+export function wrapperExec(func, ...args) {
     return func(...args);
 }
 export function debounce(func, timer) {
-    let in_debounce;
+    let inDebounce;
     return function () {
         const context = this;
         const args = arguments;
-        clearTimeout(in_debounce);
-        in_debounce = setTimeout(() => {
+        clearTimeout(inDebounce);
+        inDebounce = setTimeout(() => {
             return func.apply(context, args);
         }, timer);
     };
 }
 export function throttle(func, timer) {
-    let in_throttle;
+    let inThrottle;
     let initial = 0;
     return function () {
         const context = this;
         const args = arguments;
-        if (in_throttle !== undefined) {
+        if (inThrottle !== undefined) {
             return;
         } else {
             return new Promise((resolve, reject) => {
-                in_throttle = setTimeout(() => {
-                    in_throttle = undefined;
+                inThrottle = setTimeout(() => {
+                    inThrottle = undefined;
                     resolve(initial);
                     return func(context, args);
                 }, initial ?? timer);
@@ -55,12 +55,12 @@ export function throttle(func, timer) {
         }
     };
 }
-export function form_submit_success(form, button, status, msg) {
+export function formSubmitSuccess(form, button, status, msg) {
     form.reset();
     button.setAttribute('disabled', 'disabled');
     status.innerHTML = msg ?? 'Submission Successful!';
 }
-export function form_submit_error(status, msg) {
+export function formSubmitError(status, msg) {
     status.innerHTML = msg ?? 'Submission Failed!';
 }
 export function ajax(method, url, data, success, error, callback) {
@@ -81,28 +81,28 @@ export function ajax(method, url, data, success, error, callback) {
 }
 
 // Include for screen size changes
-export function media_queries(mq, func_true, func_false) {
+export function mediaQueries(mq, funcTrue, funcFalse) {
     if (mq.matches) {
         // If media query matches
-        return func_true();
+        return funcTrue();
     } else {
-        return func_false ? func_false() : null;
+        return funcFalse ? funcFalse() : null;
     }
 }
-export function scroll_progress(indicator) {
-    const win_scroll = document.documentElement.scrollTop;
+export function scrollProgress(indicator) {
+    const winScroll = document.documentElement.scrollTop;
     const height =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-    const scrolled = (win_scroll / height) * 100;
+    const scrolled = (winScroll / height) * 100;
     return (indicator.style.width = scrolled + '%');
 }
-export function calculate_age() {
-    const diff_ms = Date.now() - new Date('26 March 1990');
-    const age_dt = new Date(diff_ms);
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
+export function calculateAge() {
+    const diffMs = Date.now() - new Date('26 March 1990');
+    const ageDt = new Date(diffMs);
+    return Math.abs(ageDt.getUTCFullYear() - 1970);
 }
-export function generate_dark_color_hex() {
+export function generateDarkColorHex() {
     let color = '#';
     for (let i = 0; i < 3; i++) {
         color += (
