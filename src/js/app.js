@@ -75,12 +75,6 @@ App.init = () => {
 
         // Delay load of non-essential scripts
         setTimeout(() => {
-            hotjar(
-                window,
-                document,
-                'https://static.hotjar.com/c/hotjar-',
-                '.js?sv=',
-            );
             media_queries(
                 window.matchMedia('(min-width: 768px)'),
                 () => {
@@ -94,6 +88,12 @@ App.init = () => {
             );
         }, 2000);
         setTimeout(() => {
+            hotjar(
+                window,
+                document,
+                'https://static.hotjar.com/c/hotjar-',
+                '.js?sv=',
+            );
             return UI.create_scripts(
                 'https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js',
                 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
