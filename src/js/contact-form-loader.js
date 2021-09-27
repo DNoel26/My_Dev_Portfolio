@@ -23,11 +23,11 @@ export const contactFormLoader = (recaptchaCallback) => {
     ) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                import('./Business_Logic/Api.js')
+                import('./Business_Logic/ApiWrapper.js')
                     .then((module) => module.default) // uses the default export
-                    .then((Api) => {
+                    .then((ApiWrapper) => {
                         // Populates form countries using API
-                        const CountryApi = new Api(
+                        const CountryApi = new ApiWrapper(
                             'https://restcountries.com/v2/all',
                         );
                         let userTyped = false;

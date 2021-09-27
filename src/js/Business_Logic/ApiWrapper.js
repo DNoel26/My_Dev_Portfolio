@@ -1,6 +1,6 @@
 /** @format */
 
-class Api {
+class ApiWrapper {
     endpoint;
     method;
     headers = {};
@@ -40,4 +40,4 @@ class Api {
     }
 }
 
-export default Api;
+export default ApiWrapper;
