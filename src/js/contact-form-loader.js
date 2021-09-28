@@ -44,10 +44,10 @@ export const contactFormLoader = (recaptchaCallback) => {
                                 ) {
                                     const flag =
                                         option.getAttribute('data-flag');
-                                    const callingCodes =
-                                        option.getAttribute(
-                                            'data-calling-codes',
-                                        );
+                                    // const callingCodes =
+                                    //     option.getAttribute(
+                                    //         'data-calling-codes',
+                                    //     );
                                     const img = document.createElement('img');
                                     img.setAttribute('src', flag);
                                     img.setAttribute(
