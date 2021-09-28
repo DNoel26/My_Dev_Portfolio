@@ -28,7 +28,7 @@ export const contactFormLoader = (recaptchaCallback) => {
                     .then((ApiWrapper) => {
                         // Populates form countries using API
                         const CountryApi = new ApiWrapper(
-                            'https://restcountries.com/v2/all',
+                            'https://restcountries.com/v3/all',
                         );
                         let userTyped = false;
                         selectChange = function () {
@@ -66,9 +66,7 @@ export const contactFormLoader = (recaptchaCallback) => {
                                             .tagName === 'IMG'
                                     )
                                         UI.countrySelect.labels[0].children[1].remove();
-                                    UI.countrySelect.labels[0].appendChild(
-                                        img,
-                                    );
+                                    UI.countrySelect.labels[0].appendChild(img);
                                 } else if (option.selected && !option.value) {
                                     if (
                                         UI.countrySelect.labels[0]
@@ -81,23 +79,34 @@ export const contactFormLoader = (recaptchaCallback) => {
                             });
                         };
                         CountryApi.fetchApi()
-                            .then((data) => {
-                                // Populates with API data
+                            .then(async (data) => {
+                                // Populates with sorted (by name) API data
+                                data = await data.sort((a, b) => {
+                                    if (a.name.common < b.name.common) {
+                                        return -1;
+                                    }
+                                    if (a.name.common > b.name.common) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                });
                                 data.forEach((datum) => {
                                     const newOption =
                                         document.createElement('option');
                                     newOption.setAttribute(
                                         'value',
-                                        datum.name,
+                                        datum.name.common,
                                     );
                                     newOption.setAttribute(
                                         'data-flag',
-                                        datum.flags[0],
+                                        datum.flags[1],
                                     );
-                                    newOption.setAttribute(
-                                        'data-calling-codes',
-                                        datum.callingCodes,
-                                    );
+                                    // calling codes changed in v3 of country
+                                    // api causing a bug - commented out for now
+                                    // newOption.setAttribute(
+                                    //     'data-calling-codes',
+                                    //     datum?.idd?.root + datum?.idd?.suffixes[0],
+                                    // );
                                     newOption.innerHTML = newOption.value;
                                     UI.countrySelect.appendChild(newOption);
                                 });
@@ -200,13 +209,13 @@ export const contactFormLoader = (recaptchaCallback) => {
                                     myForm.url = UI.myForm.action;
                                     myForm.data = new FormData(myForm.form);
                                     myForm.successMsg =
-                                        `Hi ${myForm.getFormData(
-                                            'first_name',
-                                        ).trim()}! ` + myForm.successMsg;
+                                        `Hi ${myForm
+                                            .getFormData('first_name')
+                                            .trim()}! ` + myForm.successMsg;
                                     myForm.errorMsg =
-                                        `Sorry ${myForm.getFormData(
-                                            'first_name',
-                                        ).trim()}! ` + myForm.errorMsg;
+                                        `Sorry ${myForm
+                                            .getFormData('first_name')
+                                            .trim()}! ` + myForm.errorMsg;
                                     const success = wrapperNoExec(
                                         formSubmitSuccess,
                                         myForm.form,
