@@ -57,8 +57,8 @@ export const contactFormLoader = (recaptchaCallback) => {
                                     img.setAttribute('width', '40px');
                                     img.setAttribute('height', 'auto');
                                     img.style.marginLeft = '10px';
-                                    if (!userTyped)
-                                        UI.phone.value = `+${callingCodes}-`;
+                                    // if (!userTyped)
+                                    //     UI.phone.value = `+${callingCodes}-`;
                                     if (
                                         UI.countrySelect.labels[0]
                                             .children[1] &&
