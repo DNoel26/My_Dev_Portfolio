@@ -1,5 +1,35 @@
 [
     {
-        "empty": "empty"
+        "name": "RCN Chemicals Limited",
+        "status": 2,
+        "link": {
+            "url": "https://rcn-chemicals.vercel.app",
+            "header": "Go to Site"
+        },
+        "description": "Production site designed in Figma and built using Next.js, React.js, Sass, Firebase, etc.",
+        "carouselImgList": {
+            "ids": [],
+            "srcs": [
+                "./img/projects/min/alien-mathvasion-1-min.webp",
+                "./img/projects/min/alien-mathvasion-2-min.webp",
+                "./img/projects/min/alien-mathvasion-3-min.webp"
+            ],
+            "alts": []
+        },
+        "toolIconList": {
+            "ids": [],
+            "srcs": [
+                "./img/logos/figma-badge.webp",
+                "./img/logos/html5-badge.webp",
+                "./img/logos/css3-badge.webp",
+                "./img/logos/sass-badge.webp",
+                "./img/logos/javascript-badge.webp",
+                "./img/logos/react-badge.webp",
+                "./img/logos/nextjs-badge.webp",
+                "./img/logos/firebase-badge.webp",
+                "./img/logos/nodejs-badge.webp"
+            ],
+            "alts": []
+        }
     }
 ]

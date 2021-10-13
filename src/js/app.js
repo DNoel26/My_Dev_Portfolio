@@ -23,7 +23,7 @@ import SkillRating from './Business_Logic/SkillRating.js';
 import { lazyElementsLoader } from './lazy-elements-loader.js';
 import { myServicesCarouselLoader } from './my-services-carousel-loader.js';
 import { tagCloudLoader } from './tag-cloud-loader.js';
-import { devProjectsLoader } from './dev-projects-loader.js';
+import { projectsLoader } from './projects-loader.js';
 import { contactFormLoader } from './contact-form-loader.js';
 import { hotjar } from './hotjar.js';
 
@@ -465,7 +465,7 @@ App.init = () => {
 
         /*** PROJECTS SECTION ***/
         // Create Projects
-        devProjectsLoader();
+        projectsLoader();
 
         /*** CONTACT SECTION ***/
         /** Formspree validation **/

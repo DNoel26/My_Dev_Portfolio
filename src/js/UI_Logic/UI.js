@@ -108,6 +108,9 @@ const UI = {
     ),
 
     // Client Projects
+    returnToClientGalleryBtns: document.querySelectorAll(
+        "[data-id='client-project-gallery']",
+    ),
     clientProjectGallery: document.getElementById('client-project-gallery'),
     clientProjectOverview: document.getElementById('client-project-overview'),
     clientProjectGalleryBtns: document.querySelectorAll(

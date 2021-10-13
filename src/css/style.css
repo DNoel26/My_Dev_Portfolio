@@ -375,7 +375,9 @@ nav .btn-custom-1 {
 }
 
 [data-id='dev-project-gallery']:hover .circle::after,
-[data-id='dev-project-gallery']:focus .circle::after {
+[data-id='dev-project-gallery']:focus .circle::after,
+[data-id='client-project-gallery']:hover .circle::after,
+[data-id='client-project-gallery']:focus .circle::after {
     width: 13rem;
 }
 
@@ -1242,6 +1244,7 @@ a.nav-link,
     height: 500px;
     max-height: 100%;
     object-fit: contain;
+    border: 1px solid rgba(232, 240, 243, 1);
 }
 
 .carousel-indicators {
@@ -1617,24 +1620,29 @@ section {
         url('../img/base/cool-bg-white.webp') no-repeat fixed center 50%;
 }
 
-/*.dev-project-gallery {
+/*.dev-project-gallery,
+.client-project-gallery {
     column-count: 3;
     column-gap: 0;
     column-width: 30%;   
 }*/
 
-.dev-project-gallery .btn {
+.dev-project-gallery .btn,
+.client-project-gallery .btn {
     will-change: transform;
     position: relative;
     transition: all 0.3s ease-in-out;
 }
 
 .dev-project-gallery .btn:hover,
-.dev-project-gallery .btn:focus {
+.dev-project-gallery .btn:focus,
+.client-project-gallery .btn:hover,
+.client-project-gallery .btn:focus {
     filter: brightness(100%);
 }
 
-.dev-project-gallery .btn.btn-project > span {
+.dev-project-gallery .btn.btn-project > span,
+.client-project-gallery .btn.btn-project > span {
     position: absolute;
     top: 50%;
     bottom: 0;
@@ -1650,19 +1658,24 @@ section {
 }
 
 .dev-project-gallery .btn.btn-project:hover span,
-.dev-project-gallery .btn.btn-project:focus span {
+.dev-project-gallery .btn.btn-project:focus span,
+.client-project-gallery .btn.btn-project:hover span,
+.client-project-gallery .btn.btn-project:focus span {
     color: var(--theme-colour-3);
     font-weight: 600;
 }
 
-.dev-project-gallery .btn.btn-project img {
+.dev-project-gallery .btn.btn-project img,
+.client-project-gallery .btn.btn-project img {
     position: relative;
     filter: brightness(100%);
     transition: all 0.3s ease-in-out;
 }
 
 .dev-project-gallery .btn.btn-project:hover img,
-.dev-project-gallery .btn.btn-project:focus img {
+.dev-project-gallery .btn.btn-project:focus img,
+.client-project-gallery .btn.btn-project:hover img,
+.client-project-gallery .btn.btn-project:focus img {
     filter: brightness(50%);
 }
 

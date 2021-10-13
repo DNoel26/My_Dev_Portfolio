@@ -332,6 +332,7 @@
 
     .projects-section .card-body,
     .projects-section .dev-project-gallery button,
+    .projects-section .client-project-gallery button,
     .projects-section img {
         padding: 0 !important;
     }
@@ -510,7 +511,8 @@
         height: 26.5rem;
     }
 
-    .dev-project-gallery .btn.btn-project > span {
+    .dev-project-gallery .btn.btn-project > span,
+    .client-project-gallery .btn.btn-project > span {
         font-size: 1rem;
     }
 
