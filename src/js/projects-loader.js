@@ -166,8 +166,8 @@ export const projectsLoader = () => {
                                     <br><strong>Status: ${currentDevProject.status.msg} <span class="${currentDevProject.status.classCode} status-circle"></span></strong>
                                 </p>
                                 
-                                <a href=${currentDevProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> ${currentDevProject.linkHeader}</strong> Now ${currentDevProject.linkNote}</a>
-                                <br><a href=${currentDevProject.githubLink} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Review</strong> Code ${currentDevProject.githubReadme}</a>
+                                <a href=${currentDevProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> Click</strong> to ${currentDevProject.linkHeader} Now ${currentDevProject.linkNote}</a>
+                                <br><a href=${currentDevProject.githubLink} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-1"><i class="fas fa-external-link-alt"></i> Click</strong> to Review Code ${currentDevProject.githubReadme}</a>
 
                                 <h4 class="small text-left mt-3">Notes:</h4>
                                 <ul class="text-wrap" id="dev-project-carousel-notes">
@@ -240,7 +240,7 @@ export const projectsLoader = () => {
                                     <br><strong>Status: ${currentClientProject.status.msg} <span class="${currentClientProject.status.classCode} status-circle"></span></strong>
                                 </p>
                                 
-                                <a href=${currentClientProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> Visit</strong> Site</a>
+                                <a href=${currentClientProject.link} class="fs-5 text-reset text-decoration-none anim-link-2 w-auto" target="_blank" rel="noopener"><strong class="text-custom-2"><i class="fas fa-external-link-alt"></i> Click</strong> to Visit Site</a>
 
                                 <ul class="text-wrap" id="client-project-carousel-notes">
                                     
