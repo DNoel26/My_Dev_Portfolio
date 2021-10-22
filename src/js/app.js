@@ -106,7 +106,7 @@ App.init = () => {
                 if (!googlePreviewBtnIsClicked) {
                     UI.googlePreviewModal.setAttribute(
                         'src',
-                        'https://drive.google.com/file/d/1fHBSLAaqd7pVWZ7lZr7jAOXBCZB0yXmT/preview',
+                        'https://drive.google.com/file/d/1C14OwVUtdLrPcs8e7_cPwp3R65dRjoS1/preview',
                     );
                     googlePreviewBtnIsClicked = true;
                 }
@@ -372,8 +372,7 @@ App.init = () => {
                     // Hides the header on scroll stop or shows while scrolling or hovering on element (debounces while scrolling)
                     if (
                         !showHeader &&
-                        (document.documentElement.scrollTop >
-                            hideHeaderLimit ||
+                        (document.documentElement.scrollTop > hideHeaderLimit ||
                             window.pageYOffset > hideHeaderLimit)
                     ) {
                         if (UI.botNavCollapse.classList.contains('show')) {
@@ -400,13 +399,9 @@ App.init = () => {
             document.addEventListener('scroll', scrollMovedDebounceWrapper, {
                 passive: true,
             });
-            document.addEventListener(
-                'touchmove',
-                scrollMovedDebounceWrapper,
-                {
-                    passive: true,
-                },
-            );
+            document.addEventListener('touchmove', scrollMovedDebounceWrapper, {
+                passive: true,
+            });
             document.addEventListener(
                 'touchstart',
                 scrollMovedDebounceWrapper,
@@ -414,13 +409,9 @@ App.init = () => {
                     passive: true,
                 },
             );
-            document.addEventListener(
-                'scroll',
-                stickyHeaderThrottleWrapper,
-                {
-                    passive: true,
-                },
-            );
+            document.addEventListener('scroll', stickyHeaderThrottleWrapper, {
+                passive: true,
+            });
             document.addEventListener(
                 'touchmove',
                 stickyHeaderThrottleWrapper,
