@@ -87,12 +87,13 @@ App.init = () => {
             );
         }, 2000);
         setTimeout(() => {
-            hotjar(
-                window,
-                document,
-                'https://static.hotjar.com/c/hotjar-',
-                '.js?sv=',
-            );
+            // commented out hotjar to add into html directly
+            // hotjar(
+            //     window,
+            //     document,
+            //     'https://static.hotjar.com/c/hotjar-',
+            //     '.js?sv=',
+            // );
             return UI.createScripts(
                 'https://code.tidio.co/edv8badlavwvekyo42tfkxyp6frut7yq.js',
                 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
