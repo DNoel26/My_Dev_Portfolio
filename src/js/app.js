@@ -107,7 +107,7 @@ App.init = () => {
                 if (!googlePreviewBtnIsClicked) {
                     UI.googlePreviewModal.setAttribute(
                         'src',
-                        'https://drive.google.com/file/d/1C14OwVUtdLrPcs8e7_cPwp3R65dRjoS1/preview',
+                        'https://drive.google.com/file/d/1Sbr76J5vd0Adm0OdvVzJdMBTbYZvMR5U/preview',
                     );
                     googlePreviewBtnIsClicked = true;
                 }
